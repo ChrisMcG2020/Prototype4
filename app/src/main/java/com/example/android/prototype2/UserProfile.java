@@ -98,12 +98,19 @@ public class UserProfile extends AppCompatActivity {
                     String playerID = (String) userSnapshot.child("playerID").getValue();
 
                     displayName.setText(name);
+
                     displayPhone.setText(phone);
+
                     nameTextView.setText(name);
+                    Log.d (TAG,"TEST__name: "+name);
                     phoneNoTextView.setText(phone);
+                    Log.d(TAG, "TEST_phone: " + phone);
                     emailTextView.setText(email);
+                    Log.d (TAG,"TEST_email: "+email);
                     emergencyContactTextView.setText(emergencyContact);
+                    Log.d (TAG,"TEST_EC: "+emergencyContact);
                     emergencyContactPhoneNoTextView.setText(contactNumber);
+                    Log.d (TAG,"TEST_EC_phone: "+contactNumber);
 
 
                     Intent intent = new Intent(getIntent());
@@ -132,11 +139,16 @@ public class UserProfile extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         firebaseDatabase.getReference("Users").child(uid).child("name").setValue(updateName);
                         displayName.setText(updateName);
+                        Log.d (TAG,"TEST_updated_name: "+updateName);
                         firebaseDatabase.getReference("Users").child(uid).child("email").setValue(updateEmail);
+                        Log.d (TAG,"TEST_updated_email: "+updateEmail);
                         firebaseDatabase.getReference("Users").child(uid).child("phoneNo").setValue(updatePhone);
                         displayPhone.setText(updatePhone);
+                        Log.d (TAG,"TEST_updated_phone: "+updatePhone);
                         firebaseDatabase.getReference("Users").child(uid).child("emergencyContact").setValue(updateEmergencyContact);
+                        Log.d (TAG,"TEST_updated_EC: "+updateEmergencyContact);
                         firebaseDatabase.getReference("Users").child(uid).child("contactNumber").setValue(updateEC_Phone);
+                        Log.d (TAG,"TEST_updated_EC_phone: "+updateEC_Phone);
                         Toast.makeText(getApplicationContext(), "UPDATED", Toast.LENGTH_LONG).show();
 
                     }
@@ -188,8 +200,10 @@ public class UserProfile extends AppCompatActivity {
 
         //Remove the user
         databaseReferenceUser.removeValue();
+
         //Remove the incident
         databaseReferenceIncident.removeValue();
+
 
         //Show a toast to say user has been removed
         Toast.makeText(getApplicationContext(), "User deleted", Toast.LENGTH_LONG).show();

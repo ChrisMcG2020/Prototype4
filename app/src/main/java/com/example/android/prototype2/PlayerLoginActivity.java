@@ -19,12 +19,9 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 public class PlayerLoginActivity extends AppCompatActivity {
 
@@ -151,6 +148,7 @@ public class PlayerLoginActivity extends AppCompatActivity {
 
                 if (task.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "Login_Test : Logged In Successfully:" + currentFirebaseUser.getDisplayName());
                     startActivity(new Intent(getApplicationContext(), UserProfile.class));
                 } else {
                     loginEmail.setError("Email/Password Incorrect");
@@ -217,154 +215,3 @@ public class PlayerLoginActivity extends AppCompatActivity {
 
 
 }
-     /*   else if (view.getId()== R.id.forgot_pass_btn) {
-            Button forgotPass = findViewById(R.id.forgot_pass_btn);
-            final String entry = loginEmail.getEditText().getText().toString();
-            final String emailCharacters = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-
-            final FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
-
-            if (entry.isEmpty()) {
-                loginEmail.setError("Email field cannot be empty");
-
-            } else if (!entry.matches(emailCharacters)) {
-                loginEmail.setError("Invalid email address");
-            } else {
-
-                progressBar.setVisibility(View.VISIBLE);
-
-                mAuth.sendPasswordResetEmail(entry)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(getApplicationContext(), "Reset password email sent!", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(getApplicationContext(), "Error! Reset email not sent", Toast.LENGTH_SHORT).show();
-                                }
-
-                                progressBar.setVisibility(View.GONE);
-                            }
-                        });
-
-        }
-    }
-    }
-}
-
-            /*forgotPass = findViewById(R.id.forgot_pass_btn);
-            final FirebaseAuth mAuth = FirebaseAuth.getInstance();
-            final String userEnteredEmail = loginEmail.getEditText().getText().toString().trim();
-
-            mAuth.sendPasswordResetEmail(userEnteredEmail).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Toast.makeText(getApplicationContext(), "Reset email sent", Toast.LENGTH_SHORT).show();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getApplicationContext(), "Error, email link not sent" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-
-
-            });
-        }*/
-
-
-
-
-
-
-
-
-        /*Query matches any email in the database with the one entered by the user
-        Query checkUser[0] = reference.orderByChild("email").equalTo(userEnteredEmail);
-
-        checkUser[0].addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //If data exists inside the snapshot
-                if (snapshot.exists()) {
-
-                    //Remove errors as data exists
-                    loginEmail.setError(null);
-                    loginEmail.setErrorEnabled(false);
-
-                    //get the password of the user entered email address
-                    String dbPhoneNumber = snapshot.child(userEnteredEmail).child("phoneNo").getValue(String.class);
-                    String dbPassword = snapshot.child(dbPhoneNumber).child("password").getValue(String.class);
-
-                    //Check if the password in the database matches the password entered by the user
-                    assert dbPassword != null;
-                    if (dbPassword.equals(userEnteredPassword)) {
-                        Log.d(TAG, "Password matches");
-
-                        //Remove errors as password matches
-                        loginPass.setError(null);
-                        loginPass.setErrorEnabled(false);
-
-
-                        //Retrieve all information needed to fill the profile page
-
-                        String dbEmail = snapshot.child(userEnteredEmail).child("email").getValue(String.class);
-                        String dbEmergencyContact = snapshot.child(userEnteredEmail).child("emergencyContact").getValue(String.class);
-                        String dbName = snapshot.child(userEnteredEmail).child("name").getValue(String.class);
-
-                        //Move to the UserProfile screen
-                        Intent intent = new Intent(getApplicationContext(), UserProfile.class);
-
-                        //Pass the information to the UserProfile screen
-                        intent.putExtra("name", dbName);
-                        intent.putExtra("phoneNo", dbPhoneNumber);
-                        intent.putExtra("email", dbEmail);
-
-                        //Start the UserProfile activity
-                        startActivity(intent);
-
-
-                        //If issue with password
-                    } else {
-                        //Wrong password error
-                        loginPass.setError("Wrong password entered");
-                        //requestFocus highlights the field where the error exists
-                        loginPass.requestFocus();
-                    }
-                } else
-                    //user does not exist
-                    loginPass.setError("User email address doesn't not exist");
-                loginPass.requestFocus();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });*/
-
-
-    /*        protected void forgotPassword() {
-                loginEmail = findViewById(R.id.reg_email);
-                String email = loginEmail.getEditText().getText().toString().trim();
-
-                FirebaseAuth.getInstance().sendPasswordResetEmail(email)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(getApplicationContext(), "Reset email sent", Toast.LENGTH_SHORT).show();
-                                    Log.d(TAG, "Email sent.");
-                                }
-                            }
-                        });
-
-            }
-
-        @Override
-        public void onClick(View v){
-             forgotPassword();
-        }
-    }
-
-*/
