@@ -172,23 +172,23 @@ public class CoachProfile extends AppCompatActivity {
     }
 
     public void onButtonClicked(View view) {
-
-        if (view.getId() == R.id.incident_text) {
-            Intent intent2 = new Intent(getApplicationContext(), PlayerListViewActivity.class);
-            startActivity(intent2);
-
-        } else if (view.getId() == R.id.btn_logoutCoachProfile) {
-            Intent logoutIntent = new Intent(getApplicationContext(), SplashScreen.class);
-            startActivity(logoutIntent);
-
-        } else if (view.getId() == R.id.recovery_image) {
-            Intent allIncidentsIntent = new Intent(getApplicationContext(), AllIncidentsListView.class);
-            startActivity(allIncidentsIntent);
-
-        } else if (view.getId()==R.id.diagnose_concussion_button){
-            Intent diagnoseIntent = new Intent (getApplicationContext(), PlayerListViewActivity.class);
+        if (view.getId() == R.id.diagnose_concussion_button) {
+            Intent diagnoseIntent = new Intent(getApplicationContext(), PlayerListViewActivity.class);
             startActivity(diagnoseIntent);
 
+
+            } else if (view.getId() == R.id.btn_logoutCoachProfile) {
+                Intent logoutIntent = new Intent(getApplicationContext(), SplashScreen.class);
+                startActivity(logoutIntent);
+
+            } else if (view.getId() == R.id.recovery_image) {
+                Intent allIncidentsIntent = new Intent(getApplicationContext(), AllIncidentsListView.class);
+                startActivity(allIncidentsIntent);
+
+            } else if
+            (view.getId() == R.id.incident_text) {
+                Intent intent2 = new Intent(getApplicationContext(), PlayerListViewActivity.class);
+                startActivity(intent2);
+            }
         }
     }
-}

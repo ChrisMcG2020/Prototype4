@@ -13,8 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.android.prototype2.helperClass.UserHelperClass;
 import com.example.android.prototype2.R;
+import com.example.android.prototype2.helperClass.UserHelperClass;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -76,14 +76,10 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.Vi
             @Override
             public void onClick(View v) {
 
-
-
-
                 //The intent to launch the activity
                 Intent intent = new Intent(context, RedFlagActivity.class);
-                 intent.putExtra ("name1",player.getName());
-
-                intent.putExtra("email1",player.getEmail());
+                intent.putExtra("name1", player.getName());
+                intent.putExtra("email1", player.getEmail());
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
 

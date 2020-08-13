@@ -134,7 +134,7 @@ public class PlayerLoginActivity extends AppCompatActivity {
         Log.d(TAG, "Firebase contacted");
 
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        //   final String user = currentFirebaseUser.getUid();
+
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
 
@@ -148,34 +148,6 @@ public class PlayerLoginActivity extends AppCompatActivity {
                 FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 final String user = currentFirebaseUser.getUid();
 
-             /*   checkUser[0].addValueEventListener(new ValueEventListener() {
-
-
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-
-                        //If data exists inside the snapshot
-                        if (snapshot.exists()) {
-
-
-                            //Retrieve all information needed to fill the profile page
-
-                            String dbEmail = snapshot.child(user).child("email").getValue(String.class);
-                            String dbPhoneNumber = snapshot.child(user).child("phoneNo").getValue(String.class);
-                            String dbName = snapshot.child(user).child("name").getValue(String.class);
-
-
-                            //Move to the UserProfile screen
-                            Intent intent = new Intent(getApplicationContext(), UserProfile.class);
-
-                            //Pass the information to the UserProfile screen
-                            intent.putExtra("name", dbName);
-                            intent.putExtra("phoneNo", dbPhoneNumber);
-                            intent.putExtra("email", dbEmail);
-
-
-                        }*/
 
                 if (task.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();

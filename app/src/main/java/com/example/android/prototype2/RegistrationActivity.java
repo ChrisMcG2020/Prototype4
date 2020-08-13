@@ -250,7 +250,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         int year = regDOB.getYear();
 
 
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormatter = new SimpleDateFormat("MM-dd-yy");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yy");
         Date date = new Date(year, month, day);
         final String dob = dateFormatter.format(date);
         //final String dob = stringDate;
