@@ -27,7 +27,7 @@ public class IncidentListView extends AppCompatActivity {
 
     //Define the RecyclerView
     RecyclerView listViewIncidents;
-    private List<PlayerIncidentsModel> playerIncidentsModels;
+    private ArrayList<PlayerIncidentsModel> playerIncidentsModels;
 
     //Define a list to store the players
     // ArrayList<StackIncidentHelperClass> incidentsList;

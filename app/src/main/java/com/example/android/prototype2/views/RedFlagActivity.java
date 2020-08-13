@@ -42,10 +42,6 @@ public class RedFlagActivity extends AppCompatActivity {
         intent_Name1=getIntent().getStringExtra("name1");
         intent_Email1 = getIntent().getStringExtra("email1");
         redFlagDiagnosis = "Red Flags : Passed";
-        PlayerIncidentsModel mPlayerIncidentsModel = new PlayerIncidentsModel();
-        mPlayerIncidentsModel.setRed_FLag_Test(redFlagDiagnosis);
-
-
 
     }
 
@@ -65,7 +61,6 @@ public class RedFlagActivity extends AppCompatActivity {
             Intent redFlag_Intent = new Intent(getApplicationContext(), ObservableSignsActivity.class);
             redFlag_Intent.putExtra("uid1", intent_uid1);
             redFlag_Intent.putExtra("name1",intent_Name1);
-            Log.d(TAG,"NAME+_+_+_"+intent_Name1);
             redFlag_Intent.putExtra("email1", intent_Email1);
             redFlag_Intent.putExtra("redFlag1", redFlagDiagnosis);
             //Start the next activity

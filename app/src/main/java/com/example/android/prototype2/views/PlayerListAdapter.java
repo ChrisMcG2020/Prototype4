@@ -80,6 +80,7 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.Vi
                 Intent intent = new Intent(context, RedFlagActivity.class);
                 intent.putExtra("name1", player.getName());
                 intent.putExtra("email1", player.getEmail());
+                intent.putExtra("uid", player.getUid());
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
 

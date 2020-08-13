@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-@SuppressWarnings("FieldCanBeLocal")
+
 public class AddReportActivity extends AppCompatActivity {
 
     //EditText and String variables
@@ -56,11 +56,10 @@ public class AddReportActivity extends AppCompatActivity {
         validateReport();
 
 
-        intent_Name5 = getIntent().getStringExtra("name4");
-        Log.d(TAG, "REPORT%=" + intent_Name5);
+     /*   intent_Name5 = getIntent().getStringExtra("name4");
         intent_uid5 = getIntent().getStringExtra("uid4");
-        intent_Email5 = getIntent().getStringExtra("email4");
-        Log.d(TAG, "EMAIL+" + intent_Email5);
+        intent_Email5 = getIntent().getStringExtra("email4");*/
+
         //Calculating date
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
@@ -139,6 +138,7 @@ public class AddReportActivity extends AppCompatActivity {
 
         //Set the values from the report to the appropriate variable
         playerIncidentsModel.setUid(intent_uid5);
+        Log.d(TAG, "UIDDDDDDDDDD+"+intent_uid5);
         playerIncidentsModel.setRed_FLag_Test(intent_RedFlag5);
         playerIncidentsModel.setObservable_Signs_Test(intent_Obs5);
         playerIncidentsModel.setMemory_Question(intent_Memory5);

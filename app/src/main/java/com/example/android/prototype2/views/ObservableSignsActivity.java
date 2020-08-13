@@ -82,7 +82,6 @@ public class ObservableSignsActivity extends AppCompatActivity {
             Intent obs_Intent = new Intent(getApplicationContext(), Symptoms.class);
             obs_Intent.putExtra("uid2", intent_uid2);
             obs_Intent.putExtra("name2", intent_name2);
-
             obs_Intent.putExtra("email2", intent_email2);
             obs_Intent.putExtra("redFlag2", intent_RedFlag2);
             obs_Intent.putExtra("obs1", obsDiagnosis);

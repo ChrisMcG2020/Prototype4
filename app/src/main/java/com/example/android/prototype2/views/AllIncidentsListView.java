@@ -41,13 +41,13 @@ public class AllIncidentsListView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.users_list_recycler_view);
+        setContentView(R.layout.all_incidents_recycler);
 
         //Assign the playersList
         allIncidentsModel = new ArrayList<>();
 
         //Assign the recycler view to the correct view
-        listViewAllIncidents = findViewById(R.id.recycler_list_view);
+        listViewAllIncidents = findViewById(R.id.recycler_all_incident_list_view);
         listViewAllIncidents.setHasFixedSize(true);
         //Set the adapter to an instance of the PlayerListAdapter
         listViewAllIncidents.setAdapter(new AllIncidentsAdapter(this, allIncidentsModel));

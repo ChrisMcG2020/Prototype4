@@ -28,7 +28,7 @@ public class AllIncidentsAdapter extends RecyclerView.Adapter<AllIncidentsAdapte
     //Variables
     private Context context;
 
-    private DatabaseReference databaseReference;
+    //private DatabaseReference databaseReference;
 
     //Constructor
     public AllIncidentsAdapter(Context context, List<AllIncidentsModel> incidentList) {
@@ -53,16 +53,16 @@ public class AllIncidentsAdapter extends RecyclerView.Adapter<AllIncidentsAdapte
     @Override
     public void onBindViewHolder(@NonNull AllIncidentsAdapter.ViewHolder holder, int position) {
         final AllIncidentsModel incident = incidentList.get(position);
-        holder.textViewName.setText("Name: " + incident.getName());
-        holder.textViewCoachName.setText("Coach: " + incident.getCoachName());
-        holder.textViewDate.setText("Date: " + incident.getDate());
+        holder.textViewName.setText(String.format("Player Name: %s", incident.getName()));
+        holder.textViewCoachName.setText(String.format("Coach: %s", incident.getCoachName()));
+        holder.textViewDate.setText(String.format("Date: %s", incident.getDate()));
         holder.textViewRedFlag.setText(incident.getRed_FLag_Test());
         holder.textViewObservable.setText(incident.getObservable_Signs_Test());
-        holder.textViewSymptoms.setText("Symptoms: "+incident.getSymptoms());
+        holder.textViewSymptoms.setText(String.format("Symptoms: %s", incident.getSymptoms()));
         holder.textViewMemory.setText(incident.getMemory_Question());
-        holder.textViewReport.setText("Report: " + incident.getReports());
+        holder.textViewReport.setText(String.format("Report: %s", incident.getReports()));
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Player_incidents");
+       // databaseReference = FirebaseDatabase.getInstance().getReference("Player_incidents");
     }
 
 

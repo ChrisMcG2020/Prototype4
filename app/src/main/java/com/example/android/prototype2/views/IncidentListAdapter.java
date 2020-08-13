@@ -2,7 +2,6 @@ package com.example.android.prototype2.views;
 
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.android.prototype2.helperClass.PlayerIncidentsModel;
 import com.example.android.prototype2.R;
+import com.example.android.prototype2.helperClass.PlayerIncidentsModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,15 +39,15 @@ public class IncidentListAdapter extends RecyclerView.Adapter<IncidentListAdapte
     @NonNull
     @Override
     //If viewHolder does  not exist create one by inflating the user_details_view
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(
+    public IncidentListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new IncidentListAdapter.ViewHolder(
                 LayoutInflater.from(context)
                         .inflate(R.layout.incident_item, parent, false)
         );
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull IncidentListAdapter.ViewHolder holder, final int position) {
 
 
         //Retrieve the incident stored at the position
@@ -57,7 +56,7 @@ public class IncidentListAdapter extends RecyclerView.Adapter<IncidentListAdapte
         holder.textViewRedFlag.setText(incidents.getRed_FLag_Test());
         holder.textViewObs.setText(incidents.getObservable_Signs_Test());
         holder.textViewMemory.setText(incidents.getMemory_Question());
-        holder.textViewSymptoms.setText(incidents.getSymptoms());
+        holder.textViewSymptoms.setText(String.format("Symptoms: %s", incidents.getSymptoms()));
         holder.textViewIncidentReport.setText("Report: " + incidents.getReports());
         holder.date.setText("Date: " + incidents.getDate());
         holder.incidentPlayerName.setText("Player: " + incidents.getName());
