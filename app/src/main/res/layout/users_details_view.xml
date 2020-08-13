@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="16dp"
+    >
+
+    <!--Text Views to hold the data from the database for name, email,phone, emergency contact and emergency contact phone number -->
+    <!--Extracts data from database and fills each view and displays in the user_list_recycler_view-->
+    <TextView
+        android:id="@+id/player_view_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:id="@+id/player_view_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/player_view_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        />
+
+
+    <TextView
+        android:id="@+id/player_view_phoneNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/player_view_emergencyContact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+          />
+
+    <TextView
+        android:id="@+id/player_view_emergencyContactPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+     />
+    <TextView
+        android:id="@+id/player_view_emergencyContactPhone2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:id="@+id/player_view_emergencyContactPhone3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+          />
+
+
+
+
+</LinearLayout>

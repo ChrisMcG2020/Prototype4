@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Layout contains the app logo, name and tagline -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:background="#03a9f4"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="218dp"
+        android:layout_height="170dp"
+        android:layout_marginStart="83dp"
+        android:layout_marginLeft="83dp"
+        android:layout_marginTop="181dp"
+        android:layout_marginBottom="40dp"
+        android:src="@mipmap/brain_upscaled"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/logo_Image" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/bevan"
+        android:gravity="center_horizontal"
+        android:text="@string/welcome_title"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="24sp" />
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:fontFamily="@font/bevan"
+        android:gravity="center_horizontal"
+        android:text="@string/splash_tagline"
+        android:textColor="@color/colorText" />
+
+</LinearLayout>

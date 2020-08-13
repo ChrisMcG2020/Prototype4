@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="14dp"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="8dp"
+        android:background="@color/browser_actions_bg_grey"
+        android:layout_marginBottom="6dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/browser_actions_bg_grey">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="275dp"
+                android:layout_marginLeft="275dp"
+                android:layout_marginTop="-4dp"
+                android:contentDescription="@string/searchUserLogo"
+                android:src="@drawable/find_user" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="279dp"
+            android:layout_height="match_parent"
+            android:background="@color/browser_actions_bg_grey"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/all_incidents_playerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+
+                android:textColor="@color/browser_actions_text_color"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/all_incidents_coachName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textColor="@color/browser_actions_text_color"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:id="@+id/allincidents_Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+
+                android:textColor="@color/browser_actions_text_color"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/all_incidents_RedFlag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+
+                android:textColor="@color/browser_actions_text_color"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/all_incidents_Obs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+
+                android:textColor="@color/browser_actions_text_color"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/all_incidents_Symptoms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+
+                android:textColor="@color/browser_actions_text_color"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/all_incidents_Memory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+
+                android:textColor="@color/browser_actions_text_color"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/all_incidents_Report"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+
+                android:textColor="@color/browser_actions_text_color"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

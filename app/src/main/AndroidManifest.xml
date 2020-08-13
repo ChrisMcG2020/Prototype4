@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.android.prototype2">
+
+    <!--Add the permission for connecting to the internet-->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
+        android:icon="@mipmap/splash_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="sensor"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Views.SplashScreen">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Views.IncidentListView" />
+        <activity android:name=".AddReportActivity" />
+        <activity android:name=".CoachAdviceActivity" />
+        <activity android:name=".Views.QuizActivity" />
+        <activity android:name=".Views.Symptoms" />
+        <activity android:name=".CoachRegistrationActivity" />
+        <activity android:name=".Views.RedFlagActivity" />
+        <activity android:name=".Views.PlayerListViewActivity" />
+        <activity android:name=".Views.AllIncidentsListView" />
+        <activity android:name=".UserProfile" />
+        <activity android:name=".PlayerLoginActivity" />
+        <activity android:name=".RecoveryActivity" />
+        <activity android:name=".RegistrationActivity" />
+        <activity android:name=".CoachProfile" />
+        <activity android:name=".Views.ObservableSignsActivity" />
+        <activity android:name=".CoachLoginActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>
