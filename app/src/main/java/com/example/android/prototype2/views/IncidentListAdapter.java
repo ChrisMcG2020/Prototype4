@@ -61,7 +61,7 @@ public class IncidentListAdapter extends RecyclerView.Adapter<IncidentListAdapte
         holder.textViewIncidentReport.setText("Report: " + incidents.getReports());
         holder.date.setText("Date: " + incidents.getDate());
         holder.incidentPlayerName.setText("Player: " + incidents.getName());
-        Log.d(TAG, "SIZE--" + incidentList.size());
+
     }
 
     @Override

@@ -61,7 +61,7 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
 
         //Assign instance of Firebase variables
         mAuth = FirebaseAuth.getInstance();
-        currentUser=mAuth.getCurrentUser();
+        currentUser = mAuth.getCurrentUser();
 
         //return to login button takes user back to login screen
         coachReturnToLoginBtn.setOnClickListener(new View.OnClickListener() {
