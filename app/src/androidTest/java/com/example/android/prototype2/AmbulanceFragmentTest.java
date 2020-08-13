@@ -2,7 +2,7 @@ package com.example.android.prototype2;
 
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 
-import com.example.android.prototype2.Views.RedFlagActivity;
+import com.example.android.prototype2.views.RedFlagActivity;
 
 import org.junit.Rule;
 import org.junit.Test;

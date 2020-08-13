@@ -6,7 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.android.prototype2.Dialogs.AmbulanceFragment;
+import com.example.android.prototype2.dialogs.AmbulanceFragment;
 
 
 public class CoachAdviceActivity extends AppCompatActivity {

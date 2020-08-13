@@ -3,8 +3,8 @@ package com.example.android.prototype2;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.example.android.prototype2.Views.QuizActivity;
-import com.example.android.prototype2.Views.Symptoms;
+import com.example.android.prototype2.views.QuizActivity;
+import com.example.android.prototype2.views.Symptoms;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -30,7 +30,7 @@ public class SymptomsTest {
             = new IntentsTestRule<>(Symptoms.class);
 
     @Test
-    public void is_view_scollable() {
+    public void is_view_scrollable() {
         //Find view and perform action
         onView(withId(R.id.symptom_continue)).perform(scrollTo());
     }

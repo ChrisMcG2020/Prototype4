@@ -78,7 +78,7 @@ public class PlayerLoginActivity extends AppCompatActivity {
 
     public void loginUser(View view) {
         //Validate Login Info
-        //If email or password doesnt pass validation then errors are returned
+        //If email or password doesn't pass validation then errors are returned
         if (!validateLoginEmail() | !validateLoginPassword()) {
             return;
         } else {
@@ -361,7 +361,7 @@ public class PlayerLoginActivity extends AppCompatActivity {
                     }
                 } else
                     //user does not exist
-                    loginPass.setError("User email address doesnt not exist");
+                    loginPass.setError("User email address doesn't not exist");
                 loginPass.requestFocus();
             }
 

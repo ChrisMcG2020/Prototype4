@@ -2,7 +2,7 @@ package com.example.android.prototype2;
 
 import androidx.test.rule.ActivityTestRule;
 
-import com.example.android.prototype2.Views.IncidentListView;
+import com.example.android.prototype2.views.IncidentListView;
 
 import org.junit.Rule;
 import org.junit.Test;

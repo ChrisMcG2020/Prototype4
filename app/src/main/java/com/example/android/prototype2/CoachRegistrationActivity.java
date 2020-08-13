@@ -3,7 +3,6 @@ package com.example.android.prototype2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -11,7 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.android.prototype2.Model.CoachHelperClass;
+import com.example.android.prototype2.helperClass.CoachHelperClass;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
@@ -211,7 +210,7 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
                             coachHelperClass.setCoachID(id);
                             coachHelperClass.setUid(coachUID);
 
-                            //Get an instance of the firabase database and add the details from helper class to the current user
+                            //Get an instance of the firebase database and add the details from helper class to the current user
                             FirebaseDatabase.getInstance().getReference("Coaches").child(coachUID)
                                     //.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(coachHelperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -219,7 +218,7 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressBar.setVisibility(View.GONE);
-                                    //of successfull show Toast
+                                    //of successful show Toast
                                     if (task.isSuccessful()) {
                                         Toast.makeText(getApplicationContext(), getString(R.string.registration_success), Toast.LENGTH_SHORT).show();
 

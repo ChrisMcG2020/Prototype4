@@ -11,10 +11,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.android.prototype2.Model.CoachHelperClass;
-import com.example.android.prototype2.Views.AllIncidentsListView;
-import com.example.android.prototype2.Views.PlayerListViewActivity;
-import com.example.android.prototype2.Views.SplashScreen;
+import com.example.android.prototype2.helperClass.CoachHelperClass;
+import com.example.android.prototype2.views.AllIncidentsListView;
+import com.example.android.prototype2.views.PlayerListViewActivity;
+import com.example.android.prototype2.views.SplashScreen;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;

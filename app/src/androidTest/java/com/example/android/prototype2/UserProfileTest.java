@@ -7,8 +7,8 @@ import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.example.android.prototype2.Views.IncidentListView;
-import com.example.android.prototype2.Views.SplashScreen;
+import com.example.android.prototype2.views.IncidentListView;
+import com.example.android.prototype2.views.SplashScreen;
 
 import org.hamcrest.Matcher;
 import org.junit.Rule;

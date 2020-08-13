@@ -3,9 +3,9 @@ package com.example.android.prototype2;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.example.android.prototype2.Dialogs.AmbulanceFragment;
-import com.example.android.prototype2.Views.ObservableSignsActivity;
-import com.example.android.prototype2.Views.Symptoms;
+import com.example.android.prototype2.dialogs.AmbulanceFragment;
+import com.example.android.prototype2.views.ObservableSignsActivity;
+import com.example.android.prototype2.views.Symptoms;
 
 import org.junit.Rule;
 import org.junit.Test;

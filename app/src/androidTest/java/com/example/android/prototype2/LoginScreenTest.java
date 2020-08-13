@@ -111,7 +111,7 @@ public class LoginScreenTest {
         onView(withId(R.id.login)).perform(click());
 
 
-        //Implement an idyling resource method to make the test wait to see if activity is launched or not
+        //Implement an idling resource method to make the test wait to see if activity is launched or not
         String userProfile = UserProfile.class.getName();
         Espresso.registerIdlingResources(new WaitActivityIsResumedIdlingResource(userProfile));
         intended(hasComponent(hasClassName(userProfile)));

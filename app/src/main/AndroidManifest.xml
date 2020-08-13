@@ -14,7 +14,7 @@
         android:screenOrientation="sensor"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Views.SplashScreen">
+        <activity android:name=".views.SplashScreen">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,21 +22,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Views.IncidentListView" />
+        <activity android:name=".views.IncidentListView" />
         <activity android:name=".AddReportActivity" />
         <activity android:name=".CoachAdviceActivity" />
-        <activity android:name=".Views.QuizActivity" />
-        <activity android:name=".Views.Symptoms" />
+        <activity android:name=".views.QuizActivity" />
+        <activity android:name=".views.Symptoms" />
         <activity android:name=".CoachRegistrationActivity" />
-        <activity android:name=".Views.RedFlagActivity" />
-        <activity android:name=".Views.PlayerListViewActivity" />
-        <activity android:name=".Views.AllIncidentsListView" />
+        <activity android:name=".views.RedFlagActivity" />
+        <activity android:name=".views.PlayerListViewActivity" />
+        <activity android:name=".views.AllIncidentsListView" />
         <activity android:name=".UserProfile" />
         <activity android:name=".PlayerLoginActivity" />
         <activity android:name=".RecoveryActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".CoachProfile" />
-        <activity android:name=".Views.ObservableSignsActivity" />
+        <activity android:name=".views.ObservableSignsActivity" />
         <activity android:name=".CoachLoginActivity" />
 
         <meta-data

@@ -17,18 +17,6 @@
     <string name="phone_number">999</string>
 
     <!-- Recovery advice page text -->
-    <string name="Sleep">
-        \n <b>Sleep</b> <i>\n Try to rest but take note of the \n amount of sleep you are having\n compared to normal</i>
-    </string>
-    <string name="Nutrition">
-        \n <b>Nutrition</b><i>\n Drink plenty of water and eat \n healthy foods. \n Avoid sugary/ fatty foods \n and alcohol</i>
-    </string>
-    <string name="Exercise">
-        \n <b>Exercise</b><i> \n Avoid strenuous exercise ,\n try to take 30min walk \n each day</i>
-</string>
-    <string name="Diary">
-        \n <b>Keep a diary</b> <i>\n Try to keep a diary of how you \n are feeling, what you are eating/ \n drinking and how you are sleeping</i>
-    </string>
 
     <!--Splash Page-->
     <string name="splash_tagline"><i>An app to help diagnose \n and manage concussion</i></string>
@@ -59,8 +47,6 @@
     <string name="register_btn">Register</string>
     <string name="back_to_login_screen_btn">Back to login screen</string>
     <string name="registration_success">Registration Successful</string>
-    <string name="positive_diagnosis">Concussed!</string>
-    <string name="negative_diagnosis">Not concussed</string>
 
     <!--Red Flag Page-->
     <string name="call_ambulance">Call Ambulance</string>
@@ -77,8 +63,8 @@
 
 
     <string name="observable_signs_q1">Lying motionless on the playing surface</string>
-    <string name="observable_signs_q2">Balance/gait difficulties/motor incordiantion: stumbling slow/ laboured movements</string>
-    <string name="observable_signs_q3">Disorientation or consfusion, or an inability to respond apropriately to questions</string>
+    <string name="observable_signs_q2">Balance/gait difficulties/motor incoordination: stumbling slow/ laboured movements</string>
+    <string name="observable_signs_q3">Disorientation or confusion, or an inability to respond appropriately to questions</string>
     <string name="observable_signs_q4">Blank or vacant look</string>
     <string name="observable_signs_q5">Facial injury after head trauma</string>
     <string name="memory_assessment_title">Memory Assessment Test</string>
@@ -111,9 +97,6 @@
     <string name="welcome_title">Concussion Checker</string>
     <string name="report_incident_details">Fill in incident details here...</string>
     <string name="recovery_back_to_profile">Back to profile</string>
-    <string name="entry_title">entry_title</string>
-    <string name="entry_description">entry_description</string>
-    <string name="entry_date">entry_date</string>
     <string name="reportlogo">reportLogo</string>
 
     <!--Playersearch screen -->
@@ -135,7 +118,7 @@
 
     <!--Symptoms Page-->
     <string name="symptoms_title">Symptoms</string>
-    <string name="symtoms_intro">Check if any of the following symptoms are present</string>
+    <string name="symptoms_intro">Check if any of the following symptoms are present</string>
     <string name="symptom1">Headache</string>
     <string name="symptom2">"Pressure in Head"</string>
     <string name="symptom3">Balance Problems</string>
@@ -166,7 +149,7 @@
     <string name="incidentListSymptoms">Symptoms:</string>
     <string name="observable_signs">Observable Signs</string>
     <string name="incident_list_player_name">Player Name:</string>
-    <string name="recovery_signs"><b>Signs To Watch For</b>\n\n -Worsening Headache \n-Drowsiness \n-Inability to recognise people or places \n-Repeated vomiting \n-Unusual behaviour \n-Seizures \n-Weakenss/Numbness in arms or legs \n-Unsteadiness on feet \n-Slurred Speech\n \nIf any of these sysmptoms arise for first 24-48 hours athelete should go to hospital</string>
+    <string name="recovery_signs"><b>Signs To Watch For</b>\n\n -Worsening Headache \n-Drowsiness \n-Inability to recognise people or places \n-Repeated vomiting \n-Unusual behaviour \n-Seizures \n-Weakness/Numbness in arms or legs \n-Unsteadiness on feet \n-Slurred Speech\n \nIf any of these symptoms arise for first 24-48 hours athlete should go to hospital</string>
     <string name="graduated_return_to_sport_strategy">Graduated Return to Sport Strategy</string>
     <string name="return_to_sport1">NO ACTIVITY \n-Complete mental and physical rest\n-Activities that do not provoke any\n symptoms.\n Stage Goal: Recovery</string>
     <string name="return_to_sport2">LIGHT AEROBIC EXERCISE \n-Keep effort under 70% of maximal HR \n-E.g.: 20 min stationary bike, light run/ \n walk\n Stage Goal: Increase Heart Rate</string>

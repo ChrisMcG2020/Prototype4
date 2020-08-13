@@ -10,7 +10,6 @@
    >
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/redflag_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
@@ -39,7 +38,6 @@
                     android:layout_height="fill_parent">
 
                     <LinearLayout
-                        android:id="@+id/gcs_test"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -57,7 +55,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="@string/symtoms_intro"
+                            android:text="@string/symptoms_intro"
                             android:textAppearance="?attr/textAppearanceBody2"
                             android:textColor="?android:attr/textColorSecondary"
                             android:textSize="16sp" />

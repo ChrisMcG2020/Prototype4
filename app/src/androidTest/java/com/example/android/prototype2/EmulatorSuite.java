@@ -14,6 +14,9 @@ public class EmulatorSuite {
         // In almost all cases the ns (namespace) is your project ID.
         FirebaseDatabase database = FirebaseDatabase.getInstance("http://10.0.2.2:9000?prototype2-27746");
         // [END rtdb_emulator_connect]
+        database.getReference("Users");
+    
+
 
     }
 

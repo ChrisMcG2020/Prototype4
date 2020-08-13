@@ -3,8 +3,8 @@ package com.example.android.prototype2;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.example.android.prototype2.Views.ObservableSignsActivity;
-import com.example.android.prototype2.Views.RedFlagActivity;
+import com.example.android.prototype2.views.ObservableSignsActivity;
+import com.example.android.prototype2.views.RedFlagActivity;
 
 import org.junit.Rule;
 import org.junit.Test;

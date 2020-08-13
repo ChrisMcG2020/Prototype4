@@ -3,7 +3,7 @@ package com.example.android.prototype2;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.example.android.prototype2.Views.QuizActivity;
+import com.example.android.prototype2.views.QuizActivity;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -25,7 +25,7 @@ public class QuizActivityTest {
 
 
     @Test
-    public void is_view_scollable() {
+    public void is_view_scrollable() {
         //Find view and perform action
         onView(withId(R.id.memory_call_ambulance)).perform(scrollTo());
     }

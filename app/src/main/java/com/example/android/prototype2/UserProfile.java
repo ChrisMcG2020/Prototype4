@@ -14,9 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.android.prototype2.Dialogs.DeleteProfileDialog;
-import com.example.android.prototype2.Views.IncidentListView;
-import com.example.android.prototype2.Views.SplashScreen;
+import com.example.android.prototype2.dialogs.DeleteProfileDialog;
+import com.example.android.prototype2.views.IncidentListView;
+import com.example.android.prototype2.views.SplashScreen;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;

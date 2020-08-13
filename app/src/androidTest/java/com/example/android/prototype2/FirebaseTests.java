@@ -61,7 +61,7 @@ public class FirebaseTests {
         //Find the view and perform action
         onView(withId(R.id.register_btn)).perform(scrollTo()).perform(click());
 
-        //Implement an idyling resource method to make the test wait to see if activity is launched or not
+        //Implement an idling resource method to make the test wait to see if activity is launched or not
         String loginScreen = PlayerLoginActivity.class.getName();
         Espresso.registerIdlingResources(new LoginScreenTest.WaitActivityIsResumedIdlingResource(loginScreen));
         intended(hasComponent(hasClassName(loginScreen)));

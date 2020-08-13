@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ProgressBar;
@@ -13,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.android.prototype2.Model.UserHelperClass;
+import com.example.android.prototype2.helperClass.UserHelperClass;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
@@ -263,12 +262,12 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         DatabaseReference player = FirebaseDatabase.getInstance().getReference("Users");
         final String playerID = player.push().getKey();
 
-        //If any of the fields do not pass validation then return approopriate errors
+        //If any of the fields do not pass validation then return appropriate errors
         if (!validateName() | !validatePassword() | !validatePhoneNo() | !validateEmail() | !validateDOB() | !validateContactName() | !validateContactPhoneNo()) {
             return;
         }
 
-        //Progree bar now visible
+        //Progress bar now visible
         progressBar.setVisibility(View.VISIBLE);
         //Access the firebase reference and create a user with their email and password
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -289,7 +288,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                            helperClass.setPlayerID(playerID);
                             helperClass.setUid(UID);
 
-                            //Get an instance of the firabase database and add the details from helper class to the current user
+                            //Get an instance of the firebase database and add the details from helper class to the current user
                             FirebaseDatabase.getInstance().getReference("Users").child(UID)
                                     //  .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(helperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -297,7 +296,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressBar.setVisibility(View.GONE);
-                                    //of successfull show Toast
+                                    //of successful show Toast
                                     if (task.isSuccessful()) {
                                         Toast.makeText(getApplicationContext(), getString(R.string.registration_success), Toast.LENGTH_SHORT).show();
                                     } else {

@@ -79,7 +79,7 @@ public class CoachLoginActivity extends AppCompatActivity {
 
     public void loginUser(View view) {
         //Validate Login Info
-        //If email or password doesnt pass validation then errors are returned
+        //If email or password doesn't pass validation then errors are returned
         if (!validateLoginEmail() | !validateLoginPassword()) {
             return;
         } else {

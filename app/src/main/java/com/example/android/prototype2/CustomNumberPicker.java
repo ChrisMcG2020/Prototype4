@@ -35,7 +35,7 @@ public class CustomNumberPicker extends DialogFragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        //remove the check that verfiys if your activity has the DialogListener Attached because you want to attach it into your list view onClick()
+        //remove the check that verifies if your activity has the DialogListener Attached because you want to attach it into your list view onClick()
     }
 
     @Override

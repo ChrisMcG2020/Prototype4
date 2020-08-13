@@ -10,8 +10,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.android.prototype2.Dialogs.AmbulanceFragment;
-import com.example.android.prototype2.Model.PlayerIncidentsModel;
+import com.example.android.prototype2.dialogs.AmbulanceFragment;
+import com.example.android.prototype2.helperClass.PlayerIncidentsModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+@SuppressWarnings("FieldCanBeLocal")
 public class AddReportActivity extends AppCompatActivity {
 
     //EditText and String variables
