@@ -9,9 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android.prototype2.R;
 import com.example.android.prototype2.dialogs.AlertDialogFragment;
 import com.example.android.prototype2.helperClass.UserHelperClass;
-import com.example.android.prototype2.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -59,6 +59,7 @@ public class PlayerListViewActivity extends AppCompatActivity {
         //Get a reference to the users node of the database
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
+
         //Assign the search view variable
         searchView = findViewById(R.id.search_users);
         //Set onQueryListener for when text is entered into the search bar
@@ -71,9 +72,12 @@ public class PlayerListViewActivity extends AppCompatActivity {
             @Override
             //When text is changed filter the results from the playerlist adapter
             public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
+                //If statement prevents crash due to nullpointerexception when device rotated
+                if (adapter != null)
+                    adapter.getFilter().filter(newText);
                 return false;
             }
+
         });
 
 
@@ -130,5 +134,5 @@ public class PlayerListViewActivity extends AppCompatActivity {
     }
 
 
-      }
+}
 
