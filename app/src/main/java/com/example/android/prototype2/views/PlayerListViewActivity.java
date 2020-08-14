@@ -128,50 +128,7 @@ public class PlayerListViewActivity extends AppCompatActivity {
         medicalAlert.show(getSupportFragmentManager(), "Fragment Medical Alert Dialog");
 
     }
-        @Override
-        public void onResume() {
-            //Assign the search view variable
-            super.onResume();
-            searchView = findViewById(R.id.search_users);
-            //Set onQueryListener for when text is entered into the search bar
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    return false;
-                }
 
-                @Override
-                //When text is changed filter the results from the playerlist adapter
-                public boolean onQueryTextChange(String newText) {
-                    adapter.getFilter().filter(newText);
-                    return false;
-                }
-            });
-
-
-        }
-      @Override
-      public void onRestart() {
-
-          super.onRestart();
-
-          //Assign the search view variable
-          super.onResume();
-          searchView = findViewById(R.id.search_users);
-          //Set onQueryListener for when text is entered into the search bar
-          searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-              @Override
-              public boolean onQueryTextSubmit(String query) {
-                  return false;
-              }
-
-              @Override
-              //When text is changed filter the results from the playerlist adapter
-              public boolean onQueryTextChange(String newText) {
-                  adapter.getFilter().filter(newText);
-                  return false;
-              }
-          });
 
       }
-}
+
