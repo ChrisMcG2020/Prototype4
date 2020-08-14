@@ -154,6 +154,7 @@ public class CoachLoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             Toast.makeText(getApplicationContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "TEST_Login : Logged In Successfully");
                             startActivity(new Intent(getApplicationContext(), CoachProfile.class));
                         } else {
                             loginEmail.setError("Email/Password Incorrect");

@@ -144,11 +144,13 @@ public class PlayerLoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull final Task<AuthResult> task) {
                 FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 final String user = currentFirebaseUser.getUid();
+                Log.d(TAG, "TEST_Email entered: "+userEnteredEmail);
+
 
 
                 if (task.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "Login_Test : Logged In Successfully:" + currentFirebaseUser.getDisplayName());
+                    Log.d(TAG, "TEST_Login : Logged In Successfully");
                     startActivity(new Intent(getApplicationContext(), UserProfile.class));
                 } else {
                     loginEmail.setError("Email/Password Incorrect");

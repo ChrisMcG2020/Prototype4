@@ -35,7 +35,7 @@ public class AmbulanceFragmentTest {
 
         onView(withId(titleId))
                 .inRoot(isDialog())
-                .check(matches(withText("Call Ambulance")))
+                .check(matches(withText("CALL AMBULANCE?")))
                 .check(matches(isDisplayed()));
     }
         @Test

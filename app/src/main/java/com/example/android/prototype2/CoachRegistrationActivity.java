@@ -2,6 +2,7 @@ package com.example.android.prototype2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -210,6 +211,12 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
                             coachHelperClass.setCoachID(id);
                             coachHelperClass.setUid(coachUID);
 
+                            Log.d(TAG, "TEST_coach_RegName: "+name);
+                            Log.d(TAG, "TEST_coach_RegPhone: "+phoneNo);
+                            Log.d(TAG,"TEST_coach_RegEmail: "+email);
+                            Log.d(TAG, "TEST_coach_TeamCoachedEC: "+teamCoached);
+                            Log.d(TAG,"TEST_coachUID: "+coachUID);
+
                             //Get an instance of the firebase database and add the details from helper class to the current user
                             FirebaseDatabase.getInstance().getReference("Coaches").child(coachUID)
                                     //.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -221,6 +228,7 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
                                     //of successful show Toast
                                     if (task.isSuccessful()) {
                                         Toast.makeText(getApplicationContext(), getString(R.string.registration_success), Toast.LENGTH_SHORT).show();
+                                        Log.d(TAG,"TEST_Coach_Reg_Success");
 
 
                                     } else {

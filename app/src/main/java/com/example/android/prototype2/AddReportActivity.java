@@ -31,14 +31,12 @@ public class AddReportActivity extends AppCompatActivity {
     private String reportIncident, coachName;
 
     //Firebase variables
-    private DatabaseReference  databaseReference, databaseReferenceUser;
+    private DatabaseReference databaseReference, databaseReferenceUser;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
 
 
-
     private String intent_uid5, intent_RedFlag5, intent_Obs5, intent_Memory5, intent_Symptoms5, intent_Email5, incidentDate, intent_Name5;
-
 
 
     //Tag for printing log details
@@ -53,12 +51,7 @@ public class AddReportActivity extends AppCompatActivity {
 
         //Assign views to variables
         incidentReport = this.findViewById(R.id.report_edit_text);
-        validateReport();
 
-
-     /*   intent_Name5 = getIntent().getStringExtra("name4");
-        intent_uid5 = getIntent().getStringExtra("uid4");
-        intent_Email5 = getIntent().getStringExtra("email4");*/
 
         //Calculating date
         Calendar calendar = Calendar.getInstance();
@@ -68,7 +61,6 @@ public class AddReportActivity extends AppCompatActivity {
         //Get the current user (coach)
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
-
 
 
         //Retrieve the incident node from the firebase database
@@ -99,25 +91,9 @@ public class AddReportActivity extends AppCompatActivity {
         });
     }
 
-    //Validation for report
-    private Boolean validateReport() {
-        String report = incidentReport.getText().toString();
-        //If empty display error
-        if (report.isEmpty()) {
-            incidentReport.setError("Report field cannot be empty");
-            return false;
-
-        } else {
-            //no Error
-            incidentReport.setError(null);
-            return true;
-        }
-    }
 
     private void saveReport() {
-        if (validateReport()) {
-            return;
-        }
+
 
         //Pass the intents from previous activities
         intent_RedFlag5 = getIntent().getStringExtra("redFlag4");
@@ -130,6 +106,17 @@ public class AddReportActivity extends AppCompatActivity {
         intent_Memory5 = getIntent().getStringExtra("memory4");
         reportIncident = incidentReport.getText().toString().trim();
 
+        Log.d(TAG, "TEST_uid: " + intent_uid5);
+        Log.d(TAG, "TEST_Red_Flag: " + intent_RedFlag5);
+        Log.d(TAG, "TEST_Observable_Signs: " + intent_Obs5);
+        Log.d(TAG, "TEST_Memory_Questions: " + intent_Memory5);
+        Log.d(TAG, "TEST_Symptoms: " + intent_Symptoms5);
+        Log.d(TAG, "TEST_Player_email: " + intent_Email5);
+        Log.d(TAG, "TEST_Player_name: " + intent_Name5);
+        Log.d(TAG, "TEST_Coach_Name: " + coachName);
+        Log.d(TAG, "TEST_Report: " + reportIncident);
+        Log.d(TAG, "TEST_Add_Report_Success: Passed");
+
 
         //Set a unique key for the incident
         String reportId = databaseReference.push().getKey();
@@ -138,7 +125,7 @@ public class AddReportActivity extends AppCompatActivity {
 
         //Set the values from the report to the appropriate variable
         playerIncidentsModel.setUid(intent_uid5);
-        Log.d(TAG, "UIDDDDDDDDDD+"+intent_uid5);
+
         playerIncidentsModel.setRed_FLag_Test(intent_RedFlag5);
         playerIncidentsModel.setObservable_Signs_Test(intent_Obs5);
         playerIncidentsModel.setMemory_Question(intent_Memory5);
@@ -151,6 +138,7 @@ public class AddReportActivity extends AppCompatActivity {
 
 
         databaseReference.child(reportId).setValue(playerIncidentsModel);
+
 
         //Successful toast
         Toast.makeText(this, "Report saved", Toast.LENGTH_SHORT).show();

@@ -1,8 +1,10 @@
 package com.example.android.prototype2;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,7 +12,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
+import com.example.android.prototype2.dialogs.DeleteProfileDialog;
 import com.example.android.prototype2.helperClass.CoachHelperClass;
 import com.example.android.prototype2.views.AllIncidentsListView;
 import com.example.android.prototype2.views.PlayerListViewActivity;
@@ -104,6 +108,12 @@ public class CoachProfile extends AppCompatActivity {
                     coachEmailTextView.setText(email);
                     teamCoachedTextView.setText(teamCoached);
 
+                    //Logs for testing updates in Realtime DB
+                    Log.d (TAG,"TEST__coachName: "+name);
+                    Log.d (TAG,"TEST__coachPhone: "+phone);
+                    Log.d (TAG,"TEST__coachEmail: "+email);
+                    Log.d (TAG,"TEST__teamCoached: "+teamCoached);
+
 
                 }
             }
@@ -134,7 +144,13 @@ public class CoachProfile extends AppCompatActivity {
                         displayCoachphone.setText(updatePhone);
                         firebaseDatabase.getReference("Coaches").child(uid).child("teamCoached").setValue(updateTeamCoached);
 
-                        Toast.makeText(getApplicationContext(), "Profile updated", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Profile Updated", Toast.LENGTH_LONG).show();
+
+                        //Logs for testing updates in Realtime DB
+                        Log.d (TAG,"TEST__updated_coachName: "+updateName);
+                        Log.d (TAG,"TEST__updated_coachPhone: "+updatePhone);
+                        Log.d (TAG,"TEST__updated_coachEmail: "+updateEmail);
+                        Log.d (TAG,"TEST__updated_teamCoached: "+updateTeamCoached);
 
 
                     }
@@ -149,24 +165,51 @@ public class CoachProfile extends AppCompatActivity {
         });
 
         deleteCoach.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                deleteCurrentUser(user.getUid());
+                                          @Override
+                                          public void onClick(View v) {
+                                              // This is where the Dialog should be called and
+                                              // the user input from the Dialog should be returned
+                                              //
 
-            }
-        });
+                                              // Here I would like to implement the interface of CustomNumberPicker
+                                              // in order to get the user input entered in the Dialog
+                                              DialogFragment deleteUser = new DeleteProfileDialog(new DeleteProfileDialog.NoticeDialogListener() {
+                                                  @Override
+                                                  public void onDialogPositiveClick(DialogInterface dialog) {
+                                                      //What you want to do incase of positive click
+                                                      deleteCurrentUser(user.getUid());
 
+                                                  }
 
+                                                  @Override
+                                                  public void onDialogNegativeClick(DialogFragment dialog) {
+                                                      //What you want to do incase of negative click
+                                                      dialog.dismiss();
+                                                  }
+                                              });
+                                              deleteUser.show(CoachProfile.this.getSupportFragmentManager(), "DialogFragment");
+                                          }
+                                      }
+        );
     }
 
-    private void deleteCurrentUser(String uid) {
-        DatabaseReference databaseReferenceUser = FirebaseDatabase.getInstance().getReference("Coaches").child(uid);
 
+    private void deleteCurrentUser(String uid) {
+        //Get a reference to the Coaches uid in the database
+        DatabaseReference databaseReferenceUser = FirebaseDatabase.getInstance().getReference("Coaches").child(uid);
+        //Remove the coach
         databaseReferenceUser.removeValue();
 
+        //Show a toast to say user has been removed
         Toast.makeText(getApplicationContext(), "User deleted", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(getApplicationContext(), SplashScreen.class);
-        startActivity(intent);
+
+        //Logging statements to test delete feature of Realtime DB
+        Log.d(TAG, "TEST_DELETE: USER=" + user.getUid());
+        Log.d(TAG, "USER DELETED");
+
+        //Take the user back to the start up screen
+        Intent return_toSplash_intent = new Intent(getApplicationContext(), SplashScreen.class);
+        startActivity(return_toSplash_intent);
 
 
     }

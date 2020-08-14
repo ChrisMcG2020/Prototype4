@@ -97,24 +97,25 @@ public class UserProfile extends AppCompatActivity {
                     String contactNumber = (String) userSnapshot.child("contactNumber").getValue();
                     String playerID = (String) userSnapshot.child("playerID").getValue();
 
+                    //Assign the details to the text views
                     displayName.setText(name);
-
                     displayPhone.setText(phone);
-
                     nameTextView.setText(name);
-                    Log.d (TAG,"TEST__name: "+name);
                     phoneNoTextView.setText(phone);
-                    Log.d(TAG, "TEST_phone: " + phone);
                     emailTextView.setText(email);
-                    Log.d (TAG,"TEST_email: "+email);
                     emergencyContactTextView.setText(emergencyContact);
-                    Log.d (TAG,"TEST_EC: "+emergencyContact);
                     emergencyContactPhoneNoTextView.setText(contactNumber);
-                    Log.d (TAG,"TEST_EC_phone: "+contactNumber);
 
 
                     Intent intent = new Intent(getIntent());
                     intent.putExtra("PlayerID", playerID);
+
+                    //Logging statements to test update feature of Realtime DB
+                    Log.d(TAG, "TEST__name: " + name);
+                    Log.d(TAG, "TEST_phone: " + phone);
+                    Log.d(TAG, "TEST_email: " + email);
+                    Log.d(TAG, "TEST_EC: " + emergencyContact);
+                    Log.d(TAG, "TEST_EC_phone: " + contactNumber);
                 }
             }
 
@@ -139,17 +140,19 @@ public class UserProfile extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         firebaseDatabase.getReference("Users").child(uid).child("name").setValue(updateName);
                         displayName.setText(updateName);
-                        Log.d (TAG,"TEST_updated_name: "+updateName);
                         firebaseDatabase.getReference("Users").child(uid).child("email").setValue(updateEmail);
-                        Log.d (TAG,"TEST_updated_email: "+updateEmail);
                         firebaseDatabase.getReference("Users").child(uid).child("phoneNo").setValue(updatePhone);
                         displayPhone.setText(updatePhone);
-                        Log.d (TAG,"TEST_updated_phone: "+updatePhone);
                         firebaseDatabase.getReference("Users").child(uid).child("emergencyContact").setValue(updateEmergencyContact);
-                        Log.d (TAG,"TEST_updated_EC: "+updateEmergencyContact);
                         firebaseDatabase.getReference("Users").child(uid).child("contactNumber").setValue(updateEC_Phone);
-                        Log.d (TAG,"TEST_updated_EC_phone: "+updateEC_Phone);
-                        Toast.makeText(getApplicationContext(), "UPDATED", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Profile Updated", Toast.LENGTH_LONG).show();
+
+                        //Logging statements to test update feature of Realtime DB
+                        Log.d(TAG, "TEST_updated_name: " + updateName);
+                        Log.d(TAG, "TEST_updated_email: " + updateEmail);
+                        Log.d(TAG, "TEST_updated_phone: " + updatePhone);
+                        Log.d(TAG, "TEST_updated_EC: " + updateEmergencyContact);
+                        Log.d(TAG, "TEST_updated_EC_phone: " + updateEC_Phone);
 
                     }
 
@@ -177,6 +180,9 @@ public class UserProfile extends AppCompatActivity {
                                                       //What you want to do incase of positive click
                                                       deleteCurrentUser(user.getUid());
 
+
+
+
                                                   }
 
                                                   @Override
@@ -200,16 +206,21 @@ public class UserProfile extends AppCompatActivity {
 
         //Remove the user
         databaseReferenceUser.removeValue();
-
         //Remove the incident
         databaseReferenceIncident.removeValue();
 
 
         //Show a toast to say user has been removed
         Toast.makeText(getApplicationContext(), "User deleted", Toast.LENGTH_LONG).show();
+        //Logging statements to test delete feature of Realtime DB
+        Log.d(TAG, "TEST_DELETE: USER=" + user.getUid());
+        Log.d(TAG, "USER DELETED");
+
         //Take the user back to the start up screen
         Intent intent = new Intent(getApplicationContext(), SplashScreen.class);
         startActivity(intent);
+
+
 
 
     }

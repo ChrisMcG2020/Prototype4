@@ -2,15 +2,13 @@ package com.example.android.prototype2.views;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.android.prototype2.dialogs.AmbulanceFragment;
-import com.example.android.prototype2.helperClass.PlayerIncidentsModel;
 import com.example.android.prototype2.R;
+import com.example.android.prototype2.dialogs.AmbulanceFragment;
 
 public class RedFlagActivity extends AppCompatActivity {
 
@@ -39,7 +37,7 @@ public class RedFlagActivity extends AppCompatActivity {
     //Method to diagnose the red flag activity and set it in the database
     protected void redFlagDiagnosis() {
         intent_uid1 = getIntent().getStringExtra("uid");
-        intent_Name1=getIntent().getStringExtra("name1");
+        intent_Name1 = getIntent().getStringExtra("name1");
         intent_Email1 = getIntent().getStringExtra("email1");
         redFlagDiagnosis = "Red Flags : Passed";
 
@@ -60,7 +58,7 @@ public class RedFlagActivity extends AppCompatActivity {
             redFlagDiagnosis();
             Intent redFlag_Intent = new Intent(getApplicationContext(), ObservableSignsActivity.class);
             redFlag_Intent.putExtra("uid1", intent_uid1);
-            redFlag_Intent.putExtra("name1",intent_Name1);
+            redFlag_Intent.putExtra("name1", intent_Name1);
             redFlag_Intent.putExtra("email1", intent_Email1);
             redFlag_Intent.putExtra("redFlag1", redFlagDiagnosis);
             //Start the next activity

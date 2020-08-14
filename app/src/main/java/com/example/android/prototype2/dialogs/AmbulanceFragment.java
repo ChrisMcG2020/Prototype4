@@ -33,7 +33,7 @@ public class AmbulanceFragment extends DialogFragment {
 
         Log.d(TAG, "Alert Dialog");
 
-        builder.setTitle("CALL AMBULANCE? ");
+        builder.setTitle("CALL AMBULANCE?");
 
         builder.setMessage("Do you wish to call an Ambulance?");
 
