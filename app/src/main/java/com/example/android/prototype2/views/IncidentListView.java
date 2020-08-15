@@ -75,7 +75,7 @@ public class IncidentListView extends AppCompatActivity {
                     //If a new player is created add them to the playersList
                     playerIncidentsModels.add(incident);
                 }
-                //What does this do??
+
                 adapter = new IncidentListAdapter(IncidentListView.this, playerIncidentsModels);
                 listViewIncidents.setAdapter(adapter);
             }

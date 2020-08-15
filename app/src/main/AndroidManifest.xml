@@ -25,7 +25,7 @@
         <activity android:name=".views.IncidentListView" />
         <activity android:name=".AddReportActivity" />
         <activity android:name=".CoachAdviceActivity" />
-        <activity android:name=".views.QuizActivity" />
+        <activity android:name=".views.MemoryActivity" />
         <activity android:name=".views.Symptoms" />
         <activity android:name=".CoachRegistrationActivity" />
         <activity android:name=".views.RedFlagActivity" />

@@ -1,8 +1,11 @@
 package com.example.android.prototype2;
 
 
+import android.app.Activity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 
 import androidx.test.espresso.contrib.PickerActions;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
@@ -14,6 +17,7 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -70,7 +74,37 @@ public class RegistrationActivityTest2 {
     public static final String PHONENO_ERROR="Phone number field cannot be empty";
     public static final String AGE_ERROR="You must be over 18 to use this app";
 
+    @Test
+    public void testRegFieldsPresent(){
+        Activity activity =mRegistrationActivityTestRule.getActivity();
+        EditText name=activity.findViewById(R.id.reg_name_edit);
+        Assert.assertNotNull(name);
+        EditText email=activity.findViewById(R.id.reg_email_edit);
+        Assert.assertNotNull(email);
+        EditText phone=activity.findViewById(R.id.reg_phone_no);
+        Assert.assertNotNull(phone);
+        DatePicker date=activity.findViewById(R.id.date_picker);
+        Assert.assertNotNull(date);
+        EditText emergencyC=activity.findViewById(R.id.reg_emergency_contact);
+        Assert.assertNotNull(emergencyC);
+        EditText eC_phone=activity.findViewById(R.id.reg_emergency_contact_phone);
+        Assert.assertNotNull(eC_phone);
+        EditText pass=activity.findViewById(R.id.reg_password);
+        Assert.assertNotNull(pass);
 
+    }
+
+    @Test
+    public void regButtonsPresent(){
+        //Find the view and perform action
+        onView(withId(R.id.register_btn)).perform(scrollTo());
+        Activity activity = mRegistrationActivityTestRule.getActivity();
+        Button reg=activity.findViewById(R.id.register_btn);
+        Assert.assertNotNull(reg);
+        Button back=activity.findViewById(R.id.back_to_login);
+        Assert.assertNotNull(back);
+
+    }
 
 
 

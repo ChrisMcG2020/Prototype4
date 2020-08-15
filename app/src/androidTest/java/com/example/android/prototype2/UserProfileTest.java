@@ -1,6 +1,11 @@
 package com.example.android.prototype2;
 
+import android.app.Activity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
@@ -11,6 +16,7 @@ import com.example.android.prototype2.views.IncidentListView;
 import com.example.android.prototype2.views.SplashScreen;
 
 import org.hamcrest.Matcher;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,6 +54,40 @@ public class UserProfileTest {
             = new IntentsTestRule<>(UserProfile.class);
 
     @Test
+    public void testFields_buttons_images_Present() {
+        //Find the views
+        Activity activity = mUserProfileTestRule.getActivity();
+        EditText name = activity.findViewById(R.id.edit_text_profile_full_name);
+        //Assert they are present
+        Assert.assertNotNull(name);
+        EditText email = activity.findViewById(R.id.edit_text_profile_email);
+        Assert.assertNotNull(email);
+        EditText phone = activity.findViewById(R.id.edit_text_profile_phone);
+        Assert.assertNotNull(phone);
+        EditText emergencyC = activity.findViewById(R.id.edit_text_emergency_contact);
+        Assert.assertNotNull(emergencyC);
+        EditText emergencyC_phone = activity.findViewById(R.id.edit_text_profile_emergency_phone);
+        Assert.assertNotNull(emergencyC_phone);
+
+        //Find the views
+        Button update=activity.findViewById(R.id.btn_updatePlayerProfile);
+        Button logout=activity.findViewById(R.id.btn_logoutProfile);
+        Button delete=activity.findViewById(R.id.btn_deleteProfile);
+        //Assert they are present
+        Assert.assertNotNull(update);
+        Assert.assertNotNull(logout);
+        Assert.assertNotNull(delete);
+
+        //Find the views
+        ImageButton recovery=activity.findViewById(R.id.recovery_image);
+        ImageButton incidents=activity.findViewById(R.id.incident_image);
+        //Assert they are present
+        Assert.assertNotNull(recovery);
+        Assert.assertNotNull(incidents);
+
+
+    }
+    @Test
     public void click_onRecovery_pic_opens_Recovery_advice() {
         //Find the view and perform action
         onView(withId(R.id.recovery_image)).perform(click());
@@ -65,55 +105,44 @@ public class UserProfileTest {
     }
 
     @Test
-    public void edit_user_details() {
+    public void can_edit_user_name() {
         //Find the view and perform action
         onView(withId(R.id.edit_text_profile_full_name)).perform(typeText(TEST_UPDATE_NAME));
         closeSoftKeyboard();
 
-        onView(withId(R.id.btn_updatePlayerProfile)).perform(click());
-        onView(withText(TEST_UPDATE_NAME)).check(matches(isDisplayed()));
     }
 
     @Test
-    public void edit_phone() {
+    public void can_edit_phone() {
         onView(withId(R.id.edit_text_profile_phone)).perform(typeText(TEST_UPDATE_PHONENO));
         closeSoftKeyboard();
+
     }
 
     @Test
-    public void edit_email() {
+    public void can_edit_email() {
         onView(withId(R.id.edit_text_profile_email)).perform(typeText(TEST_UPDATE_EMAIL));
         closeSoftKeyboard();
 
-        onView(withId(R.id.btn_updatePlayerProfile)).perform(scrollTo()).perform(forceClick());
-
-        onView(withText(TEST_UPDATE_EMAIL)).check(matches(isDisplayed()));
-
-
-
-
-
 
     }
 
     @Test
-    public void edit_emergency_C() {
+    public void can_edit_emergency_C() {
         onView(withId(R.id.edit_text_emergency_contact)).perform(typeText(TEST_UPDATE_EMERGENCYCONTACT)
                 ,closeSoftKeyboard());
 
-        onView(withId(R.id.btn_updatePlayerProfile)).perform(scrollTo()).perform(forceClick());
-        onView(withText(TEST_UPDATE_EMERGENCYCONTACT)).check(matches(isDisplayed()));
+
     }
 
     @Test
-    public void edit_contact_phone() {
-        onView(withId(R.id.edit_text_profile_email)).perform(typeText(TEST_UPDATE_EMAIL));
+    public void can_edit_contact_phone() {
+        onView(withId(R.id.edit_text_profile_emergency_phone)).perform(typeText(TEST_UPDATE_PHONENO));
         closeSoftKeyboard();
 
         onView(withId(R.id.edit_text_profile_emergency_phone)).perform(forceClick()).perform(typeText(TEST_UPDATE_EC_PHONENO));
 
-        onView(withId(R.id.btn_updatePlayerProfile)).perform(scrollTo()).perform(forceClick());
-        closeSoftKeyboard();
+
     }
 
    @Test

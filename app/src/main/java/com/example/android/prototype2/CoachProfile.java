@@ -224,12 +224,12 @@ public class CoachProfile extends AppCompatActivity {
                 Intent logoutIntent = new Intent(getApplicationContext(), SplashScreen.class);
                 startActivity(logoutIntent);
 
-            } else if (view.getId() == R.id.recovery_image) {
+            } else if (view.getId() == R.id.history_image) {
                 Intent allIncidentsIntent = new Intent(getApplicationContext(), AllIncidentsListView.class);
                 startActivity(allIncidentsIntent);
 
             } else if
-            (view.getId() == R.id.incident_text) {
+            (view.getId() == R.id.player_info_pic) {
                 Intent intent2 = new Intent(getApplicationContext(), PlayerListViewActivity.class);
                 startActivity(intent2);
             }

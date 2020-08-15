@@ -1,8 +1,14 @@
 package com.example.android.prototype2;
 
+import android.app.Activity;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +16,7 @@ import org.junit.runner.RunWith;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
@@ -44,6 +51,31 @@ public class CoachRegistrationActivityTest {
         private static final String TEAM_ERROR="Team coached field cannot be empty";
         private static final String TEST_TEAM="Liverpool";
 
+
+    @Test
+    public void testRegFieldsPresent(){
+        Activity activity =mCoachRegistrationActivityTestRule.getActivity();
+        EditText name=activity.findViewById(R.id.coach_name_edit);
+        Assert.assertNotNull(name);
+        EditText email=activity.findViewById(R.id.coach_email_edit);
+        Assert.assertNotNull(email);
+        EditText phone=activity.findViewById(R.id.coach_phone_no_edit);
+        Assert.assertNotNull(phone);
+        EditText teamCoached=activity.findViewById(R.id.team_coached_edit);
+        Assert.assertNotNull(teamCoached);
+
+
+    }
+    @Test
+    public void regButtonsPresent(){
+        //Find the view and perform action
+        Activity activity = mCoachRegistrationActivityTestRule.getActivity();
+        Button reg=activity.findViewById(R.id.coach_register);
+        Assert.assertNotNull(reg);
+        Button back=activity.findViewById(R.id.coach_return_to_login);
+        Assert.assertNotNull(back);
+
+    }
     @Test
     public void hint_text_appears() {
 

@@ -70,7 +70,7 @@ public class AllIncidentsListView extends AppCompatActivity {
                     //If a new player is created add them to the playersList
                     allIncidentsModel.add(incident);
                 }
-                //What does this do??
+
                 adapter = new AllIncidentsAdapter(AllIncidentsListView.this, allIncidentsModel);
                 listViewAllIncidents.setAdapter(adapter);
             }

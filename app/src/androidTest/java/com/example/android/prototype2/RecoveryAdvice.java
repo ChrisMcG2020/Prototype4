@@ -1,4 +1,4 @@
-package com.example.android.prototype2.BasicInstrumentatedTests;
+package com.example.android.prototype2;
 
 import android.app.Activity;
 import android.widget.Button;

@@ -100,7 +100,7 @@ public class Symptoms extends AppCompatActivity {
             //Run the symptoms method
             symptomsResult();
             //Pass the intents to the next activity
-            Intent symptom_Intent = new Intent(getApplicationContext(), QuizActivity.class);
+            Intent symptom_Intent = new Intent(getApplicationContext(), MemoryActivity.class);
             symptom_Intent.putExtra("uid3", intent_uid3);
             symptom_Intent.putExtra("name3", intent_name3);
             symptom_Intent.putExtra("email3", intent_email3);

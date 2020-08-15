@@ -1,9 +1,14 @@
 package com.example.android.prototype2;
 
 
+import android.app.Activity;
+import android.widget.Button;
+import android.widget.EditText;
+
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,6 +30,17 @@ public class AddReportActivityTest {
     public IntentsTestRule<AddReportActivity> mAddReportTestRule
             = new IntentsTestRule<>(AddReportActivity.class);
 
+    @Test
+    public void editText_and_buttons_present(){
+        Activity activity=mAddReportTestRule.getActivity();
+        EditText report=activity.findViewById(R.id.report_edit_text);
+        Assert.assertNotNull(report);
+        Button ambulance=activity.findViewById(R.id.report_call_ambulance);
+        Assert.assertNotNull(ambulance);
+        Button continueB=activity.findViewById(R.id.report_continue);
+        Assert.assertNotNull(continueB);
+
+    }
 
     @Test
     public void write_in_edit_text_test() {

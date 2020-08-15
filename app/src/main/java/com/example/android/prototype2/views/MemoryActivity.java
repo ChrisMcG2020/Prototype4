@@ -12,7 +12,7 @@ import com.example.android.prototype2.dialogs.AmbulanceFragment;
 import com.example.android.prototype2.R;
 
 
-public class QuizActivity extends AppCompatActivity {
+public class MemoryActivity extends AppCompatActivity {
 
     //Checkbox variables
     CheckBox q1_yes, q1_no, q2_yes, q2_no, q3_yes, q3_no, q4_yes, q4_no, q5_yes, q5_no;
@@ -34,7 +34,7 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Set layout
-        setContentView(R.layout.quiz_activity);
+        setContentView(R.layout.memory_activity);
 
         //Initialise the variables to their corresponding views
         q1_yes = findViewById(R.id.memory_q1_yes);

@@ -107,7 +107,7 @@ public class PlayerListViewActivity extends AppCompatActivity {
                     //If a new player is created add them to the playersList
                     playersList.add(player);
                 }
-                //What does this do??
+
                 adapter = new PlayerListAdapter(PlayerListViewActivity.this, playersList);
                 listViewPlayers.setAdapter(adapter);
             }
