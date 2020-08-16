@@ -33,6 +33,7 @@ public class AddReportActivityTest {
     @Test
     public void editText_and_buttons_present(){
         Activity activity=mAddReportTestRule.getActivity();
+        //Find the views and assert they are present
         EditText report=activity.findViewById(R.id.report_edit_text);
         Assert.assertNotNull(report);
         Button ambulance=activity.findViewById(R.id.report_call_ambulance);
@@ -62,7 +63,7 @@ public class AddReportActivityTest {
         //Find the view and perform the action
         onView(withId(R.id.report_call_ambulance)).perform(click());
         //Check if action returns desired outcome
-        onView(withText("CALL AMBULANCE")).check(matches(isDisplayed()));
+        onView(withText("CALL AMBULANCE?")).check(matches(isDisplayed()));
 
     }
 
