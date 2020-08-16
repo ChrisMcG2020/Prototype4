@@ -3,7 +3,6 @@ package com.example.android.prototype2;
 import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -24,12 +23,10 @@ import org.junit.runner.RunWith;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.openLinkWithText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
-import static androidx.test.espresso.intent.matcher.ComponentNameMatchers.hasClassName;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.RootMatchers.isDialog;
 import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
@@ -38,7 +35,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.is;
 
 @RunWith(AndroidJUnit4.class)
 public class UserProfileTest {
@@ -70,23 +66,24 @@ public class UserProfileTest {
         Assert.assertNotNull(emergencyC_phone);
 
         //Find the views
-        Button update=activity.findViewById(R.id.btn_updatePlayerProfile);
-        Button logout=activity.findViewById(R.id.btn_logoutProfile);
-        Button delete=activity.findViewById(R.id.btn_deleteProfile);
+        Button update = activity.findViewById(R.id.btn_updatePlayerProfile);
+        Button logout = activity.findViewById(R.id.btn_logoutProfile);
+        Button delete = activity.findViewById(R.id.btn_deleteProfile);
         //Assert they are present
         Assert.assertNotNull(update);
         Assert.assertNotNull(logout);
         Assert.assertNotNull(delete);
 
         //Find the views
-        ImageButton recovery=activity.findViewById(R.id.recovery_image);
-        ImageButton incidents=activity.findViewById(R.id.incident_image);
+        ImageButton recovery = activity.findViewById(R.id.recovery_image);
+        ImageButton incidents = activity.findViewById(R.id.incident_image);
         //Assert they are present
         Assert.assertNotNull(recovery);
         Assert.assertNotNull(incidents);
 
 
     }
+
     @Test
     public void click_onRecovery_pic_opens_Recovery_advice() {
         //Find the view and perform action
@@ -130,7 +127,7 @@ public class UserProfileTest {
     @Test
     public void can_edit_emergency_C() {
         onView(withId(R.id.edit_text_emergency_contact)).perform(typeText(TEST_UPDATE_EMERGENCYCONTACT)
-                ,closeSoftKeyboard());
+                , closeSoftKeyboard());
 
 
     }
@@ -145,8 +142,8 @@ public class UserProfileTest {
 
     }
 
-   @Test
-   public void logout_profile(){
+    @Test
+    public void logout_profile() {
         //Find the view and perform the action
         onView(withId(R.id.btn_logoutProfile)).perform(scrollTo()).perform(click());
         //
@@ -168,30 +165,35 @@ public class UserProfileTest {
         //Has expected result
         intended(hasComponent(SplashScreen.class.getName()));
     }
-       @Test public void cancel_delete_profile(){
-           //Find the view and perform the action
+
+    @Test
+    public void cancel_delete_profile() {
+        //Find the view and perform the action
 
         onView(withId(R.id.btn_deleteProfile)).perform(scrollTo()).perform(click());
-           //The delete dialog appears, perform the action
+        //The delete dialog appears, perform the action
         onView(withText("Cancel")).inRoot(isDialog()).perform(click());
-           //The delete dialog appears (UserProfile screen with delete button present is returned
-           onView(withId(R.id.btn_deleteProfile)).check(matches(isDisplayed()));
+        //The delete dialog appears (UserProfile screen with delete button present is returned
+        onView(withId(R.id.btn_deleteProfile)).check(matches(isDisplayed()));
 
-        }
+    }
 
 
-
+    //Custom method to force a click when given a co-ordiantion error
     public static ViewAction forceClick() {
         return new ViewAction() {
-            @Override public Matcher<View> getConstraints() {
+            @Override
+            public Matcher<View> getConstraints() {
                 return allOf(isClickable(), isEnabled(), isDisplayed());
             }
 
-            @Override public String getDescription() {
+            @Override
+            public String getDescription() {
                 return "force click";
             }
 
-            @Override public void perform(UiController uiController, View view) {
+            @Override
+            public void perform(UiController uiController, View view) {
                 view.performClick(); // perform click without checking view coordinates.
                 uiController.loopMainThreadUntilIdle();
             }

@@ -38,7 +38,7 @@ public class RedFlagsTest {
             = new IntentsTestRule<>(RedFlagActivity.class);
 
     @Test
-    public void editText_and_buttons_present(){
+    public void buttons_present(){
         Activity activity = mRed_Flags_Test_Rule.getActivity();
         //Find the views
         Button ambulance=activity.findViewById(R.id.redFlag_call_ambulance);
@@ -60,8 +60,6 @@ public class RedFlagsTest {
 
     @Test
     public void call_Ambulance_Button_launches_Dialog() {
-        //ScrollDown
-        onView(withId(R.id.redFlag_call_ambulance)).perform(scrollTo());
         //Find the view and perform the action
         onView(withId(R.id.redFlag_call_ambulance)).perform(click());
         //Check if action returns desired outcome

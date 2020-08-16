@@ -19,11 +19,14 @@ import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.isChecked;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 @RunWith(AndroidJUnit4.class)
 public class ObservableSignsTest {
@@ -32,7 +35,7 @@ public class ObservableSignsTest {
             = new IntentsTestRule<>(ObservableSignsActivity.class);
 
     @Test
-    public void editText_and_buttons_present(){
+    public void checkBoxes_and_buttons_present(){
         //Find the views
         Activity activity=mObs_Test_Rule.getActivity();
         CheckBox checkBox=activity.findViewById(R.id.cb_ob_signs1);
@@ -91,10 +94,11 @@ public class ObservableSignsTest {
     }
 
     @Test
-    public void call_Ambulance_Button_launches_Activity() {
+    public void call_Ambulance_Button_launches_Dialog() {
         //Find the view and perform the action
         onView(withId(R.id.os_call_ambulance)).perform(click());
         //Check if action returns desired outcome
-        intended(hasComponent(AmbulanceFragment.class.getName()));
+        onView(withText("CALL AMBULANCE?")).check(matches(isDisplayed()));
+
     }
 }

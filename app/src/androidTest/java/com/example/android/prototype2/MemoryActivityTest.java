@@ -127,6 +127,8 @@ public class MemoryActivityTest {
     }
     @Test
     public void continue_button_opens_correct_activity() {
+        //ScrollDown
+        onView(withId(R.id.memory_continue_btn)).perform(scrollTo());
         //Find the view and perform action
         onView(withId(R.id.memory_continue_btn)).perform(click());
         //Check if action returns desired outcome

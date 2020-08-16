@@ -52,13 +52,13 @@ public class RegistrationActivityTest2 {
     public static final String INVALID_EMAIL="Invalid email address";
 
     //Hint text variables
-    public static final String HINT_NAME="Name";
-    public static final String HINT_EMAIL="Email";
-    public static final String HINT_PHONENO="Phone Number";
-    public static final String HINT_DOB="Date of birth";
-    public static final String HINT_EMERGENCYCONTACT="Emergency Contact";
-    public static final String HINT_EC_PHONENO="Emergency Contact Phone Number";
-    public static final String HINT_PASSWORD="Password";
+    public static final String HINT_NAME="Full Name *";
+    public static final String HINT_EMAIL="Email *";
+    public static final String HINT_PHONENO="Phone Number *";
+    public static final String HINT_DOB="Date of Birth *";
+    public static final String HINT_EMERGENCYCONTACT="Emergency Contact *";
+    public static final String HINT_EC_PHONENO="Emergency Contact Phone Number *";
+    public static final String HINT_PASSWORD="Password *";
 
 
     //Test variables
@@ -81,15 +81,15 @@ public class RegistrationActivityTest2 {
         Assert.assertNotNull(name);
         EditText email=activity.findViewById(R.id.reg_email_edit);
         Assert.assertNotNull(email);
-        EditText phone=activity.findViewById(R.id.reg_phone_no);
+        EditText phone=activity.findViewById(R.id.reg_phone_no_edit);
         Assert.assertNotNull(phone);
         DatePicker date=activity.findViewById(R.id.date_picker);
         Assert.assertNotNull(date);
-        EditText emergencyC=activity.findViewById(R.id.reg_emergency_contact);
+        EditText emergencyC=activity.findViewById(R.id.reg_emergency_contact_edit);
         Assert.assertNotNull(emergencyC);
-        EditText eC_phone=activity.findViewById(R.id.reg_emergency_contact_phone);
+        EditText eC_phone=activity.findViewById(R.id.reg_emergency_contact_phone_edit);
         Assert.assertNotNull(eC_phone);
-        EditText pass=activity.findViewById(R.id.reg_password);
+        EditText pass=activity.findViewById(R.id.reg_password_edit);
         Assert.assertNotNull(pass);
 
     }
@@ -175,7 +175,7 @@ public class RegistrationActivityTest2 {
         onView(withId(R.id.register_btn)).perform(scrollTo()).perform(click());
 
         //Find the views and check if errors are shown
-        onView(withId(R.id.reg_email)).check(matches(hasTextInputLayoutErrorText(INVALID_EMAIL)));
+        onView(withId(R.id.reg_email)).perform(scrollTo()).check(matches(hasTextInputLayoutErrorText(INVALID_EMAIL)));
         onView(withId(R.id.reg_password)).check(matches(hasTextInputLayoutErrorText(UNSECURE_PASS)));
 
 

@@ -62,7 +62,7 @@ public class LoginScreenTest {
     public static final String TESTPASSWORD = "Password@";
     public static final String EMAIL_ERROR = "Email field cannot be empty";
     public static final String PASSWORD_ERROR = "Password field cannot be empty";
-    public static final String VALID_EMAIL = "christophermcglynn2010@gmail.com";
+    public static final String VALID_EMAIL = "berniegault@gmail.com";
     public static final String INVALID_USER="Email/Password Incorrect";
 
     @Test
@@ -151,7 +151,7 @@ public class LoginScreenTest {
 
     }
 
-  @Test //FIREBASE CONNECTION???
+  @Test
 
   public void testLogin_with_Incorrect_Details(){
         onView(withId(R.id.login_email2))

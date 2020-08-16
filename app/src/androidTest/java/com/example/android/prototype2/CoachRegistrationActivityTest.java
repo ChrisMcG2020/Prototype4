@@ -8,7 +8,9 @@ import android.widget.EditText;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,11 +49,16 @@ public class CoachRegistrationActivityTest {
         @Rule
         public IntentsTestRule<CoachRegistrationActivity> mCoachRegistrationActivityTestRule
                 = new IntentsTestRule<>(CoachRegistrationActivity.class);
-        private static final String TEAM_HINT="Name of team coaching?";
+        private static final String TEAM_HINT="Team Coached *";
         private static final String TEAM_ERROR="Team coached field cannot be empty";
         private static final String TEST_TEAM="Liverpool";
 
 
+    @Before
+    public void setUp() throws Exception {
+
+
+    }
     @Test
     public void testRegFieldsPresent(){
         Activity activity =mCoachRegistrationActivityTestRule.getActivity();
@@ -145,5 +152,8 @@ public class CoachRegistrationActivityTest {
         intended(hasComponent(PlayerLoginActivity.class.getName()));
 
     }
+    @After
+    public void tearDown() throws Exception {
 
+    }
 }

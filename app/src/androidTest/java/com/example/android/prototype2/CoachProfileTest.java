@@ -87,7 +87,7 @@ public class CoachProfileTest {
     }
 
     @Test
-    public void on_Incidents_pic_opens_report() {
+    public void on_calender_pic_opens_report() {
         //Find the view and perform action
         onView(withId(R.id.history_image)).perform(click());
         //Check if view does what it should
