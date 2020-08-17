@@ -1,6 +1,7 @@
 package com.example.android.prototype2;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.widget.Button;
 import android.widget.CheckBox;
 
@@ -154,17 +155,4 @@ public class MemoryActivityTest {
 
     }
 
-    @Test
-    public void testIntents() {
-        //from ActivityA, click the button which starts the ActivityB
-        onView(withText(R.id.memory_continue_btn)).perform(click());
-
-        Assert.assertNotNull(anyIntent());
-        //validate intent and check its data
-      //  intended(allOf(
-                //toPackage("com.example.android.prototype2.views"),
-              //  hasExtra("uid4", "email4")
-       // ));
-    }
 }
-
