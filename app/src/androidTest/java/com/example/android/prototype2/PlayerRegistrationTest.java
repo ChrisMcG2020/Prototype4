@@ -190,6 +190,22 @@ public class PlayerRegistrationTest {
     @Test
     public void validation_errors_when_rules_notfollowed(){
 
+        //Use the set Date method to pick the date, needs to happen before register is clicked
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(1990, 6, 17));
+        //Perform the actions to fill in the fields
+        onView(withId(R.id.reg_name_edit)).perform(typeText(TEST_NAME),
+                closeSoftKeyboard());
+        onView(withId(R.id.reg_email_edit)).perform(typeText(TEST_EMAIL),
+                closeSoftKeyboard());
+        onView(withId(R.id.reg_password_edit)).perform(scrollTo()).perform(typeText(TEST_PASSWORD),
+                closeSoftKeyboard());
+        //Find the view and perform action
+        onView(withId(R.id.register_btn)).perform(click());
+
+
+        //Find the views and check if errors are shown
+        onView(withId(R.id.reg_email)).check(matches(hasTextInputLayoutErrorText(INVALID_EMAIL)));
+        onView(withId(R.id.reg_password)).check(matches(hasTextInputLayoutErrorText(UNSECURE_PASS)));
     }
 
     @Test
