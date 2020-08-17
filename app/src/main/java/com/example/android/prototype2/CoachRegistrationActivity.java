@@ -147,7 +147,7 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
             regCoachPassword.setError("Password field cannot be empty");
             return false;
         } else if (!entry.matches(passwordEntry)) {
-            regCoachPassword.setError("Password is not secure enough, try again");
+            regCoachPassword.setError("Password must have at least 1 upper case,1 special character");
             return false;
         } else {
             regCoachPassword.setError(null);

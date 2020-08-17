@@ -29,12 +29,10 @@ public class IncidentListAdapterTest {
 
     @Test
     public void test_incident_recycler() {
-
-
         Activity activity = mRecyclerTestRule.getActivity();
+        //Find the views and assert they are present
         RecyclerView recycler = activity.findViewById(R.id.recycler_list_view);
         Assert.assertNotNull(recycler);
-
 
     }
 
@@ -46,6 +44,7 @@ public class IncidentListAdapterTest {
     @Test
     public void test_all_incidents_recycler() {
         Activity activity = mRecyclerTestRule2.getActivity();
+        //Find the views and assert they are present
         RecyclerView recycler2 = activity.findViewById(R.id.recycler_all_incident_list_view);
         Assert.assertNotNull(recycler2);
 
@@ -58,6 +57,7 @@ public class IncidentListAdapterTest {
     @Test
     public void test_player_view_recycler(){
         Activity activity = mRecyclerTestRule3.getActivity();
+        //Find the views and assert they are present
         RecyclerView recycler3 = activity.findViewById(R.id.recycler_list_view);
         Assert.assertNotNull(recycler3);
     }

@@ -15,17 +15,13 @@ import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
-import static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra;
-import static androidx.test.espresso.intent.matcher.IntentMatchers.toPackage;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.allOf;
 
 @RunWith(AndroidJUnit4.class)
 public class AddReportActivityTest {
@@ -34,25 +30,26 @@ public class AddReportActivityTest {
             = new IntentsTestRule<>(AddReportActivity.class);
 
     @Test
-    public void editText_and_buttons_present(){
-        Activity activity=mAddReportTestRule.getActivity();
+    public void editText_and_buttons_present() {
+        Activity activity = mAddReportTestRule.getActivity();
         //Find the views and assert they are present
-        EditText report=activity.findViewById(R.id.report_edit_text);
+        EditText report = activity.findViewById(R.id.report_edit_text);
         Assert.assertNotNull(report);
-        Button ambulance=activity.findViewById(R.id.report_call_ambulance);
+        Button ambulance = activity.findViewById(R.id.report_call_ambulance);
         Assert.assertNotNull(ambulance);
-        Button continueB=activity.findViewById(R.id.report_continue);
+        Button continueB = activity.findViewById(R.id.report_continue);
         Assert.assertNotNull(continueB);
 
     }
 
     @Test
     public void write_in_edit_text_test() {
+        //Find the view and perform action
         onView(withId(R.id.report_edit_text)).perform(typeText("Test"));
     }
+
     @Test
     public void report_continue_button_opens_correct_activity() {
-
         //Find the view and perform action
         onView(withId(R.id.report_continue)).perform(click());
         //Check if action returns desired outcome
@@ -62,7 +59,6 @@ public class AddReportActivityTest {
 
     @Test
     public void report_call_Ambulance_Button_launches_Dialog() {
-
         //Find the view and perform the action
         onView(withId(R.id.report_call_ambulance)).perform(click());
         //Check if action returns desired outcome

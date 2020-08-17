@@ -125,9 +125,9 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                 regEmail.setError("Email field cannot be empty");
                 return false;
                 //If email address does not follow constraints
-          //  } else if (!entry.matches(emailCharacters)) {
-            //    regEmail.setError("Invalid email address");
-             //   return false;
+           } else if (!entry.matches(emailCharacters)) {
+              regEmail.setError("Invalid email address");
+                return false;
             } else {
                 regEmail.setError(null);
                 //setErrorEnabled(false) ensures layout will not change size when an error is displayed

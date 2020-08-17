@@ -1,6 +1,8 @@
 package com.example.android.prototype2;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -22,11 +24,14 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasData;
 import static androidx.test.espresso.matcher.ViewMatchers.isChecked;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.allOf;
 
 @RunWith(AndroidJUnit4.class)
 public class ObservableSignsTest {
@@ -35,14 +40,14 @@ public class ObservableSignsTest {
             = new IntentsTestRule<>(ObservableSignsActivity.class);
 
     @Test
-    public void checkBoxes_and_buttons_present(){
+    public void checkBoxes_and_buttons_present() {
         //Find the views
-        Activity activity=mObs_Test_Rule.getActivity();
-        CheckBox checkBox=activity.findViewById(R.id.cb_ob_signs1);
-        CheckBox checkBox2=activity.findViewById(R.id.cb_ob_signs2);
-        CheckBox checkBox3=activity.findViewById(R.id.cb_ob_signs3);
-        CheckBox checkBox4=activity.findViewById(R.id.cb_ob_signs4);
-        CheckBox checkBox5=activity.findViewById(R.id.cb_ob_signs5);
+        Activity activity = mObs_Test_Rule.getActivity();
+        CheckBox checkBox = activity.findViewById(R.id.cb_ob_signs1);
+        CheckBox checkBox2 = activity.findViewById(R.id.cb_ob_signs2);
+        CheckBox checkBox3 = activity.findViewById(R.id.cb_ob_signs3);
+        CheckBox checkBox4 = activity.findViewById(R.id.cb_ob_signs4);
+        CheckBox checkBox5 = activity.findViewById(R.id.cb_ob_signs5);
         //Assert they are present
         Assert.assertNotNull(checkBox);
         Assert.assertNotNull(checkBox2);
@@ -50,8 +55,8 @@ public class ObservableSignsTest {
         Assert.assertNotNull(checkBox4);
         Assert.assertNotNull(checkBox5);
         //Find the views
-        Button ambulance=activity.findViewById(R.id.os_call_ambulance);
-        Button continueB=activity.findViewById(R.id.os_continue);
+        Button ambulance = activity.findViewById(R.id.os_call_ambulance);
+        Button continueB = activity.findViewById(R.id.os_continue);
         //Assert they are present
         Assert.assertNotNull(ambulance);
         Assert.assertNotNull(continueB);
@@ -100,5 +105,17 @@ public class ObservableSignsTest {
         //Check if action returns desired outcome
         onView(withText("CALL AMBULANCE?")).check(matches(isDisplayed()));
 
+    }
+
+    //Test to check if clicking call button launches the phone dialler
+    @Test
+    public void clickCallButton_opensDialler_forAmbulance() {
+        //Find the view and perform the action
+        onView(withId(R.id.os_call_ambulance)).perform(click());
+        onView(withText("CALL")).perform(click());
+
+        intended(allOf(
+                hasAction(Intent.ACTION_DIAL)));
+        hasData(Uri.parse("tel:+999"));
     }
 }

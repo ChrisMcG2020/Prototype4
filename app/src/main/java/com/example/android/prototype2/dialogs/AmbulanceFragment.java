@@ -55,7 +55,7 @@ public class AmbulanceFragment extends DialogFragment {
         });
 
 
-        builder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 

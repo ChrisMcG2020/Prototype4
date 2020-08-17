@@ -160,22 +160,6 @@ public class UserProfileTest {
                 .inRoot(isDialog())
                 .check(matches(isDisplayed()));
 
-        //Perform the action
-        onView(withText("Delete")).perform(click());
-        //Has expected result
-        intended(hasComponent(SplashScreen.class.getName()));
-    }
-
-    @Test
-    public void cancel_delete_profile() {
-        //Find the view and perform the action
-
-        onView(withId(R.id.btn_deleteProfile)).perform(scrollTo()).perform(click());
-        //The delete dialog appears, perform the action
-        onView(withText("Cancel")).inRoot(isDialog()).perform(click());
-        //The delete dialog appears (UserProfile screen with delete button present is returned
-        onView(withId(R.id.btn_deleteProfile)).check(matches(isDisplayed()));
-
     }
 
 
