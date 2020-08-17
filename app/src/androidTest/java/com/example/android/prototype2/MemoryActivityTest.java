@@ -1,16 +1,13 @@
 package com.example.android.prototype2;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.widget.Button;
 import android.widget.CheckBox;
 
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.example.android.prototype2.dialogs.AmbulanceFragment;
 import com.example.android.prototype2.views.MemoryActivity;
-import com.example.android.prototype2.views.Symptoms;
 
 import org.junit.Assert;
 import org.junit.Rule;
@@ -22,22 +19,16 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
-import static androidx.test.espresso.intent.Intents.intending;
-import static androidx.test.espresso.intent.matcher.IntentMatchers.anyIntent;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
-import static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra;
-import static androidx.test.espresso.intent.matcher.IntentMatchers.toPackage;
 import static androidx.test.espresso.matcher.ViewMatchers.isChecked;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.hamcrest.Matchers.nullValue;
 
 
 @RunWith(AndroidJUnit4.class)
 public class MemoryActivityTest {
+    // Set the rule to apply to the test method and which class to use
     @Rule
     public IntentsTestRule<MemoryActivity> mMemoryTestRule
             = new IntentsTestRule<>(MemoryActivity.class);
@@ -75,7 +66,6 @@ public class MemoryActivityTest {
         Assert.assertNotNull(ambulance);
         Assert.assertNotNull(continueB);
 
-
     }
 
 
@@ -87,23 +77,23 @@ public class MemoryActivityTest {
 
     @Test
     public void are_yes_checkboxes_checkable() {
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.memory_q1_yes)).perform(click());
         //Check if action returns desired outcome
         onView(withId(R.id.memory_q1_yes)).check(matches(isChecked()));
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.memory_q2_yes)).perform(click());
         //Check if action returns desired outcome
         onView(withId(R.id.memory_q2_yes)).check(matches(isChecked()));
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.memory_q3_yes)).perform(click());
         //Check if action returns desired outcome
         onView(withId(R.id.memory_q3_yes)).check(matches(isChecked()));
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.memory_q4_yes)).perform(click());
         //Check if action returns desired outcome
         onView(withId(R.id.memory_q4_yes)).check(matches(isChecked()));
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.memory_q5_yes)).perform(click());
         //Check if action returns desired outcome
         onView(withId(R.id.memory_q5_yes)).check(matches(isChecked()));
@@ -111,23 +101,23 @@ public class MemoryActivityTest {
 
     @Test
     public void are_no_checkboxes_checkable() {
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.memory_q1_no)).perform(click());
         //Check if action returns desired outcome
         onView(withId(R.id.memory_q1_no)).check(matches(isChecked()));
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.memory_q2_no)).perform(click());
         //Check if action returns desired outcome
         onView(withId(R.id.memory_q2_no)).check(matches(isChecked()));
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.memory_q3_no)).perform(click());
         //Check if action returns desired outcome
         onView(withId(R.id.memory_q3_no)).check(matches(isChecked()));
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.memory_q4_no)).perform(click());
         //Check if action returns desired outcome
         onView(withId(R.id.memory_q4_no)).check(matches(isChecked()));
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.memory_q5_no)).perform(click());
         //Check if action returns desired outcome
         onView(withId(R.id.memory_q5_no)).check(matches(isChecked()));
@@ -138,7 +128,7 @@ public class MemoryActivityTest {
     public void continue_button_opens_correct_activity() {
         //ScrollDown
         onView(withId(R.id.memory_continue_btn)).perform(scrollTo());
-        //Find the view and perform action
+        //Find the views and perform action
         onView(withId(R.id.memory_continue_btn)).perform(click());
         //Check if action returns desired outcome
         intended(hasComponent(AddReportActivity.class.getName()));
@@ -148,7 +138,7 @@ public class MemoryActivityTest {
     public void call_Ambulance_Button_launches_Dialog() {
         //ScrollDown
         onView(withId(R.id.memory_call_ambulance)).perform(scrollTo());
-        //Find the view and perform the action
+        //Find the views and perform the action
         onView(withId(R.id.memory_call_ambulance)).perform(click());
         //Check if action returns desired outcome
         onView(withText("CALL AMBULANCE?")).check(matches(isDisplayed()));

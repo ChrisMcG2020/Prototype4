@@ -42,7 +42,7 @@ import static com.example.android.prototype2.LoginScreenTest.PASSWORD_ERROR;
 @RunWith(AndroidJUnit4.class)
 public class PlayerRegistrationTest {
 
-
+    // Set the rule to apply to the test method and which class to use
     @Rule
     public IntentsTestRule<RegistrationActivity> mRegistrationActivityTestRule
             = new IntentsTestRule<>(RegistrationActivity.class);
@@ -74,15 +74,12 @@ public class PlayerRegistrationTest {
     public static final String PHONENO_ERROR = "Phone number field cannot be empty";
     public static final String AGE_ERROR = "You must be over 18 to use this app";
 
-    @Before
-    public void setUp() throws Exception {
-
-
-    }
 
     @Test
     public void testRegFieldsPresent() {
+        //Get the activity
         Activity activity = mRegistrationActivityTestRule.getActivity();
+        //Find the views and assert they are present
         EditText name = activity.findViewById(R.id.reg_name_edit);
         Assert.assertNotNull(name);
         EditText email = activity.findViewById(R.id.reg_email_edit);
@@ -104,7 +101,9 @@ public class PlayerRegistrationTest {
     public void regButtonsPresent() {
         //Find the view and perform action
         onView(withId(R.id.register_btn)).perform(scrollTo());
+        //Get the activity
         Activity activity = mRegistrationActivityTestRule.getActivity();
+        //Find the views and assert they are present
         Button reg = activity.findViewById(R.id.register_btn);
         Assert.assertNotNull(reg);
         Button back = activity.findViewById(R.id.back_to_login);
@@ -116,45 +115,44 @@ public class PlayerRegistrationTest {
     @Test
     public void hint_text_appears() {
 
-        //Find the view and and check the hint text is present
+        //Find the views and and check the hint text is present
         onView(withId(R.id.reg_name_edit)).check(matches(withHint(HINT_NAME)));
-        //Find the view and and check the hint text is present
+        //Find the views and and check the hint text is present
         onView(withId(R.id.reg_email_edit)).check(matches(withHint(HINT_EMAIL)));
-        //Find the view and and check the hint text is present
+        //Find the views and and check the hint text is present
         onView(withId(R.id.reg_phone_no_edit)).check(matches(withHint(HINT_PHONENO)));
-        //Find the view and and check the hint text is present
+        //Find the views and and check the hint text is present
         onView(withId(R.id.reg_dob_edit)).check(matches(withHint(HINT_DOB)));
-        //Find the view and and check the hint text is present
+        //Find the views and and check the hint text is present
         onView(withId(R.id.reg_emergency_contact_edit)).check(matches(withHint(HINT_EMERGENCYCONTACT)));
-        //Find the view and and check the hint text is present
+        //Find the views and and check the hint text is present
         onView(withId(R.id.reg_emergency_contact_phone_edit)).check(matches(withHint(HINT_EC_PHONENO)));
-        //Find the view and and check the hint text is present
+        //Find the views and and check the hint text is present
         onView(withId(R.id.reg_password_edit)).check(matches(withHint(HINT_PASSWORD)));
 
     }
 
     @Test
     public void error_text_appears_when_fields_empty_and_reg_clicked() {
-
         //Use the set Date method to pick the date, needs to happen before register is clicked
         onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(2015, 6, 17));
 
-        //Find the view and perform action
+        //Find the views and perform action
         onView(withId(R.id.register_btn)).perform(scrollTo()).perform(click());
 
-        //Find the view and and check the error text is present
+        //Find the views and and check the error text is present
         onView(withId(R.id.reg_name)).check(matches(hasTextInputLayoutErrorText(NAME_ERROR)));
-        //Find the view and and check the error text is present
+        //Find the views and and check the error text is present
         onView(withId(R.id.reg_email)).check(matches(hasTextInputLayoutErrorText((EMAIL_ERROR))));
-        //Find the view and and check the error text is present
+        //Find the views and and check the error text is present
         onView(withId(R.id.reg_phone_no)).check(matches(hasTextInputLayoutErrorText(PHONENO_ERROR)));
-        //Find the view and and check the error text is present
+        //Find the views and and check the error text is present
         onView(withId(R.id.reg_dob)).check(matches(hasTextInputLayoutErrorText(AGE_ERROR)));
-        //Find the view and and check the error text is present
+        //Find the views and and check the error text is present
         onView(withId(R.id.reg_emergency_contact)).check(matches(hasTextInputLayoutErrorText(NAME_ERROR)));
-        //Find the view and and check the error text is present
+        //Find the views and and check the error text is present
         onView(withId(R.id.reg_emergency_contact_phone)).check(matches(hasTextInputLayoutErrorText(PHONENO_ERROR)));
-        //Find the view and and check the error text is present
+        //Find the views and and check the error text is present
         onView(withId(R.id.reg_password)).check(matches(hasTextInputLayoutErrorText(PASSWORD_ERROR)));
 
     }
@@ -180,17 +178,16 @@ public class PlayerRegistrationTest {
         //Find the view and perform action
         onView(withId(R.id.register_btn)).perform(scrollTo()).perform(click());
 
+        //Pause the test in time for errors to show.
         Thread.sleep(1500);
 
 
         //Find the views and check if errors are shown
-       // onView(withId(R.id.reg_email)).check(matches(hasTextInputLayoutErrorText(INVALID_EMAIL)));
+        onView(withId(R.id.reg_email)).check(matches(hasTextInputLayoutErrorText(INVALID_EMAIL)));
         onView(withId(R.id.reg_password)).check(matches(hasTextInputLayoutErrorText(UNSECURE_PASS)));
 
 
     }
-
-
 
     @Test
     public void return_to_login_screen_button() {
@@ -236,10 +233,6 @@ public class PlayerRegistrationTest {
 
     }
 
-    @After
-    public void tearDown() throws Exception {
-
-    }
 }
 
 

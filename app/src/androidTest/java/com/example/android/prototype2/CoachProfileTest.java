@@ -7,7 +7,6 @@ import android.widget.EditText;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 
 import com.example.android.prototype2.views.AllIncidentsListView;
-import com.example.android.prototype2.views.IncidentListView;
 import com.example.android.prototype2.views.PlayerListViewActivity;
 import com.example.android.prototype2.views.SplashScreen;
 
@@ -32,13 +31,10 @@ import static com.example.android.prototype2.UserProfileTest.TEST_UPDATE_NAME;
 import static com.example.android.prototype2.UserProfileTest.TEST_UPDATE_PHONENO;
 
 public class CoachProfileTest {
-
-
+    //Set the rule to apply to the test method and which class to use
     @Rule
     public IntentsTestRule<CoachProfile> mCoachProfileTestRule
             = new IntentsTestRule<>(CoachProfile.class);
-
-
 
 
     @Test
@@ -57,10 +53,10 @@ public class CoachProfileTest {
 
 
         //Find the views
-        Button update=activity.findViewById(R.id.btn_updateCoachProfile);
-        Button logout=activity.findViewById(R.id.btn_logoutCoachProfile);
-        Button delete=activity.findViewById(R.id.btn_deleteCoachProfile);
-        Button diagnose=activity.findViewById(R.id.diagnose_concussion_button);
+        Button update = activity.findViewById(R.id.btn_updateCoachProfile);
+        Button logout = activity.findViewById(R.id.btn_logoutCoachProfile);
+        Button delete = activity.findViewById(R.id.btn_deleteCoachProfile);
+        Button diagnose = activity.findViewById(R.id.diagnose_concussion_button);
         //Assert they are present
         Assert.assertNotNull(update);
         Assert.assertNotNull(logout);
@@ -68,35 +64,37 @@ public class CoachProfileTest {
         Assert.assertNotNull(diagnose);
 
     }
+
     @Test
-    public void click_diagnose_button(){
-        //Find the view and perform action
+    public void click_diagnose_button() {
+        //Find the views and perform action
         onView(withId(R.id.diagnose_concussion_button)).perform(click());
-        //Check if view does what it should
+        //Check if action returns desired outcome
         intended(hasComponent(PlayerListViewActivity.class.getName()));
 
 
     }
+
     @Test
     public void click_on_playerView() {
-        //Find the view and perform action
+        //Find the views and perform action
         onView(withId(R.id.player_info_pic)).perform(click());
-        //Check if view does what it should
+        //Check if action returns desired outcome
         intended(hasComponent(PlayerListViewActivity.class.getName()));
 
     }
 
     @Test
     public void on_calender_pic_opens_report() {
-        //Find the view and perform action
+        //Find the views and perform action
         onView(withId(R.id.history_image)).perform(click());
-        //Check if view does what it should
+        //Check if action returns desired outcome
         intended(hasComponent(AllIncidentsListView.class.getName()));
     }
 
     @Test
     public void can_edit_user_name() {
-        //Find the view and perform action
+        //Find the views and perform action
         onView(withId(R.id.edit_text_profile_coach_name)).perform(typeText(TEST_UPDATE_NAME));
         closeSoftKeyboard();
 
@@ -104,6 +102,7 @@ public class CoachProfileTest {
 
     @Test
     public void can_edit_phone() {
+        //Find the views and perform action
         onView(withId(R.id.edit_text_coach_profile_phone)).perform(typeText(TEST_UPDATE_PHONENO));
         closeSoftKeyboard();
 
@@ -111,6 +110,7 @@ public class CoachProfileTest {
 
     @Test
     public void can_edit_email() {
+        //Find the views and perform action
         onView(withId(R.id.edit_text_coach_profile_email)).perform(typeText(TEST_UPDATE_EMAIL));
         closeSoftKeyboard();
 
@@ -119,15 +119,16 @@ public class CoachProfileTest {
 
     @Test
     public void can_edit_emergency_C() {
+        //Find the views and perform action
         onView(withId(R.id.edit_text_coach_team_coached)).perform(typeText("Finn Harps")
-                ,closeSoftKeyboard());
+                , closeSoftKeyboard());
 
 
     }
 
 
     @Test
-    public void logout_profile(){
+    public void logout_profile() {
         //Find the view and perform the action
         onView(withId(R.id.btn_logoutCoachProfile)).perform(scrollTo()).perform(click());
         //
@@ -146,16 +147,17 @@ public class CoachProfileTest {
 
         //Perform the action
         onView(withText("Delete")).perform(click());
-        //Has expected result
+        //Check if action returns desired outcome
         intended(hasComponent(SplashScreen.class.getName()));
     }
-    @Test public void cancel_delete_profile(){
-        //Find the view and perform the action
 
+    @Test
+    public void cancel_delete_profile() {
+        //Find the view and perform the action
         onView(withId(R.id.btn_deleteCoachProfile)).perform(scrollTo()).perform(click());
         //The delete dialog appears, perform the action
         onView(withText("Cancel")).inRoot(isDialog()).perform(click());
-        //The delete dialog appears (UserProfile screen with delete button present is returned
+        //Check if action returns desired outcome
         onView(withId(R.id.btn_deleteCoachProfile)).check(matches(isDisplayed()));
 
     }

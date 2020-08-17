@@ -9,15 +9,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.test.espresso.Espresso;
-import androidx.test.espresso.IdlingRegistry;
-import androidx.test.espresso.IdlingResource;
 import androidx.test.espresso.Root;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.runner.lifecycle.ActivityLifecycleMonitor;
-import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
-import androidx.test.runner.lifecycle.Stage;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -25,12 +19,9 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.util.Collection;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -51,9 +42,9 @@ import static com.example.android.prototype2.PlayerRegistrationTest.TEST_EMAIL;
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class LoginScreenTest {
-
+    // Set the rule to apply to the test method and which class to use
     @Rule
-    public IntentsTestRule<PlayerLoginActivity> mLoginActivityTestRule
+    public IntentsTestRule<PlayerLoginActivity> mLoginTestRule
             = new IntentsTestRule<>(PlayerLoginActivity.class);
 
 
@@ -66,10 +57,11 @@ public class LoginScreenTest {
     public static final String INVALID_USER = "Email/Password Incorrect";
 
 
-
     @Test
     public void loginAndPasswordFields() {
-        Activity activity = mLoginActivityTestRule.getActivity();
+        //Get the activity
+        Activity activity = mLoginTestRule.getActivity();
+        //Find the views and assert they are present
         EditText email = activity.findViewById(R.id.login_email2);
         Assert.assertNotNull(email);
         EditText pass = activity.findViewById(R.id.login_password2);
@@ -79,7 +71,9 @@ public class LoginScreenTest {
 
     @Test
     public void loginAndRegButtons() {
-        Activity activity = mLoginActivityTestRule.getActivity();
+        //Get the activity
+        Activity activity = mLoginTestRule.getActivity();
+        //Find the views and assert they are present
         Button login = activity.findViewById(R.id.login);
         Assert.assertNotNull(login);
         Button register = activity.findViewById(R.id.player_reg_btn);
@@ -90,10 +84,8 @@ public class LoginScreenTest {
 
     @Test
     public void hint_text_appears() {
-
         //Find the view and and check the hint text is present
         onView(withId(R.id.login_email2)).check(matches(withHint("Email")));
-
         //Find the view and and check the hint text is present
         onView(withId(R.id.login_password2)).check(matches(withHint("Password")));
     }
@@ -101,7 +93,6 @@ public class LoginScreenTest {
 
     @Test
     public void click_login_with_empty_fields_gives_errors() {
-
         //Find the view and perform action
         onView(withId(R.id.login)).perform(click());
         //Check if view does what it should
@@ -135,16 +126,18 @@ public class LoginScreenTest {
 
     @Test
     public void testLogin_WithEmail_Password_launches_profile() throws InterruptedException {
-
-
+        //Find the view and perform action
         onView(withId(R.id.login_email2))
                 .perform(typeText(VALID_EMAIL), closeSoftKeyboard());
         onView(withId(R.id.login_password2))
                 .perform(replaceText(TESTPASSWORD), closeSoftKeyboard());
 
+        //Find the view and perform action
         onView(withId(R.id.login)).perform(click());
-        //Pause the test in time for errors to show.
+        //Pause the test in time to launch activity
         Thread.sleep(1500);
+
+        //Check if action returns desired outcome
         intended(hasComponent(UserProfile.class.getName()));
 
 
@@ -153,15 +146,17 @@ public class LoginScreenTest {
     @Test
 
     public void testLogin_with_Incorrect_Details() throws InterruptedException {
+        //Find the views and perform action
         onView(withId(R.id.login_email2))
                 .perform(typeText(TESTEMAIL), closeSoftKeyboard());
         onView(withId(R.id.login_password2))
                 .perform(replaceText(TESTPASSWORD), closeSoftKeyboard());
 
+        //Find the views and perform action
         onView(withId(R.id.login)).perform(click());
         //Pause the test in time for errors to show.
         Thread.sleep(1500);
-
+        //Check if action returns desired outcome
         onView(withId(R.id.login_password)).check(matches(hasTextInputLayoutErrorText(INVALID_USER)));
 
     }
@@ -169,10 +164,9 @@ public class LoginScreenTest {
     @Test
     public void clickForgot_Password_Without_Email_Entered_Prompts_Error() {
 
-        //Find the view and perform action
+        //Find the views and perform action
         onView(withId(R.id.forgot_pass_btn)).perform(click());
-
-        //If no email entered then correct Error should appear
+        //Check if action returns desired outcome
         onView(withId(R.id.login_email)).check(matches(hasTextInputLayoutErrorText(EMAIL_ERROR)));
 
 
@@ -181,29 +175,26 @@ public class LoginScreenTest {
     @Test
     public void clickForgot_Password_With_an_Invalid_Email_Prompts_Error() {
 
-        //Find the view and perform action
+        //Find the views and perform action
         onView(withId(R.id.login_email2)).perform(typeText(TEST_EMAIL),
                 closeSoftKeyboard());
         onView(withId(R.id.forgot_pass_btn)).perform(click());
-
-        //If an invalid email type entered then correct Error should appear
+        //Check if action returns desired outcome
         onView(withId(R.id.login_email)).check(matches(hasTextInputLayoutErrorText(INVALID_EMAIL)));
 
 
     }
 
     @Test
-    public void clickForgot_password_registered_user_sends_email() {
+    public void clickForgot_password_registered_user_sends_email() throws InterruptedException {
 
         //Find the view and perform action
         onView(withId(R.id.login_email2)).perform(typeText(VALID_EMAIL),
                 closeSoftKeyboard());
         onView(withId(R.id.forgot_pass_btn)).perform(click());
 
-        //Implement an idling resource method to make the test wait to see if activity is launched or not
-        String login = PlayerLoginActivity.class.getName();
-        Espresso.registerIdlingResources(new com.example.android.prototype2.LoginScreenTest.WaitActivityIsResumedIdlingResource(login));
-
+        //Pause the thread
+        Thread.sleep(1500);
         //Check if action returns expected outcome
         onView(withText("Reset password email sent!"))
                 .inRoot(new ToastMatcher())
@@ -211,16 +202,15 @@ public class LoginScreenTest {
     }
 
     @Test
-    public void clickForgot_password_unregistered_user_gives_error() {
+    public void clickForgot_password_unregistered_user_gives_error() throws InterruptedException {
 
         //Find the view and perform action
         onView(withId(R.id.login_email2)).perform(typeText(TESTEMAIL),
                 closeSoftKeyboard());
         onView(withId(R.id.forgot_pass_btn)).perform(click());
 
-        //Implement an idling resource method to make the test wait to see if activity is launched or not
-        String login = PlayerLoginActivity.class.getName();
-        Espresso.registerIdlingResources(new com.example.android.prototype2.LoginScreenTest.WaitActivityIsResumedIdlingResource(login));
+        //Pause the thread
+        Thread.sleep(1500);
 
         //Check if action returns expected outcome
         onView(withText("Error! Reset email not sent"))
@@ -253,49 +243,6 @@ public class LoginScreenTest {
             public void describeTo(Description description) {
             }
         };
-    }
-
-    //Idling resource method to ensure test waits to check if activity is launched or not
-    static class WaitActivityIsResumedIdlingResource implements IdlingResource {
-        private final ActivityLifecycleMonitor instance;
-        private final String activityToWaitClassName;
-        private volatile ResourceCallback resourceCallback;
-        boolean resumed = false;
-
-        public WaitActivityIsResumedIdlingResource(String activityToWaitClassName) {
-            instance = ActivityLifecycleMonitorRegistry.getInstance();
-            this.activityToWaitClassName = activityToWaitClassName;
-        }
-
-        @Override
-        public String getName() {
-            return this.getClass().getName();
-        }
-
-        @Override
-        public boolean isIdleNow() {
-            resumed = isActivityLaunched();
-            if (resumed && resourceCallback != null) {
-                resourceCallback.onTransitionToIdle();
-            }
-
-            return resumed;
-        }
-
-        private boolean isActivityLaunched() {
-            Collection<Activity> activitiesInStage = instance.getActivitiesInStage(Stage.RESUMED);
-            for (Activity activity : activitiesInStage) {
-                if (activity.getClass().getName().equals(activityToWaitClassName)) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        @Override
-        public void registerIdleTransitionCallback(ResourceCallback resourceCallback) {
-            this.resourceCallback = resourceCallback;
-        }
     }
 
     //Custom ToastMatcher to test if a toast is displayed

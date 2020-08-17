@@ -5,12 +5,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.example.android.prototype2.dialogs.AmbulanceFragment;
 import com.example.android.prototype2.views.ObservableSignsActivity;
 import com.example.android.prototype2.views.Symptoms;
 
@@ -21,7 +19,6 @@ import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
@@ -35,6 +32,7 @@ import static org.hamcrest.Matchers.allOf;
 
 @RunWith(AndroidJUnit4.class)
 public class ObservableSignsTest {
+    // Set the rule to apply to the test method and which class to use
     @Rule
     public IntentsTestRule<ObservableSignsActivity> mObs_Test_Rule
             = new IntentsTestRule<>(ObservableSignsActivity.class);
@@ -86,8 +84,6 @@ public class ObservableSignsTest {
         onView(withId(R.id.cb_ob_signs5)).perform(click());
         //Check if action returns desired outcome
         onView(withId(R.id.cb_ob_signs5)).check(matches(isChecked()));
-
-
     }
 
     @Test
@@ -105,17 +101,5 @@ public class ObservableSignsTest {
         //Check if action returns desired outcome
         onView(withText("CALL AMBULANCE?")).check(matches(isDisplayed()));
 
-    }
-
-    //Test to check if clicking call button launches the phone dialler
-    @Test
-    public void clickCallButton_opensDialler_forAmbulance() {
-        //Find the view and perform the action
-        onView(withId(R.id.os_call_ambulance)).perform(click());
-        onView(withText("CALL")).perform(click());
-
-        intended(allOf(
-                hasAction(Intent.ACTION_DIAL)));
-        hasData(Uri.parse("tel:+999"));
     }
 }

@@ -29,15 +29,16 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 public class SymptomsTest {
-    //Set up the rule
+    // Set the rule to apply to the test method and which class to use
     @Rule
     public IntentsTestRule<Symptoms> mSymptomsTestRule
             = new IntentsTestRule<>(Symptoms.class);
 
     @Test
     public void editText_and_buttons_present(){
-        //Find the views
+        //Get the activity
         Activity activity=mSymptomsTestRule.getActivity();
+        //Find the views
         CheckBox checkBox=activity.findViewById(R.id.symptom1);
         CheckBox checkBox2=activity.findViewById(R.id.symptom2);
         CheckBox checkBox3=activity.findViewById(R.id.symptom3);
@@ -99,49 +100,51 @@ public class SymptomsTest {
 
     @Test
     public void are_checkboxes_checkable() {
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.symptom1)).perform(click());
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.symptom2)).perform(click());
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.symptom3)).perform(click());
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.symptom4)).perform(click());
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.symptom5)).perform(click());
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.symptom6)).perform(click());
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.symptom7)).perform(click());
-        //Find view and perform action
+        //Find views and perform action
+
         //ScrollDown
         onView(withId(R.id.symptom16)).perform(scrollTo());
+
         onView(withId(R.id.symptom8)).perform(click());
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.symptom9)).perform(click());
         //ScrollDown
         onView(withId(R.id.symptom10)).perform(click());
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.symptom11)).perform(click());
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.symptom12)).perform(click());
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.symptom13)).perform(click());
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.symptom14)).perform(click());
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.symptom15)).perform(click());
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.symptom16)).perform(click());
         //ScrollDown
         onView(withId(R.id.symptom_continue)).perform(scrollTo());
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.symptom17)).perform(click());
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.symptom18)).perform(click());
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.symptom19)).perform(click());
-        //Find view and perform action
+        //Find views and perform action
         onView(withId(R.id.symptom20)).perform(click());
 
     }

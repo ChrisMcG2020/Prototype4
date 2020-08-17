@@ -62,7 +62,6 @@ public class UserProfile extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference("Users");
 
         final String uid = user.getUid();
-        Log.d(TAG, "OnCreate USERUID" + uid);
         Intent intent = getIntent();
         playerEmail = intent.getStringExtra("email");
 

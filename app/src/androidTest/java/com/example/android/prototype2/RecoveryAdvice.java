@@ -18,21 +18,17 @@ import org.junit.Test;
 
 public class RecoveryAdvice {
 
-
+    // Set the rule to apply to the test method and which class to use
     @Rule
     public ActivityTestRule<RecoveryActivity> mActivityTestRule =
             new ActivityTestRule<>(RecoveryActivity.class);
 
 
-    @Before
-    public void setUp() throws Exception {
-
-
-    }
-
     @Test
     public void testTextViews(){
+        //Get the activity
         Activity activity = mActivityTestRule.getActivity();
+        //Find the views and assert they are present
         TextView warning=activity.findViewById(R.id.recovery_caution);
         Assert.assertNotNull(warning);
         TextView tv1=activity.findViewById(R.id.return_to_sport1);
@@ -51,14 +47,12 @@ public class RecoveryAdvice {
     }
     @Test
     public void testButton(){
+        //Get the activity
         Activity activity = mActivityTestRule.getActivity();
+        //Find the views and assert they are present
         Button profile=activity.findViewById(R.id.back_to_profile_btn);
         Assert.assertNotNull(profile);
 
     }
 
-    @After
-    public void tearDown() throws Exception {
-
-    }
 }

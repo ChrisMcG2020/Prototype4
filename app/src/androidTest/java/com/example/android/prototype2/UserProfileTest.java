@@ -88,7 +88,7 @@ public class UserProfileTest {
     public void click_onRecovery_pic_opens_Recovery_advice() {
         //Find the view and perform action
         onView(withId(R.id.recovery_image)).perform(click());
-        //Check if view does what it should
+        //Check if action returns desired outcome
         intended(hasComponent(RecoveryActivity.class.getName()));
 
     }
@@ -97,7 +97,7 @@ public class UserProfileTest {
     public void on_Incidents_pic_opens_report() {
         //Find the view and perform action
         onView(withId(R.id.incident_text)).perform(click());
-        //Check if view does what it should
+        //Check if action returns desired outcome
         intended(hasComponent(IncidentListView.class.getName()));
     }
 
@@ -111,6 +111,7 @@ public class UserProfileTest {
 
     @Test
     public void can_edit_phone() {
+        //Find the views and perform action
         onView(withId(R.id.edit_text_profile_phone)).perform(typeText(TEST_UPDATE_PHONENO));
         closeSoftKeyboard();
 
@@ -118,6 +119,7 @@ public class UserProfileTest {
 
     @Test
     public void can_edit_email() {
+        //Find the views and perform action
         onView(withId(R.id.edit_text_profile_email)).perform(typeText(TEST_UPDATE_EMAIL));
         closeSoftKeyboard();
 
@@ -126,6 +128,7 @@ public class UserProfileTest {
 
     @Test
     public void can_edit_emergency_C() {
+        //Find the views and perform action
         onView(withId(R.id.edit_text_emergency_contact)).perform(typeText(TEST_UPDATE_EMERGENCYCONTACT)
                 , closeSoftKeyboard());
 
@@ -134,9 +137,9 @@ public class UserProfileTest {
 
     @Test
     public void can_edit_contact_phone() {
+        //Find the views and perform action
         onView(withId(R.id.edit_text_profile_emergency_phone)).perform(typeText(TEST_UPDATE_PHONENO));
         closeSoftKeyboard();
-
         onView(withId(R.id.edit_text_profile_emergency_phone)).perform(forceClick()).perform(typeText(TEST_UPDATE_EC_PHONENO));
 
 
@@ -146,7 +149,7 @@ public class UserProfileTest {
     public void logout_profile() {
         //Find the view and perform the action
         onView(withId(R.id.btn_logoutProfile)).perform(scrollTo()).perform(click());
-        //
+        //Check if action returns desired outcome
         intended(hasComponent(SplashScreen.class.getName()));
 
     }
@@ -163,7 +166,7 @@ public class UserProfileTest {
     }
 
 
-    //Custom method to force a click when given a co-ordiantion error
+    //Custom method to force a click when given a co-ordination error
     public static ViewAction forceClick() {
         return new ViewAction() {
             @Override

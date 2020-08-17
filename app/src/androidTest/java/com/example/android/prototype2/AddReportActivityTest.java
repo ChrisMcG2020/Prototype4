@@ -25,12 +25,14 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 @RunWith(AndroidJUnit4.class)
 public class AddReportActivityTest {
+    //Set the rule to apply to the test method and which class to use
     @Rule
     public IntentsTestRule<AddReportActivity> mAddReportTestRule
             = new IntentsTestRule<>(AddReportActivity.class);
 
     @Test
     public void editText_and_buttons_present() {
+        //Get the activity
         Activity activity = mAddReportTestRule.getActivity();
         //Find the views and assert they are present
         EditText report = activity.findViewById(R.id.report_edit_text);
@@ -44,13 +46,13 @@ public class AddReportActivityTest {
 
     @Test
     public void write_in_edit_text_test() {
-        //Find the view and perform action
+        //Find the views and perform action
         onView(withId(R.id.report_edit_text)).perform(typeText("Test"));
     }
 
     @Test
     public void report_continue_button_opens_correct_activity() {
-        //Find the view and perform action
+        //Find the views and perform action
         onView(withId(R.id.report_continue)).perform(click());
         //Check if action returns desired outcome
         intended(hasComponent(CoachAdviceActivity.class.getName()));
@@ -59,7 +61,7 @@ public class AddReportActivityTest {
 
     @Test
     public void report_call_Ambulance_Button_launches_Dialog() {
-        //Find the view and perform the action
+        //Find the views and perform the action
         onView(withId(R.id.report_call_ambulance)).perform(click());
         //Check if action returns desired outcome
         onView(withText("CALL AMBULANCE?")).check(matches(isDisplayed()));
