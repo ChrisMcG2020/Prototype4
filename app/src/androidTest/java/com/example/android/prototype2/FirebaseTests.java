@@ -22,10 +22,10 @@ import static androidx.test.espresso.intent.matcher.ComponentNameMatchers.hasCla
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static com.example.android.prototype2.RegistrationActivityTest2.TEST_EC_PHONENO;
-import static com.example.android.prototype2.RegistrationActivityTest2.TEST_EMERGENCYCONTACT;
-import static com.example.android.prototype2.RegistrationActivityTest2.TEST_NAME;
-import static com.example.android.prototype2.RegistrationActivityTest2.TEST_PHONENO;
+import static com.example.android.prototype2.PlayerRegistrationTest.TEST_EC_PHONENO;
+import static com.example.android.prototype2.PlayerRegistrationTest.TEST_EMERGENCYCONTACT;
+import static com.example.android.prototype2.PlayerRegistrationTest.TEST_NAME;
+import static com.example.android.prototype2.PlayerRegistrationTest.TEST_PHONENO;
 
 
 

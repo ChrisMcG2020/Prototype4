@@ -21,11 +21,18 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
+import static androidx.test.espresso.intent.Intents.intending;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.anyIntent;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.toPackage;
 import static androidx.test.espresso.matcher.ViewMatchers.isChecked;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
 
 
 @RunWith(AndroidJUnit4.class)
@@ -35,19 +42,19 @@ public class MemoryActivityTest {
             = new IntentsTestRule<>(MemoryActivity.class);
 
     @Test
-    public void editText_and_buttons_present(){
+    public void editText_and_buttons_present() {
         //Find the views
-        Activity activity=mMemoryTestRule.getActivity();
-        CheckBox checkBox=activity.findViewById(R.id.memory_q1_yes);
-        CheckBox checkBox2=activity.findViewById(R.id.memory_q1_no);
-        CheckBox checkBox3=activity.findViewById(R.id.memory_q2_yes);
-        CheckBox checkBox4=activity.findViewById(R.id.memory_q2_no);
-        CheckBox checkBox5=activity.findViewById(R.id.memory_q3_yes);
-        CheckBox checkBox6=activity.findViewById(R.id.memory_q3_no);
-        CheckBox checkBox7=activity.findViewById(R.id.memory_q4_yes);
-        CheckBox checkBox8=activity.findViewById(R.id.memory_q4_no);
-        CheckBox checkBox9=activity.findViewById(R.id.memory_q5_yes);
-        CheckBox checkBox10=activity.findViewById(R.id.memory_q5_no);
+        Activity activity = mMemoryTestRule.getActivity();
+        CheckBox checkBox = activity.findViewById(R.id.memory_q1_yes);
+        CheckBox checkBox2 = activity.findViewById(R.id.memory_q1_no);
+        CheckBox checkBox3 = activity.findViewById(R.id.memory_q2_yes);
+        CheckBox checkBox4 = activity.findViewById(R.id.memory_q2_no);
+        CheckBox checkBox5 = activity.findViewById(R.id.memory_q3_yes);
+        CheckBox checkBox6 = activity.findViewById(R.id.memory_q3_no);
+        CheckBox checkBox7 = activity.findViewById(R.id.memory_q4_yes);
+        CheckBox checkBox8 = activity.findViewById(R.id.memory_q4_no);
+        CheckBox checkBox9 = activity.findViewById(R.id.memory_q5_yes);
+        CheckBox checkBox10 = activity.findViewById(R.id.memory_q5_no);
 
         //Assert they are present
         Assert.assertNotNull(checkBox);
@@ -61,8 +68,8 @@ public class MemoryActivityTest {
         Assert.assertNotNull(checkBox9);
         Assert.assertNotNull(checkBox10);
         //Find the views
-        Button ambulance=activity.findViewById(R.id.memory_call_ambulance);
-        Button continueB=activity.findViewById(R.id.memory_continue_btn);
+        Button ambulance = activity.findViewById(R.id.memory_call_ambulance);
+        Button continueB = activity.findViewById(R.id.memory_continue_btn);
         //Assert they are present
         Assert.assertNotNull(ambulance);
         Assert.assertNotNull(continueB);
@@ -125,6 +132,7 @@ public class MemoryActivityTest {
         onView(withId(R.id.memory_q5_no)).check(matches(isChecked()));
 
     }
+
     @Test
     public void continue_button_opens_correct_activity() {
         //ScrollDown
@@ -144,6 +152,19 @@ public class MemoryActivityTest {
         //Check if action returns desired outcome
         onView(withText("CALL AMBULANCE?")).check(matches(isDisplayed()));
 
+    }
+
+    @Test
+    public void testIntents() {
+        //from ActivityA, click the button which starts the ActivityB
+        onView(withText(R.id.memory_continue_btn)).perform(click());
+
+        Assert.assertNotNull(anyIntent());
+        //validate intent and check its data
+      //  intended(allOf(
+                //toPackage("com.example.android.prototype2.views"),
+              //  hasExtra("uid4", "email4")
+       // ));
     }
 }
 

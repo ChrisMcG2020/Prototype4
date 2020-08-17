@@ -2,7 +2,6 @@ package com.example.android.prototype2;
 
 import android.app.Activity;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 
 import androidx.test.espresso.intent.rule.IntentsTestRule;
@@ -18,7 +17,6 @@ import org.junit.runner.RunWith;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
@@ -27,19 +25,19 @@ import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static com.example.android.prototype2.LoginScreenTest.EMAIL_ERROR;
 import static com.example.android.prototype2.LoginScreenTest.PASSWORD_ERROR;
-import static com.example.android.prototype2.RegistrationActivityTest2.HINT_PASSWORD;
-import static com.example.android.prototype2.RegistrationActivityTest2.HINT_EMAIL;
-import static com.example.android.prototype2.RegistrationActivityTest2.HINT_NAME;
-import static com.example.android.prototype2.RegistrationActivityTest2.HINT_PHONENO;
-import static com.example.android.prototype2.RegistrationActivityTest2.INVALID_EMAIL;
-import static com.example.android.prototype2.RegistrationActivityTest2.NAME_ERROR;
-import static com.example.android.prototype2.RegistrationActivityTest2.PHONENO_ERROR;
-import static com.example.android.prototype2.RegistrationActivityTest2.TEST_EMAIL;
-import static com.example.android.prototype2.RegistrationActivityTest2.TEST_NAME;
-import static com.example.android.prototype2.RegistrationActivityTest2.TEST_PASSWORD;
-import static com.example.android.prototype2.RegistrationActivityTest2.TEST_PHONENO;
-import static com.example.android.prototype2.RegistrationActivityTest2.UNSECURE_PASS;
-import static com.example.android.prototype2.RegistrationActivityTest2.hasTextInputLayoutErrorText;
+import static com.example.android.prototype2.PlayerRegistrationTest.HINT_PASSWORD;
+import static com.example.android.prototype2.PlayerRegistrationTest.HINT_EMAIL;
+import static com.example.android.prototype2.PlayerRegistrationTest.HINT_NAME;
+import static com.example.android.prototype2.PlayerRegistrationTest.HINT_PHONENO;
+import static com.example.android.prototype2.PlayerRegistrationTest.INVALID_EMAIL;
+import static com.example.android.prototype2.PlayerRegistrationTest.NAME_ERROR;
+import static com.example.android.prototype2.PlayerRegistrationTest.PHONENO_ERROR;
+import static com.example.android.prototype2.PlayerRegistrationTest.TEST_EMAIL;
+import static com.example.android.prototype2.PlayerRegistrationTest.TEST_NAME;
+import static com.example.android.prototype2.PlayerRegistrationTest.TEST_PASSWORD;
+import static com.example.android.prototype2.PlayerRegistrationTest.TEST_PHONENO;
+import static com.example.android.prototype2.PlayerRegistrationTest.UNSECURE_PASS;
+import static com.example.android.prototype2.PlayerRegistrationTest.hasTextInputLayoutErrorText;
 
 
 @RunWith(AndroidJUnit4.class)
@@ -120,9 +118,6 @@ public class CoachRegistrationActivityTest {
     }
     @Test
     public void validation_errors_when_email_and_password_dont_follow_rules() {
-
-        //Use the set Date method to pick the date, needs to happen before register is clicked
-
         //Perform the actions to fill in the fields
         onView(withId(R.id.coach_name_edit)).perform(typeText(TEST_NAME), closeSoftKeyboard());
         onView(withId(R.id.coach_email_edit)).perform(typeText(TEST_EMAIL),

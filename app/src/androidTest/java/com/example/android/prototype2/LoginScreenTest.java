@@ -43,9 +43,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static com.example.android.prototype2.RegistrationActivityTest2.INVALID_EMAIL;
-import static com.example.android.prototype2.RegistrationActivityTest2.TEST_EMAIL;
-import static com.example.android.prototype2.RegistrationActivityTest2.hasTextInputLayoutErrorText;
+import static com.example.android.prototype2.PlayerRegistrationTest.INVALID_EMAIL;
+import static com.example.android.prototype2.PlayerRegistrationTest.TEST_EMAIL;
 
 
 @LargeTest
@@ -160,6 +159,8 @@ public class LoginScreenTest {
                 .perform(replaceText(TESTPASSWORD), closeSoftKeyboard());
 
         onView(withId(R.id.login)).perform(click());
+
+
 
         onView(withId(R.id.login_email)).check(matches(hasTextInputLayoutErrorText(INVALID_USER)));
 

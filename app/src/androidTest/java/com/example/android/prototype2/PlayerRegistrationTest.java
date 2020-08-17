@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import androidx.test.espresso.Espresso;
 import androidx.test.espresso.contrib.PickerActions;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -17,7 +18,9 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,15 +33,17 @@ import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static com.example.android.prototype2.CoachLoginScreenTest.waitUntil;
 import static com.example.android.prototype2.LoginScreenTest.PASSWORD_ERROR;
 import static com.example.android.prototype2.LoginScreenTest.EMAIL_ERROR;
 
 
 @RunWith(AndroidJUnit4.class)
-public class RegistrationActivityTest2 {
+public class PlayerRegistrationTest {
 
 
 
@@ -73,6 +78,12 @@ public class RegistrationActivityTest2 {
     public static final String NAME_ERROR="Name field cannot be empty";
     public static final String PHONENO_ERROR="Phone number field cannot be empty";
     public static final String AGE_ERROR="You must be over 18 to use this app";
+
+    @Before
+    public void setUp() throws Exception {
+
+
+    }
 
     @Test
     public void testRegFieldsPresent(){
@@ -160,24 +171,24 @@ public class RegistrationActivityTest2 {
         //Use the set Date method to pick the date, needs to happen before register is clicked
         onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(1990, 6, 17));
         //Perform the actions to fill in the fields
-        onView(withId(R.id.reg_name_edit)).perform(typeText(TEST_NAME), closeSoftKeyboard());
+        onView(withId(R.id.reg_name_edit)).perform(typeText(TEST_NAME),
+                closeSoftKeyboard());
         onView(withId(R.id.reg_email_edit)).perform(typeText(TEST_EMAIL),
-                closeSoftKeyboard());
-        onView(withId(R.id.reg_phone_no_edit)).perform(typeText(TEST_PHONENO),
-                closeSoftKeyboard());
-        onView(withId(R.id.reg_emergency_contact_edit)).perform(typeText(TEST_EMERGENCYCONTACT),
-                closeSoftKeyboard());
-        onView(withId(R.id.reg_emergency_contact_phone_edit)).perform(scrollTo()).perform(typeText(TEST_EC_PHONENO),
                 closeSoftKeyboard());
         onView(withId(R.id.reg_password_edit)).perform(scrollTo()).perform(typeText(TEST_PASSWORD),
                 closeSoftKeyboard());
         //Find the view and perform action
-        onView(withId(R.id.register_btn)).perform(scrollTo()).perform(click());
+        onView(withId(R.id.register_btn)).perform(click());
+
 
         //Find the views and check if errors are shown
-        onView(withId(R.id.reg_email)).perform(scrollTo()).check(matches(hasTextInputLayoutErrorText(INVALID_EMAIL)));
+        onView(withId(R.id.reg_email)).check(matches(hasTextInputLayoutErrorText(INVALID_EMAIL)));
         onView(withId(R.id.reg_password)).check(matches(hasTextInputLayoutErrorText(UNSECURE_PASS)));
 
+
+    }
+    @Test
+    public void validation_errors_when_rules_notfollowed(){
 
     }
 
@@ -224,7 +235,12 @@ public class RegistrationActivityTest2 {
         onView(withId(R.id.register_btn)).perform(click());
 
     }
+    @After
+    public void tearDown() throws Exception {
+
+    }
 }
+
 
 
 
