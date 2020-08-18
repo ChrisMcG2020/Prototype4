@@ -9,7 +9,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 
-public class CustomNumberPicker extends DialogFragment {
+public class CustomDialog extends DialogFragment {
     private NoticeDialogListener ndl;
 
     public interface NoticeDialogListener {
@@ -18,13 +18,13 @@ public class CustomNumberPicker extends DialogFragment {
     }
 
     //add a custom constructor so that you have an initialised NoticeDialogListener
-    public CustomNumberPicker(NoticeDialogListener ndl){
+    public CustomDialog(NoticeDialogListener ndl){
         super();
         this.ndl=ndl;
     }
 
     //make sure you maintain an empty constructor
-    public CustomNumberPicker( ){
+    public CustomDialog( ){
         super();
     }
 

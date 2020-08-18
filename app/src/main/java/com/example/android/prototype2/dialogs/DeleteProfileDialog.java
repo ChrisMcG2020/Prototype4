@@ -8,6 +8,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.android.prototype2.CustomDialog;
+
 public class DeleteProfileDialog extends DialogFragment {
 
         private NoticeDialogListener mNoticeDialogListener;
@@ -29,7 +31,7 @@ public class DeleteProfileDialog extends DialogFragment {
         }
 
         // Use this instance of the interface to deliver action events
-        com.example.android.prototype2.CustomNumberPicker.NoticeDialogListener mListener;
+        CustomDialog.NoticeDialogListener mListener;
 
         // Override the Fragment.onAttach() method to instantiate the NoticeDialogListener
         @Override
