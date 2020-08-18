@@ -35,12 +35,12 @@ public class AlertLoginFragment extends DialogFragment {
         Log.d(TAG, "Alert Dialog");
 
         //Set the title of the dialog
-        builder.setTitle("Choice");
+        builder.setTitle("Profile Choice");
 
         //Set the icon to display
         builder.setIcon(R.drawable.ic_baseline_sports_volleyball_24);
         //Set the message
-        builder.setMessage("Choose an option...");
+        builder.setMessage("Choose a Profile...");
 
         //Set the text and action of the button
         builder.setPositiveButton("Player", new DialogInterface.OnClickListener() {

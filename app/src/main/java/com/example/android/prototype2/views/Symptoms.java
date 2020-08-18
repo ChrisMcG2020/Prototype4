@@ -10,8 +10,8 @@ import android.widget.CheckBox;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.android.prototype2.dialogs.AmbulanceFragment;
 import com.example.android.prototype2.R;
+import com.example.android.prototype2.dialogs.AmbulanceFragment;
 
 public class Symptoms extends AppCompatActivity {
 
@@ -20,7 +20,7 @@ public class Symptoms extends AppCompatActivity {
             symptom11, symptom12, symptom13, symptom14, symptom15, symptom16, symptom17, symptom18, symptom19, symptom20;
 
     //Intent strings for passing intents
-    String intent_uid3, intent_RedFlag3, intent_Observable3, intent_email3, intent_name3;
+    String intentUid3, intentRedFlag3, intentObservable3, intentEmail3, intentName3;
 
     ////Variable for storing result
     private String symptomResult;
@@ -64,12 +64,12 @@ public class Symptoms extends AppCompatActivity {
 
     public void symptomsResult() {
         //Retrieve the previous results and assign them
-        intent_uid3 = getIntent().getStringExtra("uid2");
-        intent_name3=getIntent().getStringExtra("name2");
-        Log.d(TAG,"NameSymptoms"+intent_name3);
-        intent_email3 = getIntent().getStringExtra("email2");
-        intent_RedFlag3 = getIntent().getStringExtra("redFlag2");
-        intent_Observable3 = getIntent().getStringExtra("obs1");
+        intentUid3 = getIntent().getStringExtra("uid2");
+        intentName3 = getIntent().getStringExtra("name2");
+        Log.d(TAG, "NameSymptoms" + intentName3);
+        intentEmail3 = getIntent().getStringExtra("email2");
+        intentRedFlag3 = getIntent().getStringExtra("redFlag2");
+        intentObservable3 = getIntent().getStringExtra("obs1");
 
         //If any of the checkboxes result is "One or more symptoms present"
         if (symptom1.isChecked() || symptom2.isChecked() || symptom3.isChecked() || symptom4.isChecked() || symptom5.isChecked() || symptom6.isChecked() || symptom7.isChecked() || symptom8.isChecked() ||
@@ -100,15 +100,15 @@ public class Symptoms extends AppCompatActivity {
             //Run the symptoms method
             symptomsResult();
             //Pass the intents to the next activity
-            Intent symptom_Intent = new Intent(getApplicationContext(), MemoryActivity.class);
-            symptom_Intent.putExtra("uid3", intent_uid3);
-            symptom_Intent.putExtra("name3", intent_name3);
-            symptom_Intent.putExtra("email3", intent_email3);
-            symptom_Intent.putExtra("redFlag3", intent_RedFlag3);
-            symptom_Intent.putExtra("obs3", intent_Observable3);
-            symptom_Intent.putExtra("symptom3", symptomResult);
+            Intent symptomIntent = new Intent(getApplicationContext(), MemoryActivity.class);
+            symptomIntent.putExtra("uid3", intentUid3);
+            symptomIntent.putExtra("name3", intentName3);
+            symptomIntent.putExtra("email3", intentEmail3);
+            symptomIntent.putExtra("redFlag3", intentRedFlag3);
+            symptomIntent.putExtra("obs3", intentObservable3);
+            symptomIntent.putExtra("symptom3", symptomResult);
             //Start the next activity
-            startActivity(symptom_Intent);
+            startActivity(symptomIntent);
         }
     }
 }

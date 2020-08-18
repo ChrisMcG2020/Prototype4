@@ -130,23 +130,13 @@ public class PlayerLoginActivity extends AppCompatActivity {
         //Tag for printing log details
         Log.d(TAG, "Firebase contacted");
 
-        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
-
-        final Query[] checkUser = {reference.orderByChild("email").equalTo(userEnteredEmail)};
 
         mAuth.signInWithEmailAndPassword(userEnteredEmail, userEnteredPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 
 
             @Override
             public void onComplete(@NonNull final Task<AuthResult> task) {
-                FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                final String user = currentFirebaseUser.getUid();
-                Log.d(TAG, "TEST_Email entered: "+userEnteredEmail);
-
-
 
                 if (task.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
@@ -159,15 +149,7 @@ public class PlayerLoginActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.GONE);
                 }
             }
-/*
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
-            }
-        });
-*/
         });
     }
 
@@ -209,8 +191,8 @@ public class PlayerLoginActivity extends AppCompatActivity {
     //Method to direct user to appropriate page
     public void onButtonClicked(View view) {
         if (view.getId() == R.id.player_reg_btn) {
-            Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
-            startActivity(intent);
+            Intent regActivity = new Intent(getApplicationContext(), RegistrationActivity.class);
+            startActivity(regActivity);
 
         }
     }

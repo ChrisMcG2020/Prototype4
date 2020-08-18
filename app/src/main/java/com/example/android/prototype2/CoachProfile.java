@@ -230,8 +230,8 @@ public class CoachProfile extends AppCompatActivity {
 
             } else if
             (view.getId() == R.id.player_info_pic) {
-                Intent intent2 = new Intent(getApplicationContext(), PlayerListViewActivity.class);
-                startActivity(intent2);
+                Intent searchPlayers = new Intent(getApplicationContext(), PlayerListViewActivity.class);
+                startActivity(searchPlayers);
             }
         }
     }

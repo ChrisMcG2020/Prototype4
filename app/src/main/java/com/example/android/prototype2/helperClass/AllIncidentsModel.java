@@ -1,8 +1,39 @@
 package com.example.android.prototype2.helperClass;
 
+//Class to store the data for all incidents
 public class AllIncidentsModel {
+    //Declare variables of the information to store in the database
+    private String coachName;
+    private String uid;
+    private String Reports;
+    private String Red_FLag_Test;
+    private String Observable_Signs_Test;
+    private String Memory_Question;
+    private String symptoms;
+    private String playerEmail;
+    private String Date;
+    private String name;
 
+    //Empty constructor
+    public AllIncidentsModel() {
+    }
 
+    //Constructor
+    public AllIncidentsModel(String playerName, String coachName, String uid, String reports, String red_FLag_Test,
+                             String observable_Signs_Test, String memory_Question, String symptoms, String playerEmail, String date) {
+        this.name = playerName;
+        this.coachName = coachName;
+        this.uid = uid;
+        Reports = reports;
+        Red_FLag_Test = red_FLag_Test;
+        Observable_Signs_Test = observable_Signs_Test;
+        Memory_Question = memory_Question;
+        this.symptoms = symptoms;
+        this.playerEmail = playerEmail;
+        Date = date;
+    }
+
+    //Getters and Setters
     public String getName() {
         return name;
     }
@@ -83,32 +114,4 @@ public class AllIncidentsModel {
         Date = date;
     }
 
-    private String coachName;
-    private String uid;
-    private String Reports;
-    private String Red_FLag_Test;
-    private String Observable_Signs_Test;
-    private String Memory_Question;
-    private String symptoms;
-    private String playerEmail;
-    private String Date;
-    private String name;
-
-
-    public AllIncidentsModel(String playerName, String coachName, String uid, String reports, String red_FLag_Test,
-                             String observable_Signs_Test, String memory_Question, String symptoms, String playerEmail, String date) {
-        this.name= playerName;
-        this.coachName = coachName;
-        this.uid = uid;
-        Reports = reports;
-        Red_FLag_Test = red_FLag_Test;
-        Observable_Signs_Test = observable_Signs_Test;
-        Memory_Question = memory_Question;
-        this.symptoms = symptoms;
-        this.playerEmail = playerEmail;
-        Date = date;
-    }
-
-    public AllIncidentsModel(){
-    }
 }

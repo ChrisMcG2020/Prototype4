@@ -9,12 +9,6 @@ public class CoachHelperClass {
     public CoachHelperClass() {
 
     }
-
-
-    public void setCoachUID(String coachUID) {
-        this.coachUID = coachUID;
-    }
-
     //Constructor
     public CoachHelperClass(String coachID, String coachName, String coachEmail, String coachPhoneNumber, String teamCoached, String coachPassword, String coachUID) {
         this.coachID = coachID;
@@ -26,8 +20,11 @@ public class CoachHelperClass {
         this.coachUID=coachUID;
     }
 
-
     //Getters and setters
+    public void setCoachUID(String coachUID) {
+        this.coachUID = coachUID;
+    }
+
     public String getCoachName() {
         return coachName;
     }

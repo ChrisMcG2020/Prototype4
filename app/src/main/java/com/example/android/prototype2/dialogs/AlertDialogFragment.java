@@ -66,6 +66,7 @@ public class AlertDialogFragment extends DialogFragment {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
+        dismiss();
         super.onSaveInstanceState(outState);
 
     }

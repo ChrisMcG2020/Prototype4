@@ -8,15 +8,15 @@ import android.widget.CheckBox;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.android.prototype2.dialogs.AmbulanceFragment;
 import com.example.android.prototype2.R;
+import com.example.android.prototype2.dialogs.AmbulanceFragment;
 
 public class ObservableSignsActivity extends AppCompatActivity {
 
     //Checkbox variables
     CheckBox signs1, signs2, signs3, signs4, signs5;
     //Intent strings for passing intents
-    String intent_RedFlag2, intent_uid2, intent_email2, intent_name2;
+    String intentRedFlag2, intentUid2, intentEmail2, intentName2;
 
     //Variable for storing result
     private String obsDiagnosis;
@@ -46,10 +46,10 @@ public class ObservableSignsActivity extends AppCompatActivity {
     public void obsDiagnose() {
 
         //Retrieve the previous results and assign them
-        intent_uid2 = getIntent().getStringExtra("uid1");
-        intent_name2 = getIntent().getStringExtra("name1");
-        intent_email2 = getIntent().getStringExtra("email1");
-        intent_RedFlag2 = getIntent().getStringExtra("redFlag1");
+        intentUid2 = getIntent().getStringExtra("uid1");
+        intentName2 = getIntent().getStringExtra("name1");
+        intentEmail2 = getIntent().getStringExtra("email1");
+        intentRedFlag2 = getIntent().getStringExtra("redFlag1");
 
 
         //if any of the five signs are checked , results in a fail
@@ -74,19 +74,19 @@ public class ObservableSignsActivity extends AppCompatActivity {
             callAmbulance.setCancelable(false);
             callAmbulance.show(getSupportFragmentManager(), "Fragment Alert Dialog");
         }
-        ///If continue clicked run method and pass intents to next activity
+        //If continue clicked run method and pass intents to next activity
         else if (view.getId() == R.id.os_continue) {
             //Run the observable signs diagnosis method
             obsDiagnose();
             //Pass the intents to the next activity
-            Intent obs_Intent = new Intent(getApplicationContext(), Symptoms.class);
-            obs_Intent.putExtra("uid2", intent_uid2);
-            obs_Intent.putExtra("name2", intent_name2);
-            obs_Intent.putExtra("email2", intent_email2);
-            obs_Intent.putExtra("redFlag2", intent_RedFlag2);
-            obs_Intent.putExtra("obs1", obsDiagnosis);
+            Intent obsIntent = new Intent(getApplicationContext(), Symptoms.class);
+            obsIntent.putExtra("uid2", intentUid2);
+            obsIntent.putExtra("name2", intentName2);
+            obsIntent.putExtra("email2", intentEmail2);
+            obsIntent.putExtra("redFlag2", intentRedFlag2);
+            obsIntent.putExtra("obs1", obsDiagnosis);
             //Start the next activity
-            startActivity(obs_Intent);
+            startActivity(obsIntent);
         }
     }
 }

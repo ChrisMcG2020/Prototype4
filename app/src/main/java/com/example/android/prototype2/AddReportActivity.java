@@ -36,7 +36,7 @@ public class AddReportActivity extends AppCompatActivity {
     private FirebaseUser currentUser;
 
 
-    private String intent_uid5, intent_RedFlag5, intent_Obs5, intent_Memory5, intent_Symptoms5, intent_Email5, incidentDate, intent_Name5;
+    private String intentUid5, intentRedFlag5, intentObs5, intentMemory5, intentSymptoms5, intentEmail5, incidentDate, intentName5;
 
 
     //Tag for printing log details
@@ -96,23 +96,23 @@ public class AddReportActivity extends AppCompatActivity {
 
 
         //Pass the intents from previous activities
-        intent_RedFlag5 = getIntent().getStringExtra("redFlag4");
-        intent_Name5 = getIntent().getStringExtra("name4");
-        intent_uid5 = getIntent().getStringExtra("uid4");
-        intent_Email5 = getIntent().getStringExtra("email4");
-        intent_RedFlag5 = getIntent().getStringExtra("redFlag4");
-        intent_Obs5 = getIntent().getStringExtra("obs4");
-        intent_Symptoms5 = getIntent().getStringExtra("symptom4");
-        intent_Memory5 = getIntent().getStringExtra("memory4");
+        intentRedFlag5 = getIntent().getStringExtra("redFlag4");
+        intentName5 = getIntent().getStringExtra("name4");
+        intentUid5 = getIntent().getStringExtra("uid4");
+        intentEmail5 = getIntent().getStringExtra("email4");
+        intentRedFlag5 = getIntent().getStringExtra("redFlag4");
+        intentObs5 = getIntent().getStringExtra("obs4");
+        intentSymptoms5 = getIntent().getStringExtra("symptom4");
+        intentMemory5 = getIntent().getStringExtra("memory4");
         reportIncident = incidentReport.getText().toString().trim();
 
-        Log.d(TAG, "TEST_uid: " + intent_uid5);
-        Log.d(TAG, "TEST_Red_Flag: " + intent_RedFlag5);
-        Log.d(TAG, "TEST_Observable_Signs: " + intent_Obs5);
-        Log.d(TAG, "TEST_Memory_Questions: " + intent_Memory5);
-        Log.d(TAG, "TEST_Symptoms: " + intent_Symptoms5);
-        Log.d(TAG, "TEST_Player_email: " + intent_Email5);
-        Log.d(TAG, "TEST_Player_name: " + intent_Name5);
+        Log.d(TAG, "TEST_uid: " + intentUid5);
+        Log.d(TAG, "TEST_Red_Flag: " + intentRedFlag5);
+        Log.d(TAG, "TEST_Observable_Signs: " + intentObs5);
+        Log.d(TAG, "TEST_Memory_Questions: " + intentMemory5);
+        Log.d(TAG, "TEST_Symptoms: " + intentSymptoms5);
+        Log.d(TAG, "TEST_Player_email: " + intentEmail5);
+        Log.d(TAG, "TEST_Player_name: " + intentName5);
         Log.d(TAG, "TEST_Coach_Name: " + coachName);
         Log.d(TAG, "TEST_Report: " + reportIncident);
         Log.d(TAG, "TEST_Add_Report_Success: Passed");
@@ -124,17 +124,17 @@ public class AddReportActivity extends AppCompatActivity {
         PlayerIncidentsModel playerIncidentsModel = new PlayerIncidentsModel();
 
         //Set the values from the report to the appropriate variable
-        playerIncidentsModel.setUid(intent_uid5);
+        playerIncidentsModel.setUid(intentUid5);
 
-        playerIncidentsModel.setRed_FLag_Test(intent_RedFlag5);
-        playerIncidentsModel.setObservable_Signs_Test(intent_Obs5);
-        playerIncidentsModel.setMemory_Question(intent_Memory5);
-        playerIncidentsModel.setPlayerEmail(intent_Email5);
+        playerIncidentsModel.setRed_FLag_Test(intentRedFlag5);
+        playerIncidentsModel.setObservable_Signs_Test(intentObs5);
+        playerIncidentsModel.setMemory_Question(intentMemory5);
+        playerIncidentsModel.setPlayerEmail(intentEmail5);
         playerIncidentsModel.setReports(reportIncident);
         playerIncidentsModel.setDate(incidentDate);
         playerIncidentsModel.setCoachName(coachName);
-        playerIncidentsModel.setSymptoms(intent_Symptoms5);
-        playerIncidentsModel.setName(intent_Name5);
+        playerIncidentsModel.setSymptoms(intentSymptoms5);
+        playerIncidentsModel.setName(intentName5);
 
 
         databaseReference.child(reportId).setValue(playerIncidentsModel);

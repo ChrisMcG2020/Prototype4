@@ -8,17 +8,17 @@ import android.widget.CheckBox;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.android.prototype2.AddReportActivity;
-import com.example.android.prototype2.dialogs.AmbulanceFragment;
 import com.example.android.prototype2.R;
+import com.example.android.prototype2.dialogs.AmbulanceFragment;
 
 
 public class MemoryActivity extends AppCompatActivity {
 
     //Checkbox variables
-    CheckBox q1_yes, q1_no, q2_yes, q2_no, q3_yes, q3_no, q4_yes, q4_no, q5_yes, q5_no;
+    CheckBox q1Yes, q1No, q2Yes, q2No, q3Yes, q3No, q4Yes, q4No, q5Yes, q5No;
 
     //Intent strings
-    String intent_uid4, intent_RedFlag4, intent_Obs4, intent_email4,intent_name4, intent_Symptoms4;
+    String intentUid4, intentRedFlag4, intentObs4, intentEmail4, intentName4, intentSymptoms4;
 
     //Variable for storing the result of the memory questions
     int result = 0;
@@ -37,47 +37,46 @@ public class MemoryActivity extends AppCompatActivity {
         setContentView(R.layout.memory_activity);
 
         //Initialise the variables to their corresponding views
-        q1_yes = findViewById(R.id.memory_q1_yes);
-        q1_no = findViewById(R.id.memory_q1_no);
-        q2_yes = findViewById(R.id.memory_q2_yes);
-        q2_no = findViewById(R.id.memory_q2_no);
-        q3_yes = findViewById(R.id.memory_q3_yes);
-        q3_no = findViewById(R.id.memory_q3_no);
-        q4_yes = findViewById(R.id.memory_q4_yes);
-        q4_no = findViewById(R.id.memory_q4_no);
-        q5_yes = findViewById(R.id.memory_q5_yes);
-        q5_no = findViewById(R.id.memory_q5_no);
+        q1Yes = findViewById(R.id.memory_q1_yes);
+        q1No = findViewById(R.id.memory_q1_no);
+        q2Yes = findViewById(R.id.memory_q2_yes);
+        q2No = findViewById(R.id.memory_q2_no);
+        q3Yes = findViewById(R.id.memory_q3_yes);
+        q3No = findViewById(R.id.memory_q3_no);
+        q4Yes = findViewById(R.id.memory_q4_yes);
+        q4No = findViewById(R.id.memory_q4_no);
+        q5Yes = findViewById(R.id.memory_q5_yes);
+        q5No = findViewById(R.id.memory_q5_no);
 
 
     }
 
     public void quizDiagnosis() {
         //Retrieve the previous results and assign them
-        intent_uid4 = getIntent().getStringExtra("uid3");
-        intent_email4 = getIntent().getStringExtra("email3");
-        intent_name4=getIntent().getStringExtra("name3");
-        intent_RedFlag4 = getIntent().getStringExtra("redFlag3");
-        intent_Obs4 = getIntent().getStringExtra("obs3");
-        intent_Symptoms4 = getIntent().getStringExtra("symptom3");
+        intentUid4 = getIntent().getStringExtra("uid3");
+        intentEmail4 = getIntent().getStringExtra("email3");
+        intentName4 = getIntent().getStringExtra("name3");
+        intentRedFlag4 = getIntent().getStringExtra("redFlag3");
+        intentObs4 = getIntent().getStringExtra("obs3");
+        intentSymptoms4 = getIntent().getStringExtra("symptom3");
 
 
         //If statements for each question and update result based on answer
-        if (q1_yes.isChecked()) result = result + 1;
-        if (q1_no.isChecked()) result = result - 1;
+        if (q1Yes.isChecked()) result = result + 1;
+        if (q1No.isChecked()) result = result - 1;
 
 
+        if (q2Yes.isChecked()) result = result + 1;
+        if (q2No.isChecked()) result = result - 1;
 
-          if (q2_yes.isChecked()) result = result + 1;
-        if (q2_no.isChecked()) result = result - 1;
+        if (q3Yes.isChecked()) result = result + 1;
+        if (q3No.isChecked()) result = result - 1;
 
-        if (q3_yes.isChecked()) result = result + 1;
-        if (q3_no.isChecked()) result = result - 1;
+        if (q4Yes.isChecked()) result = result + 1;
+        if (q4No.isChecked()) result = result - 1;
 
-        if (q4_yes.isChecked()) result = result + 1;
-        if (q4_no.isChecked()) result = result - 1;
-
-        if (q5_yes.isChecked()) result = result + 1;
-        if (q5_no.isChecked()) result = result - 1;
+        if (q5Yes.isChecked()) result = result + 1;
+        if (q5No.isChecked()) result = result - 1;
 
         //Less than 1 then test is a fail
         if (result < 1) memoryResult = "Memory Activity: Failed";
@@ -102,16 +101,16 @@ public class MemoryActivity extends AppCompatActivity {
             //Run the memory quiz method
             quizDiagnosis();
             //Pass the intents to the next activity
-            Intent memory_Intent = new Intent(getApplicationContext(), AddReportActivity.class);
-            memory_Intent.putExtra("uid4", intent_uid4);
-            memory_Intent.putExtra("email4", intent_email4);
-            memory_Intent.putExtra("name4", intent_name4);
-            memory_Intent.putExtra("redFlag4", intent_RedFlag4);
-            memory_Intent.putExtra("obs4", intent_Obs4);
-            memory_Intent.putExtra("symptom4", intent_Symptoms4);
-            memory_Intent.putExtra("memory4", memoryResult);
+            Intent memoryIntent = new Intent(getApplicationContext(), AddReportActivity.class);
+            memoryIntent.putExtra("uid4", intentUid4);
+            memoryIntent.putExtra("email4", intentEmail4);
+            memoryIntent.putExtra("name4", intentName4);
+            memoryIntent.putExtra("redFlag4", intentRedFlag4);
+            memoryIntent.putExtra("obs4", intentObs4);
+            memoryIntent.putExtra("symptom4", intentSymptoms4);
+            memoryIntent.putExtra("memory4", memoryResult);
             //Start the next activity
-            startActivity(memory_Intent);
+            startActivity(memoryIntent);
 
 
         }

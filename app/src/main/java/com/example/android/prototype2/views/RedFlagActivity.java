@@ -17,7 +17,7 @@ public class RedFlagActivity extends AppCompatActivity {
     private String redFlagDiagnosis;
 
     //Create a UID for the intent
-    String intent_uid1, intent_Email1, intent_Name1;
+    String intentUid1, intentEmail1, intentName1;
 
     //Tag for printing log details
     private final String TAG = getClass().getSimpleName();
@@ -36,9 +36,9 @@ public class RedFlagActivity extends AppCompatActivity {
 
     //Method to diagnose the red flag activity and set it in the database
     protected void redFlagDiagnosis() {
-        intent_uid1 = getIntent().getStringExtra("uid");
-        intent_Name1 = getIntent().getStringExtra("name1");
-        intent_Email1 = getIntent().getStringExtra("email1");
+        intentUid1 = getIntent().getStringExtra("uid");
+        intentName1 = getIntent().getStringExtra("name1");
+        intentEmail1 = getIntent().getStringExtra("email1");
         redFlagDiagnosis = "Red Flags : Passed";
 
     }
@@ -57,9 +57,9 @@ public class RedFlagActivity extends AppCompatActivity {
         } else if (view.getId() == R.id.redFlag_continue) {
             redFlagDiagnosis();
             Intent redFlag_Intent = new Intent(getApplicationContext(), ObservableSignsActivity.class);
-            redFlag_Intent.putExtra("uid1", intent_uid1);
-            redFlag_Intent.putExtra("name1", intent_Name1);
-            redFlag_Intent.putExtra("email1", intent_Email1);
+            redFlag_Intent.putExtra("uid1", intentUid1);
+            redFlag_Intent.putExtra("name1", intentName1);
+            redFlag_Intent.putExtra("email1", intentEmail1);
             redFlag_Intent.putExtra("redFlag1", redFlagDiagnosis);
             //Start the next activity
             startActivity(redFlag_Intent);

@@ -12,10 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.android.prototype2.helperClass.AllIncidentsModel;
 import com.example.android.prototype2.R;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.example.android.prototype2.helperClass.AllIncidentsModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +26,6 @@ public class AllIncidentsAdapter extends RecyclerView.Adapter<AllIncidentsAdapte
     //Variables
     private Context context;
 
-    //private DatabaseReference databaseReference;
 
     //Constructor
     public AllIncidentsAdapter(Context context, List<AllIncidentsModel> incidentList) {
@@ -62,7 +59,7 @@ public class AllIncidentsAdapter extends RecyclerView.Adapter<AllIncidentsAdapte
         holder.textViewMemory.setText(incident.getMemory_Question());
         holder.textViewReport.setText(String.format("Report: %s", incident.getReports()));
 
-       // databaseReference = FirebaseDatabase.getInstance().getReference("Player_incidents");
+        // databaseReference = FirebaseDatabase.getInstance().getReference("Player_incidents");
     }
 
 
@@ -77,12 +74,12 @@ public class AllIncidentsAdapter extends RecyclerView.Adapter<AllIncidentsAdapte
         return exampleFilter;
     }
 
-    //background thread conducted
+    //Filter method to searcg for players
     private Filter exampleFilter = new Filter() {
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-           List<AllIncidentsModel> filteredList = new ArrayList<>();
+            List<AllIncidentsModel> filteredList = new ArrayList<>();
 
             if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(incidentListFull);

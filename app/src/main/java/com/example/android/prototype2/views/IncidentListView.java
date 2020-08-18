@@ -29,8 +29,6 @@ public class IncidentListView extends AppCompatActivity {
     RecyclerView listViewIncidents;
     private ArrayList<PlayerIncidentsModel> playerIncidentsModels;
 
-    //Define a list to store the players
-    // ArrayList<StackIncidentHelperClass> incidentsList;
     //Define the reference to the database
     DatabaseReference reference;
     FirebaseAuth mauth;

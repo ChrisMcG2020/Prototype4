@@ -40,9 +40,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     //Progress bar variable
     private ProgressBar progressBar;
 
-    //Firebase variables
-    FirebaseDatabase rootNode;
-    DatabaseReference reference;
     FirebaseAuth mAuth;
     FirebaseUser mCurrent;
 
@@ -115,26 +112,23 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     //Validation for email
     private Boolean validateEmail() {
 
-            String entry = regEmail.getEditText().getText().toString();
+        String entry = regEmail.getEditText().getText().toString();
 
-            //Characters accepted for email address
-            String emailCharacters = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]";
+        String emailCharacters = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
-            //If empty display error
-            if (entry.isEmpty()) {
-                regEmail.setError("Email field cannot be empty");
-                return false;
-                //If email address does not follow constraints
-           } else if (!entry.matches(emailCharacters)) {
-              regEmail.setError("Invalid email address");
-                return false;
-            } else {
-                regEmail.setError(null);
-                //setErrorEnabled(false) ensures layout will not change size when an error is displayed
-                regEmail.setErrorEnabled(false);
-                return true;
-            }
+        if (entry.isEmpty()) {
+            regEmail.setError("Email field cannot be empty");
+            return false;
+        } else if (!entry.matches(emailCharacters)) {
+            regEmail.setError("Invalid email address");
+            return false;
+        } else {
+            regEmail.setError(null);
+            //setErrorEnabled(false) ensures layout will not change size when an error is displayed
+            regEmail.setErrorEnabled(false);
+            return true;
         }
+    }
 
 
     //Validation for phone entry
@@ -275,7 +269,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        String UID=mCurrent.getUid();
+                        String UID = mCurrent.getUid();
                         if (task.isSuccessful()) {
                             //Get the details from our UserHelperClass
                             //UserHelperClass helperClass = new UserHelperClass(playerID, name, email, phoneNo, dob, emergencyContact, contactNumber, password,uid);
@@ -286,30 +280,30 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                             helperClass.setEmergencyContact(emergencyContact);
                             helperClass.setPhoneNo(phoneNo);
                             helperClass.setDob(dob);
-                           helperClass.setPlayerID(playerID);
+                            helperClass.setPlayerID(playerID);
                             helperClass.setUid(UID);
 
-                            Log.d(TAG, "TEST_RegName: "+name);
-                            Log.d(TAG, "TEST_RegPhone: "+phoneNo);
-                            Log.d(TAG,"TEST_RegEmail: "+email);
-                            Log.d(TAG, "TEST_EC: "+emergencyContact);
-                            Log.d(TAG, "TEST_EC_phone: "+contactNumber);
-                            Log.d (TAG, "TEST_Dob: "+dob);
-                            Log.d(TAG,"TEST_UID: "+UID);
+                            Log.d(TAG, "TEST_RegName: " + name);
+                            Log.d(TAG, "TEST_RegPhone: " + phoneNo);
+                            Log.d(TAG, "TEST_RegEmail: " + email);
+                            Log.d(TAG, "TEST_EC: " + emergencyContact);
+                            Log.d(TAG, "TEST_EC_phone: " + contactNumber);
+                            Log.d(TAG, "TEST_Dob: " + dob);
+                            Log.d(TAG, "TEST_UID: " + UID);
 
                             //Get an instance of the firebase database and add the details from helper class to the current user
                             FirebaseDatabase.getInstance().getReference("Users").child(UID)
-                                    //  .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+
                                     .setValue(helperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
 
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressBar.setVisibility(View.GONE);
-                                    //of successful show Toast
+                                    //If successful show Toast
                                     if (task.isSuccessful()) {
                                         Toast.makeText(getApplicationContext(), getString(R.string.registration_success), Toast.LENGTH_SHORT).show();
 
-                                        Log.d(TAG,"TEST_User_Reg_Success");
+                                        Log.d(TAG, "TEST_User_Reg_Success");
 
                                     } else {
                                         //Display a failure message

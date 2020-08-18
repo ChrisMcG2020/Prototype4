@@ -43,10 +43,10 @@ public class CustomNumberPicker extends DialogFragment {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Delete Profile")
-       .setMessage("Do you really want to delete your profile?")
+                .setMessage("Do you really want to delete your profile?")
                 .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                       ndl.onDialogPositiveClick(dialog);
+                     ndl.onDialogPositiveClick(dialog);
 
                     }
                 })

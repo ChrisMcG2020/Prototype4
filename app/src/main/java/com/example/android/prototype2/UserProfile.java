@@ -180,8 +180,6 @@ public class UserProfile extends AppCompatActivity {
                                                       deleteCurrentUser(user.getUid());
 
 
-
-
                                                   }
 
                                                   @Override
@@ -200,14 +198,9 @@ public class UserProfile extends AppCompatActivity {
     private void deleteCurrentUser(String uid) {
         //Get a reference to the Users uid in the database
         DatabaseReference databaseReferenceUser = FirebaseDatabase.getInstance().getReference("Users").child(uid);
-        //Get a reference to ant incident data from the current user
-        DatabaseReference databaseReferenceIncident = FirebaseDatabase.getInstance().getReference("Incidents").child("Player_incidents").child(uid);
 
         //Remove the user
         databaseReferenceUser.removeValue();
-        //Remove the incident
-        databaseReferenceIncident.removeValue();
-
 
         //Show a toast to say user has been removed
         Toast.makeText(getApplicationContext(), "User deleted", Toast.LENGTH_LONG).show();
@@ -216,24 +209,22 @@ public class UserProfile extends AppCompatActivity {
         Log.d(TAG, "USER DELETED");
 
         //Take the user back to the start up screen
-        Intent intent = new Intent(getApplicationContext(), SplashScreen.class);
-        startActivity(intent);
-
-
+        Intent splashScreen = new Intent(getApplicationContext(), SplashScreen.class);
+        startActivity(splashScreen);
 
 
     }
 
     //Method to direct button clicks to correct action
-    public void onButtonClicked(View view) {
+    public void onButtonClicked(@NonNull View view) {
         //If recover image clocked recover advice page launched
         if (view.getId() == R.id.recovery_image) {
-            Intent intent = new Intent(getApplicationContext(), RecoveryActivity.class);
-            startActivity(intent);
-            //If incident image clicked then list of images returned
-        } else if (view.getId() == R.id.incident_text) {
-            Intent intent2 = new Intent(getApplicationContext(), IncidentListView.class);
-            startActivity(intent2);
+            Intent recoveryIntent = new Intent(getApplicationContext(), RecoveryActivity.class);
+            startActivity(recoveryIntent);
+            //If incident image clicked then list of incidents returned
+        } else if (view.getId() == R.id.incident_image) {
+            Intent incident = new Intent(getApplicationContext(), IncidentListView.class);
+            startActivity(incident);
             //If logout button clicked then start up screen shown
         } else if (view.getId() == R.id.btn_logoutProfile) {
             Intent logoutIntent = new Intent(getApplicationContext(), SplashScreen.class);

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -20,12 +19,9 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 public class CoachLoginActivity extends AppCompatActivity {
 
@@ -146,33 +142,18 @@ public class CoachLoginActivity extends AppCompatActivity {
 
             @Override
             public void onComplete(@NonNull final Task<AuthResult> task) {
-                FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                final String user = currentFirebaseUser.getUid();
 
+                if (task.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), CoachProfile.class));
+                } else {
+                    loginEmail.setError("Email/Password Incorrect");
+                    loginPass.setError("Email/Password Incorrect");
 
-
-                        if (task.isSuccessful()) {
-
-                            Toast.makeText(getApplicationContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
-                            Log.d(TAG, "TEST_Login : Logged In Successfully");
-                            startActivity(new Intent(getApplicationContext(), CoachProfile.class));
-                        } else {
-                            loginEmail.setError("Email/Password Incorrect");
-                            loginPass.setError("Email/Password Incorrect");
-                            //    Toast.makeText(getApplicationContext(), "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
-                        }
-                    }
-
-                  /*  @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                    progressBar.setVisibility(View.GONE);
+                }
             }
-        });*/
-
-    });
+        });
     }
 
     protected void forgotPassword() {
@@ -212,8 +193,8 @@ public class CoachLoginActivity extends AppCompatActivity {
     //Method to direct user to appropriate page
     public void onButtonClicked(View view) {
         if (view.getId() == R.id.player_reg_btn) {
-            Intent intent = new Intent(getApplicationContext(), CoachRegistrationActivity.class);
-            startActivity(intent);
+            Intent coachLogin = new Intent(getApplicationContext(), CoachRegistrationActivity.class);
+            startActivity(coachLogin);
 
         }
     }
