@@ -1,0 +1,108 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/colorBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       >
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="8dp"
+            app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="184dp"
+                    android:background="#FFFFFF"
+                    android:contentDescription="@string/orange_flag"
+                    app:srcCompat="@drawable/secondary_symptoms" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <!-- Title, secondary and supporting text -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/incident_report_title"
+                        android:textAppearance="?attr/textAppearanceHeadline6" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/incident_report_heading"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="16sp" />
+
+                    <!--App designed Buttons to continue/call ambulance -->
+
+                    <RelativeLayout
+                        android:layout_width="352dp"
+                        android:layout_height="327dp">
+
+                        <EditText
+                            android:id="@+id/report_edit_text"
+                            android:layout_width="328dp"
+                            android:layout_height="294dp"
+                            android:layout_centerInParent="true"
+                            android:autofillHints="Fill in incident details here..."
+                            android:gravity="start"
+                            android:hint="@string/report_incident_details"
+                            android:inputType="textCapSentences|textAutoCorrect|textLongMessage|textMultiLine"
+                            android:padding="16dp"
+                            android:textAlignment="textStart"
+                            android:textColorHint="#FFFFFF" />
+
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/report_call_ambulance"
+                            style="?attr/borderlessButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:onClick="onButtonClicked"
+                            android:text="@string/call_ambulance" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/report_continue"
+                            style="?attr/borderlessButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="onButtonClicked"
+                            android:text="@string/continue_diagnosis" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</ScrollView>

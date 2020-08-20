@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/colorBackground">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorBackground"
+    android:padding="8dp"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/recovery_caution"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="#3f51b5"
+        android:drawablePadding="6dp"
+        android:padding="6dp"
+        android:text="@string/recovery_signs"
+        android:textAlignment="center"
+        android:textColor="#e1f5fe"
+        app:drawableTopCompat="@drawable/warning_5_32" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#e1f5fe"
+        android:textAlignment="center"
+        android:text="@string/graduated_return_to_sport_strategy"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/return_to_sport1"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="#3f51b5"
+        android:padding="8dp"
+        android:text="@string/return_to_sport1"
+        android:textColor="#e1f5fe"
+        app:drawableEndCompat="@mipmap/number"
+        app:drawableRightCompat="@drawable/sleep1" />
+
+    <TextView
+        android:id="@+id/return_to_sport2"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:background="#9c27b0"
+        android:padding="8dp"
+        android:text="@string/return_to_sport2"
+        android:textColor="#e1f5fe"
+        app:drawableEndCompat="@mipmap/number2"
+        app:drawableRightCompat="@mipmap/number2" />
+
+    <TextView
+        android:id="@+id/return_to_sport3"
+
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:background="#FF6E40"
+        android:padding="8dp"
+        android:text="@string/return_to_sport3"
+        android:textColor="#e1f5fe"
+        tools:ignore="PrivateResource"
+        app:drawableRightCompat="@mipmap/number3"
+        app:drawableEndCompat="@mipmap/number3" />
+
+    <TextView
+        android:id="@+id/return_to_sport4"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:background="#673ab7"
+        android:padding="8dp"
+        android:text="@string/return_to_sport4"
+        android:textColor="#e1f5fe"
+        app:drawableRightCompat="@mipmap/number4"
+        app:drawableEndCompat="@mipmap/number4" />
+
+
+    <TextView
+        android:id="@+id/return_to_sport5"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:background="#480D51"
+        android:padding="8dp"
+        android:text="@string/return_to_sport5"
+        android:textColor="#e1f5fe"
+        app:drawableRightCompat="@mipmap/number5"
+        app:drawableEndCompat="@mipmap/number5" />
+
+
+    <TextView
+        android:id="@+id/return_to_sport6"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:background="#5CAA03"
+        android:padding="8dp"
+        android:text="@string/return_to_sport6"
+        android:textColor="#e1f5fe"
+        app:drawableEndCompat="@mipmap/number6"
+        app:drawableRightCompat="@mipmap/number6" />
+
+
+
+    <Button
+        android:id="@+id/back_to_profile_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/recovery_back_to_profile" />
+
+
+
+
+</LinearLayout>
+</ScrollView>

@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackground"
+        android:orientation="vertical"
+        tools:context=".RegistrationActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="297dp"
+            android:background="@color/colorBackground"
+            android:padding="20dp">
+
+            <ImageView
+                android:id="@+id/coach_prof"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="80dp"
+                android:src="@drawable/coach_prof"  />
+
+            <TextView
+                android:id="@+id/coach_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/coach_prof"
+                android:layout_marginStart="112dp"
+                android:layout_marginLeft="112dp"
+                android:layout_marginTop="15dp"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/gravitas_one"
+                android:textAllCaps="true"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/coach_phone_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/coach_prof"
+                android:layout_marginStart="120dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="45dp"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/gravitas_one"
+                android:includeFontPadding="false"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/diagnose_concussion_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#CF0303"
+                android:onClick="onButtonClicked"
+                android:text="@string/coach_profile_concussion_button" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="127dp"
+            android:background="@color/colorBackground"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                app:cardElevation="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="4dp">
+
+                    <ImageView
+                        android:id="@+id/player_search"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="2dp"
+                        android:contentDescription="@string/player_search_name"
+                        android:onClick="onButtonClicked"
+                        android:src="@mipmap/userpic" />
+
+                    <TextView
+                        android:id="@+id/player_search_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:includeFontPadding="false"
+                        android:onClick="onButtonClicked"
+                        android:text="@string/coach_player_info"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/player_search_text"
+                        android:layout_centerHorizontal="true"
+                        android:includeFontPadding="false"
+                        android:onClick="onButtonClicked"
+                        android:text="@string/coach_player_info_tag"
+                        android:textSize="12sp" />
+
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!--Use material components design for a card view -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                app:cardElevation="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="onButtonClicked"
+                    android:padding="4dp">
+
+                    <ImageView
+                        android:id="@+id/history_image"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="1dp"
+                        android:contentDescription="@string/recovery_image"
+                        android:onClick="onButtonClicked"
+                        android:src="@mipmap/calender" />
+
+                    <TextView
+                        android:id="@+id/recovery_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:contentDescription="@string/coach_calender"
+                        android:includeFontPadding="false"
+                        android:onClick="onButtonClicked"
+                        android:text="History"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/recovery_text"
+                        android:layout_centerHorizontal="true"
+                        android:includeFontPadding="false"
+                        android:onClick="onButtonClicked"
+                        android:text="@string/coach_profile_history_tag"
+                        android:textSize="12sp" />
+
+                </RelativeLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!--Use material components design for a card view -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                app:cardElevation="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="onButtonClicked"
+                    android:padding="4dp">
+
+                    <ImageView
+                        android:id="@+id/coach_sign_out_image"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="1dp"
+                        android:contentDescription="@string/recovery_image"
+                        android:onClick="onButtonClicked"
+                        android:src="@mipmap/logout" />
+
+                    <TextView
+                        android:id="@+id/sign_out"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:includeFontPadding="false"
+                        android:onClick="onButtonClicked"
+                        android:text="@string/profile_sign_out"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/sign_out"
+                        android:layout_centerHorizontal="true"
+                        android:includeFontPadding="false"
+                        android:text="@string/profile_return_to_login"
+                        android:textSize="12sp" />
+
+                </RelativeLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorBackground"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_text_coach_full_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/coach_profile_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_baseline_person_24"
+                    android:drawableLeft="@drawable/ic_baseline_person_24"
+                    android:drawableEnd="@drawable/ic_baseline_edit_24"
+                    android:drawableRight="@drawable/ic_baseline_edit_24"
+                    android:drawablePadding="10dp"
+                    android:inputType="text"
+                    android:textSize="18sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_text_profile_email"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/coach_profile_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_baseline_email_24"
+                    android:drawableLeft="@drawable/ic_baseline_email_24"
+                    android:drawableEnd="@drawable/ic_baseline_edit_24"
+                    android:drawableRight="@drawable/ic_baseline_edit_24"
+                    android:drawablePadding="10dp"
+                    android:inputType="textEmailAddress"
+                    android:textSize="18sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_text_coach_phone"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/coach_profile_phone"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_baseline_call_24"
+                    android:drawableLeft="@drawable/ic_baseline_call_24"
+                    android:drawableEnd="@drawable/ic_baseline_edit_24"
+                    android:drawableRight="@drawable/ic_baseline_edit_24"
+                    android:drawablePadding="10dp"
+                    android:inputType="phone"
+                    android:textSize="18sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_text_team"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/coach_profile_team"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_baseline_emoji_people_24"
+                    android:drawableLeft="@drawable/ic_baseline_emoji_people_24"
+                    android:drawableEnd="@drawable/ic_baseline_edit_24"
+                    android:drawableRight="@drawable/ic_baseline_edit_24"
+                    android:drawablePadding="10dp"
+                    android:inputType="text"
+                    android:textSize="18sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <!--Update Button to take user to update Activity -->
+            <Button
+                android:id="@+id/btn_updateCoachProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:onClick="onButtonClicked"
+                android:text="@string/player_prof_update" />
+
+            <Button
+                android:id="@+id/btn_deleteCoachProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:onClick="onButtonClicked"
+                android:text="@string/delete_profile" />
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
