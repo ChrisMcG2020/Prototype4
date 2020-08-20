@@ -295,6 +295,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                             helperClass.setPlayerID(playerID);
                             helperClass.setUid(UID);
 
+                            //Log tags used for testing
                             Log.d(TAG, "TEST_RegName: " + name);
                             Log.d(TAG, "TEST_RegPhone: " + phoneNo);
                             Log.d(TAG, "TEST_RegEmail: " + email);

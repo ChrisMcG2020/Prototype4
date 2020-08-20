@@ -209,7 +209,7 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
                         String coachUID = currentUser.getUid();
 
                         if (task.isSuccessful()) {
-                            //Get the details from our UserHelperClass
+                            //Set the details from our UserHelperClass
                             CoachHelperClass coachHelperClass = new CoachHelperClass();
                             coachHelperClass.setCoachName(name);
                             coachHelperClass.setCoachPhoneNumber(phoneNo);
@@ -218,6 +218,7 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
                             coachHelperClass.setCoachID(id);
                             coachHelperClass.setUid(coachUID);
 
+                            //Log tags used for testing
                             Log.d(TAG, "TEST_coach_RegName: " + name);
                             Log.d(TAG, "TEST_coach_RegPhone: " + phoneNo);
                             Log.d(TAG, "TEST_coach_RegEmail: " + email);

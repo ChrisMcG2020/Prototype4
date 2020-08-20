@@ -8,7 +8,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
-
+//CustomDialog sourced online to build dialog which is called in deleteProfile
 public class CustomDialog extends DialogFragment {
     private NoticeDialogListener ndl;
 

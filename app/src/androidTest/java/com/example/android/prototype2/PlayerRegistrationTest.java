@@ -17,6 +17,7 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
+import org.hamcrest.core.Is;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -68,11 +69,13 @@ public class PlayerRegistrationTest {
     public static final String TEST_EMERGENCYCONTACT = "Mary Smith";
     public static final String TEST_EC_PHONENO = "082222";
     public static final String TEST_PASSWORD = "password";
+    public static final String TEST_PHONE_FAIL="12";
 
     //Test error message variables
     public static final String NAME_ERROR = "Name field cannot be empty";
     public static final String PHONENO_ERROR = "Phone number field cannot be empty";
     public static final String AGE_ERROR = "You must be over 18 to use this app";
+    public static final String PHONE_FORMAT_ERROR= "Is number correctly formatted?";
 
 
     @Test
@@ -158,7 +161,7 @@ public class PlayerRegistrationTest {
     }
 
     @Test
-    public void validation_errors_when_player_email_and_password_dont_follow_rules() throws InterruptedException {
+    public void validation_errors_when_player_email_password_phone_dont_follow_rules() throws InterruptedException {
 
         //Use the set Date method to pick the date, needs to happen before register is clicked
         onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(1990, 6, 17));
@@ -167,7 +170,7 @@ public class PlayerRegistrationTest {
                 closeSoftKeyboard());
         onView(withId(R.id.reg_email_edit)).perform(typeText(TEST_EMAIL),
                 closeSoftKeyboard());
-        onView(withId(R.id.reg_phone_no_edit)).perform(typeText(TEST_PHONENO));
+        onView(withId(R.id.reg_phone_no_edit)).perform(typeText(TEST_PHONE_FAIL));
                 closeSoftKeyboard();
         onView(withId(R.id.reg_emergency_contact_edit)).perform(scrollTo()).perform(typeText(TEST_EMERGENCYCONTACT));
                 closeSoftKeyboard();
@@ -185,6 +188,7 @@ public class PlayerRegistrationTest {
         //Find the views and check if errors are shown
         onView(withId(R.id.reg_email)).check(matches(hasTextInputLayoutErrorText(INVALID_EMAIL)));
         onView(withId(R.id.reg_password)).check(matches(hasTextInputLayoutErrorText(UNSECURE_PASS)));
+        onView(withId(R.id.reg_phone_no)).check(matches(hasTextInputLayoutErrorText(PHONE_FORMAT_ERROR)));
 
 
     }

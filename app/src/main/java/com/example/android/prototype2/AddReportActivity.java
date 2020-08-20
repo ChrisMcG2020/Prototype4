@@ -67,6 +67,7 @@ public class AddReportActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("Incidents");
         //Get a reference to the coach compiling the report
         databaseReferenceUser = FirebaseDatabase.getInstance().getReference("Coaches");
+        //AddValueEventListener to listen out for any changes
         databaseReferenceUser.orderByChild("coachEmail").equalTo(currentUser.getEmail()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -106,6 +107,7 @@ public class AddReportActivity extends AppCompatActivity {
         intentMemory5 = getIntent().getStringExtra("memory4");
         reportIncident = incidentReport.getText().toString().trim();
 
+        //Log tags used for testing
         Log.d(TAG, "TEST_uid: " + intentUid5);
         Log.d(TAG, "TEST_Red_Flag: " + intentRedFlag5);
         Log.d(TAG, "TEST_Observable_Signs: " + intentObs5);

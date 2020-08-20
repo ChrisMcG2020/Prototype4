@@ -112,9 +112,6 @@ public class UserProfile extends AppCompatActivity {
                     emergencyContactPhoneNoTextView.setText(contactNumber);
 
 
-                    // Intent intent = new Intent(getIntent());
-                    // intent.putExtra("PlayerID", playerID);
-
                     //Logging statements to test update feature of Realtime DB
                     Log.d(TAG, "TEST__name: " + name);
                     Log.d(TAG, "TEST_phone: " + phone);

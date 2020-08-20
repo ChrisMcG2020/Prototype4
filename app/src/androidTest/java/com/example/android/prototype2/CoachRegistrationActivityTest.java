@@ -30,10 +30,12 @@ import static com.example.android.prototype2.PlayerRegistrationTest.HINT_PHONENO
 import static com.example.android.prototype2.PlayerRegistrationTest.INVALID_EMAIL;
 import static com.example.android.prototype2.PlayerRegistrationTest.NAME_ERROR;
 import static com.example.android.prototype2.PlayerRegistrationTest.PHONENO_ERROR;
+import static com.example.android.prototype2.PlayerRegistrationTest.PHONE_FORMAT_ERROR;
 import static com.example.android.prototype2.PlayerRegistrationTest.TEST_EMAIL;
 import static com.example.android.prototype2.PlayerRegistrationTest.TEST_NAME;
 import static com.example.android.prototype2.PlayerRegistrationTest.TEST_PASSWORD;
 import static com.example.android.prototype2.PlayerRegistrationTest.TEST_PHONENO;
+import static com.example.android.prototype2.PlayerRegistrationTest.TEST_PHONE_FAIL;
 import static com.example.android.prototype2.PlayerRegistrationTest.UNSECURE_PASS;
 import static com.example.android.prototype2.PlayerRegistrationTest.hasTextInputLayoutErrorText;
 
@@ -65,6 +67,8 @@ public class CoachRegistrationActivityTest {
         Assert.assertNotNull(phone);
         EditText teamCoached = activity.findViewById(R.id.team_coached_edit);
         Assert.assertNotNull(teamCoached);
+        EditText password=activity.findViewById(R.id.coach_password_edit);
+        Assert.assertNotNull(password);
 
 
     }
@@ -122,7 +126,7 @@ public class CoachRegistrationActivityTest {
         onView(withId(R.id.coach_name_edit)).perform(typeText(TEST_NAME), closeSoftKeyboard());
         onView(withId(R.id.coach_email_edit)).perform(typeText(TEST_EMAIL),
                 closeSoftKeyboard());
-        onView(withId(R.id.coach_phone_no_edit)).perform(typeText(TEST_PHONENO),
+        onView(withId(R.id.coach_phone_no_edit)).perform(typeText(TEST_PHONE_FAIL),
                 closeSoftKeyboard());
         onView(withId(R.id.team_coached_edit)).perform(typeText(TEST_TEAM),
                 closeSoftKeyboard());
@@ -135,6 +139,7 @@ public class CoachRegistrationActivityTest {
         //Find the views and check if errors are shown
         onView(withId(R.id.coach_email)).check(matches(hasTextInputLayoutErrorText(INVALID_EMAIL)));
         onView(withId(R.id.coach_password)).check(matches(hasTextInputLayoutErrorText(UNSECURE_PASS)));
+        onView(withId(R.id.coach_phone_no)).check(matches(hasTextInputLayoutErrorText(PHONE_FORMAT_ERROR)));
 
 
     }

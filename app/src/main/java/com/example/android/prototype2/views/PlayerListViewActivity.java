@@ -126,7 +126,7 @@ public class PlayerListViewActivity extends AppCompatActivity {
         mIsDialogShown = true;
         // Create an instance of the alert dialog fragment and show it
         AlertDialogFragment medicalAlert = new AlertDialogFragment();
-        //User can only close dialog by choosing either option
+        //User can only close dialog by choosing option
         medicalAlert.setCancelable(false);
         //Use the Fragment manager to show the alert
         medicalAlert.show(getSupportFragmentManager(), "Fragment Medical Alert Dialog");

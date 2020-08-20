@@ -2,6 +2,7 @@ package com.example.android.prototype2;
 
 import android.app.Activity;
 
+import androidx.annotation.ContentView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.rule.ActivityTestRule;
 
@@ -14,6 +15,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 public class RecyclerViewTest {
 

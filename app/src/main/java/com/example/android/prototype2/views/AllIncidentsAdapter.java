@@ -74,7 +74,7 @@ public class AllIncidentsAdapter extends RecyclerView.Adapter<AllIncidentsAdapte
         return exampleFilter;
     }
 
-    //Filter method to search the incidents for the search entry. An example here of an Asynchronous task
+    //Filter method to search the incidents for the search entry. An example here of an Asynchronous task as it runs in background
     private Filter exampleFilter = new Filter() {
 
         @Override
