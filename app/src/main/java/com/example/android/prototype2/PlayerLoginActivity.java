@@ -156,15 +156,18 @@ public class PlayerLoginActivity extends AppCompatActivity {
 
     protected void forgotPassword() {
 
-        final String entry = loginEmail.getEditText().getText().toString();
-        final String emailCharacters = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        final String entry = loginEmail.getEditText().getText().toString().trim();
+        //Characters accepted for email address
+        final String emailCharacters =
+                "[a-z0-9!#$%&'*+/=?^_`{|}~-]" +
+                        "+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|";
 
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
-
+        //If entry left empty error shown
         if (entry.isEmpty()) {
             loginEmail.setError("Email field cannot be empty");
-
+            //If entry doesn't match email regex then error shown
         } else if (!entry.matches(emailCharacters)) {
             loginEmail.setError("Invalid email address");
         } else {

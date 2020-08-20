@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
@@ -34,6 +35,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static com.example.android.prototype2.PlayerRegistrationTest.hasTextInputLayoutErrorText;
 import static org.hamcrest.Matchers.allOf;
 
 @RunWith(AndroidJUnit4.class)
@@ -53,33 +55,34 @@ public class UserProfileTest {
     public void testFields_buttons_images_Present() {
         //Find the views
         Activity activity = mUserProfileTestRule.getActivity();
-        EditText name = activity.findViewById(R.id.edit_text_profile_full_name);
+        EditText name = activity.findViewById(R.id.player_profile_name);
         //Assert they are present
         Assert.assertNotNull(name);
-        EditText email = activity.findViewById(R.id.edit_text_profile_email);
+        EditText email = activity.findViewById(R.id.player_profile_email);
         Assert.assertNotNull(email);
-        EditText phone = activity.findViewById(R.id.edit_text_profile_phone);
+        EditText phone = activity.findViewById(R.id.player_profile_phone);
         Assert.assertNotNull(phone);
-        EditText emergencyC = activity.findViewById(R.id.edit_text_emergency_contact);
+        EditText emergencyC = activity.findViewById(R.id.player_profile_emergency_contact);
         Assert.assertNotNull(emergencyC);
-        EditText emergencyC_phone = activity.findViewById(R.id.edit_text_profile_emergency_phone);
+        EditText emergencyC_phone = activity.findViewById(R.id.player_prof_emergency_contact_phone);
         Assert.assertNotNull(emergencyC_phone);
 
         //Find the views
         Button update = activity.findViewById(R.id.btn_updatePlayerProfile);
-        Button logout = activity.findViewById(R.id.btn_logoutProfile);
         Button delete = activity.findViewById(R.id.btn_deleteProfile);
         //Assert they are present
         Assert.assertNotNull(update);
-        Assert.assertNotNull(logout);
         Assert.assertNotNull(delete);
 
+
         //Find the views
-        ImageButton recovery = activity.findViewById(R.id.recovery_image);
-        ImageButton incidents = activity.findViewById(R.id.incident_image);
+        ImageView recovery = activity.findViewById(R.id.recovery_image);
+        ImageView incidents = activity.findViewById(R.id.incident_image);
+        ImageView signout= activity.findViewById(R.id.sign_out_image);
         //Assert they are present
         Assert.assertNotNull(recovery);
         Assert.assertNotNull(incidents);
+        Assert.assertNotNull(signout);
 
 
     }
@@ -96,7 +99,7 @@ public class UserProfileTest {
     @Test
     public void on_Incidents_pic_opens_report() {
         //Find the view and perform action
-        onView(withId(R.id.incident_text)).perform(click());
+        onView(withId(R.id.incident_image)).perform(click());
         //Check if action returns desired outcome
         intended(hasComponent(IncidentListView.class.getName()));
     }
@@ -104,7 +107,7 @@ public class UserProfileTest {
     @Test
     public void can_edit_user_name() {
         //Find the view and perform action
-        onView(withId(R.id.edit_text_profile_full_name)).perform(typeText(TEST_UPDATE_NAME));
+        onView(withId(R.id.player_profile_name)).perform(typeText(TEST_UPDATE_NAME));
         closeSoftKeyboard();
 
     }
@@ -112,7 +115,7 @@ public class UserProfileTest {
     @Test
     public void can_edit_phone() {
         //Find the views and perform action
-        onView(withId(R.id.edit_text_profile_phone)).perform(typeText(TEST_UPDATE_PHONENO));
+        onView(withId(R.id.player_profile_phone)).perform(typeText(TEST_UPDATE_PHONENO));
         closeSoftKeyboard();
 
     }
@@ -120,7 +123,7 @@ public class UserProfileTest {
     @Test
     public void can_edit_email() {
         //Find the views and perform action
-        onView(withId(R.id.edit_text_profile_email)).perform(typeText(TEST_UPDATE_EMAIL));
+        onView(withId(R.id.player_profile_email)).perform(typeText(TEST_UPDATE_EMAIL));
         closeSoftKeyboard();
 
 
@@ -129,7 +132,7 @@ public class UserProfileTest {
     @Test
     public void can_edit_emergency_C() {
         //Find the views and perform action
-        onView(withId(R.id.edit_text_emergency_contact)).perform(typeText(TEST_UPDATE_EMERGENCYCONTACT)
+        onView(withId(R.id.player_profile_emergency_contact)).perform(typeText(TEST_UPDATE_EMERGENCYCONTACT)
                 , closeSoftKeyboard());
 
 
@@ -138,17 +141,15 @@ public class UserProfileTest {
     @Test
     public void can_edit_contact_phone() {
         //Find the views and perform action
-        onView(withId(R.id.edit_text_profile_emergency_phone)).perform(typeText(TEST_UPDATE_PHONENO));
+        onView(withId(R.id.player_prof_emergency_contact_phone)).perform(forceClick()).perform(typeText(TEST_UPDATE_EC_PHONENO));
         closeSoftKeyboard();
-        onView(withId(R.id.edit_text_profile_emergency_phone)).perform(forceClick()).perform(typeText(TEST_UPDATE_EC_PHONENO));
-
 
     }
 
     @Test
     public void logout_profile() {
         //Find the view and perform the action
-        onView(withId(R.id.btn_logoutProfile)).perform(scrollTo()).perform(click());
+        onView(withId(R.id.sign_out_image)).perform(scrollTo()).perform(click());
         //Check if action returns desired outcome
         intended(hasComponent(SplashScreen.class.getName()));
 

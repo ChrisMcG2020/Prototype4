@@ -32,19 +32,24 @@ public class AmbulanceFragment extends DialogFragment {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         Log.d(TAG, "Alert Dialog");
-
+        //Set the title of the dialog
         builder.setTitle("CALL AMBULANCE?");
 
+        //Set the message
         builder.setMessage("Do you wish to call an Ambulance?");
 
+        //Set the icon to display
         builder.setIcon(R.drawable.warning);
 
+        //Set the text and action of the button
         builder.setPositiveButton("CALL", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
+                //Start a new intent to call using the dialler
                 Intent call = new Intent(Intent.ACTION_DIAL);
                 String number = "tel:" + getString(R.string.phone_number);
+                //Set 999 as the number
                 call.setData(Uri.parse(number));
                 startActivity(call);
                 Log.d(TAG, "Call button pressed and keypad launched");
@@ -54,7 +59,7 @@ public class AmbulanceFragment extends DialogFragment {
 
         });
 
-
+        //Set the text and action of the  button
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -64,10 +69,12 @@ public class AmbulanceFragment extends DialogFragment {
 
         });
 
-
+        //Build the alert
         return builder.create();
 
     }
+
+    //Methods for onCancel, onDismiss and onSaveInstanceState to handle lifecycle changes
     @Override
     public void onCancel(@NonNull DialogInterface dialog) {
         super.onCancel(dialog);

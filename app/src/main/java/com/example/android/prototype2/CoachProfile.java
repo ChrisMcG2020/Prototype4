@@ -22,6 +22,7 @@ import com.example.android.prototype2.views.SplashScreen;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -43,6 +44,7 @@ public class CoachProfile extends AppCompatActivity {
 
     private TextInputEditText coachNameTextView, coachPhoneNoTextView, coachEmailTextView, teamCoachedTextView;
     private TextView displayCoachName, displayCoachphone;
+    private TextInputLayout emailView, phoneView, nameView, teamView;
     private String coachEmail;
     private Button updateCoach, deleteCoach;
     FirebaseAuth firebaseAuth;
@@ -74,12 +76,18 @@ public class CoachProfile extends AppCompatActivity {
 
 
         //Initialise the variables to their corresponding views
-        coachNameTextView = findViewById(R.id.edit_text_profile_coach_name);
-        coachPhoneNoTextView = findViewById(R.id.edit_text_coach_profile_phone);
-        coachEmailTextView = findViewById(R.id.edit_text_coach_profile_email);
+        nameView = findViewById(R.id.edit_text_coach_full_name);
+        emailView = findViewById(R.id.edit_text_profile_email);
+        phoneView = findViewById(R.id.edit_text_coach_phone);
+        teamView = findViewById(R.id.edit_text_team);
+
+
+        coachNameTextView = findViewById(R.id.coach_profile_name);
+        coachPhoneNoTextView = findViewById(R.id.coach_profile_phone);
+        coachEmailTextView = findViewById(R.id.coach_profile_email);
         displayCoachName = findViewById(R.id.coach_name);
-        displayCoachphone = findViewById(R.id.coach_name_small);
-        teamCoachedTextView = findViewById(R.id.edit_text_coach_team_coached);
+        displayCoachphone = findViewById(R.id.coach_phone_small);
+        teamCoachedTextView = findViewById(R.id.coach_profile_team);
 
         updateCoach = findViewById(R.id.btn_updateCoachProfile);
         deleteCoach = findViewById(R.id.btn_deleteCoachProfile);
@@ -87,6 +95,7 @@ public class CoachProfile extends AppCompatActivity {
 
         final String uid = user.getUid();
 
+        //Query the database to get the current user
         Query query = databaseReference.orderByChild("coachEmail").equalTo(user.getEmail());
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -109,10 +118,10 @@ public class CoachProfile extends AppCompatActivity {
                     teamCoachedTextView.setText(teamCoached);
 
                     //Logs for testing updates in Realtime DB
-                    Log.d (TAG,"TEST__coachName: "+name);
-                    Log.d (TAG,"TEST__coachPhone: "+phone);
-                    Log.d (TAG,"TEST__coachEmail: "+email);
-                    Log.d (TAG,"TEST__teamCoached: "+teamCoached);
+                    Log.d(TAG, "TEST__coachName: " + name);
+                    Log.d(TAG, "TEST__coachPhone: " + phone);
+                    Log.d(TAG, "TEST__coachEmail: " + email);
+                    Log.d(TAG, "TEST__teamCoached: " + teamCoached);
 
 
                 }
@@ -123,74 +132,73 @@ public class CoachProfile extends AppCompatActivity {
 
             }
         });
+    }
 
-        updateCoach.setOnClickListener(new View.OnClickListener() {
+    //Method to update the coaches' profile
+    private void updateCoachProfile() {
 
+        //Assign variable to their views
+        final String updateName = coachNameTextView.getText().toString();
+        final String updateEmail = coachEmailTextView.getText().toString();
+        final String updatePhone = coachPhoneNoTextView.getText().toString();
+        final String updateTeamCoached = teamCoachedTextView.getText().toString();
+
+        //If the new profile data doesnt pass the validations then return
+        if (!validateCoachName() | !validateCoachPhone() | !validateCoachEmail() | !validateTeamCoached()) {
+            return;
+        }
+
+        //Firebase updateEmaul method used to update email and other profile information
+        user.updateEmail(updateEmail).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
-            public void onClick(View view) {
-                final String updateName = coachNameTextView.getText().toString();
-                final String updateEmail = coachEmailTextView.getText().toString();
-                final String updatePhone = coachPhoneNoTextView.getText().toString();
-                final String updateTeamCoached = teamCoachedTextView.getText().toString();
+            public void onSuccess(Void aVoid) {
+                //Find the path in the database for the required information and update it
+                firebaseDatabase.getReference("Coaches").child(user.getUid()).child("coachName").setValue(updateName);
+                displayCoachName.setText(updateName);
+                firebaseDatabase.getReference("Coaches").child(user.getUid()).child("coachEmail").setValue(updateEmail);
+                firebaseDatabase.getReference("Coaches").child(user.getUid()).child("coachPhoneNumber").setValue(updatePhone);
+                displayCoachphone.setText(updatePhone);
+                firebaseDatabase.getReference("Coaches").child(user.getUid()).child("teamCoached").setValue(updateTeamCoached);
+
+                Toast.makeText(getApplicationContext(), "Profile Updated", Toast.LENGTH_LONG).show();
+
+                //Logs for testing updates in Realtime DB
+                Log.d(TAG, "TEST__updated_coachName: " + updateName);
+                Log.d(TAG, "TEST__updated_coachPhone: " + updatePhone);
+                Log.d(TAG, "TEST__updated_coachEmail: " + updateEmail);
+                Log.d(TAG, "TEST__updated_teamCoached: " + updateTeamCoached);
 
 
-                user.updateEmail(updateEmail).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        firebaseDatabase.getReference("Coaches").child(uid).child("coachName").setValue(updateName);
-                        displayCoachName.setText(updateName);
-                        firebaseDatabase.getReference("Coaches").child(uid).child("coachEmail").setValue(updateEmail);
-                        firebaseDatabase.getReference("Coaches").child(uid).child("coachPhoneNumber").setValue(updatePhone);
-                        displayCoachphone.setText(updatePhone);
-                        firebaseDatabase.getReference("Coaches").child(uid).child("teamCoached").setValue(updateTeamCoached);
+            }
 
-                        Toast.makeText(getApplicationContext(), "Profile Updated", Toast.LENGTH_LONG).show();
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
 
-                        //Logs for testing updates in Realtime DB
-                        Log.d (TAG,"TEST__updated_coachName: "+updateName);
-                        Log.d (TAG,"TEST__updated_coachPhone: "+updatePhone);
-                        Log.d (TAG,"TEST__updated_coachEmail: "+updateEmail);
-                        Log.d (TAG,"TEST__updated_teamCoached: "+updateTeamCoached);
-
-
-                    }
-
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
             }
         });
 
-        deleteCoach.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                              // This is where the Dialog should be called and
-                                              // the user input from the Dialog should be returned
-                                              //
+    }
 
-                                              // Here I would like to implement the interface of CustomNumberPicker
-                                              // in order to get the user input entered in the Dialog
-                                              DialogFragment deleteUser = new DeleteProfileDialog(new DeleteProfileDialog.NoticeDialogListener() {
-                                                  @Override
-                                                  public void onDialogPositiveClick(DialogInterface dialog) {
-                                                      //What you want to do incase of positive click
-                                                      deleteCurrentUser(user.getUid());
 
-                                                  }
+    //Method to delete the player profile
+    private void deleteCoachProfile() {
+        // Custom Dialog is called and user input is dealt with by the correct method
+        DialogFragment deleteUser = new DeleteProfileDialog(new DeleteProfileDialog.NoticeDialogListener() {
+            @Override
+            public void onDialogPositiveClick(DialogInterface dialog) {
+                //What you want to do incase of positive click
+                deleteCurrentUser(user.getUid());
 
-                                                  @Override
-                                                  public void onDialogNegativeClick(DialogFragment dialog) {
-                                                      //What you want to do incase of negative click
-                                                      dialog.dismiss();
-                                                  }
-                                              });
-                                              deleteUser.show(CoachProfile.this.getSupportFragmentManager(), "DialogFragment");
-                                          }
-                                      }
-        );
+            }
+
+            @Override
+            public void onDialogNegativeClick(DialogFragment dialog) {
+                //What you want to do incase of negative click
+                dialog.dismiss();
+            }
+        });
+        deleteUser.show(CoachProfile.this.getSupportFragmentManager(), "DialogFragment");
     }
 
 
@@ -214,24 +222,119 @@ public class CoachProfile extends AppCompatActivity {
 
     }
 
+
+    //Validation for name
+    private Boolean validateCoachName() {
+        //Get the entry from the nameTextView field
+        String entry = coachNameTextView.getText().toString();
+        //If empty display error
+        if (entry.isEmpty()) {
+            nameView.setError("Name field cannot be empty");
+            return false;
+        } else {
+            //no Error
+            nameView.setError(null);
+            //setErrorEnabled(false) ensures layout will not change size when an error is displayed
+            nameView.setErrorEnabled(false);
+            return true;
+        }
+
+    }
+
+    //Validation for email
+    public Boolean validateCoachEmail() {
+        String entry = coachEmailTextView.getText().toString();
+        //Characters accepted for email address
+        String emailCharacters = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+                + "+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|";
+
+
+        //If entry left empty error shown
+        if (entry.isEmpty()) {
+            emailView.setError("Email field cannot be empty");
+            return false;
+        }
+        //If entry doesn't match email regex then error shown
+        if (!entry.matches(emailCharacters)) {
+            emailView.setError("Invalid email address");
+            return false;
+        } else {
+            //No error
+            emailView.setError(null);
+            //setErrorEnabled(false) ensures layout will not change size when an error is displayed
+            emailView.setErrorEnabled(false);
+            return true;
+        }
+
+    }
+
+    //Validation for phone number
+    private boolean validateCoachPhone() {
+        String entry = coachPhoneNoTextView.getText().toString();
+        //If the entry is left blank or a short number entered show error
+        if (entry.isEmpty()) {
+            phoneView.setError("Phone number must not be blank");
+            return false;
+        } else if (entry.length() < 6) {
+            phoneView.setError("Is number correctly formatted?");
+            return false;
+        } else {
+            //no Error
+            phoneView.setError(null);
+            //setErrorEnabled(false) ensures layout will not change size when an error is displayed
+            phoneView.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
+    //Validation for team coached
+    private Boolean validateTeamCoached() {
+        String entry = teamCoachedTextView.getText().toString();
+
+        //If empty display error
+        if (entry.isEmpty()) {
+            teamView.setError("Name field cannot be empty");
+            return false;
+        } else {
+            //No Error
+            teamView.setError(null);
+            //setErrorEnabled(false) ensures layout will not change size when an error is displayed
+            teamView.setErrorEnabled(false);
+            return true;
+        }
+
+    }
+
+
+    //Method to direct button clicks to correct action
     public void onButtonClicked(View view) {
+        //If diagnose concussion button clicked launch the player list
         if (view.getId() == R.id.diagnose_concussion_button) {
             Intent diagnoseIntent = new Intent(getApplicationContext(), PlayerListViewActivity.class);
             startActivity(diagnoseIntent);
 
+            //If signout image clicked then start up screen shown
+        } else if (view.getId() == R.id.coach_sign_out_image) {
+            Intent logoutIntent = new Intent(getApplicationContext(), SplashScreen.class);
+            startActivity(logoutIntent);
+            //If history image clicked launch the history screen
+        } else if (view.getId() == R.id.history_image) {
+            Intent allIncidentsIntent = new Intent(getApplicationContext(), AllIncidentsListView.class);
+            startActivity(allIncidentsIntent);
 
-            } else if (view.getId() == R.id.btn_logoutCoachProfile) {
-                Intent logoutIntent = new Intent(getApplicationContext(), SplashScreen.class);
-                startActivity(logoutIntent);
-
-            } else if (view.getId() == R.id.history_image) {
-                Intent allIncidentsIntent = new Intent(getApplicationContext(), AllIncidentsListView.class);
-                startActivity(allIncidentsIntent);
-
-            } else if
-            (view.getId() == R.id.player_info_pic) {
-                Intent searchPlayers = new Intent(getApplicationContext(), PlayerListViewActivity.class);
-                startActivity(searchPlayers);
-            }
+        } else if
+            //If player search image clicked launch the player list
+        (view.getId() == R.id.player_search) {
+            Intent searchPlayers = new Intent(getApplicationContext(), PlayerListViewActivity.class);
+            startActivity(searchPlayers);
+        } else if
+            //If update button clicked proceed with update method
+        (view.getId() == R.id.btn_updateCoachProfile) {
+            updateCoachProfile();
+            //If delete button clicked proceed with method
+        } else if (view.getId() == R.id.btn_deleteCoachProfile) {
+            deleteCoachProfile();
         }
     }
+}

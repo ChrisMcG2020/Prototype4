@@ -64,7 +64,7 @@ public class AddReportActivity extends AppCompatActivity {
 
 
         //Retrieve the incident node from the firebase database
-        databaseReference = FirebaseDatabase.getInstance().getReference("Incidents").child("Player_incidents");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Incidents");
         //Get a reference to the coach compiling the report
         databaseReferenceUser = FirebaseDatabase.getInstance().getReference("Coaches");
         databaseReferenceUser.orderByChild("coachEmail").equalTo(currentUser.getEmail()).addValueEventListener(new ValueEventListener() {
@@ -125,7 +125,6 @@ public class AddReportActivity extends AppCompatActivity {
 
         //Set the values from the report to the appropriate variable
         playerIncidentsModel.setUid(intentUid5);
-
         playerIncidentsModel.setRed_FLag_Test(intentRedFlag5);
         playerIncidentsModel.setObservable_Signs_Test(intentObs5);
         playerIncidentsModel.setMemory_Question(intentMemory5);

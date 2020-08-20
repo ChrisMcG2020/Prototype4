@@ -1,6 +1,7 @@
 package com.example.android.prototype2.views;
 
 import android.os.Bundle;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,9 @@ public class AllIncidentsListView extends AppCompatActivity {
     //Define the PlayerList Adapter
     AllIncidentsAdapter adapter;
 
+    //Search view bar variable
+    private SearchView searchView;
+
 
     //Tag for printing log details
     private final String TAG = getClass().getSimpleName();
@@ -42,6 +46,29 @@ public class AllIncidentsListView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.all_incidents_recycler);
+
+
+        //Assign the search view variable
+        searchView = findViewById(R.id.search_incidents);
+        //Set onQueryListener for when text is entered into the search bar
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            //When text is changed filter the results from the playerlist adapter
+            public boolean onQueryTextChange(String newText) {
+                //If statement prevents crash due to nullpointerexception when device rotated
+                if (adapter != null)
+                    adapter.getFilter().filter(newText);
+                return false;
+            }
+
+        });
+
+
 
         //Assign the playersList
         allIncidentsModel = new ArrayList<>();
@@ -58,7 +85,7 @@ public class AllIncidentsListView extends AppCompatActivity {
         mauth = FirebaseAuth.getInstance();
         mCurrent = mauth.getCurrentUser();
         //Get a reference to the path required in the database
-        reference = FirebaseDatabase.getInstance().getReference("Incidents").child("Player_incidents");
+        reference = FirebaseDatabase.getInstance().getReference("Incidents");
 
         //AddValueEventListener will update the players list if any new players added
         reference.orderByChild("date").addValueEventListener(new ValueEventListener() {

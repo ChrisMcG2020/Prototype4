@@ -46,6 +46,7 @@ public class IncidentListView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.incident_list_recycler_view);
 
+
         //Assign the playersList
         playerIncidentsModels = new ArrayList<>();
 
@@ -61,7 +62,9 @@ public class IncidentListView extends AppCompatActivity {
         mauth = FirebaseAuth.getInstance();
         mCurrent = mauth.getCurrentUser();
         //Get a reference to the path required in the database
-        reference = FirebaseDatabase.getInstance().getReference("Incidents").child("Player_incidents");
+        reference = FirebaseDatabase.getInstance().getReference("Incidents");
+
+
 
         //AddValueEventListener will update the players list if any new players added
         reference.orderByChild("uid").equalTo(mCurrent.getUid()).addValueEventListener(new ValueEventListener() {

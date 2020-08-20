@@ -8,8 +8,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.android.prototype2.CustomDialog;
-
 public class DeleteProfileDialog extends DialogFragment {
 
         private NoticeDialogListener mNoticeDialogListener;

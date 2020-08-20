@@ -1,4 +1,4 @@
-package com.example.android.prototype2;
+package com.example.android.prototype2.dialogs;
 
 import android.app.Activity;
 import android.app.Dialog;

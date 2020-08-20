@@ -65,7 +65,6 @@ public class MemoryActivity extends AppCompatActivity {
         if (q1Yes.isChecked()) result = result + 1;
         if (q1No.isChecked()) result = result - 1;
 
-
         if (q2Yes.isChecked()) result = result + 1;
         if (q2No.isChecked()) result = result - 1;
 

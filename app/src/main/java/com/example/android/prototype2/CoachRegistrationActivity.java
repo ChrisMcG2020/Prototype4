@@ -99,11 +99,14 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
     private Boolean validateEmail() {
         String entry = regCoachEmail.getEditText().getText().toString();
         //Characters accepted for email address
-        String emailCharacters = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        String emailCharacters = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+                + "+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|";
 
+        //If entry left empty error shown
         if (entry.isEmpty()) {
             regCoachEmail.setError("Email field cannot be empty");
             return false;
+            //If entry doesn't match email regex then error shown
         } else if (!entry.matches(emailCharacters)) {
             regCoachEmail.setError("Invalid email address");
             return false;
@@ -122,6 +125,10 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
         if (entry.isEmpty()) {
             regCoachPhoneNo.setError("Phone number field cannot be empty");
             return false;
+        } else if (entry.length() < 6) {
+            regCoachPhoneNo.setError("Is number correctly formatted?");
+            return false;
+
         } else {
             regCoachPhoneNo.setError(null);
             //setErrorEnabled(false) ensures layout will not change size when an error is displayed
@@ -211,11 +218,11 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
                             coachHelperClass.setCoachID(id);
                             coachHelperClass.setUid(coachUID);
 
-                            Log.d(TAG, "TEST_coach_RegName: "+name);
-                            Log.d(TAG, "TEST_coach_RegPhone: "+phoneNo);
-                            Log.d(TAG,"TEST_coach_RegEmail: "+email);
-                            Log.d(TAG, "TEST_coach_TeamCoachedEC: "+teamCoached);
-                            Log.d(TAG,"TEST_coachUID: "+coachUID);
+                            Log.d(TAG, "TEST_coach_RegName: " + name);
+                            Log.d(TAG, "TEST_coach_RegPhone: " + phoneNo);
+                            Log.d(TAG, "TEST_coach_RegEmail: " + email);
+                            Log.d(TAG, "TEST_coach_TeamCoachedEC: " + teamCoached);
+                            Log.d(TAG, "TEST_coachUID: " + coachUID);
 
                             //Get an instance of the firebase database and add the details from helper class to the current user
                             FirebaseDatabase.getInstance().getReference("Coaches").child(coachUID)
@@ -228,7 +235,7 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
                                     //of successful show Toast
                                     if (task.isSuccessful()) {
                                         Toast.makeText(getApplicationContext(), getString(R.string.registration_success), Toast.LENGTH_SHORT).show();
-                                        Log.d(TAG,"TEST_Coach_Reg_Success");
+                                        Log.d(TAG, "TEST_Coach_Reg_Success");
 
 
                                     } else {

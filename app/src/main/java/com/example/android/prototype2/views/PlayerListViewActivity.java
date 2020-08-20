@@ -98,7 +98,7 @@ public class PlayerListViewActivity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference("Users");
 
         //AddValueEventListener will update the players list if any new players added
-        reference.addValueEventListener(new ValueEventListener() {
+        reference.orderByChild("name").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot playerSnapshot : snapshot.getChildren()) {
@@ -132,7 +132,6 @@ public class PlayerListViewActivity extends AppCompatActivity {
         medicalAlert.show(getSupportFragmentManager(), "Fragment Medical Alert Dialog");
 
     }
-
 
 }
 

@@ -81,7 +81,6 @@ public  class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.V
                 intent.putExtra("name1", player.getName());
                 intent.putExtra("email1", player.getEmail());
                 intent.putExtra("uid", player.getUid());
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
 
             }
@@ -101,7 +100,7 @@ public  class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.V
         return exampleFilter;
     }
 
-    //background thread conducted
+    //Filter method to search the players for the search entry. An example here of an Asynchronous task
     private  Filter exampleFilter = new Filter() {
 
         @Override

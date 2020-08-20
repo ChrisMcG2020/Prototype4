@@ -5,8 +5,8 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.android.prototype2.dialogs.AlertLoginFragment;
 import com.example.android.prototype2.R;
+import com.example.android.prototype2.dialogs.AlertLoginFragment;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -21,12 +21,10 @@ public class SplashScreen extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //Set layout
         setContentView(R.layout.splash_screen);
-
-
     }
 
 
-  //Method for showing the login dialog
+    //Method for showing the login dialog
     public void showDialog() {
         mIsDialogShown = true;
         //Create a new instance of the fragment
@@ -35,12 +33,10 @@ public class SplashScreen extends AppCompatActivity {
         alertLogin.setCancelable(false);
 
         alertLogin.show(getSupportFragmentManager(), "Fragment Alert Dialog");
-
-
     }
 
-   //Will show the dialog on start and any time the main screen is navigated back to
-   @Override
+    //Will show the dialog on start and any time the main screen is navigated back to
+    @Override
     protected void onResume() {
         super.onResume();
         // show dialog here

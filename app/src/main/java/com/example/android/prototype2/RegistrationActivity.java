@@ -114,15 +114,20 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
         String entry = regEmail.getEditText().getText().toString();
 
-        String emailCharacters = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        //Characters accepted for email address
+      String emailCharacters=  "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+" +
+                "+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|";
 
+        //If entry left empty error shown
         if (entry.isEmpty()) {
             regEmail.setError("Email field cannot be empty");
             return false;
+            //If entry doesn't match email regex then error shown
         } else if (!entry.matches(emailCharacters)) {
             regEmail.setError("Invalid email address");
             return false;
         } else {
+            //No error
             regEmail.setError(null);
             //setErrorEnabled(false) ensures layout will not change size when an error is displayed
             regEmail.setErrorEnabled(false);
@@ -139,6 +144,10 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         if (entry.isEmpty()) {
             regPhoneNo.setError("Phone number field cannot be empty");
             return false;
+        } else if (entry.length() < 6) {
+            regPhoneNo.setError("Is number correctly formatted?");
+            return false;
+
         } else {
             regPhoneNo.setError(null);
             //setErrorEnabled(false) ensures layout will not change size when an error is displayed
@@ -203,6 +212,9 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         //If empty display error
         if (entry.isEmpty()) {
             regContactPhone.setError("Phone number field cannot be empty");
+            return false;
+        } else if (entry.length() < 6) {
+            regPhoneNo.setError("Is number correctly formatted?");
             return false;
         } else {
             regContactPhone.setError(null);
@@ -313,8 +325,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                             });
 
                         } else {
-                            //Show exception message
-                            Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+
                         }
                     }
                 });
