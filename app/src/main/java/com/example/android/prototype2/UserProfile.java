@@ -63,8 +63,6 @@ public class UserProfile extends AppCompatActivity {
 
         final String uid = user.getUid();
         Intent intent = getIntent();
-        playerEmail = intent.getStringExtra("email");
-
 
         //Initialise the variables to their corresponding views
         phoneView = findViewById(R.id.edit_text_profile_phone);
@@ -87,7 +85,7 @@ public class UserProfile extends AppCompatActivity {
         deleteUser = findViewById(R.id.btn_deleteProfile);
 
         //Query the database to get the current user
-        Query query = databaseReference.orderByChild("email").equalTo(user.getEmail());
+        Query query = databaseReference.orderByChild("uid").equalTo(user.getUid());
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -138,7 +136,7 @@ public class UserProfile extends AppCompatActivity {
         final String updateEmergencyContact = emergencyContactTextView.getText().toString();
         final String updateEC_Phone = emergencyContactPhoneNoTextView.getText().toString();
 
-        //If the new profile data doesnt pass the validations then return
+        //If the new profile data doesn't pass the validations then return
         if (!validateName() | !validatePhone() | !validateEmail() | !validateContactName() | !validateECPhone()) {
             return;
         }
@@ -332,7 +330,7 @@ public class UserProfile extends AppCompatActivity {
         } else if (view.getId() == R.id.incident_image) {
             Intent incident = new Intent(getApplicationContext(), IncidentListView.class);
             startActivity(incident);
-            //If signout button clicked then start up screen shown
+            //If sign-out button clicked then start up screen shown
         } else if (view.getId() == R.id.sign_out_image) {
             Intent logoutIntent = new Intent(getApplicationContext(), SplashScreen.class);
             startActivity(logoutIntent);

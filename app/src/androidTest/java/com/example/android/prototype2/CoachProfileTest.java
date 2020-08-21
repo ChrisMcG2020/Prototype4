@@ -2,18 +2,15 @@ package com.example.android.prototype2;
 
 import android.app.Activity;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import androidx.test.espresso.contrib.PickerActions;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 
 import com.example.android.prototype2.views.AllIncidentsListView;
 import com.example.android.prototype2.views.PlayerListViewActivity;
 import com.example.android.prototype2.views.SplashScreen;
 
-import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -21,7 +18,6 @@ import org.junit.Test;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -29,14 +25,8 @@ import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.RootMatchers.isDialog;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static com.example.android.prototype2.PlayerRegistrationTest.INVALID_EMAIL;
-import static com.example.android.prototype2.PlayerRegistrationTest.PHONE_FORMAT_ERROR;
-import static com.example.android.prototype2.PlayerRegistrationTest.TEST_EMAIL;
-import static com.example.android.prototype2.PlayerRegistrationTest.TEST_NAME;
-import static com.example.android.prototype2.PlayerRegistrationTest.hasTextInputLayoutErrorText;
 import static com.example.android.prototype2.UserProfileTest.TEST_UPDATE_EMAIL;
 import static com.example.android.prototype2.UserProfileTest.TEST_UPDATE_NAME;
 import static com.example.android.prototype2.UserProfileTest.TEST_UPDATE_PHONENO;

@@ -214,7 +214,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             regContactPhone.setError("Phone number field cannot be empty");
             return false;
         } else if (entry.length() < 6) {
-            regPhoneNo.setError("Is number correctly formatted?");
+            regContactPhone.setError("Is number correctly formatted?");
             return false;
         } else {
             regContactPhone.setError(null);
@@ -304,9 +304,8 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                             Log.d(TAG, "TEST_Dob: " + dob);
                             Log.d(TAG, "TEST_UID: " + UID);
 
-                            //Get an instance of the firebase database and add the details from helper class to the current user
+                            //Get an instance of the firebase database and add the details from helper class to a new UID node
                             FirebaseDatabase.getInstance().getReference("Users").child(UID)
-
                                     .setValue(helperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
 
                                 @Override
@@ -324,8 +323,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                                     }
                                 }
                             });
-
-                        } else {
 
                         }
                     }

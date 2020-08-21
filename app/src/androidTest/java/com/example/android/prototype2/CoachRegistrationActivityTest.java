@@ -34,7 +34,6 @@ import static com.example.android.prototype2.PlayerRegistrationTest.PHONE_FORMAT
 import static com.example.android.prototype2.PlayerRegistrationTest.TEST_EMAIL;
 import static com.example.android.prototype2.PlayerRegistrationTest.TEST_NAME;
 import static com.example.android.prototype2.PlayerRegistrationTest.TEST_PASSWORD;
-import static com.example.android.prototype2.PlayerRegistrationTest.TEST_PHONENO;
 import static com.example.android.prototype2.PlayerRegistrationTest.TEST_PHONE_FAIL;
 import static com.example.android.prototype2.PlayerRegistrationTest.UNSECURE_PASS;
 import static com.example.android.prototype2.PlayerRegistrationTest.hasTextInputLayoutErrorText;

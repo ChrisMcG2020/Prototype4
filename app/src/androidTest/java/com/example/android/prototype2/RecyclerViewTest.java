@@ -2,7 +2,6 @@ package com.example.android.prototype2;
 
 import android.app.Activity;
 
-import androidx.annotation.ContentView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.rule.ActivityTestRule;
 
@@ -16,21 +15,12 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-
 public class RecyclerViewTest {
 
     // Set the rule to apply to the test method and which class to use
     @Rule
     public ActivityTestRule<IncidentListView> mRecyclerTestRule =
             new ActivityTestRule<>(IncidentListView.class);
-
-    @Before
-    public void setUp() throws Exception {
-
-    }
 
     @Test
     public void test_incident_recycler() {
@@ -72,8 +62,4 @@ public class RecyclerViewTest {
         Assert.assertNotNull(recycler3);
     }
 
-    @After
-    public void tearDown() throws Exception {
-
-    }
 }

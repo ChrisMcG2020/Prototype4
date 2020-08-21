@@ -141,6 +141,7 @@ public class AddReportActivity extends AppCompatActivity {
         databaseReference.child(reportId).setValue(playerIncidentsModel);
 
 
+
         //Successful toast
         Toast.makeText(this, "Report saved", Toast.LENGTH_SHORT).show();
     }

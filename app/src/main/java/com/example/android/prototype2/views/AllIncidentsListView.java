@@ -60,7 +60,7 @@ public class AllIncidentsListView extends AppCompatActivity {
             @Override
             //When text is changed filter the results from the playerlist adapter
             public boolean onQueryTextChange(String newText) {
-                //If statement prevents crash due to nullpointerexception when device rotated
+                //If statement prevents crash due to null pointer exception when device rotated
                 if (adapter != null)
                     adapter.getFilter().filter(newText);
                 return false;

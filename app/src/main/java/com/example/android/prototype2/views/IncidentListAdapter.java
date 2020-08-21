@@ -40,7 +40,7 @@ public class IncidentListAdapter extends RecyclerView.Adapter<IncidentListAdapte
     @Override
     //If viewHolder does  not exist create one by inflating the user_details_view
     public IncidentListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new IncidentListAdapter.ViewHolder(
+        return new ViewHolder(
                 LayoutInflater.from(context)
                         .inflate(R.layout.incident_item, parent, false)
         );
@@ -71,7 +71,7 @@ public class IncidentListAdapter extends RecyclerView.Adapter<IncidentListAdapte
 
 
     //ViewHolder wraps the view passed to it so RecyclerView can deal with it
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textViewRedFlag;
         private TextView textViewObs;

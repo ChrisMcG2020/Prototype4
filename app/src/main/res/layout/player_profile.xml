@@ -1,22 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?><!--Scroll view implemented as quite a lot of information on the screen -->
+<?xml version="1.0" encoding="utf-8"?>
+<!--Scroll view implemented as quite a lot of information on the screen -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <LinearLayout
 
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorBackground"
         android:orientation="vertical"
         tools:context=".RegistrationActivity">
 
-
+        <!--Layout contains top half of screen profile pic, info -->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="297dp"
+            android:layout_height="350dp"
             android:background="@color/colorBackground"
             android:padding="20dp">
 
@@ -31,14 +32,14 @@
 
             <TextView
                 android:id="@+id/user_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="112dp"
-                android:layout_marginLeft="112dp"
-                android:layout_marginTop="125dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="130dp"
+                android:fontFamily="@font/abril_fatface"
+                android:gravity="center_horizontal"
                 android:includeFontPadding="false"
-                android:fontFamily="@font/gravitas_one"
+                android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textSize="20sp" />
 
@@ -47,20 +48,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/player_prof"
+                android:layout_centerHorizontal="true"
                 android:layout_marginStart="120dp"
                 android:layout_marginLeft="120dp"
-                android:layout_marginTop="55dp"
+                android:layout_marginTop="75dp"
                 android:fontFamily="@font/gravitas_one"
-                android:layout_centerHorizontal="true"
                 android:includeFontPadding="false"
                 android:textSize="14sp" />
 
         </RelativeLayout>
 
+        <!--Matrial Card View implemented to display the three options-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="127dp"
-            android:layout_marginTop="-100dp"
+            android:layout_marginTop="-110dp"
             android:orientation="horizontal"
             android:padding="8dp">
 
@@ -153,8 +155,8 @@
                         android:layout_below="@id/recovery_text"
                         android:layout_centerHorizontal="true"
                         android:includeFontPadding="false"
-                        android:text="@string/profile_recovery_advice"
                         android:onClick="onButtonClicked"
+                        android:text="@string/profile_recovery_advice"
                         android:textSize="12sp" />
 
                 </RelativeLayout>
@@ -213,7 +215,7 @@
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
-        <!--Use material components design for the text boxes -->
+        <!--Layout contains text fields for editing, Use material components design for the text boxes -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -329,7 +331,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <!--Update Button to take user to update Activity -->
+            <!-- Buttons to take user to update, delete  -->
             <Button
                 android:id="@+id/btn_updatePlayerProfile"
                 android:layout_width="match_parent"

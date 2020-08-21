@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
@@ -13,8 +14,8 @@ public class CustomDialog extends DialogFragment {
     private NoticeDialogListener ndl;
 
     public interface NoticeDialogListener {
-        public void onDialogPositiveClick(DialogInterface dialog);
-        public void onDialogNegativeClick(DialogFragment dialog);
+        void onDialogPositiveClick(DialogInterface dialog);
+        void onDialogNegativeClick(DialogFragment dialog);
     }
 
     //add a custom constructor so that you have an initialised NoticeDialogListener
@@ -33,11 +34,12 @@ public class CustomDialog extends DialogFragment {
 
     // Override the Fragment.onAttach() method to instantiate the NoticeDialogListener
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(@NonNull Activity activity) {
         super.onAttach(activity);
         //remove the check that verifies if your activity has the DialogListener Attached because you want to attach it into your list view onClick()
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction

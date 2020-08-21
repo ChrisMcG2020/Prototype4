@@ -6,13 +6,10 @@ import android.widget.TextView;
 
 import androidx.test.rule.ActivityTestRule;
 
-import com.example.android.prototype2.CoachLoginActivity;
 import com.example.android.prototype2.R;
 import com.example.android.prototype2.RecoveryActivity;
 
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 

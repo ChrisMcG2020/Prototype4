@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--ScrollView to allow user to scroll page-->
+<ScrollView android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/Theme.AppCompat"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="#03a9f4"
     android:orientation="horizontal"
     android:padding="16dp"
@@ -26,7 +31,7 @@
 
         <TextView
             android:layout_width="304dp"
-            android:layout_height="180dp"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/archivo_black"
             android:text="@string/welcome_message"
             android:textSize="36sp" />
@@ -41,7 +46,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
         android:orientation="vertical">
 
@@ -127,3 +132,4 @@
 
     </LinearLayout>
 </LinearLayout>
+</ScrollView>

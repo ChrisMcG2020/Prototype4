@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--ScrollView to allow user to scroll page-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,6 +14,7 @@
         android:orientation="vertical"
         tools:context=".RegistrationActivity">
 
+        <!--Layout contains top half of screen profile pic, info -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="297dp"
@@ -29,8 +31,9 @@
 
             <TextView
                 android:id="@+id/coach_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/coach_prof"
                 android:layout_marginStart="112dp"
@@ -39,7 +42,8 @@
                 android:includeFontPadding="false"
                 android:fontFamily="@font/gravitas_one"
                 android:textAllCaps="true"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:gravity="center_horizontal" />
 
             <TextView
                 android:id="@+id/coach_phone_small"
@@ -64,6 +68,7 @@
 
         </RelativeLayout>
 
+        <!--Matrial Card View implemented to display the three options-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="127dp"
@@ -221,6 +226,8 @@
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
+        <!--Layout contains text fields for editing, Use material components design for the text boxes -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -316,7 +323,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <!--Update Button to take user to update Activity -->
+            <!-- Buttons to take user to update, delete  -->
             <Button
                 android:id="@+id/btn_updateCoachProfile"
                 android:layout_width="match_parent"

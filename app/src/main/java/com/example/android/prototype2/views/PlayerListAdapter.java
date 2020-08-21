@@ -136,7 +136,7 @@ public  class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.V
     };
 
     //ViewHolder wraps the view passed to it so RecyclerView can deal with it
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private SearchView searchView;
         private TextView textViewName;
         private TextView textViewEmail;

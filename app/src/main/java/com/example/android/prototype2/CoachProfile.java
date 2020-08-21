@@ -143,12 +143,12 @@ public class CoachProfile extends AppCompatActivity {
         final String updatePhone = coachPhoneNoTextView.getText().toString();
         final String updateTeamCoached = teamCoachedTextView.getText().toString();
 
-        //If the new profile data doesnt pass the validations then return
+        //If the new profile data doesn't pass the validations then return
         if (!validateCoachName() | !validateCoachPhone() | !validateCoachEmail() | !validateTeamCoached()) {
             return;
         }
 
-        //Firebase updateEmaul method used to update email and other profile information
+        //Firebase updateEmail method used to update email and other profile information
         user.updateEmail(updateEmail).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -294,7 +294,7 @@ public class CoachProfile extends AppCompatActivity {
 
         //If empty display error
         if (entry.isEmpty()) {
-            teamView.setError("Name field cannot be empty");
+            teamView.setError("Team field cannot be empty");
             return false;
         } else {
             //No Error
@@ -314,7 +314,7 @@ public class CoachProfile extends AppCompatActivity {
             Intent diagnoseIntent = new Intent(getApplicationContext(), PlayerListViewActivity.class);
             startActivity(diagnoseIntent);
 
-            //If signout image clicked then start up screen shown
+            //If sign-out image clicked then start up screen shown
         } else if (view.getId() == R.id.coach_sign_out_image) {
             Intent logoutIntent = new Intent(getApplicationContext(), SplashScreen.class);
             startActivity(logoutIntent);

@@ -40,7 +40,7 @@ public class AllIncidentsAdapter extends RecyclerView.Adapter<AllIncidentsAdapte
     @Override
     //If viewHolder does  not exist create one by inflating the user_details_view
     public AllIncidentsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new AllIncidentsAdapter.ViewHolder(
+        return new ViewHolder(
                 LayoutInflater.from(context)
                         .inflate(R.layout.all_incidents_card, parent, false)
 
@@ -89,7 +89,7 @@ public class AllIncidentsAdapter extends RecyclerView.Adapter<AllIncidentsAdapte
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
                 for (AllIncidentsModel incident : incidentListFull) {
-                    if (incident.getName().toLowerCase().contains(filterPattern)) {
+                    if (incident.getName().toLowerCase().contains(filterPattern) || incident.getName()==null) {
                         filteredList.add(incident);
                     }
                 }
@@ -110,7 +110,7 @@ public class AllIncidentsAdapter extends RecyclerView.Adapter<AllIncidentsAdapte
     };
 
     //ViewHolder wraps the view passed to it so RecyclerView can deal with it
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private SearchView searchView;
         private TextView textViewName;
         private TextView textViewCoachName;

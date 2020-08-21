@@ -1,13 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--Layout contains the app logo, name and tagline -->
+<?xml version="1.0" encoding="utf-8"?><!--Layout contains the app logo, name and tagline -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="#03a9f4"
     android:orientation="vertical">
-
 
     <ImageView
         android:layout_width="218dp"
@@ -32,12 +29,10 @@
         android:textColor="@color/colorText"
         android:textSize="24sp" />
 
-
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="85dp"
-        android:fontFamily="@font/bevan"
+        android:fontFamily="@font/archivo_black"
         android:gravity="center_horizontal"
         android:text="@string/splash_tagline"
         android:textColor="@color/colorText" />
