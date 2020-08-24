@@ -55,7 +55,7 @@ public class CoachLoginScreenTest {
 
 
         @Test
-        public void loginAndPasswordFields() {
+        public void test_loginAndPasswordFields() {
             //Get the activity
             Activity activity = mCoachLoginActivityTestRule.getActivity();
             //Find the views and assert they are present
@@ -67,7 +67,7 @@ public class CoachLoginScreenTest {
         }
 
         @Test
-        public void loginAndRegButtons() {
+        public void test_loginAndRegButtons() {
             //Find the views and assert they are present
             Activity activity = mCoachLoginActivityTestRule.getActivity();
             Button login = activity.findViewById(R.id.login);
@@ -79,7 +79,7 @@ public class CoachLoginScreenTest {
         }
 
         @Test
-        public void hint_text_appears() {
+        public void test_hint_text_appears() {
             //Find the views and and check the hint text is present
             onView(withId(R.id.login_email2)).check(matches(withHint("Email")));
             //Find the views and and check the hint text is present
@@ -88,7 +88,7 @@ public class CoachLoginScreenTest {
 
 
         @Test
-        public void click_login_with_empty_fields_gives_errors() {
+        public void test_click_login_with_empty_fields_gives_errors() {
             //Find the views and perform action
             onView(withId(R.id.login)).perform(click());
             //Check if views does what it should
@@ -97,7 +97,7 @@ public class CoachLoginScreenTest {
         }
 
         @Test
-        public void click_login_with_empty_password_gives_errors() {
+        public void test_click_login_with_empty_password_gives_errors() {
             //Find the views and perform action
             onView(withId(R.id.login_email2)).perform(typeText(TESTEMAIL),
                     closeSoftKeyboard());
@@ -109,7 +109,7 @@ public class CoachLoginScreenTest {
 
 
         @Test
-        public void click_login_with_empty_email_gives_errors() {
+        public void test_click_login_with_empty_email_gives_errors() {
             //Find the views and perform action
             onView(withId(R.id.login_password2)).perform(typeText(TESTPASSWORD),
                     closeSoftKeyboard());
@@ -154,7 +154,7 @@ public class CoachLoginScreenTest {
         }
 
         @Test
-        public void clickForgot_Password_Without_Email_Entered_Prompts_Error() {
+        public void test_clickForgot_Password_Without_Email_Entered_Prompts_Error() {
             //Find the views and perform action
             onView(withId(R.id.forgot_pass_btn)).perform(click());
             //If no email entered then correct Error should appear
@@ -164,7 +164,7 @@ public class CoachLoginScreenTest {
         }
 
         @Test
-        public void clickForgot_Password_With_an_Invalid_Email_Prompts_Error() {
+        public void test_clickForgot_Password_With_an_Invalid_Email_Prompts_Error() {
             //Find the views and perform action
             onView(withId(R.id.login_email2)).perform(typeText(TEST_EMAIL),
                     closeSoftKeyboard());
@@ -177,7 +177,7 @@ public class CoachLoginScreenTest {
         }
 
         @Test
-        public void clickForgot_password_registered_user_sends_email() {
+        public void test_clickForgot_password_registered_user_sends_email() {
             //Find the views and perform action
             onView(withId(R.id.login_email2)).perform(typeText(VALID_EMAIL),
                     closeSoftKeyboard());
@@ -190,7 +190,7 @@ public class CoachLoginScreenTest {
         }
 
         @Test
-        public void clickForgot_password_unregistered_user_gives_error() {
+        public void test_clickForgot_password_unregistered_user_gives_error() {
             //Find the views and perform action
             onView(withId(R.id.login_email2)).perform(typeText(TESTEMAIL),
                     closeSoftKeyboard());

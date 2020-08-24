@@ -48,7 +48,7 @@ public class CoachLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //Set layout
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_player_login);
 
         //Initialise the variables to their corresponding views
         loginEmail = findViewById(R.id.login_email);

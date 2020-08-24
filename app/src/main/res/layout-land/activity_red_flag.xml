@@ -20,9 +20,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Media -->
-
-        <!-- Buttons -->
+        <!--Orange Flag Warning Image-->
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="184dp"
@@ -36,7 +34,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Title, secondary and supporting text -->
+            <!-- Title and introduction text -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -64,6 +62,7 @@
 
         </LinearLayout>
 
+        <!--App designed Buttons to continue/call ambulance -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -87,9 +86,7 @@
                 android:onClick="onButtonClicked"
                 android:text="@string/continue_diagnosis" />
         </LinearLayout>
-
     </LinearLayout>
-
 </com.google.android.material.card.MaterialCardView>
 </LinearLayout>
 </ScrollView>

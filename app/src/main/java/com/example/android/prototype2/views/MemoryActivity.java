@@ -2,8 +2,10 @@ package com.example.android.prototype2.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,7 +36,7 @@ public class MemoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Set layout
-        setContentView(R.layout.memory_activity);
+        setContentView(R.layout.activity_memory);
 
         //Initialise the variables to their corresponding views
         q1Yes = findViewById(R.id.memory_q1_yes);
@@ -77,6 +79,8 @@ public class MemoryActivity extends AppCompatActivity {
         if (q5Yes.isChecked()) result = result + 1;
         if (q5No.isChecked()) result = result - 1;
 
+
+
         //Less than 1 then test is a fail
         if (result < 1) memoryResult = "Memory Activity: Failed";
         else {
@@ -84,6 +88,37 @@ public class MemoryActivity extends AppCompatActivity {
             memoryResult = "Memory Activity: Passed";
         }
 
+    }
+
+   //Method to make sure correct number of boxes ticked
+        public boolean validateQuestions(){
+        //Initialise number of ticked boxes to 0
+        int noOfBoxes=0;
+        //If statements for each question and update number of boxes ticked
+        if (q1Yes.isChecked()) noOfBoxes=noOfBoxes+1;
+        if (q1No.isChecked()) noOfBoxes=noOfBoxes+1;
+        if (q2Yes.isChecked()) noOfBoxes=noOfBoxes+1;
+        if (q2No.isChecked()) noOfBoxes=noOfBoxes+1;
+        if (q3Yes.isChecked()) noOfBoxes=noOfBoxes+1;
+        if (q3No.isChecked()) noOfBoxes=noOfBoxes+1;
+        if (q4Yes.isChecked()) noOfBoxes=noOfBoxes+1;
+        if (q4No.isChecked()) noOfBoxes=noOfBoxes+1;
+        if (q5Yes.isChecked()) noOfBoxes=noOfBoxes+1;
+        if (q5No.isChecked()) noOfBoxes=noOfBoxes+1;
+
+        //If greater than 5 show error toast
+        if (noOfBoxes >5){
+            Toast.makeText(getApplicationContext(),"Too many boxes ticked, try again", Toast.LENGTH_LONG).show();
+            Log.d(TAG,"Too many boxes");
+            return false;
+        }
+        //If less than 5 show error toast
+        if (noOfBoxes<5){
+            Toast.makeText(getApplicationContext(),"Too few boxes ticked, try again", Toast.LENGTH_LONG).show();
+            Log.d(TAG,"Too few boxes");
+            return false;
+        }
+        return true;
     }
 
     //Method to direct button clicks to correct action
@@ -99,6 +134,9 @@ public class MemoryActivity extends AppCompatActivity {
         else if (view.getId() == R.id.memory_continue_btn) {
             //Run the memory quiz method
             quizDiagnosis();
+            //Check the correct number of boxes ticked
+            if(!validateQuestions()){
+                return;}
             //Pass the intents to the next activity
             Intent memoryIntent = new Intent(getApplicationContext(), AddReportActivity.class);
             memoryIntent.putExtra("uid4", intentUid4);

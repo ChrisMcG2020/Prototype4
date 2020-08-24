@@ -24,7 +24,7 @@ public class LoginDialogTest {
 
 
     @Test
-    public void dialog_appears_with_buttons() {
+    public void test_dialog_appears_with_buttons() {
         //The choice dialog appears
         onView(withText("Coach"))
                 .inRoot(isDialog())
@@ -35,7 +35,7 @@ public class LoginDialogTest {
     }
 
     @Test
-    public void player_option_launches_player_login() {
+    public void test_player_option_launches_player_login() {
         //Find the view and perform the action
         onView(withText("Player")).perform(click());
         //Check if action returns desired outcome
@@ -43,7 +43,7 @@ public class LoginDialogTest {
     }
 
     @Test
-    public void coach_option_launches_coach_login() {
+    public void test_coach_option_launches_coach_login() {
         //Find the view and perform the action
         onView(withText("Coach")).perform(click());
         //Check if action returns desired outcome

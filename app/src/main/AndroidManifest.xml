@@ -26,18 +26,20 @@
         <activity android:name=".AddReportActivity" />
         <activity android:name=".CoachAdviceActivity" />
         <activity android:name=".views.MemoryActivity" />
-        <activity android:name=".views.Symptoms" />
+        <activity android:name=".views.SymptomsActivity" />
         <activity android:name=".CoachRegistrationActivity" />
         <activity android:name=".views.RedFlagActivity" />
         <activity android:name=".views.PlayerListViewActivity" />
         <activity android:name=".views.AllIncidentsListView" />
-        <activity android:name=".UserProfile" />
+        <activity android:name=".PlayerProfile" />
         <activity android:name=".PlayerLoginActivity" />
         <activity android:name=".RecoveryActivity" />
-        <activity android:name=".RegistrationActivity" />
+        <activity android:name=".PlayerRegistrationActivity" />
         <activity android:name=".CoachProfile" />
         <activity android:name=".views.ObservableSignsActivity" />
         <activity android:name=".CoachLoginActivity" />
+        <activity android:name=".views.InformationPage" />
+        <activity android:name=".ReturnToSport" />
 
         <meta-data
             android:name="preloaded_fonts"

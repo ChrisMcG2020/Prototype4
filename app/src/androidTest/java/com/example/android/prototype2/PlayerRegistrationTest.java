@@ -42,8 +42,8 @@ public class PlayerRegistrationTest {
 
     // Set the rule to apply to the test method and which class to use
     @Rule
-    public IntentsTestRule<RegistrationActivity> mRegistrationActivityTestRule
-            = new IntentsTestRule<>(RegistrationActivity.class);
+    public IntentsTestRule<PlayerRegistrationActivity> mRegistrationActivityTestRule
+            = new IntentsTestRule<>(PlayerRegistrationActivity.class);
 
     //Public variables used to test so can use across all validation forms
     public static final String UNSECURE_PASS = "Password must have at least 1 upper case,1 special character";
@@ -66,17 +66,17 @@ public class PlayerRegistrationTest {
     public static final String TEST_EMERGENCYCONTACT = "Mary Smith";
     public static final String TEST_EC_PHONENO = "082222";
     public static final String TEST_PASSWORD = "password";
-    public static final String TEST_PHONE_FAIL="12";
+    public static final String TEST_PHONE_FAIL = "12";
 
     //Test error message variables
     public static final String NAME_ERROR = "Name field cannot be empty";
     public static final String PHONENO_ERROR = "Phone number field cannot be empty";
     public static final String AGE_ERROR = "You must be over 18 to use this app";
-    public static final String PHONE_FORMAT_ERROR= "Is number correctly formatted?";
+    public static final String PHONE_FORMAT_ERROR = "Is number correctly formatted?";
 
 
     @Test
-    public void testRegFieldsPresent() {
+    public void test_reg_fields_present() {
         //Get the activity
         Activity activity = mRegistrationActivityTestRule.getActivity();
         //Find the views and assert they are present
@@ -98,7 +98,7 @@ public class PlayerRegistrationTest {
     }
 
     @Test
-    public void regButtonsPresent() {
+    public void test_reg_buttons_present() {
         //Find the view and perform action
         onView(withId(R.id.register_btn)).perform(scrollTo());
         //Get the activity
@@ -113,7 +113,7 @@ public class PlayerRegistrationTest {
 
 
     @Test
-    public void hint_text_appears() {
+    public void test_hint_text_appears() {
 
         //Find the views and and check the hint text is present
         onView(withId(R.id.reg_name_edit)).check(matches(withHint(HINT_NAME)));
@@ -133,7 +133,7 @@ public class PlayerRegistrationTest {
     }
 
     @Test
-    public void error_text_appears_when_fields_empty_and_reg_clicked() {
+    public void test_error_text_appears_when_fields_empty_and_reg_clicked() {
         //Use the set Date method to pick the date, needs to happen before register is clicked
         onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(2015, 6, 17));
 
@@ -158,7 +158,7 @@ public class PlayerRegistrationTest {
     }
 
     @Test
-    public void validation_errors_when_player_email_password_phone_dont_follow_rules() throws InterruptedException {
+    public void test_validation_errors_when_player_email_password_phone_dont_follow_rules() throws InterruptedException {
 
         //Use the set Date method to pick the date, needs to happen before register is clicked
         onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(1990, 6, 17));
@@ -168,11 +168,11 @@ public class PlayerRegistrationTest {
         onView(withId(R.id.reg_email_edit)).perform(typeText(TEST_EMAIL),
                 closeSoftKeyboard());
         onView(withId(R.id.reg_phone_no_edit)).perform(typeText(TEST_PHONE_FAIL));
-                closeSoftKeyboard();
+        closeSoftKeyboard();
         onView(withId(R.id.reg_emergency_contact_edit)).perform(scrollTo()).perform(typeText(TEST_EMERGENCYCONTACT));
-                closeSoftKeyboard();
+        closeSoftKeyboard();
         onView(withId(R.id.reg_emergency_contact_phone_edit)).perform(scrollTo()).perform(typeText(TEST_EC_PHONENO));
-                closeSoftKeyboard();
+        closeSoftKeyboard();
         onView(withId(R.id.reg_password_edit)).perform(scrollTo()).perform(scrollTo()).perform(typeText(TEST_PASSWORD),
                 closeSoftKeyboard());
         //Find the view and perform action
@@ -191,7 +191,7 @@ public class PlayerRegistrationTest {
     }
 
     @Test
-    public void return_to_login_screen_button() {
+    public void test_return_to_login_screen_button() {
         //Find the view and perform action
         onView(withId(R.id.back_to_login)).perform(scrollTo()).perform(click());
         //Check if action returns desired outcome

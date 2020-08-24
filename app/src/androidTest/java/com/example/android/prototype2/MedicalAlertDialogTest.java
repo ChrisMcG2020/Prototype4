@@ -23,7 +23,7 @@ public class MedicalAlertDialogTest {
             = new IntentsTestRule<>(PlayerListViewActivity.class);
 
     @Test
-    public void dialog_appears_with_buttons() {
+    public void test_dialog_appears_with_buttons() {
         //Find the view and perform the action
 
         //The medical alert dialog appears with two options
@@ -34,8 +34,9 @@ public class MedicalAlertDialogTest {
                 .inRoot(isDialog())
                 .check(matches(isDisplayed()));
     }
+
     @Test
-    public void button_clickable() {
+    public void test_button_clickable() {
         //Find the view and perform the action
         onView(withText("I understand")).perform(click());
 

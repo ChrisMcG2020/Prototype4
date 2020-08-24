@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorBackground">
 
+        <!--Material design card view holder-->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-
+                <!--Orange Flag Warning Image-->
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="184dp"
@@ -37,13 +38,12 @@
                     android:orientation="vertical"
                     android:padding="8dp">
 
-                    <!-- Title, secondary and supporting text -->
+                    <!--Title and introduction text-->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/memory_assessment_title"
                         android:textAppearance="?attr/textAppearanceHeadline6" />
-
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -54,15 +54,12 @@
                         android:textColor="?android:attr/textColorSecondary"
                         android:textSize="16sp" />
 
-
-                    <!--App designed Buttons to continue/call ambulance -->
-
+                    <!--Checkboxes and questions-->
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="306dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginRight="8dp">
-
 
                         <CheckBox
                             android:id="@+id/memory_q3_no"
@@ -247,6 +244,8 @@
                             android:text="@string/Q5" />
                     </RelativeLayout>
 
+                    <!--App designed Buttons to continue/call ambulance -->
+                    <!--Layout_weight=1 gives each button equal size within the view-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -255,21 +254,21 @@
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/memory_call_ambulance"
-                            style="?attr/borderlessButtonStyle"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
                             android:layout_marginRight="8dp"
-
+                            android:textSize="12sp"
                             android:onClick="onButtonClicked"
                             android:text="@string/call_ambulance" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/memory_continue_btn"
-                            style="?attr/borderlessButtonStyle"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
                             android:layout_height="wrap_content"
-
+                            android:textSize="12sp"
                             android:onClick="onButtonClicked"
                             android:text="@string/continue_diagnosis" />
                     </LinearLayout>
@@ -279,3 +278,4 @@
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 </ScrollView>
+

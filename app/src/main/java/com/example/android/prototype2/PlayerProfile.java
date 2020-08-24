@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.android.prototype2.dialogs.DeleteProfileDialog;
 import com.example.android.prototype2.views.IncidentListView;
+import com.example.android.prototype2.views.InformationPage;
 import com.example.android.prototype2.views.SplashScreen;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,10 +32,11 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class UserProfile extends AppCompatActivity {
+public class PlayerProfile extends AppCompatActivity {
 
     //Variables
     private Button updateProfile, deleteUser;
+    private ImageView info;
     private TextInputEditText emailTextView, phoneNoTextView, nameTextView, emergencyContactTextView, emergencyContactPhoneNoTextView;
     private TextInputLayout nameView, emailView, phoneView, emergencyContactView, emergencyContactPhoneView;
     private TextView displayName, displayPhone, incidents;
@@ -55,6 +58,7 @@ public class UserProfile extends AppCompatActivity {
         //Set layout
         setContentView(R.layout.player_profile);
 
+
         //Firebase reference for the Users
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
@@ -63,6 +67,7 @@ public class UserProfile extends AppCompatActivity {
 
         final String uid = user.getUid();
         Intent intent = getIntent();
+
 
         //Initialise the variables to their corresponding views
         phoneView = findViewById(R.id.edit_text_profile_phone);
@@ -83,6 +88,8 @@ public class UserProfile extends AppCompatActivity {
         emergencyContactPhoneNoTextView = findViewById(R.id.player_prof_emergency_contact_phone);
 
         deleteUser = findViewById(R.id.btn_deleteProfile);
+        info = findViewById(R.id.player_info_btn);
+
 
         //Query the database to get the current user
         Query query = databaseReference.orderByChild("uid").equalTo(user.getUid());
@@ -194,7 +201,7 @@ public class UserProfile extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-        deleteUser.show(UserProfile.this.getSupportFragmentManager(), "DialogFragment");
+        deleteUser.show(PlayerProfile.this.getSupportFragmentManager(), "DialogFragment");
     }
 
 
@@ -322,24 +329,39 @@ public class UserProfile extends AppCompatActivity {
 
     //Method to direct button clicks to correct action
     public void onButtonClicked(@NonNull View view) {
-        //If recover image clocked recover advice page launched
-        if (view.getId() == R.id.recovery_image) {
-            Intent recoveryIntent = new Intent(getApplicationContext(), RecoveryActivity.class);
-            startActivity(recoveryIntent);
+        //Switch statement implemented as a lot of choices available
+        switch (view.getId()) {
+            //If recover image clocked recover advice page launched
+            case R.id.recovery_image:
+                Intent recoveryIntent = new Intent(getApplicationContext(), RecoveryActivity.class);
+                startActivity(recoveryIntent);
+                break;
             //If incident image clicked then list of incidents returned
-        } else if (view.getId() == R.id.incident_image) {
-            Intent incident = new Intent(getApplicationContext(), IncidentListView.class);
-            startActivity(incident);
-            //If sign-out button clicked then start up screen shown
-        } else if (view.getId() == R.id.sign_out_image) {
-            Intent logoutIntent = new Intent(getApplicationContext(), SplashScreen.class);
-            startActivity(logoutIntent);
-            //If update button clicked proceed with update method
-        } else if (view.getId() == R.id.btn_updatePlayerProfile) {
-            updatePlayerProfile();
-            //If delete button clicked proceed with method
-        } else if (view.getId() == R.id.btn_deleteProfile) {
-            deletePlayerProfile();
+            case R.id.incident_image:
+                Intent incident = new Intent(getApplicationContext(), IncidentListView.class);
+                startActivity(incident);
+                break;
+            //If logout button clicked then start up screen shown
+            case R.id.sign_out_image:
+                Intent logoutIntent = new Intent(getApplicationContext(), SplashScreen.class);
+                startActivity(logoutIntent);
+                break;
+            //If update button click run update player method
+            case R.id.btn_updatePlayerProfile:
+                updatePlayerProfile();
+                break;
+            //If delete button click run delete player method
+            case R.id.btn_deleteProfile:
+                deletePlayerProfile();
+                break;
+            //If info button clicked then start up info page
+            case R.id.player_info_btn:
+                Intent info = new Intent(getApplicationContext(), InformationPage.class);
+                startActivity(info);
+                break;
+            //Default for when no case matches the action
+            default:
+                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
         }
     }
 }

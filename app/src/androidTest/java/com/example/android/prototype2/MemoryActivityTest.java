@@ -34,7 +34,7 @@ public class MemoryActivityTest {
             = new IntentsTestRule<>(MemoryActivity.class);
 
     @Test
-    public void editText_and_buttons_present() {
+    public void test_editText_and_buttons_present() {
         //Find the views
         Activity activity = mMemoryTestRule.getActivity();
         CheckBox checkBox = activity.findViewById(R.id.memory_q1_yes);
@@ -70,13 +70,13 @@ public class MemoryActivityTest {
 
 
     @Test
-    public void is_view_scrollable() {
+    public void test_is_view_scrollable() {
         //Find view and perform action
         onView(withId(R.id.memory_call_ambulance)).perform(scrollTo());
     }
 
     @Test
-    public void are_yes_checkboxes_checkable() {
+    public void test_are_yes_checkboxes_checkable() {
         //Find views and perform action
         onView(withId(R.id.memory_q1_yes)).perform(click());
         //Check if action returns desired outcome
@@ -100,7 +100,7 @@ public class MemoryActivityTest {
     }
 
     @Test
-    public void are_no_checkboxes_checkable() {
+    public void test_are_no_checkboxes_checkable() {
         //Find views and perform action
         onView(withId(R.id.memory_q1_no)).perform(click());
         //Check if action returns desired outcome
@@ -125,7 +125,51 @@ public class MemoryActivityTest {
     }
 
     @Test
-    public void continue_button_opens_correct_activity() {
+    public void test_less_then_5_checkboxes_ticked_shows_error_toast() {
+        //Find views and perform action
+        onView(withId(R.id.memory_q1_no)).perform(click());
+        //Find views and perform action
+        onView(withId(R.id.memory_q2_no)).perform(click());
+        //Find views and perform action
+        onView(withId(R.id.memory_q3_no)).perform(click());
+        //Find views and perform action
+        onView(withId(R.id.memory_q4_no)).perform(click());
+
+
+        onView(withId(R.id.memory_continue_btn)).perform(scrollTo()).perform(click());
+        //Check if action returns expected outcome
+        onView(withText("Too few boxes ticked, try again"))
+                .inRoot(new LoginScreenTest.ToastMatcher())
+                .check(matches(isDisplayed()));
+
+
+    }
+
+    @Test
+    public void test_more_then_5_checkboxes_ticked_shows_error_toast() {
+        //Find views and perform action
+        onView(withId(R.id.memory_q1_no)).perform(click());
+        //Find views and perform action
+        onView(withId(R.id.memory_q2_no)).perform(click());
+        //Find views and perform action
+        onView(withId(R.id.memory_q3_no)).perform(click());
+        //Find views and perform action
+        onView(withId(R.id.memory_q4_no)).perform(click());
+        //Find views and perform action
+        onView(withId(R.id.memory_q3_yes)).perform(click());
+        //Find views and perform action
+        onView(withId(R.id.memory_q4_yes)).perform(click());
+
+
+        onView(withId(R.id.memory_continue_btn)).perform(scrollTo()).perform(click());
+        //Check if action returns expected outcome
+        onView(withText("Too many boxes ticked, try again"))
+                .inRoot(new LoginScreenTest.ToastMatcher())
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void test_continue_button_opens_correct_activity() {
         //ScrollDown
         onView(withId(R.id.memory_continue_btn)).perform(scrollTo());
         //Find the views and perform action
@@ -135,7 +179,7 @@ public class MemoryActivityTest {
     }
 
     @Test
-    public void call_Ambulance_Button_launches_Dialog() {
+    public void test_call_Ambulance_Button_launches_Dialog() {
         //ScrollDown
         onView(withId(R.id.memory_call_ambulance)).perform(scrollTo());
         //Find the views and perform the action

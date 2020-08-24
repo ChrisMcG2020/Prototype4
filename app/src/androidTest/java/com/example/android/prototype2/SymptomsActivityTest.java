@@ -8,7 +8,7 @@ import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.example.android.prototype2.views.MemoryActivity;
-import com.example.android.prototype2.views.Symptoms;
+import com.example.android.prototype2.views.SymptomsActivity;
 
 import org.junit.Assert;
 import org.junit.Rule;
@@ -26,37 +26,37 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 @RunWith(AndroidJUnit4.class)
-public class SymptomsTest {
+public class SymptomsActivityTest {
     // Set the rule to apply to the test method and which class to use
     @Rule
-    public IntentsTestRule<Symptoms> mSymptomsTestRule
-            = new IntentsTestRule<>(Symptoms.class);
+    public IntentsTestRule<SymptomsActivity> mSymptomsTestRule
+            = new IntentsTestRule<>(SymptomsActivity.class);
 
     @Test
-    public void editText_and_buttons_present(){
+    public void test_editText_and_buttons_present() {
         //Get the activity
-        Activity activity=mSymptomsTestRule.getActivity();
+        Activity activity = mSymptomsTestRule.getActivity();
         //Find the views
-        CheckBox checkBox=activity.findViewById(R.id.symptom1);
-        CheckBox checkBox2=activity.findViewById(R.id.symptom2);
-        CheckBox checkBox3=activity.findViewById(R.id.symptom3);
-        CheckBox checkBox4=activity.findViewById(R.id.symptom4);
-        CheckBox checkBox5=activity.findViewById(R.id.symptom5);
-        CheckBox checkBox6=activity.findViewById(R.id.symptom6);
-        CheckBox checkBox7=activity.findViewById(R.id.symptom7);
-        CheckBox checkBox8=activity.findViewById(R.id.symptom8);
-        CheckBox checkBox9=activity.findViewById(R.id.symptom9);
-        CheckBox checkBox10=activity.findViewById(R.id.symptom10);
-        CheckBox checkBox11=activity.findViewById(R.id.symptom11);
-        CheckBox checkBox12=activity.findViewById(R.id.symptom12);
-        CheckBox checkBox13=activity.findViewById(R.id.symptom13);
-        CheckBox checkBox14=activity.findViewById(R.id.symptom14);
-        CheckBox checkBox15=activity.findViewById(R.id.symptom15);
-        CheckBox checkBox16=activity.findViewById(R.id.symptom16);
-        CheckBox checkBox17=activity.findViewById(R.id.symptom17);
-        CheckBox checkBox18=activity.findViewById(R.id.symptom18);
-        CheckBox checkBox19=activity.findViewById(R.id.symptom19);
-        CheckBox checkBox20=activity.findViewById(R.id.symptom20);
+        CheckBox checkBox = activity.findViewById(R.id.symptom1);
+        CheckBox checkBox2 = activity.findViewById(R.id.symptom2);
+        CheckBox checkBox3 = activity.findViewById(R.id.symptom3);
+        CheckBox checkBox4 = activity.findViewById(R.id.symptom4);
+        CheckBox checkBox5 = activity.findViewById(R.id.symptom5);
+        CheckBox checkBox6 = activity.findViewById(R.id.symptom6);
+        CheckBox checkBox7 = activity.findViewById(R.id.symptom7);
+        CheckBox checkBox8 = activity.findViewById(R.id.symptom8);
+        CheckBox checkBox9 = activity.findViewById(R.id.symptom9);
+        CheckBox checkBox10 = activity.findViewById(R.id.symptom10);
+        CheckBox checkBox11 = activity.findViewById(R.id.symptom11);
+        CheckBox checkBox12 = activity.findViewById(R.id.symptom12);
+        CheckBox checkBox13 = activity.findViewById(R.id.symptom13);
+        CheckBox checkBox14 = activity.findViewById(R.id.symptom14);
+        CheckBox checkBox15 = activity.findViewById(R.id.symptom15);
+        CheckBox checkBox16 = activity.findViewById(R.id.symptom16);
+        CheckBox checkBox17 = activity.findViewById(R.id.symptom17);
+        CheckBox checkBox18 = activity.findViewById(R.id.symptom18);
+        CheckBox checkBox19 = activity.findViewById(R.id.symptom19);
+        CheckBox checkBox20 = activity.findViewById(R.id.symptom20);
 
 
         //Assert they are present
@@ -81,8 +81,8 @@ public class SymptomsTest {
         Assert.assertNotNull(checkBox19);
         Assert.assertNotNull(checkBox20);
         //Find the views
-        Button ambulance=activity.findViewById(R.id.symptom_call_ambulance);
-        Button continueB=activity.findViewById(R.id.symptom_continue);
+        Button ambulance = activity.findViewById(R.id.symptom_call_ambulance);
+        Button continueB = activity.findViewById(R.id.symptom_continue);
         //Assert they are present
         Assert.assertNotNull(ambulance);
         Assert.assertNotNull(continueB);
@@ -91,13 +91,13 @@ public class SymptomsTest {
     }
 
     @Test
-    public void is_view_scrollable() {
+    public void test_is_view_scrollable() {
         //Find view and perform action
         onView(withId(R.id.symptom_continue)).perform(scrollTo());
     }
 
     @Test
-    public void are_checkboxes_checkable() {
+    public void test_are_checkboxes_checkable() {
         //Find views and perform action
         onView(withId(R.id.symptom1)).perform(click());
         //Find views and perform action
@@ -146,8 +146,9 @@ public class SymptomsTest {
         onView(withId(R.id.symptom20)).perform(click());
 
     }
+
     @Test
-    public void symptom_continue_button_opens_correct_activity() {
+    public void test_symptom_continue_button_opens_correct_activity() {
         //ScrollDown
         onView(withId(R.id.symptom_continue)).perform(scrollTo());
         //Find the view and perform action
@@ -157,7 +158,7 @@ public class SymptomsTest {
     }
 
     @Test
-    public void symptom_call_Ambulance_Button_launches_Dialog() {
+    public void test_symptom_call_Ambulance_Button_launches_Dialog() {
         //ScrollDown
         onView(withId(R.id.symptom_call_ambulance)).perform(scrollTo());
         //Find the view and perform the action
@@ -166,7 +167,7 @@ public class SymptomsTest {
         onView(withText("CALL AMBULANCE?")).check(matches(isDisplayed()));
 
     }
-    }
+}
 
 
 

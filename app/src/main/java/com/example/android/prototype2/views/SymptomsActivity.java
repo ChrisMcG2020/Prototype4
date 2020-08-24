@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.android.prototype2.R;
 import com.example.android.prototype2.dialogs.AmbulanceFragment;
 
-public class Symptoms extends AppCompatActivity {
+public class SymptomsActivity extends AppCompatActivity {
 
     //Checkbox variables
     CheckBox symptom1, symptom2, symptom3, symptom4, symptom5, symptom6, symptom7, symptom8, symptom9, symptom10,

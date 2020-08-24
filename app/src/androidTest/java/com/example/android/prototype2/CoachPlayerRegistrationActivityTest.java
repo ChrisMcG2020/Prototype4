@@ -40,7 +40,7 @@ import static com.example.android.prototype2.PlayerRegistrationTest.hasTextInput
 
 
 @RunWith(AndroidJUnit4.class)
-public class CoachRegistrationActivityTest {
+public class CoachPlayerRegistrationActivityTest {
 
     //Set the rule to apply to the test method and which class to use
     @Rule
@@ -66,14 +66,14 @@ public class CoachRegistrationActivityTest {
         Assert.assertNotNull(phone);
         EditText teamCoached = activity.findViewById(R.id.team_coached_edit);
         Assert.assertNotNull(teamCoached);
-        EditText password=activity.findViewById(R.id.coach_password_edit);
+        EditText password = activity.findViewById(R.id.coach_password_edit);
         Assert.assertNotNull(password);
 
 
     }
 
     @Test
-    public void regButtonsPresent() {
+    public void test_regButtonsPresent() {
         //Get the activity
         Activity activity = mCoachRegistrationActivityTestRule.getActivity();
         //Find the views and perform action and assert they are present
@@ -85,7 +85,7 @@ public class CoachRegistrationActivityTest {
     }
 
     @Test
-    public void hint_text_appears() {
+    public void test_hint_text_appears() {
         //Find the views and and check the hint text is present
         onView(withId(R.id.coach_name_edit)).check(matches(withHint(HINT_NAME)));
         //Find the views and and check the hint text is present
@@ -100,7 +100,7 @@ public class CoachRegistrationActivityTest {
     }
 
     @Test
-    public void error_text_appears_when_fields_empty_and_reg_clicked() {
+    public void test_error_text_appears_when_fields_empty_and_reg_clicked() {
 
         //Find the views and perform action
         onView(withId(R.id.coach_register)).perform(click());
@@ -120,7 +120,7 @@ public class CoachRegistrationActivityTest {
     }
 
     @Test
-    public void validation_errors_when_email_and_password_dont_follow_rules() {
+    public void test_validation_errors_when_email_and_password_dont_follow_rules() {
         //Perform the actions to fill in the fields
         onView(withId(R.id.coach_name_edit)).perform(typeText(TEST_NAME), closeSoftKeyboard());
         onView(withId(R.id.coach_email_edit)).perform(typeText(TEST_EMAIL),
@@ -144,7 +144,7 @@ public class CoachRegistrationActivityTest {
     }
 
     @Test
-    public void return_to_login_screen_button() {
+    public void test_return_to_login_screen_button() {
         //Find the views and perform action
         onView(withId(R.id.coach_return_to_login)).perform(click());
         //Check if action returns desired outcome

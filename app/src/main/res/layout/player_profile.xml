@@ -12,7 +12,21 @@
         android:layout_height="wrap_content"
         android:background="@color/colorBackground"
         android:orientation="vertical"
-        tools:context=".RegistrationActivity">
+        tools:context=".PlayerRegistrationActivity">
+
+        <!--Info button to link to app info-->
+        <ImageView
+            android:id="@+id/player_info_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:background="@color/colorBackground"
+            android:contentDescription="@string/info_button"
+            android:onClick="onButtonClicked"
+            android:padding="6dp"
+            android:src="@drawable/ic_baseline_info_24" />
+
+
 
         <!--Layout contains top half of screen profile pic, info -->
         <RelativeLayout
@@ -58,7 +72,7 @@
 
         </RelativeLayout>
 
-        <!--Matrial Card View implemented to display the three options-->
+        <!--Material Card View implemented to display the three options-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="127dp"

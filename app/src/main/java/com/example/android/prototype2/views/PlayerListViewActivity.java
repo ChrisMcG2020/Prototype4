@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.prototype2.R;
-import com.example.android.prototype2.dialogs.AlertDialogFragment;
 import com.example.android.prototype2.helperClass.UserHelperClass;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,16 +31,10 @@ public class PlayerListViewActivity extends AppCompatActivity {
     //Search view bar variable
     private SearchView searchView;
 
-
-    //Initialise dialog to be shown to be true
-    private boolean mIsDialogShown = true;
-
-
     private DatabaseReference databaseReference;
 
     //Define the PlayerList Adapter
     PlayerListAdapter adapter;
-
 
     //Tag for printing log details
     private final String TAG = getClass().getSimpleName();
@@ -52,10 +45,7 @@ public class PlayerListViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.users_list_recycler_view);
-
-        //Show the medical warning dialog
-        showDialog();
-
+        
         //Get a reference to the users node of the database
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
@@ -118,19 +108,6 @@ public class PlayerListViewActivity extends AppCompatActivity {
                 Toast.makeText(PlayerListViewActivity.this, "Error Occurred", Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-    //Implement the medical warning  alert to the user
-    public void showDialog() {
-        //Show the dialog
-        mIsDialogShown = true;
-        // Create an instance of the alert dialog fragment and show it
-        AlertDialogFragment medicalAlert = new AlertDialogFragment();
-        //User can only close dialog by choosing option
-        medicalAlert.setCancelable(false);
-        //Use the Fragment manager to show the alert
-        medicalAlert.show(getSupportFragmentManager(), "Fragment Medical Alert Dialog");
-
     }
 
 }

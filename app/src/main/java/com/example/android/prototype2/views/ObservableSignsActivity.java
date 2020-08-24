@@ -79,7 +79,7 @@ public class ObservableSignsActivity extends AppCompatActivity {
             //Run the observable signs diagnosis method
             obsDiagnose();
             //Pass the intents to the next activity
-            Intent obsIntent = new Intent(getApplicationContext(), Symptoms.class);
+            Intent obsIntent = new Intent(getApplicationContext(), SymptomsActivity.class);
             obsIntent.putExtra("uid2", intentUid2);
             obsIntent.putExtra("name2", intentName2);
             obsIntent.putExtra("email2", intentEmail2);

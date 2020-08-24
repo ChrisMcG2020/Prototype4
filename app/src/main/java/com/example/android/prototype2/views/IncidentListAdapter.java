@@ -49,7 +49,6 @@ public class IncidentListAdapter extends RecyclerView.Adapter<IncidentListAdapte
     @Override
     public void onBindViewHolder(@NonNull IncidentListAdapter.ViewHolder holder, final int position) {
 
-
         //Retrieve the incident stored at the position
         final PlayerIncidentsModel incidents = incidentList.get(position);
         holder.coachName.setText(String.format("Coach: %s", incidents.getCoachName()));

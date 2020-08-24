@@ -65,14 +65,14 @@ public class IncidentListView extends AppCompatActivity {
 
 
 
-        //AddValueEventListener will update the players list if any new players added
+        //AddValueEventListener will return the players incidents when called
         reference.orderByChild("uid").equalTo(mCurrent.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot incidentSnapshot : snapshot.getChildren()) {
-                    //Get the values defined in the UserHelperClass from the registered players in the database
+                    //Get the values defined in the PlayerIncidentsModel from the corresponding values in the database
                     PlayerIncidentsModel incident = incidentSnapshot.getValue(PlayerIncidentsModel.class);
-                    //If a new player is created add them to the playersList
+                    // Add the incident
                     playerIncidentsModels.add(incident);
                 }
 

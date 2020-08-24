@@ -163,6 +163,17 @@
     <string name="profile_sign_out">Sign Out</string>
     <string name="profile_return_to_login">Return to Login</string>
     <string name="coach_profile_concussion_button">START CONCUSSION CHECK!</string>
+    <string name="info_button">info_button</string>
+    <string name="coach_image">coach_image</string>
+    <string name="coach_history">History</string>
+    <string name="info_page_title">Concussion Checker</string>
+    <string name="info_back_btn">Back to Profile</string>
+    <string name="crt_5_document">CRT-5 Document</string>
+    <string name="info_main">It follws guidelines set out by the Concussion in Sport Group in 2017, based on their document the Concussion Recognition Tool (CRT-5). This is available online via the button below. It is not designed to replace professional medical advice which should always be consulted in any case of a suspected concussion</string>
+    <string name="info_intro">Concussion checker is an app designed to help recognise the symptoms of an on field concussion. It also gives advice to players to assist recovery and their return to sport participation.</string>
+
+    <string name="player_recovery_signs"><b>Directly after suspected concussion \nplayers should:</b>\n\n• Not be left alone initially (at least first  \n \t 1-2 hours) \n• Not drink alcohol \n• Not use recreational/prescription drugs\n• Not be sent home by themselves. They \n  need to be with a responsible adult \n• Not drive a motor vehicle until cleared\n  by a healthcare professional</string>
+    <string name="advice_return">Return to Sport Strategy</string>
 </resources>
 
 

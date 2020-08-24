@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorBackground">
 
+        <!--Material design card view holder-->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-
+                <!--Orange Flag Warning Image-->
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="184dp"
@@ -36,7 +37,7 @@
                     android:orientation="vertical"
                     android:padding="8dp">
 
-                    <!-- Title, secondary and supporting text -->
+                    <!--Title and introduction text-->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -53,9 +54,7 @@
                         android:textColor="?android:attr/textColorSecondary"
                         android:textSize="16sp" />
 
-
-                    <!--App designed Buttons to continue/call ambulance -->
-
+                    <!--Checkboxes and questions-->
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="306dp"
@@ -247,6 +246,7 @@
                             android:text="@string/Q5" />
                     </RelativeLayout>
 
+                    <!--App designed Buttons to continue/call ambulance -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

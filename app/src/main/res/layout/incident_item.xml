@@ -20,6 +20,7 @@
             android:layout_height="fill_parent"
             android:background="@color/browser_actions_bg_grey">
 
+            <!--Medical cert Image-->
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -31,6 +32,7 @@
 
         </RelativeLayout>
 
+        <!--TextViews for the various attributes-->
         <LinearLayout
             android:layout_width="279dp"
             android:layout_height="match_parent"
@@ -110,7 +112,6 @@
                 android:text="@string/incidentList_incident_report"
                 android:textColor="@color/browser_actions_text_color"
                 android:textSize="16sp" />
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

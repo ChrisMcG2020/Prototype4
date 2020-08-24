@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 
 import com.example.android.prototype2.views.AllIncidentsListView;
+import com.example.android.prototype2.views.InformationPage;
 import com.example.android.prototype2.views.PlayerListViewActivity;
 import com.example.android.prototype2.views.SplashScreen;
 
@@ -27,9 +28,9 @@ import static androidx.test.espresso.matcher.RootMatchers.isDialog;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static com.example.android.prototype2.UserProfileTest.TEST_UPDATE_EMAIL;
-import static com.example.android.prototype2.UserProfileTest.TEST_UPDATE_NAME;
-import static com.example.android.prototype2.UserProfileTest.TEST_UPDATE_PHONENO;
+import static com.example.android.prototype2.PlayerProfileTest.TEST_UPDATE_EMAIL;
+import static com.example.android.prototype2.PlayerProfileTest.TEST_UPDATE_NAME;
+import static com.example.android.prototype2.PlayerProfileTest.TEST_UPDATE_PHONENO;
 
 public class CoachProfileTest {
     //Set the rule to apply to the test method and which class to use
@@ -53,18 +54,20 @@ public class CoachProfileTest {
 
 
         //Find the views
-        Button update = activity.findViewById(R.id.btn_updateCoachProfile);
-        Button delete = activity.findViewById(R.id.btn_deleteCoachProfile);
+        Button update = activity.findViewById(R.id.updateCoachProfile_btn);
+        Button delete = activity.findViewById(R.id.deleteCoachProfile_btn);
         Button diagnose = activity.findViewById(R.id.diagnose_concussion_button);
+        ImageView info = activity.findViewById(R.id.coach_info_btn);
         //Assert they are present
         Assert.assertNotNull(update);
         Assert.assertNotNull(delete);
         Assert.assertNotNull(diagnose);
+        Assert.assertNotNull(info);
 
         //Find the views
-        ImageView playerSearch=activity.findViewById(R.id.player_search);
-        ImageView history=activity.findViewById(R.id.history_image);
-        ImageView signOut=activity.findViewById(R.id.coach_sign_out_image);
+        ImageView playerSearch = activity.findViewById(R.id.player_search);
+        ImageView history = activity.findViewById(R.id.history_image);
+        ImageView signOut = activity.findViewById(R.id.coach_sign_out_image);
         //Assert they are present
         Assert.assertNotNull(playerSearch);
         Assert.assertNotNull(history);
@@ -74,7 +77,7 @@ public class CoachProfileTest {
     }
 
     @Test
-    public void click_diagnose_button() {
+    public void test_click_diagnose_button() {
         //Find the views and perform action
         onView(withId(R.id.diagnose_concussion_button)).perform(click());
         //Check if action returns desired outcome
@@ -84,7 +87,7 @@ public class CoachProfileTest {
     }
 
     @Test
-    public void click_on_playerView() {
+    public void test_click_on_playerView() {
         //Find the views and perform action
         onView(withId(R.id.player_search)).perform(click());
         //Check if action returns desired outcome
@@ -93,7 +96,7 @@ public class CoachProfileTest {
     }
 
     @Test
-    public void on_calender_pic_opens_report() {
+    public void test_on_calender_pic_opens_report() {
         //Find the views and perform action
         onView(withId(R.id.history_image)).perform(click());
         //Check if action returns desired outcome
@@ -101,7 +104,7 @@ public class CoachProfileTest {
     }
 
     @Test
-    public void can_edit_name() {
+    public void test_can_edit_name() {
         //Find the views and perform action
         onView(withId(R.id.coach_profile_name)).perform(typeText(TEST_UPDATE_NAME));
         closeSoftKeyboard();
@@ -109,7 +112,7 @@ public class CoachProfileTest {
     }
 
     @Test
-    public void can_edit_phone() {
+    public void test_can_edit_phone() {
         //Find the views and perform action
         onView(withId(R.id.coach_profile_phone)).perform(typeText(TEST_UPDATE_PHONENO));
         closeSoftKeyboard();
@@ -117,7 +120,7 @@ public class CoachProfileTest {
     }
 
     @Test
-    public void can_edit_email() {
+    public void test_can_edit_email() {
         //Find the views and perform action
         onView(withId(R.id.coach_profile_email)).perform(typeText(TEST_UPDATE_EMAIL));
         closeSoftKeyboard();
@@ -126,7 +129,7 @@ public class CoachProfileTest {
     }
 
     @Test
-    public void can_edit_team() {
+    public void test_can_edit_team() {
         //Find the views and perform action
         onView(withId(R.id.coach_profile_team)).perform(scrollTo()).perform(typeText("Finn Harps")
                 , closeSoftKeyboard());
@@ -136,18 +139,18 @@ public class CoachProfileTest {
 
 
     @Test
-    public void logout_profile() {
+    public void test_logout_profile() {
         //Find the view and perform the action
         onView(withId(R.id.coach_sign_out_image)).perform(scrollTo()).perform(click());
-        //
+        //Expected result
         intended(hasComponent(SplashScreen.class.getName()));
 
     }
 
     @Test
-    public void delete_profile() {
+    public void test_delete_profile() {
         //Find the view and perform the action
-        onView(withId(R.id.btn_deleteCoachProfile)).perform(scrollTo()).perform(click());
+        onView(withId(R.id.deleteCoachProfile_btn)).perform(scrollTo()).perform(click());
         //The delete dialog appears
         onView(withText("Delete Profile"))
                 .inRoot(isDialog())
@@ -160,13 +163,22 @@ public class CoachProfileTest {
     }
 
     @Test
-    public void cancel_delete_profile() {
+    public void test_cancel_delete_profile() {
         //Find the view and perform the action
-        onView(withId(R.id.btn_deleteCoachProfile)).perform(scrollTo()).perform(click());
+        onView(withId(R.id.deleteCoachProfile_btn)).perform(scrollTo()).perform(click());
         //The delete dialog appears, perform the action
         onView(withText("Cancel")).inRoot(isDialog()).perform(click());
         //Check if action returns desired outcome
-        onView(withId(R.id.btn_deleteCoachProfile)).check(matches(isDisplayed()));
+        onView(withId(R.id.deleteCoachProfile_btn)).check(matches(isDisplayed()));
+
+    }
+
+    @Test
+    public void test_info_button_opens_page() {
+        //Find the view and perform the action
+        onView(withId(R.id.coach_info_btn)).perform(click());
+        //Expected result
+        intended(hasComponent(InformationPage.class.getName()));
 
     }
 }

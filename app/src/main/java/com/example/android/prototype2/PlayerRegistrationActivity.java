@@ -27,7 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener {
+public class PlayerRegistrationActivity extends AppCompatActivity implements View.OnClickListener {
 
     //Variables for the registration form
     private TextInputLayout regName,
@@ -51,7 +51,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Set layout
-        setContentView(R.layout.activity_registration);
+        setContentView(R.layout.activity_player_registration);
 
         //Initialise the variables to their corresponding views
         regName = findViewById(R.id.reg_name);

@@ -47,7 +47,7 @@ public class AddReportActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Set layout
-        setContentView(R.layout.add_report);
+        setContentView(R.layout.activity_add_report);
 
         //Assign views to variables
         incidentReport = this.findViewById(R.id.report_edit_text);

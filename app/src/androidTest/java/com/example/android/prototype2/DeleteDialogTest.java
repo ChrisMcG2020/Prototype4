@@ -21,12 +21,12 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 public class DeleteDialogTest {
     //Set the rule to apply to the test method and which class to use
     @Rule
-    public IntentsTestRule<UserProfile> mDeleteProfileTestRule
-            = new IntentsTestRule<>(UserProfile.class);
+    public IntentsTestRule<PlayerProfile> mDeleteProfileTestRule
+            = new IntentsTestRule<>(PlayerProfile.class);
 
 
     @Test
-    public void dialog_appears_with_buttons() {
+    public void test_dialog_appears_with_buttons() {
         //Find the view and perform the action
         onView(withId(R.id.btn_deleteProfile)).perform(scrollTo()).perform(click());
         //The delete dialog appears with two options
@@ -40,7 +40,7 @@ public class DeleteDialogTest {
 
 
     @Test
-    public void delete_profile() {
+    public void test_delete_profile() {
         //Find the view and perform the action
         onView(withId(R.id.btn_deleteProfile)).perform(scrollTo()).perform(click());
         //Perform the action
@@ -50,7 +50,7 @@ public class DeleteDialogTest {
     }
 
     @Test
-    public void cancel_delete_profile() {
+    public void test_cancel_delete_profile() {
         //Find the view and perform the action
         onView(withId(R.id.btn_deleteProfile)).perform(scrollTo()).perform(click());
         //The delete dialog appears, perform the action

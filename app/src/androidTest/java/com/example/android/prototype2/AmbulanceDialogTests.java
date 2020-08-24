@@ -30,7 +30,7 @@ public class AmbulanceDialogTests {
             = new IntentsTestRule<>(RedFlagActivity.class);
 
     @Test
-    public void dialog_appears_with_buttons() {
+    public void test_dialog_appears_with_buttons() {
         //Find the views and perform the action
         onView(withId(R.id.redFlag_call_ambulance)).perform(click());
         //The delete dialog appears with two options
@@ -44,7 +44,7 @@ public class AmbulanceDialogTests {
     }
 
     @Test
-    public void call_Ambulance_Button_launches_Dialog() {
+    public void test_call_Ambulance_Button_launches_Dialog() {
         //Find the view and perform the action
         onView(withId(R.id.redFlag_call_ambulance)).perform(click());
         //Check if action returns desired outcome
@@ -53,7 +53,7 @@ public class AmbulanceDialogTests {
     }
 
     @Test
-    public void clickCallButton_opensDialler_forAmbulance() {
+    public void test_clickCallButton_opensDialler_forAmbulance() {
         //Find the views and perform the action
         onView(withId(R.id.redFlag_call_ambulance)).perform(click());
         onView(withText("CALL")).perform(click());
@@ -66,7 +66,7 @@ public class AmbulanceDialogTests {
 
 
     @Test
-    public void onCancel() {
+    public void test_onCancel() {
         //Find the views and perform the action
         onView(withId(R.id.redFlag_call_ambulance)).perform(click());
         onView(withText("CANCEL")).perform(click());

@@ -46,7 +46,7 @@ public class PlayerLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //Set layout
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_player_login);
 
         //Initialise the variables to their corresponding views
         loginEmail = findViewById(R.id.login_email);
@@ -139,7 +139,7 @@ public class PlayerLoginActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "TEST_Login : Logged In Successfully");
-                    startActivity(new Intent(getApplicationContext(), UserProfile.class));
+                    startActivity(new Intent(getApplicationContext(), PlayerProfile.class));
                 } else {
                     loginEmail.setError("Email/Password Incorrect");
                     loginPass.setError("Email/Password Incorrect");
@@ -192,7 +192,7 @@ public class PlayerLoginActivity extends AppCompatActivity {
     //Method to direct user to appropriate page
     public void onButtonClicked(View view) {
         if (view.getId() == R.id.player_reg_btn) {
-            Intent regActivity = new Intent(getApplicationContext(), RegistrationActivity.class);
+            Intent regActivity = new Intent(getApplicationContext(), PlayerRegistrationActivity.class);
             startActivity(regActivity);
 
         }

@@ -9,9 +9,7 @@ import com.example.android.prototype2.views.AllIncidentsListView;
 import com.example.android.prototype2.views.IncidentListView;
 import com.example.android.prototype2.views.PlayerListViewActivity;
 
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 

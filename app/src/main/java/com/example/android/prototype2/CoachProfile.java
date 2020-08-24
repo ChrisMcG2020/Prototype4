@@ -17,6 +17,8 @@ import androidx.fragment.app.DialogFragment;
 import com.example.android.prototype2.dialogs.DeleteProfileDialog;
 import com.example.android.prototype2.helperClass.CoachHelperClass;
 import com.example.android.prototype2.views.AllIncidentsListView;
+import com.example.android.prototype2.views.IncidentListView;
+import com.example.android.prototype2.views.InformationPage;
 import com.example.android.prototype2.views.PlayerListViewActivity;
 import com.example.android.prototype2.views.SplashScreen;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -88,9 +90,6 @@ public class CoachProfile extends AppCompatActivity {
         displayCoachName = findViewById(R.id.coach_name);
         displayCoachphone = findViewById(R.id.coach_phone_small);
         teamCoachedTextView = findViewById(R.id.coach_profile_team);
-
-        updateCoach = findViewById(R.id.btn_updateCoachProfile);
-        deleteCoach = findViewById(R.id.btn_deleteCoachProfile);
 
 
         final String uid = user.getUid();
@@ -309,32 +308,44 @@ public class CoachProfile extends AppCompatActivity {
 
     //Method to direct button clicks to correct action
     public void onButtonClicked(View view) {
-        //If diagnose concussion button clicked launch the player list
-        if (view.getId() == R.id.diagnose_concussion_button) {
-            Intent diagnoseIntent = new Intent(getApplicationContext(), PlayerListViewActivity.class);
-            startActivity(diagnoseIntent);
-
-            //If sign-out image clicked then start up screen shown
-        } else if (view.getId() == R.id.coach_sign_out_image) {
-            Intent logoutIntent = new Intent(getApplicationContext(), SplashScreen.class);
-            startActivity(logoutIntent);
-            //If history image clicked launch the history screen
-        } else if (view.getId() == R.id.history_image) {
-            Intent allIncidentsIntent = new Intent(getApplicationContext(), AllIncidentsListView.class);
-            startActivity(allIncidentsIntent);
-
-        } else if
+        switch (view.getId()) {
+            //If recover image clocked recover advice page launched
+            case R.id.diagnose_concussion_button:
+                Intent diagnoseIntent = new Intent(getApplicationContext(), PlayerListViewActivity.class);
+                startActivity(diagnoseIntent);
+                break;
+            //If incident image clicked then list of incidents returned
+            case R.id.coach_sign_out_image:
+                Intent logoutIntent = new Intent(getApplicationContext(), SplashScreen.class);
+                startActivity(logoutIntent);
+                break;
+            //If logout button clicked then start up screen shown
+            case R.id.history_image:
+                Intent allIncidentsIntent = new Intent(getApplicationContext(), AllIncidentsListView.class);
+                startActivity(allIncidentsIntent);
+                break;
             //If player search image clicked launch the player list
-        (view.getId() == R.id.player_search) {
-            Intent searchPlayers = new Intent(getApplicationContext(), PlayerListViewActivity.class);
-            startActivity(searchPlayers);
-        } else if
+            case R.id.player_search:
+                Intent searchPlayers = new Intent(getApplicationContext(), PlayerListViewActivity.class);
+                startActivity(searchPlayers);
+                break;
             //If update button clicked proceed with update method
-        (view.getId() == R.id.btn_updateCoachProfile) {
-            updateCoachProfile();
+            case R.id.updateCoachProfile_btn:
+                updateCoachProfile();
+                break;
             //If delete button clicked proceed with method
-        } else if (view.getId() == R.id.btn_deleteCoachProfile) {
-            deleteCoachProfile();
+            case R.id.deleteCoachProfile_btn:
+                deleteCoachProfile();
+                break;
+            //If info button clicked then start up info page
+            case R.id.coach_info_btn:
+                Intent info = new Intent(getApplicationContext(), InformationPage.class);
+                startActivity(info);
+                break;
+                //Default for when no case matches the action
+            default:
+                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
         }
+
     }
 }

@@ -12,6 +12,7 @@ import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.example.android.prototype2.views.IncidentListView;
+import com.example.android.prototype2.views.InformationPage;
 import com.example.android.prototype2.views.SplashScreen;
 
 import org.hamcrest.Matcher;
@@ -37,7 +38,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
 @RunWith(AndroidJUnit4.class)
-public class UserProfileTest {
+public class PlayerProfileTest {
 
     //Test variables
     public static final String TEST_UPDATE_NAME = "John Smith";
@@ -46,11 +47,11 @@ public class UserProfileTest {
     public static final String TEST_UPDATE_EMERGENCYCONTACT = "Mary Smith";
     public static final String TEST_UPDATE_EC_PHONENO = "082222";
     @Rule
-    public IntentsTestRule<UserProfile> mUserProfileTestRule
-            = new IntentsTestRule<>(UserProfile.class);
+    public IntentsTestRule<PlayerProfile> mUserProfileTestRule
+            = new IntentsTestRule<>(PlayerProfile.class);
 
     @Test
-    public void testFields_buttons_images_Present() {
+    public void tes_fields_buttons_images_Present() {
         //Find the views
         Activity activity = mUserProfileTestRule.getActivity();
         EditText name = activity.findViewById(R.id.player_profile_name);
@@ -68,15 +69,17 @@ public class UserProfileTest {
         //Find the views
         Button update = activity.findViewById(R.id.btn_updatePlayerProfile);
         Button delete = activity.findViewById(R.id.btn_deleteProfile);
+        Button info = activity.findViewById(R.id.player_info_btn);
         //Assert they are present
         Assert.assertNotNull(update);
         Assert.assertNotNull(delete);
+        Assert.assertNotNull(info);
 
 
         //Find the views
         ImageView recovery = activity.findViewById(R.id.recovery_image);
         ImageView incidents = activity.findViewById(R.id.incident_image);
-        ImageView signout= activity.findViewById(R.id.sign_out_image);
+        ImageView signout = activity.findViewById(R.id.sign_out_image);
         //Assert they are present
         Assert.assertNotNull(recovery);
         Assert.assertNotNull(incidents);
@@ -86,7 +89,7 @@ public class UserProfileTest {
     }
 
     @Test
-    public void click_onRecovery_pic_opens_Recovery_advice() {
+    public void test_click_onrecovery_pic_opens_recovery_advice() {
         //Find the view and perform action
         onView(withId(R.id.recovery_image)).perform(click());
         //Check if action returns desired outcome
@@ -95,7 +98,7 @@ public class UserProfileTest {
     }
 
     @Test
-    public void on_Incidents_pic_opens_report() {
+    public void test_on_incidents_pic_opens_report() {
         //Find the view and perform action
         onView(withId(R.id.incident_image)).perform(click());
         //Check if action returns desired outcome
@@ -103,7 +106,7 @@ public class UserProfileTest {
     }
 
     @Test
-    public void can_edit_user_name() {
+    public void test_can_edit_user_name() {
         //Find the view and perform action
         onView(withId(R.id.player_profile_name)).perform(typeText(TEST_UPDATE_NAME));
         closeSoftKeyboard();
@@ -111,7 +114,7 @@ public class UserProfileTest {
     }
 
     @Test
-    public void can_edit_phone() {
+    public void test_can_edit_phone() {
         //Find the views and perform action
         onView(withId(R.id.player_profile_phone)).perform(typeText(TEST_UPDATE_PHONENO));
         closeSoftKeyboard();
@@ -119,7 +122,7 @@ public class UserProfileTest {
     }
 
     @Test
-    public void can_edit_email() {
+    public void test_can_edit_email() {
         //Find the views and perform action
         onView(withId(R.id.player_profile_email)).perform(typeText(TEST_UPDATE_EMAIL));
         closeSoftKeyboard();
@@ -128,7 +131,7 @@ public class UserProfileTest {
     }
 
     @Test
-    public void can_edit_emergency_C() {
+    public void test_can_edit_emergency_C() {
         //Find the views and perform action
         onView(withId(R.id.player_profile_emergency_contact)).perform(typeText(TEST_UPDATE_EMERGENCYCONTACT)
                 , closeSoftKeyboard());
@@ -137,7 +140,7 @@ public class UserProfileTest {
     }
 
     @Test
-    public void can_edit_contact_phone() {
+    public void test_can_edit_contact_phone() {
         //Find the views and perform action
         onView(withId(R.id.player_prof_emergency_contact_phone)).perform(forceClick()).perform(typeText(TEST_UPDATE_EC_PHONENO));
         closeSoftKeyboard();
@@ -145,7 +148,7 @@ public class UserProfileTest {
     }
 
     @Test
-    public void logout_profile() {
+    public void test_logout_profile() {
         //Find the view and perform the action
         onView(withId(R.id.sign_out_image)).perform(scrollTo()).perform(click());
         //Check if action returns desired outcome
@@ -154,7 +157,7 @@ public class UserProfileTest {
     }
 
     @Test
-    public void delete_profile() {
+    public void test_delete_profile() {
         //Find the view and perform the action
         onView(withId(R.id.btn_deleteProfile)).perform(scrollTo()).perform(click());
         //The delete dialog appears
@@ -164,6 +167,14 @@ public class UserProfileTest {
 
     }
 
+    @Test
+    public void test_info_button_opens_page() {
+        //Find the view and perform the action
+        onView(withId(R.id.player_info_btn)).perform(click());
+        //Expected result
+        intended(hasComponent(InformationPage.class.getName()));
+
+    }
 
     //Custom method to force a click when given a co-ordination error
     public static ViewAction forceClick() {

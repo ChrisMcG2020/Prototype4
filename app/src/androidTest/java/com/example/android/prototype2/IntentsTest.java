@@ -36,7 +36,7 @@ public class IntentsTest {
 
 
     @Test
-    public void testNameIntentsPresent() {
+    public void testNam_intents_present() {
         //ScrollDown
         onView(withId(R.id.memory_continue_btn)).perform(scrollTo());
         //Find the view and perform action
@@ -46,8 +46,9 @@ public class IntentsTest {
                 toPackage("com.example.android.prototype2"),
                 hasExtra("name4", null)));
     }
+
     @Test
-    public void testRedFlagIntentsPresent() {
+    public void testRedFlag_intents_present() {
         //ScrollDown
         onView(withId(R.id.memory_continue_btn)).perform(scrollTo());
         //Find the view and perform action
@@ -57,8 +58,9 @@ public class IntentsTest {
                 toPackage("com.example.android.prototype2"),
                 hasExtra("redFlag4", null)));
     }
+
     @Test
-    public void testobsIntentsPresent() {
+    public void testobs_intents_present() {
         //ScrollDown
         onView(withId(R.id.memory_continue_btn)).perform(scrollTo());
         //Find the view and perform action
@@ -68,8 +70,9 @@ public class IntentsTest {
                 toPackage("com.example.android.prototype2"),
                 hasExtra("obs4", null)));
     }
+
     @Test
-    public void testsymptomsIntentsPresent() {
+    public void testsymptoms_intents_present() {
         //ScrollDown
         onView(withId(R.id.memory_continue_btn)).perform(scrollTo());
         //Find the view and perform action
@@ -79,7 +82,6 @@ public class IntentsTest {
                 toPackage("com.example.android.prototype2"),
                 hasExtra("symptom4", null)));
     }
-
 
 
 }

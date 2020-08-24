@@ -45,7 +45,7 @@ public class CoachAdviceTest {
     }
 
     @Test
-    public void continue_button_opens_correct_activity() {
+    public void test_continue_button_opens_correct_activity() {
         //Find the views and perform action
         onView(withId(R.id.coach_advice_continue_btn)).perform(scrollTo()).perform(click());
         //Check if action returns desired outcome
@@ -53,7 +53,7 @@ public class CoachAdviceTest {
     }
 
     @Test
-    public void call_Ambulance_Button_launches_Activity() {
+    public void test_call_Ambulance_Button_launches_Activity() {
         //Find the views and perform the action
         onView(withId(R.id.coach_advice_Call_ambulance_btn)).perform(scrollTo()).perform(click());
         //Check if action returns desired outcome

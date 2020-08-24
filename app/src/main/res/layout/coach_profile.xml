@@ -12,7 +12,19 @@
         android:layout_height="wrap_content"
         android:background="@color/colorBackground"
         android:orientation="vertical"
-        tools:context=".RegistrationActivity">
+        tools:context=".PlayerRegistrationActivity">
+
+        <!--Info button to link to app info-->
+        <ImageView
+            android:id="@+id/coach_info_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:background="@color/colorBackground"
+            android:contentDescription="@string/info_button"
+            android:onClick="onButtonClicked"
+            android:padding="4dp"
+            android:src="@drawable/ic_baseline_info_24" />
 
         <!--Layout contains top half of screen profile pic, info -->
         <RelativeLayout
@@ -27,7 +39,8 @@
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="80dp"
-                android:src="@drawable/coach_prof"  />
+                android:src="@drawable/coach_prof"
+                android:contentDescription="@string/coach_image" />
 
             <TextView
                 android:id="@+id/coach_name"
@@ -157,7 +170,7 @@
                         android:contentDescription="@string/coach_calender"
                         android:includeFontPadding="false"
                         android:onClick="onButtonClicked"
-                        android:text="History"
+                        android:text="@string/coach_history"
                         android:textSize="18sp" />
 
                     <TextView
@@ -325,7 +338,7 @@
 
             <!-- Buttons to take user to update, delete  -->
             <Button
-                android:id="@+id/btn_updateCoachProfile"
+                android:id="@+id/updateCoachProfile_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -333,7 +346,7 @@
                 android:text="@string/player_prof_update" />
 
             <Button
-                android:id="@+id/btn_deleteCoachProfile"
+                android:id="@+id/deleteCoachProfile_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"

@@ -7,31 +7,31 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.android.prototype2.dialogs.AmbulanceFragment;
+
 public class RecoveryActivity extends AppCompatActivity {
 
-    //Button variable
-    Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Allows for a smoother transition
-        // overridePendingTransition(0, 0);
         //Set layout
         setContentView(R.layout.recovery_advice);
 
-
-        //Assign the back button
-        back = findViewById(R.id.back_to_profile_btn);
-        //set onClick to back button to take user back to User profile screen
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), UserProfile.class);
-                startActivity(intent);
-            }
-        });
     }
 
+    //Method to direct button clicks to correct action
+    public void onButtonClicked(View view) {
+        //Back button clicked launches the player profile alert dialog
+        if (view.getId() == R.id.recovery_back_btn) {
+            //Create new instance of the fragment
+            Intent back = new Intent(getApplicationContext(), PlayerProfile.class);
+            startActivity(back);
+        }
+        //Return to sport button clicked launches Return To Sport page
+        if (view.getId() == R.id.return_to_sport_btn) {
+            Intent returnToSport = new Intent(getApplicationContext(), ReturnToSport.class);
+            startActivity(returnToSport);
+        }
+    }
 }
-

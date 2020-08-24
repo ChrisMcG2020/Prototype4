@@ -58,7 +58,7 @@ public class LoginScreenTest {
 
 
     @Test
-    public void loginAndPasswordFields() {
+    public void test_login_and_password_fields() {
         //Get the activity
         Activity activity = mLoginTestRule.getActivity();
         //Find the views and assert they are present
@@ -70,7 +70,7 @@ public class LoginScreenTest {
     }
 
     @Test
-    public void loginAndRegButtons() {
+    public void test_login_and_reg_buttons() {
         //Get the activity
         Activity activity = mLoginTestRule.getActivity();
         //Find the views and assert they are present
@@ -83,7 +83,7 @@ public class LoginScreenTest {
     }
 
     @Test
-    public void hint_text_appears() {
+    public void test_hint_text_appears() {
         //Find the view and and check the hint text is present
         onView(withId(R.id.login_email2)).check(matches(withHint("Email")));
         //Find the view and and check the hint text is present
@@ -92,7 +92,7 @@ public class LoginScreenTest {
 
 
     @Test
-    public void click_login_with_empty_fields_gives_errors() {
+    public void test_click_login_with_empty_fields_gives_errors() {
         //Find the view and perform action
         onView(withId(R.id.login)).perform(click());
         //Check if view does what it should
@@ -101,7 +101,7 @@ public class LoginScreenTest {
     }
 
     @Test
-    public void click_login_with_empty_password_gives_errors() {
+    public void test_click_login_with_empty_password_gives_errors() {
         //Find the view and perform action
         onView(withId(R.id.login_email2)).perform(typeText(TESTEMAIL),
                 closeSoftKeyboard());
@@ -114,7 +114,7 @@ public class LoginScreenTest {
 
 
     @Test
-    public void click_login_with_empty_email_gives_errors() {
+    public void test_click_login_with_empty_email_gives_errors() {
         //Find the view and perform action
         onView(withId(R.id.login_password2)).perform(typeText(TESTPASSWORD),
                 closeSoftKeyboard());
@@ -125,7 +125,7 @@ public class LoginScreenTest {
     }
 
     @Test
-    public void testLogin_WithEmail_Password_launches_profile() throws InterruptedException {
+    public void test_login_with_email_password_launches_profile() throws InterruptedException {
         //Find the view and perform action
         onView(withId(R.id.login_email2))
                 .perform(typeText(VALID_EMAIL), closeSoftKeyboard());
@@ -138,14 +138,14 @@ public class LoginScreenTest {
         Thread.sleep(1500);
 
         //Check if action returns desired outcome
-        intended(hasComponent(UserProfile.class.getName()));
+        intended(hasComponent(PlayerProfile.class.getName()));
 
 
     }
 
     @Test
 
-    public void testLogin_with_Incorrect_Details() throws InterruptedException {
+    public void test_login_with_incorrect_details() throws InterruptedException {
         //Find the views and perform action
         onView(withId(R.id.login_email2))
                 .perform(typeText(TESTEMAIL), closeSoftKeyboard());
@@ -162,7 +162,7 @@ public class LoginScreenTest {
     }
 
     @Test
-    public void clickForgot_Password_Without_Email_Entered_Prompts_Error() {
+    public void click_forgot_password_without_email_entered_prompts_error() {
 
         //Find the views and perform action
         onView(withId(R.id.forgot_pass_btn)).perform(click());
@@ -173,7 +173,7 @@ public class LoginScreenTest {
     }
 
     @Test
-    public void clickForgot_Password_With_an_Invalid_Email_Prompts_Error() {
+    public void click_forgot_password_with_an_invalid_email_prompts_error() {
 
         //Find the views and perform action
         onView(withId(R.id.login_email2)).perform(typeText(TEST_EMAIL),
@@ -186,7 +186,7 @@ public class LoginScreenTest {
     }
 
     @Test
-    public void clickForgot_password_registered_user_sends_email() throws InterruptedException {
+    public void click_forgot_password_registered_user_sends_email() throws InterruptedException {
 
         //Find the view and perform action
         onView(withId(R.id.login_email2)).perform(typeText(VALID_EMAIL),
@@ -202,7 +202,7 @@ public class LoginScreenTest {
     }
 
     @Test
-    public void clickForgot_password_unregistered_user_gives_error() throws InterruptedException {
+    public void click_forgot_password_unregistered_user_gives_error() throws InterruptedException {
 
         //Find the view and perform action
         onView(withId(R.id.login_email2)).perform(typeText(TESTEMAIL),

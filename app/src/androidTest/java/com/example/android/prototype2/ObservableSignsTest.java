@@ -8,7 +8,7 @@ import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.example.android.prototype2.views.ObservableSignsActivity;
-import com.example.android.prototype2.views.Symptoms;
+import com.example.android.prototype2.views.SymptomsActivity;
 
 import org.junit.Assert;
 import org.junit.Rule;
@@ -33,7 +33,7 @@ public class ObservableSignsTest {
             = new IntentsTestRule<>(ObservableSignsActivity.class);
 
     @Test
-    public void checkBoxes_and_buttons_present() {
+    public void test_checkBoxes_and_buttons_present() {
         //Find the views
         Activity activity = mObs_Test_Rule.getActivity();
         CheckBox checkBox = activity.findViewById(R.id.cb_ob_signs1);
@@ -58,7 +58,7 @@ public class ObservableSignsTest {
     }
 
     @Test
-    public void check_boxes_checkable() {
+    public void test_check_boxes_checkable() {
         //Find the view and perform action
         onView(withId(R.id.cb_ob_signs1)).perform(click());
         //Check if action returns desired outcome
@@ -82,15 +82,15 @@ public class ObservableSignsTest {
     }
 
     @Test
-    public void continue_button_opens_correct_activity() {
+    public void test_continue_button_opens_correct_activity() {
         //Find the view and perform action
         onView(withId(R.id.os_continue)).perform(click());
         //Check if action returns desired outcome
-        intended(hasComponent(Symptoms.class.getName()));
+        intended(hasComponent(SymptomsActivity.class.getName()));
     }
 
     @Test
-    public void call_Ambulance_Button_launches_Dialog() {
+    public void test_call_Ambulance_Button_launches_Dialog() {
         //Find the view and perform the action
         onView(withId(R.id.os_call_ambulance)).perform(click());
         //Check if action returns desired outcome

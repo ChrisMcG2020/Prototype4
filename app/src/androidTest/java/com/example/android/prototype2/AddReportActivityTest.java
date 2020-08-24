@@ -31,7 +31,7 @@ public class AddReportActivityTest {
             = new IntentsTestRule<>(AddReportActivity.class);
 
     @Test
-    public void editText_and_buttons_present() {
+    public void test_editText_and_buttons_present() {
         //Get the activity
         Activity activity = mAddReportTestRule.getActivity();
         //Find the views and assert they are present
@@ -45,13 +45,13 @@ public class AddReportActivityTest {
     }
 
     @Test
-    public void write_in_edit_text_test() {
+    public void test_write_in_edit_text_test() {
         //Find the views and perform action
         onView(withId(R.id.report_edit_text)).perform(typeText("Test"));
     }
 
     @Test
-    public void report_continue_button_opens_correct_activity() {
+    public void test_report_continue_button_opens_correct_activity() {
         //Find the views and perform action
         onView(withId(R.id.report_continue)).perform(click());
         //Check if action returns desired outcome
@@ -60,7 +60,7 @@ public class AddReportActivityTest {
     }
 
     @Test
-    public void report_call_Ambulance_Button_launches_Dialog() {
+    public void test_report_call_Ambulance_Button_launches_Dialog() {
         //Find the views and perform the action
         onView(withId(R.id.report_call_ambulance)).perform(click());
         //Check if action returns desired outcome

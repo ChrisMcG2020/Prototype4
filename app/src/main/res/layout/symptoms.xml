@@ -4,10 +4,10 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/colorBackground">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-   >
+        android:layout_height="wrap_content">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -22,9 +22,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!-- Media -->
-
-                <!-- Buttons -->
+                <!--Orange Flag Warning Image-->
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="184dp"
@@ -32,7 +30,7 @@
                     android:contentDescription="orange_flag"
                     app:srcCompat="@drawable/secondary_symptoms" />
 
-
+                <!--ScrollView to scroll through all options-->
                 <ScrollView
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent">
@@ -43,7 +41,7 @@
                         android:orientation="vertical"
                         android:padding="16dp">
 
-                        <!-- Title, secondary and supporting text -->
+                        <!--Title and introduction text-->
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -61,7 +59,7 @@
                             android:textSize="16sp" />
 
 
-                       <!--Checkboxes to check if certain symptoms are present-->
+                        <!--Checkboxes to check if certain symptoms are present-->
                         <CheckBox
                             android:id="@+id/symptom1"
                             android:layout_width="wrap_content"
@@ -153,26 +151,31 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/symptom15" />
+
                         <CheckBox
                             android:id="@+id/symptom16"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/symptom16" />
+
                         <CheckBox
                             android:id="@+id/symptom17"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/symptom17" />
+
                         <CheckBox
                             android:id="@+id/symptom18"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/symptom18" />
+
                         <CheckBox
                             android:id="@+id/symptom19"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/symptom19" />
+
                         <CheckBox
                             android:id="@+id/symptom20"
                             android:layout_width="match_parent"
@@ -186,6 +189,7 @@
 
 
                 <!--App designed Buttons to continue/call ambulance -->
+                <!--Layout_weight=1 gives each button equal size within the view-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -195,20 +199,24 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/symptom_call_ambulance"
                         style="?attr/borderlessButtonStyle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginRight="8dp"
+                        android:layout_weight="1"
                         android:onClick="onButtonClicked"
-                        android:text="@string/call_ambulance" />
+                        android:text="@string/call_ambulance"
+                        android:textSize="12sp" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/symptom_continue"
                         style="?attr/borderlessButtonStyle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:onClick="onButtonClicked"
-                        android:text="@string/continue_diagnosis" />
+                        android:text="@string/continue_diagnosis"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -216,3 +224,4 @@
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 </ScrollView>
+

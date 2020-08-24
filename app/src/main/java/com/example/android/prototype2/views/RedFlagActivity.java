@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.android.prototype2.R;
+import com.example.android.prototype2.dialogs.AlertDialogFragment;
 import com.example.android.prototype2.dialogs.AmbulanceFragment;
 
 public class RedFlagActivity extends AppCompatActivity {
@@ -18,6 +19,10 @@ public class RedFlagActivity extends AppCompatActivity {
 
     //Create a UID for the intent
     String intentUid1, intentEmail1, intentName1;
+
+
+    //Initialise dialog to be shown to be true
+    private boolean mIsDialogShown = true;
 
     //Tag for printing log details
     private final String TAG = getClass().getSimpleName();
@@ -30,6 +35,7 @@ public class RedFlagActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //Set layout
         setContentView(R.layout.activity_red_flag);
+        showDialog();
 
     }
 
@@ -64,5 +70,17 @@ public class RedFlagActivity extends AppCompatActivity {
             //Start the next activity
             startActivity(redFlag_Intent);
         }
+    }
+    //Implement the medical warning  alert to the user
+    public void showDialog() {
+        //Show the dialog
+        mIsDialogShown = true;
+        // Create an instance of the alert dialog fragment and show it
+        AlertDialogFragment medicalAlert = new AlertDialogFragment();
+        //User can only close dialog by choosing option
+        medicalAlert.setCancelable(false);
+        //Use the Fragment manager to show the alert
+        medicalAlert.show(getSupportFragmentManager(), "Fragment Medical Alert Dialog");
+
     }
 }
