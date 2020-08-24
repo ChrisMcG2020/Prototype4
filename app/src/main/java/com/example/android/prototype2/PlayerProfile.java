@@ -40,13 +40,12 @@ public class PlayerProfile extends AppCompatActivity {
     private TextInputEditText emailTextView, phoneNoTextView, nameTextView, emergencyContactTextView, emergencyContactPhoneNoTextView;
     private TextInputLayout nameView, emailView, phoneView, emergencyContactView, emergencyContactPhoneView;
     private TextView displayName, displayPhone, incidents;
-    String playerEmail;
 
     //Firebase variables
-    FirebaseAuth firebaseAuth;
-    FirebaseUser user;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser user;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
 
     //Tag for printing log details
     private final String TAG = getClass().getSimpleName();
@@ -96,8 +95,6 @@ public class PlayerProfile extends AppCompatActivity {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                //Loop until required user found
                 for (DataSnapshot userSnapshot : snapshot.getChildren()) {
                     //Retrieve required information
                     String name = (String) userSnapshot.child("name").getValue();
@@ -243,7 +240,7 @@ public class PlayerProfile extends AppCompatActivity {
     }
 
     //Validation for email
-    public Boolean validateEmail() {
+    private Boolean validateEmail() {
         String entry = emailTextView.getText().toString();
         //Characters accepted for email address
         String emailCharacters = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"

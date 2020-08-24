@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.android.prototype2.helperClass.AllIncidentsModel;
 import com.example.android.prototype2.R;
+import com.example.android.prototype2.helperClass.AllIncidentsModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,16 +24,16 @@ import java.util.ArrayList;
 public class AllIncidentsListView extends AppCompatActivity {
 
     //Define the RecyclerView
-    RecyclerView listViewAllIncidents;
-    ArrayList<AllIncidentsModel> allIncidentsModel;
+    private RecyclerView listViewAllIncidents;
+    private ArrayList<AllIncidentsModel> allIncidentsModel;
 
     //Define the reference to the database
-    DatabaseReference reference;
-    FirebaseAuth mauth;
-    FirebaseUser mCurrent;
+    private DatabaseReference reference;
+    private FirebaseAuth mauth;
+    private FirebaseUser mCurrent;
 
     //Define the PlayerList Adapter
-    AllIncidentsAdapter adapter;
+    private AllIncidentsAdapter adapter;
 
     //Search view bar variable
     private SearchView searchView;
@@ -67,7 +67,6 @@ public class AllIncidentsListView extends AppCompatActivity {
             }
 
         });
-
 
 
         //Assign the playersList

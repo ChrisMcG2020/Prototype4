@@ -43,20 +43,21 @@ public class CoachProfile extends AppCompatActivity {
     //Declare a list using the CoachHelperClass
     private List<CoachHelperClass> coachesList;
 
-
     private TextInputEditText coachNameTextView, coachPhoneNoTextView, coachEmailTextView, teamCoachedTextView;
     private TextView displayCoachName, displayCoachphone;
     private TextInputLayout emailView, phoneView, nameView, teamView;
     private String coachEmail;
     private Button updateCoach, deleteCoach;
-    FirebaseAuth firebaseAuth;
-    FirebaseUser user;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
-    //Tag for printing log det
-    // Fails
+
+    //Firebase variables
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser user;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+
+    //Tag for printing log details
     private final String TAG = getClass().getSimpleName();
-    // private Context context;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -241,7 +242,7 @@ public class CoachProfile extends AppCompatActivity {
     }
 
     //Validation for email
-    public Boolean validateCoachEmail() {
+    private Boolean validateCoachEmail() {
         String entry = coachEmailTextView.getText().toString();
         //Characters accepted for email address
         String emailCharacters = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
@@ -308,6 +309,7 @@ public class CoachProfile extends AppCompatActivity {
 
     //Method to direct button clicks to correct action
     public void onButtonClicked(View view) {
+        //Switch statement implemented as a lot of choices available
         switch (view.getId()) {
             //If recover image clocked recover advice page launched
             case R.id.diagnose_concussion_button:

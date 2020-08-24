@@ -16,11 +16,11 @@ import com.example.android.prototype2.dialogs.AmbulanceFragment;
 public class SymptomsActivity extends AppCompatActivity {
 
     //Checkbox variables
-    CheckBox symptom1, symptom2, symptom3, symptom4, symptom5, symptom6, symptom7, symptom8, symptom9, symptom10,
+    private CheckBox symptom1, symptom2, symptom3, symptom4, symptom5, symptom6, symptom7, symptom8, symptom9, symptom10,
             symptom11, symptom12, symptom13, symptom14, symptom15, symptom16, symptom17, symptom18, symptom19, symptom20;
 
     //Intent strings for passing intents
-    String intentUid3, intentRedFlag3, intentObservable3, intentEmail3, intentName3;
+    private String intentUid3, intentRedFlag3, intentObservable3, intentEmail3, intentName3;
 
     ////Variable for storing result
     private String symptomResult;
@@ -62,7 +62,7 @@ public class SymptomsActivity extends AppCompatActivity {
 
     }
 
-    public void symptomsResult() {
+    private void symptomsResult() {
         //Retrieve the previous results and assign them
         intentUid3 = getIntent().getStringExtra("uid2");
         intentName3 = getIntent().getStringExtra("name2");

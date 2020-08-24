@@ -59,7 +59,7 @@ public class RecoveryAdviceTest {
         //Find the views and perform action
         onView(withId(R.id.return_to_sport_btn)).perform(scrollTo()).perform(click());
         //Check if action returns desired outcome
-        intended(hasComponent(ReturnToSport.class.getName()));
+        intended(hasComponent(ReturnToSportStrategy.class.getName()));
 
     }
 

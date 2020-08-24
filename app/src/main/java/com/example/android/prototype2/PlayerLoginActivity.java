@@ -25,17 +25,16 @@ public class PlayerLoginActivity extends AppCompatActivity {
 
 
     //Declare the variables
-    private TextView regLink;
     private TextInputLayout loginEmail, loginPass, loginPhoneNo;
     private Button forgotPass, register;
 
     //Firebase variables
-    FirebaseDatabase rootNode;
-    DatabaseReference reference;
-    FirebaseDatabase mAuth;
+    private FirebaseDatabase rootNode;
+    private DatabaseReference reference;
+    private FirebaseDatabase mAuth;
 
-    ProgressBar progressBar;
-
+    //Progress bar variable
+    private ProgressBar progressBar;
 
     //Tag for printing log details
     private final String TAG = getClass().getSimpleName();
@@ -54,14 +53,9 @@ public class PlayerLoginActivity extends AppCompatActivity {
         forgotPass = findViewById(R.id.forgot_pass_btn);
         register = findViewById(R.id.player_reg_btn);
 
-
+        //Initialise the progress bar to be not visible for now
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
-
-
-        //regLink textView when click allows user to register
-        regLink = findViewById(R.id.reglink_text_view);
-
 
         forgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,7 +137,8 @@ public class PlayerLoginActivity extends AppCompatActivity {
                 } else {
                     loginEmail.setError("Email/Password Incorrect");
                     loginPass.setError("Email/Password Incorrect");
-                    //    Toast.makeText(getApplicationContext(), "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                    //Show progress bar loading
                     progressBar.setVisibility(View.GONE);
                 }
             }

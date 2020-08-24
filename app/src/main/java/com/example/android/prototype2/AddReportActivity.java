@@ -148,7 +148,7 @@ public class AddReportActivity extends AppCompatActivity {
 
 
     //Method to direct button clicks to correct action
-    public void onButtonClicked(View view) {
+   public void onButtonClicked(View view) {
         //Call ambulance clicked launches the CallAmbulance alert dialog
         if (view.getId() == R.id.report_call_ambulance) {
             //Create new instance of the fragment
@@ -156,6 +156,7 @@ public class AddReportActivity extends AppCompatActivity {
             callAmbulance.setCancelable(false);
             callAmbulance.show(getSupportFragmentManager(), "Fragment Alert Dialog");
         }
+        //If report continued clicked launch method and then intent
         if (view.getId() == R.id.report_continue) {
             saveReport();
             Intent coach_Intent = new Intent(getApplicationContext(), CoachAdviceActivity.class);

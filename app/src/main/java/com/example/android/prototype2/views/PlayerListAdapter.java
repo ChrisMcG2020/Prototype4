@@ -22,8 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-//This class is an adapter for the Recyclerview
-public  class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.ViewHolder> implements Filterable {
+    //This class is an adapter for the Recyclerview
+    public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.ViewHolder> implements Filterable {
     //Declare a list using the UserHelperClass
     private List<UserHelperClass> playersList;
     private List<UserHelperClass> playerListFull;
@@ -126,6 +126,7 @@ public  class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.V
         }
 
 
+        @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             playersList.clear();

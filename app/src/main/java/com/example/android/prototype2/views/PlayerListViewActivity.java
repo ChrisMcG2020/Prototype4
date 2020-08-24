@@ -22,11 +22,11 @@ import java.util.ArrayList;
 //Class to update and display information in the recycler_view
 public class PlayerListViewActivity extends AppCompatActivity {
     //Define the RecyclerView
-    RecyclerView listViewPlayers;
+   private  RecyclerView listViewPlayers;
     //Define a list to store the players
-    ArrayList<UserHelperClass> playersList;
+    private ArrayList<UserHelperClass> playersList;
     //Define the reference to the database
-    DatabaseReference reference;
+    private DatabaseReference reference;
 
     //Search view bar variable
     private SearchView searchView;
@@ -34,7 +34,7 @@ public class PlayerListViewActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
 
     //Define the PlayerList Adapter
-    PlayerListAdapter adapter;
+    private PlayerListAdapter adapter;
 
     //Tag for printing log details
     private final String TAG = getClass().getSimpleName();

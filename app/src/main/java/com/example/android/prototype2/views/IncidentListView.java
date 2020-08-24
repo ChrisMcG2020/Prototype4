@@ -29,12 +29,12 @@ public class IncidentListView extends AppCompatActivity {
     private ArrayList<PlayerIncidentsModel> playerIncidentsModels;
 
     //Define the reference to the database
-    DatabaseReference reference;
-    FirebaseAuth mauth;
-    FirebaseUser mCurrent;
+    private DatabaseReference reference;
+    private FirebaseAuth mauth;
+    private FirebaseUser mCurrent;
 
     //Define the PlayerList Adapter
-    IncidentListAdapter adapter;
+    private IncidentListAdapter adapter;
 
 
     //Tag for printing log details

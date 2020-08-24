@@ -198,7 +198,6 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/symptom_call_ambulance"
-                        style="?attr/borderlessButtonStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
@@ -210,7 +209,6 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/symptom_continue"
-                        style="?attr/borderlessButtonStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

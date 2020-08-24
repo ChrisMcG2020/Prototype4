@@ -3,11 +3,8 @@ package com.example.android.prototype2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.android.prototype2.dialogs.AmbulanceFragment;
 
 public class RecoveryActivity extends AppCompatActivity {
 
@@ -30,7 +27,7 @@ public class RecoveryActivity extends AppCompatActivity {
         }
         //Return to sport button clicked launches Return To Sport page
         if (view.getId() == R.id.return_to_sport_btn) {
-            Intent returnToSport = new Intent(getApplicationContext(), ReturnToSport.class);
+            Intent returnToSport = new Intent(getApplicationContext(), ReturnToSportStrategy.class);
             startActivity(returnToSport);
         }
     }

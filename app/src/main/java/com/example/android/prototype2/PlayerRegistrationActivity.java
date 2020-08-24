@@ -33,15 +33,15 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
     private TextInputLayout regName,
             regEmail, regPhoneNo, regPassword, regContact, regContactPhone, regDobValidationsError;
     //Variables for getting DOB
-    DatePicker regDOB;
+    private DatePicker regDOB;
 
     private Button regBtn, regToLoginBtn;
 
     //Progress bar variable
     private ProgressBar progressBar;
 
-    FirebaseAuth mAuth;
-    FirebaseUser mCurrent;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mCurrent;
 
     //Tag for printing log details
     private final String TAG = getClass().getSimpleName();
@@ -81,14 +81,6 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        if (mAuth.getCurrentUser() != null) {
-            //handle the already login user
-        }
-    }
 
 
     //Validation for name
@@ -242,7 +234,7 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
     }
 
     //Method to register user
-    public void registerUser() {
+    private void registerUser() {
 
 
         //Get all the values from the text fields
@@ -274,7 +266,7 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
             return;
         }
 
-        //Progress bar now visible
+        //Progress bar visible while loading
         progressBar.setVisibility(View.VISIBLE);
         //Access the firebase reference and create a user with their email and password
         mAuth.createUserWithEmailAndPassword(email, password)

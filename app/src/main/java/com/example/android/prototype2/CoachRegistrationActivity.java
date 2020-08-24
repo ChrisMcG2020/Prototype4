@@ -37,7 +37,7 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
     private FirebaseAuth mAuth;
 
 
-    FirebaseUser currentUser;
+    private FirebaseUser currentUser;
 
 
     @Override
@@ -181,7 +181,7 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
     }
 
     //This function will execute when user click on Register Button
-    public void registerCoachUser() {
+    private void registerCoachUser() {
         //Get all the values from the text fields
         final String name = regCoachName.getEditText().getText().toString();
         final String email = regCoachEmail.getEditText().getText().toString();

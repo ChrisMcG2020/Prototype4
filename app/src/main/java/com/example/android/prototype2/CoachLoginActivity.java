@@ -32,11 +32,11 @@ public class CoachLoginActivity extends AppCompatActivity {
     private Button forgotPass, register;
 
     //Firebase variables
-    FirebaseDatabase rootNode;
-    DatabaseReference databaseReference;
-    FirebaseAuth firebaseAuth;
+    private FirebaseDatabase rootNode;
+    private DatabaseReference databaseReference;
+    private FirebaseAuth firebaseAuth;
 
-    ProgressBar progressBar;
+    private ProgressBar progressBar;
 
 
     //Tag for printing log details
@@ -56,15 +56,14 @@ public class CoachLoginActivity extends AppCompatActivity {
         forgotPass = findViewById(R.id.forgot_pass_btn);
         register = findViewById(R.id.player_reg_btn);
 
-
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
-
 
         //regLink textView when click allows user to register
         regLink = findViewById(R.id.reglink_text_view);
 
 
+        //Assign forgot password method to button
         forgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +83,6 @@ public class CoachLoginActivity extends AppCompatActivity {
         }
 
     }
-
 
     //Validation for email
     private Boolean validateLoginEmail() {
@@ -119,7 +117,7 @@ public class CoachLoginActivity extends AppCompatActivity {
     }
 
     //Method to check the details against the firebase database and retrieve the information if present
-    public void isUser() {
+    protected void isUser() {
         //Retrieve the user entered details
         final String userEnteredEmail = loginEmail.getEditText().getText().toString().trim();
         final String userEnteredPassword = loginPass.getEditText().getText().toString().trim();
@@ -138,8 +136,6 @@ public class CoachLoginActivity extends AppCompatActivity {
         final Query[] checkUser = {databaseReference.orderByChild("coachEmail").equalTo(userEnteredEmail)};
 
         firebaseAuth.signInWithEmailAndPassword(userEnteredEmail, userEnteredPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-
-
             @Override
             public void onComplete(@NonNull final Task<AuthResult> task) {
 
@@ -156,9 +152,9 @@ public class CoachLoginActivity extends AppCompatActivity {
         });
     }
 
-    protected void forgotPassword() {
+    private void forgotPassword() {
 
-        final String entry = loginEmail.getEditText().getText().toString();
+        final String entry = loginEmail.getEditText().getText().toString().trim();
         //Characters accepted for email address
         final String emailCharacters = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
                 + "+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|";
@@ -198,7 +194,9 @@ public class CoachLoginActivity extends AppCompatActivity {
         if (view.getId() == R.id.player_reg_btn) {
             Intent coachLogin = new Intent(getApplicationContext(), CoachRegistrationActivity.class);
             startActivity(coachLogin);
-
+        }
+        if (view.getId() == R.id.coach_forgot_pass_btn) {
+            forgotPassword();
         }
     }
 }

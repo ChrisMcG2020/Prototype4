@@ -14,9 +14,9 @@ import com.example.android.prototype2.dialogs.AmbulanceFragment;
 public class ObservableSignsActivity extends AppCompatActivity {
 
     //Checkbox variables
-    CheckBox signs1, signs2, signs3, signs4, signs5;
+    private CheckBox signs1, signs2, signs3, signs4, signs5;
     //Intent strings for passing intents
-    String intentRedFlag2, intentUid2, intentEmail2, intentName2;
+    private String intentRedFlag2, intentUid2, intentEmail2, intentName2;
 
     //Variable for storing result
     private String obsDiagnosis;

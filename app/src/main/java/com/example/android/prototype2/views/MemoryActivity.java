@@ -17,16 +17,16 @@ import com.example.android.prototype2.dialogs.AmbulanceFragment;
 public class MemoryActivity extends AppCompatActivity {
 
     //Checkbox variables
-    CheckBox q1Yes, q1No, q2Yes, q2No, q3Yes, q3No, q4Yes, q4No, q5Yes, q5No;
+    private CheckBox q1Yes, q1No, q2Yes, q2No, q3Yes, q3No, q4Yes, q4No, q5Yes, q5No;
 
     //Intent strings
-    String intentUid4, intentRedFlag4, intentObs4, intentEmail4, intentName4, intentSymptoms4;
+    private String intentUid4, intentRedFlag4, intentObs4, intentEmail4, intentName4, intentSymptoms4;
 
     //Variable for storing the result of the memory questions
-    int result = 0;
+    private int result = 0;
 
     //Variable for storing result
-    String memoryResult;
+    private String memoryResult;
 
     //Tag for printing log details
     private final String TAG = getClass().getSimpleName();
@@ -53,7 +53,7 @@ public class MemoryActivity extends AppCompatActivity {
 
     }
 
-    public void quizDiagnosis() {
+    private void quizDiagnosis() {
         //Retrieve the previous results and assign them
         intentUid4 = getIntent().getStringExtra("uid3");
         intentEmail4 = getIntent().getStringExtra("email3");
@@ -80,7 +80,6 @@ public class MemoryActivity extends AppCompatActivity {
         if (q5No.isChecked()) result = result - 1;
 
 
-
         //Less than 1 then test is a fail
         if (result < 1) memoryResult = "Memory Activity: Failed";
         else {
@@ -90,32 +89,32 @@ public class MemoryActivity extends AppCompatActivity {
 
     }
 
-   //Method to make sure correct number of boxes ticked
-        public boolean validateQuestions(){
+    //Method to make sure correct number of boxes ticked
+    private boolean validateQuestions() {
         //Initialise number of ticked boxes to 0
-        int noOfBoxes=0;
+        int noOfBoxes = 0;
         //If statements for each question and update number of boxes ticked
-        if (q1Yes.isChecked()) noOfBoxes=noOfBoxes+1;
-        if (q1No.isChecked()) noOfBoxes=noOfBoxes+1;
-        if (q2Yes.isChecked()) noOfBoxes=noOfBoxes+1;
-        if (q2No.isChecked()) noOfBoxes=noOfBoxes+1;
-        if (q3Yes.isChecked()) noOfBoxes=noOfBoxes+1;
-        if (q3No.isChecked()) noOfBoxes=noOfBoxes+1;
-        if (q4Yes.isChecked()) noOfBoxes=noOfBoxes+1;
-        if (q4No.isChecked()) noOfBoxes=noOfBoxes+1;
-        if (q5Yes.isChecked()) noOfBoxes=noOfBoxes+1;
-        if (q5No.isChecked()) noOfBoxes=noOfBoxes+1;
+        if (q1Yes.isChecked()) noOfBoxes = noOfBoxes + 1;
+        if (q1No.isChecked()) noOfBoxes = noOfBoxes + 1;
+        if (q2Yes.isChecked()) noOfBoxes = noOfBoxes + 1;
+        if (q2No.isChecked()) noOfBoxes = noOfBoxes + 1;
+        if (q3Yes.isChecked()) noOfBoxes = noOfBoxes + 1;
+        if (q3No.isChecked()) noOfBoxes = noOfBoxes + 1;
+        if (q4Yes.isChecked()) noOfBoxes = noOfBoxes + 1;
+        if (q4No.isChecked()) noOfBoxes = noOfBoxes + 1;
+        if (q5Yes.isChecked()) noOfBoxes = noOfBoxes + 1;
+        if (q5No.isChecked()) noOfBoxes = noOfBoxes + 1;
 
         //If greater than 5 show error toast
-        if (noOfBoxes >5){
-            Toast.makeText(getApplicationContext(),"Too many boxes ticked, try again", Toast.LENGTH_LONG).show();
-            Log.d(TAG,"Too many boxes");
+        if (noOfBoxes > 5) {
+            Toast.makeText(getApplicationContext(), "Too many boxes ticked, try again", Toast.LENGTH_LONG).show();
+            Log.d(TAG, "Too many boxes");
             return false;
         }
         //If less than 5 show error toast
-        if (noOfBoxes<5){
-            Toast.makeText(getApplicationContext(),"Too few boxes ticked, try again", Toast.LENGTH_LONG).show();
-            Log.d(TAG,"Too few boxes");
+        if (noOfBoxes < 5) {
+            Toast.makeText(getApplicationContext(), "Too few boxes ticked, try again", Toast.LENGTH_LONG).show();
+            Log.d(TAG, "Too few boxes");
             return false;
         }
         return true;
@@ -135,8 +134,9 @@ public class MemoryActivity extends AppCompatActivity {
             //Run the memory quiz method
             quizDiagnosis();
             //Check the correct number of boxes ticked
-            if(!validateQuestions()){
-                return;}
+            if (!validateQuestions()) {
+                return;
+            }
             //Pass the intents to the next activity
             Intent memoryIntent = new Intent(getApplicationContext(), AddReportActivity.class);
             memoryIntent.putExtra("uid4", intentUid4);

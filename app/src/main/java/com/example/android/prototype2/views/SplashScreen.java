@@ -25,7 +25,7 @@ public class SplashScreen extends AppCompatActivity {
 
 
     //Method for showing the login dialog
-    public void showDialog() {
+    protected void showDialog() {
         mIsDialogShown = true;
         //Create a new instance of the fragment
         AlertLoginFragment alertLogin = new AlertLoginFragment();

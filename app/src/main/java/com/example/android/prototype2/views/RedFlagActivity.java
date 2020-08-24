@@ -18,7 +18,7 @@ public class RedFlagActivity extends AppCompatActivity {
     private String redFlagDiagnosis;
 
     //Create a UID for the intent
-    String intentUid1, intentEmail1, intentName1;
+    private String intentUid1, intentEmail1, intentName1;
 
 
     //Initialise dialog to be shown to be true
@@ -72,7 +72,7 @@ public class RedFlagActivity extends AppCompatActivity {
         }
     }
     //Implement the medical warning  alert to the user
-    public void showDialog() {
+    protected void showDialog() {
         //Show the dialog
         mIsDialogShown = true;
         // Create an instance of the alert dialog fragment and show it
