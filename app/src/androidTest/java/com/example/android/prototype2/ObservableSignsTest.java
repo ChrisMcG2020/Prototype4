@@ -29,7 +29,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 public class ObservableSignsTest {
     // Set the rule to apply to the test method and which class to use
     @Rule
-    public IntentsTestRule<ObservableSignsActivity> mObs_Test_Rule
+    public final IntentsTestRule<ObservableSignsActivity> mObs_Test_Rule
             = new IntentsTestRule<>(ObservableSignsActivity.class);
 
     @Test

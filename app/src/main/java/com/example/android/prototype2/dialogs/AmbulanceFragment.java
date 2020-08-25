@@ -33,16 +33,16 @@ public class AmbulanceFragment extends DialogFragment {
 
         Log.d(TAG, "Alert Dialog");
         //Set the title of the dialog
-        builder.setTitle("CALL AMBULANCE?");
+        builder.setTitle(R.string.ambulance_title);
 
         //Set the message
-        builder.setMessage("Do you wish to call an Ambulance?");
+        builder.setMessage(R.string.ambulance_message);
 
         //Set the icon to display
         builder.setIcon(R.drawable.warning);
 
         //Set the text and action of the button
-        builder.setPositiveButton("CALL", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.ambulance_positive, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -60,7 +60,7 @@ public class AmbulanceFragment extends DialogFragment {
         });
 
         //Set the text and action of the  button
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.ambulance_negative, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 

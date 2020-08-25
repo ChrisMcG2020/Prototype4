@@ -27,7 +27,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 public class AddReportActivityTest {
     //Set the rule to apply to the test method and which class to use
     @Rule
-    public IntentsTestRule<AddReportActivity> mAddReportTestRule
+    public final IntentsTestRule<AddReportActivity> mAddReportTestRule
             = new IntentsTestRule<>(AddReportActivity.class);
 
     @Test

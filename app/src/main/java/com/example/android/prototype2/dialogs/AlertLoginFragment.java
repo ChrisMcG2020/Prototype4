@@ -32,18 +32,19 @@ public class AlertLoginFragment extends DialogFragment {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
+        //Log the login dialog
         Log.d(TAG, "Alert Dialog");
 
         //Set the title of the dialog
-        builder.setTitle("Profile Choice");
+        builder.setTitle(R.string.login_title);
 
         //Set the icon to display
         builder.setIcon(R.drawable.ic_baseline_sports_volleyball_24);
         //Set the message
-        builder.setMessage("Choose a Profile...");
+        builder.setMessage(R.string.login_message);
 
         //Set the text and action of the button
-        builder.setPositiveButton("Player", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.login_player, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //Choosing player starts PlayerLoginActivity
@@ -55,7 +56,7 @@ public class AlertLoginFragment extends DialogFragment {
         });
 
         //Set the text and action of the  button
-        builder.setNegativeButton("Coach", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.login_coach, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //Choosing coach starts CoachLoginActivity

@@ -44,7 +44,7 @@ import static com.example.android.prototype2.PlayerRegistrationTest.TEST_EMAIL;
 public class LoginScreenTest {
     // Set the rule to apply to the test method and which class to use
     @Rule
-    public IntentsTestRule<PlayerLoginActivity> mLoginTestRule
+    public final IntentsTestRule<PlayerLoginActivity> mLoginTestRule
             = new IntentsTestRule<>(PlayerLoginActivity.class);
 
 

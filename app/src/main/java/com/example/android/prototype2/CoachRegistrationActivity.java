@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.android.prototype2.helperClass.CoachHelperClass;
+import com.example.android.prototype2.helperClass.CoachModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
@@ -193,7 +193,7 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
         DatabaseReference coach = FirebaseDatabase.getInstance().getReference("Coaches");
         //Add a unique Id to the coach
         final String id = coach.push().getKey();
-        // final String clubId= coach.push().getKey();
+
         //if any of the validations do not pass return will be called and errors will be shown
         if (!validateName() | !validatePassword() | !validatePhoneNo() | !validateEmail() | !validateTeamCoached()) {
             return;
@@ -210,13 +210,13 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
 
                         if (task.isSuccessful()) {
                             //Set the details from our UserHelperClass
-                            CoachHelperClass coachHelperClass = new CoachHelperClass();
-                            coachHelperClass.setCoachName(name);
-                            coachHelperClass.setCoachPhoneNumber(phoneNo);
-                            coachHelperClass.setCoachEmail(email);
-                            coachHelperClass.setTeamCoached(teamCoached);
-                            coachHelperClass.setCoachID(id);
-                            coachHelperClass.setUid(coachUID);
+                            CoachModel coachModel = new CoachModel();
+                            coachModel.setCoachName(name);
+                            coachModel.setCoachPhoneNumber(phoneNo);
+                            coachModel.setCoachEmail(email);
+                            coachModel.setTeamCoached(teamCoached);
+                            coachModel.setCoachID(id);
+                            coachModel.setUid(coachUID);
 
                             //Log tags used for testing
                             Log.d(TAG, "TEST_coach_RegName: " + name);
@@ -225,10 +225,10 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
                             Log.d(TAG, "TEST_coach_TeamCoachedEC: " + teamCoached);
                             Log.d(TAG, "TEST_coachUID: " + coachUID);
 
-                            //Get an instance of the firebase database and add the details from helper class to the current user
+                            //Get an instance of the firebase database  to the current user
                             FirebaseDatabase.getInstance().getReference("Coaches").child(coachUID)
-                                    //.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(coachHelperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                                    .setValue(coachModel).addOnCompleteListener(new OnCompleteListener<Void>() {
 
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {

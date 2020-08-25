@@ -14,7 +14,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.prototype2.R;
-import com.example.android.prototype2.helperClass.UserHelperClass;
+import com.example.android.prototype2.helperClass.PlayerModel;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -25,11 +25,11 @@ import java.util.List;
     //This class is an adapter for the Recyclerview
     public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.ViewHolder> implements Filterable {
     //Declare a list using the UserHelperClass
-    private List<UserHelperClass> playersList;
-    private List<UserHelperClass> playerListFull;
+    private final List<PlayerModel> playersList;
+    private final List<PlayerModel> playerListFull;
 
     //Variables
-    private Context context;
+    private final Context context;
 
     private DatabaseReference databaseReference;
 
@@ -37,14 +37,12 @@ import java.util.List;
     // private Context context;
 
     //Constructor
-    public PlayerListAdapter(Context context, List<UserHelperClass> playersList) {
+    public PlayerListAdapter(Context context, List<PlayerModel> playersList) {
         this.context = context;
         this.playersList = playersList;
         playerListFull = new ArrayList<>(playersList);
 
     }
-
-
     @NonNull
     @Override
     //If viewHolder does  not exist create one by inflating the user_details_view
@@ -60,14 +58,13 @@ import java.util.List;
     //onBind fills the player profile with the data, and updates as the user scrolls down the recycler
     public void onBindViewHolder(ViewHolder holder, final int position) {
         //Retrieve the player stored at the position
-        final UserHelperClass player = playersList.get(position);
-        //Set the info from the UserHelperClass in the textViews
+        final PlayerModel player = playersList.get(position);
+        //Set the info from the player in the textViews
         holder.textViewName.setText(String.format("Name: %s", player.getName()));
         holder.textViewEmail.setText(String.format("Email: %s", player.getEmail()));
         holder.textViewPhone.setText(String.format("Phone: %s", player.getPhoneNo()));
         holder.textViewEmergencyContact.setText(String.format("Emergency Contact: %s", player.getEmergencyContact()));
         holder.textViewEmergencyContactPhone.setText(String.format("Contact's Phone: %s", player.getContactNumber()));
-
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
@@ -100,51 +97,51 @@ import java.util.List;
         return exampleFilter;
     }
 
-    //Filter method to search the players for the search entry. An example here of an Asynchronous task
-    private  Filter exampleFilter = new Filter() {
+        //Filter method to search the players for the search entry. An example here of an Asynchronous task
+        private final Filter exampleFilter = new Filter() {
 
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            List<UserHelperClass> filteredList = new ArrayList<>();
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                List<PlayerModel> filteredList = new ArrayList<>();
 
-            if (constraint == null || constraint.length() == 0) {
-                filteredList.addAll(playerListFull);
+                if (constraint == null || constraint.length() == 0) {
+                    filteredList.addAll(playerListFull);
 
-            } else {
-                //trim -empty spaces removed
-                String filterPattern = constraint.toString().toLowerCase().trim();
+                } else {
+                    //trim -empty spaces removed
+                    String filterPattern = constraint.toString().toLowerCase().trim();
 
-                for (UserHelperClass player : playerListFull) {
-                    if (player.getName().toLowerCase().contains(filterPattern)) {
-                        filteredList.add(player);
+                    for (PlayerModel player : playerListFull) {
+                        if (player.getName().toLowerCase().contains(filterPattern)) {
+                            filteredList.add(player);
+                        }
                     }
                 }
+                FilterResults results = new FilterResults();
+                results.values = filteredList;
+                return results;
             }
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-            return results;
-        }
 
 
-        @SuppressWarnings("unchecked")
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-            playersList.clear();
-            playersList.addAll((List) results.values);
-            notifyDataSetChanged();
+            @SuppressWarnings("unchecked")
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                playersList.clear();
+                playersList.addAll((List) results.values);
+                notifyDataSetChanged();
 
-        }
-    };
+            }
+        };
 
     //ViewHolder wraps the view passed to it so RecyclerView can deal with it
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private SearchView searchView;
-        private TextView textViewName;
-        private TextView textViewEmail;
-        private TextView textViewPhone;
-        private TextView textViewEmergencyContact;
-        private TextView textViewEmergencyContactPhone;
-        private View parentView;
+        private final SearchView searchView;
+        private final TextView textViewName;
+        private final TextView textViewEmail;
+        private final TextView textViewPhone;
+        private final TextView textViewEmergencyContact;
+        private final TextView textViewEmergencyContactPhone;
+        private final View parentView;
 
 
         //Initialise the variables to their corresponding views

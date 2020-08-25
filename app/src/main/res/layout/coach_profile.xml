@@ -81,7 +81,7 @@
 
         </RelativeLayout>
 
-        <!--Matrial Card View implemented to display the three options-->
+        <!--Material Card View implemented to display the three options-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="127dp"

@@ -30,8 +30,8 @@ public class IncidentListView extends AppCompatActivity {
 
     //Define the reference to the database
     private DatabaseReference reference;
-    private FirebaseAuth mauth;
-    private FirebaseUser mCurrent;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser currentUser;
 
     //Define the PlayerList Adapter
     private IncidentListAdapter adapter;
@@ -58,15 +58,15 @@ public class IncidentListView extends AppCompatActivity {
         listViewIncidents.setLayoutManager(new LinearLayoutManager(this));
 
 
-        mauth = FirebaseAuth.getInstance();
-        mCurrent = mauth.getCurrentUser();
+        firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
         //Get a reference to the path required in the database
         reference = FirebaseDatabase.getInstance().getReference("Incidents");
 
 
 
         //AddValueEventListener will return the players incidents when called
-        reference.orderByChild("uid").equalTo(mCurrent.getUid()).addValueEventListener(new ValueEventListener() {
+        reference.orderByChild("uid").equalTo(currentUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot incidentSnapshot : snapshot.getChildren()) {

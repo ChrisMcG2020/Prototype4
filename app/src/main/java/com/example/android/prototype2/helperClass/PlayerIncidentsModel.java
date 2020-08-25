@@ -26,10 +26,10 @@ public class PlayerIncidentsModel {
         this.uid = uid;
         this.name = name;
         this.coachName = coachName;
-        Reports = reports;
-        Red_FLag_Test = red_FLag_Test;
-        Observable_Signs_Test = observable_Signs_Test;
-        Memory_Question = memory_Question;
+        this.Reports = reports;
+        this.Red_FLag_Test = red_FLag_Test;
+        this.Observable_Signs_Test = observable_Signs_Test;
+        this.Memory_Question = memory_Question;
         this.symptoms = symptoms;
         this.playerEmail = email;
         this.Date = Date;

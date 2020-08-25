@@ -12,7 +12,6 @@ public class SplashScreen extends AppCompatActivity {
 
     private boolean mIsDialogShown = true;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +30,6 @@ public class SplashScreen extends AppCompatActivity {
         AlertLoginFragment alertLogin = new AlertLoginFragment();
         //User must pick one of the choices cannot cancel by clicking outside of dialog
         alertLogin.setCancelable(false);
-
         alertLogin.show(getSupportFragmentManager(), "Fragment Alert Dialog");
     }
 

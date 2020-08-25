@@ -29,15 +29,14 @@ public class AllIncidentsListView extends AppCompatActivity {
 
     //Define the reference to the database
     private DatabaseReference reference;
-    private FirebaseAuth mauth;
-    private FirebaseUser mCurrent;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser currentUser;
 
     //Define the PlayerList Adapter
     private AllIncidentsAdapter adapter;
 
     //Search view bar variable
     private SearchView searchView;
-
 
     //Tag for printing log details
     private final String TAG = getClass().getSimpleName();
@@ -46,7 +45,6 @@ public class AllIncidentsListView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.all_incidents_recycler);
-
 
         //Assign the search view variable
         searchView = findViewById(R.id.search_incidents);
@@ -69,7 +67,7 @@ public class AllIncidentsListView extends AppCompatActivity {
         });
 
 
-        //Assign the playersList
+        //Assign the incidents List
         allIncidentsModel = new ArrayList<>();
 
         //Assign the recycler view to the correct view
@@ -81,8 +79,9 @@ public class AllIncidentsListView extends AppCompatActivity {
         listViewAllIncidents.setLayoutManager(new LinearLayoutManager(this));
 
 
-        mauth = FirebaseAuth.getInstance();
-        mCurrent = mauth.getCurrentUser();
+        //Assign the firebase Auth to get the current user
+        firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
         //Get a reference to the path required in the database
         reference = FirebaseDatabase.getInstance().getReference("Incidents");
 

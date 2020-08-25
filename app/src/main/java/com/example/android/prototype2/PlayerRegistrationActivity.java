@@ -13,7 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.android.prototype2.helperClass.UserHelperClass;
+import com.example.android.prototype2.helperClass.PlayerModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
@@ -67,6 +67,8 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
 
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
+
+
 
         //Initialise Firebase components
         mAuth = FirebaseAuth.getInstance();
@@ -277,7 +279,7 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
                         if (task.isSuccessful()) {
                             //Get the details from our UserHelperClass
                             //UserHelperClass helperClass = new UserHelperClass(playerID, name, email, phoneNo, dob, emergencyContact, contactNumber, password,uid);
-                            UserHelperClass helperClass = new UserHelperClass();
+                            PlayerModel helperClass = new PlayerModel();
                             helperClass.setName(name);
                             helperClass.setContactNumber(contactNumber);
                             helperClass.setEmail(email);

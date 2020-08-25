@@ -41,7 +41,7 @@ public class CoachLoginScreenTest {
     public static class LoginScreenTest {
         //Set the rule to apply to the test method and which class to use
         @Rule
-        public IntentsTestRule<CoachLoginActivity> mCoachLoginActivityTestRule
+        public final IntentsTestRule<CoachLoginActivity> mCoachLoginActivityTestRule
                 = new IntentsTestRule<>(CoachLoginActivity.class);
 
 

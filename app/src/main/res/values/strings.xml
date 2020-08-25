@@ -1,26 +1,13 @@
 <resources>
-    <string name="app_name">Concussion Checker</string>
-    <string name="no">No</string>
-    <string name="yes">Yes</string>
-    <string name="Q1">What venue are we at today?</string>
-    <string name="Q2">Which half is it now?</string>
-    <string name="Q3">Who scored last in \nthe game?</string>
-    <string name="Q4">What team did you  play \nlast week?</string>
-    <string name="Q5">Did your team win the \nlast game?</string>
+    <!--Welcome Screen-->
+    <string name="welcome_title">Concussion Checker</string>
+    <string name="recovery_back_to_profile">Back to profile</string>
+    <string name="reportlogo">reportLogo</string>
 
-
-    <string name="medical_advice">This App is not designed to replace professional medical advice or diagnose concussion. It is a advisory tool</string>
-    <string name="warning_title">Warning</string>
-
-    <string name="btn_login">Login</string>
-
-    <string name="phone_number">999</string>
-
-    <!-- Recovery advice page text -->
 
     <!--Splash Page-->
     <string name="splash_tagline"><i>An app to help recognise the symptoms of concussion \n and manage recovery</i></string>
-
+    <string name="app_name">Concussion Checker</string>
 
     <!--Login Page -->
     <string name="sign_up_here"><i>Sign up here...</i></string>
@@ -31,7 +18,8 @@
     <string name="new_user_reg_here">New User? Register Here</string>
     <string name="login_email">Email</string>
     <string name="login_pass">Password</string>
-    <string name="reg_required_fields"><i>Required Fields *</i></string>
+    <string name="reg_required_fields"><i>* Required Fields</i></string>
+    <string name="btn_login">Login</string>
 
     <!--Hints -->
     <string name="name_hint">Full Name *</string>
@@ -47,6 +35,8 @@
     <string name="register_btn">Register</string>
     <string name="back_to_login_screen_btn">Back to login screen</string>
     <string name="registration_success">Registration Successful</string>
+    <string name="required_fields">* Required Fields</string>
+    <string name="player_register_btn">Register</string>
 
     <!--Red Flag Page-->
     <string name="call_ambulance">Call Ambulance</string>
@@ -56,6 +46,17 @@
     <string name="red_flag_symptoms">• Neck pain or tenderness \n• Weakness or tingling/burning in arms or \n legs \n• Increasingly restless, agitated or  combative \n• Severe or increasing headache \n• Deteriorating conscious state \n• Seizure or convulsion \n• Vomiting \n• Loss of consciousness</string>
     <string name="visual_signs_description">Check for this visual signs that could suggest concussion</string>
 
+    <!--Memory Questions-->
+    <string name="memory_assessment_title">Memory Assessment Test</string>
+    <string name="memory_assesstment_description">Ask the following questions and record the results \nMark Yes for correct / No for incorrect</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="Q1">What venue are we at today?</string>
+    <string name="Q2">Which half is it now?</string>
+    <string name="Q3">Who scored last in \nthe game?</string>
+    <string name="Q4">What team did you  play \nlast week?</string>
+    <string name="Q5">Did your team win the \nlast game?</string>
+
     <!--Observable Signs-->
     <string name="observable_signs_title">Observable Signs</string>
     <string name="observable_signs_q1">Lying motionless on the playing surface</string>
@@ -63,16 +64,14 @@
     <string name="observable_signs_q3">Disorientation or confusion, or an inability to respond appropriately to questions</string>
     <string name="observable_signs_q4">Blank or vacant look</string>
     <string name="observable_signs_q5">Facial injury after head trauma</string>
-    <string name="memory_assessment_title">Memory Assessment Test</string>
-    <string name="memory_assesstment_description">Ask the following questions and record the results \nMark Yes for correct / No for incorrect</string>
+
+    <!--Add Report-->
     <string name="profile_incidents">Incidents</string>
     <string name="profile_incident_report">Incident Report</string>
     <string name="profile_recovery">Recovery</string>
     <string name="profile_recovery_advice">Recovery Advice</string>
     <string name="incident_report_title">Add Incident Report</string>
     <string name="incident_report_heading">Fill in the details of the incident below</string>
-    <string name="player_register_btn">Register</string>
-    <string name="required_fields">*Required Fields…</string>
 
     <!--Image content Descriptions-->
     <string name="logo_Image">Logo</string>
@@ -88,12 +87,6 @@
     <string name="incidentList_RedFlag">Red Flag Test:</string>
     <string name="incidentList_CoachName">Coach Name</string>
     <string name="incidentList_Date">Date:</string>
-
-    <!--Welcome Screen-->
-    <string name="welcome_title">Concussion Checker</string>
-    <string name="report_incident_details">Fill in incident details here…</string>
-    <string name="recovery_back_to_profile">Back to profile</string>
-    <string name="reportlogo">reportLogo</string>
 
     <!--Playersearch screen -->
     <string name="player_search_name"><b>Name:</b></string>
@@ -145,7 +138,9 @@
     <string name="incidentListSymptoms">Symptoms:</string>
     <string name="observable_signs">Observable Signs</string>
     <string name="incident_list_player_name">Player Name:</string>
-    <string name="recovery_signs"><b>Signs To Watch For</b>\n\n -Worsening Headache \n-Drowsiness \n-Inability to recognise people or places \n-Repeated vomiting \n-Unusual behaviour \n-Seizures \n-Weakness/Numbness in arms or legs \n-Unsteadiness on feet \n-Slurred Speech\n \nIf any of these symptoms arise for first 24-48 hours athlete should go to hospital</string>
+    <string name="recovery_signs"><b>Signs To Watch For</b>\n\n –Worsening Headache \n-Drowsiness \n-Inability to recognise people or places \n-Repeated vomiting \n-Unusual behaviour \n-Seizures \n-Weakness/Numbness in arms or legs \n-Unsteadiness on feet \n-Slurred Speech\n \nIf any of these symptoms arise for first 24-48 hours athlete should go to hospital</string>
+
+    <!--Return to Sport Strategy page-->
     <string name="graduated_return_to_sport_strategy">Graduated Return to Sport Strategy</string>
     <string name="return_to_sport1">NO ACTIVITY \n-Complete mental and physical rest\n-Activities that do not provoke any\n symptoms.\n Stage Goal: Recovery</string>
     <string name="return_to_sport2">LIGHT AEROBIC EXERCISE \n-Keep effort under 70% of maximal HR \n-E.g.: 20 min stationary bike, light run/ \n walk\n Stage Goal: Increase Heart Rate</string>
@@ -153,27 +148,57 @@
     <string name="return_to_sport4">NON CONTACT TRAINING DRILLS \n-Progress to more sport drills. No \n head contact. Start progressive \n resistance training\n Stage Goal: Exercise, coordination,\n and cognitive load</string>
     <string name="return_to_sport5">FULL CONTACT PRACTICE \n-FOLLOWING medical clearance,\n participate in normal training\n activities\n Stage Goal: Restore confidence and\n assess functional skills by coaches</string>
     <string name="return_to_sport6">RETURN TO PLAY/SPORT \n-Normal game play/n-Continue to\n monitor and assess\n periodically</string>
+
+    <!--Coach Profile page-->
     <string name="coach_profile_concussion">DIAGNOSE CONCUSSION NOW!</string>
     <string name="coach_calender">Calender</string>
     <string name="coach_profile_history">Incidents History</string>
     <string name="coach_profile_history_tag">View History</string>
     <string name="coach_player_info_tag">View Players</string>
     <string name="coach_player_info">Player Info</string>
-
     <string name="profile_sign_out">Sign Out</string>
     <string name="profile_return_to_login">Return to Login</string>
     <string name="coach_profile_concussion_button">START CONCUSSION CHECK!</string>
     <string name="info_button">info_button</string>
     <string name="coach_image">coach_image</string>
     <string name="coach_history">History</string>
+
+    <!--App Info page-->
     <string name="info_page_title">Concussion Checker</string>
     <string name="info_back_btn">Back to Profile</string>
     <string name="crt_5_document">CRT-5 Document</string>
-    <string name="info_main">It follws guidelines set out by the Concussion in Sport Group in 2017, based on their document the Concussion Recognition Tool (CRT-5). This is available online via the button below. It is not designed to replace professional medical advice which should always be consulted in any case of a suspected concussion</string>
+    <string name="info_main">It follows guidelines set out by the Concussion in Sport Group in 2017, based on their document the Concussion Recognition Tool (CRT-5). This is available online via the button below. It is not designed to replace professional medical advice which should always be consulted in any case of a suspected concussion</string>
     <string name="info_intro">Concussion checker is an app designed to help recognise the symptoms of an on field concussion. It also gives advice to players to assist recovery and their return to sport participation.</string>
 
+    <!--Player recovery advice-->
     <string name="player_recovery_signs"><b>Directly after suspected concussion \nplayers should:</b>\n\n• Not be left alone initially (at least first  \n \t 1-2 hours) \n• Not drink alcohol \n• Not use recreational/prescription drugs\n• Not be sent home by themselves. They \n  need to be with a responsible adult \n• Not drive a motor vehicle until cleared\n  by a healthcare professional</string>
     <string name="advice_return">Return to Sport Strategy</string>
+
+    <!--Medical alert dialog-->
+    <string name="medical_advice">This App is not designed to replace professional medical advice or diagnose concussion. It is a advisory tool</string>
+    <string name="warning_title">Warning</string>
+    <string name="phone_number">999</string>
+    <string name="report_incident_details">report_incident_hint</string>
+    <string name="medical_positive">I understand</string>
+
+    <!--Delete profile dialog-->
+    <string name="delete_title">Delete Profile</string>
+    <string name="delete_message">Do you really want to delete your profile?</string>
+    <string name="delete_positive">Delete</string>
+    <string name="delete_negative">Cancel</string>
+    <string name="log_dialog">Alert Dialog</string>
+
+    <!--Ambulance dialog-->
+    <string name="ambulance_title">CALL AMBULANCE?</string>
+    <string name="ambulance_message">Do you wish to call an Ambulance?</string>
+    <string name="ambulance_positive">CALL</string>
+    <string name="ambulance_negative">Cancel</string>
+    <string name="login_title">Profile Choice</string>
+    <string name="login_message">Choose a Profile...</string>
+    <string name="login_player">Player</string>
+    <string name="login_coach">Coach</string>
+
+
 </resources>
 
 

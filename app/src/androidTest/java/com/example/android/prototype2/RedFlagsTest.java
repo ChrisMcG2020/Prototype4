@@ -27,7 +27,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 public class RedFlagsTest {
     // Set the rule to apply to the test method and which class to use
     @Rule
-    public IntentsTestRule<RedFlagActivity> mRed_Flags_Test_Rule
+    public final IntentsTestRule<RedFlagActivity> mRed_Flags_Test_Rule
             = new IntentsTestRule<>(RedFlagActivity.class);
 
     @Test

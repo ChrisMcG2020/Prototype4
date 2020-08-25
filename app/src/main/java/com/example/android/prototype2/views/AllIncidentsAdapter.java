@@ -9,7 +9,6 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.prototype2.R;
@@ -19,12 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AllIncidentsAdapter extends RecyclerView.Adapter<AllIncidentsAdapter.ViewHolder> implements Filterable {
-    //Declare a list using the UserHelperClass
-    private List<AllIncidentsModel> incidentList;
-    private List<AllIncidentsModel> incidentListFull;
+    //Declare a list using the AllIncidentsModel
+    private final List<AllIncidentsModel> incidentList;
+    private final List<AllIncidentsModel> incidentListFull;
 
     //Variables
-    private Context context;
+    private final Context context;
 
 
     //Constructor
@@ -48,7 +47,9 @@ public class AllIncidentsAdapter extends RecyclerView.Adapter<AllIncidentsAdapte
     }
 
     @Override
+    //Data binded to the view for display within the recycler
     public void onBindViewHolder(@NonNull AllIncidentsAdapter.ViewHolder holder, int position) {
+        //Retrieve the incident stored at the position and set the values in the text views
         final AllIncidentsModel incident = incidentList.get(position);
         holder.textViewName.setText(String.format("Player Name: %s", incident.getName()));
         holder.textViewCoachName.setText(String.format("Coach: %s", incident.getCoachName()));
@@ -59,7 +60,6 @@ public class AllIncidentsAdapter extends RecyclerView.Adapter<AllIncidentsAdapte
         holder.textViewMemory.setText(incident.getMemory_Question());
         holder.textViewReport.setText(String.format("Report: %s", incident.getReports()));
 
-        // databaseReference = FirebaseDatabase.getInstance().getReference("Player_incidents");
     }
 
 
@@ -75,7 +75,7 @@ public class AllIncidentsAdapter extends RecyclerView.Adapter<AllIncidentsAdapte
     }
 
     //Filter method to search the incidents for the search entry. An example here of an Asynchronous task as it runs in background
-    private Filter exampleFilter = new Filter() {
+    private final Filter exampleFilter = new Filter() {
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
@@ -89,7 +89,7 @@ public class AllIncidentsAdapter extends RecyclerView.Adapter<AllIncidentsAdapte
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
                 for (AllIncidentsModel incident : incidentListFull) {
-                    if (incident.getName().toLowerCase().contains(filterPattern) || incident.getName()==null) {
+                    if (incident.getName().toLowerCase().contains(filterPattern) || incident.getName() == null) {
                         filteredList.add(incident);
                     }
                 }
@@ -99,7 +99,7 @@ public class AllIncidentsAdapter extends RecyclerView.Adapter<AllIncidentsAdapte
             return results;
         }
 
-
+        //Publish the results as a list
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             incidentList.clear();
@@ -111,23 +111,19 @@ public class AllIncidentsAdapter extends RecyclerView.Adapter<AllIncidentsAdapte
 
     //ViewHolder wraps the view passed to it so RecyclerView can deal with it
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private SearchView searchView;
-        private TextView textViewName;
-        private TextView textViewCoachName;
-        private TextView textViewDate;
-        private TextView textViewRedFlag;
-        private TextView textViewObservable;
-        private TextView textViewSymptoms;
-        private TextView textViewMemory;
-        private TextView textViewReport;
-        private View parentView;
+        private final TextView textViewName;
+        private final TextView textViewCoachName;
+        private final TextView textViewDate;
+        private final TextView textViewRedFlag;
+        private final TextView textViewObservable;
+        private final TextView textViewSymptoms;
+        private final TextView textViewMemory;
+        private final TextView textViewReport;
 
 
         //Initialise the variables to their corresponding views
         public ViewHolder(@NonNull View view) {
             super(view);
-            this.parentView = view;
-            this.searchView = view.findViewById(R.id.search_users);
             this.textViewName = view.findViewById(R.id.all_incidents_playerName);
             this.textViewCoachName = view.findViewById(R.id.all_incidents_coachName);
             this.textViewDate = view.findViewById(R.id.allincidents_Date);
@@ -136,7 +132,6 @@ public class AllIncidentsAdapter extends RecyclerView.Adapter<AllIncidentsAdapte
             this.textViewSymptoms = view.findViewById(R.id.all_incidents_Symptoms);
             this.textViewMemory = view.findViewById(R.id.all_incidents_Memory);
             this.textViewReport = view.findViewById(R.id.all_incidents_Report);
-
 
         }
     }

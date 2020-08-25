@@ -22,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Objects;
 
 
 public class AddReportActivity extends AppCompatActivity {
@@ -138,6 +139,7 @@ public class AddReportActivity extends AppCompatActivity {
         playerIncidentsModel.setName(intentName5);
 
 
+        assert reportId != null;
         databaseReference.child(reportId).setValue(playerIncidentsModel);
 
 

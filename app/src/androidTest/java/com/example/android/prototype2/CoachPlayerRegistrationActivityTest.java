@@ -44,7 +44,7 @@ public class CoachPlayerRegistrationActivityTest {
 
     //Set the rule to apply to the test method and which class to use
     @Rule
-    public IntentsTestRule<CoachRegistrationActivity> mCoachRegistrationActivityTestRule
+    public final IntentsTestRule<CoachRegistrationActivity> mCoachRegistrationActivityTestRule
             = new IntentsTestRule<>(CoachRegistrationActivity.class);
 
     //Variables used to test

@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 
 import com.example.android.prototype2.views.AllIncidentsListView;
-import com.example.android.prototype2.views.InformationPage;
+import com.example.android.prototype2.views.AppInformationPage;
 import com.example.android.prototype2.views.PlayerListViewActivity;
 import com.example.android.prototype2.views.SplashScreen;
 
@@ -35,7 +35,7 @@ import static com.example.android.prototype2.PlayerProfileTest.TEST_UPDATE_PHONE
 public class CoachProfileTest {
     //Set the rule to apply to the test method and which class to use
     @Rule
-    public IntentsTestRule<CoachProfile> mCoachProfileTestRule
+    public final IntentsTestRule<CoachProfile> mCoachProfileTestRule
             = new IntentsTestRule<>(CoachProfile.class);
 
 
@@ -178,7 +178,7 @@ public class CoachProfileTest {
         //Find the view and perform the action
         onView(withId(R.id.coach_info_btn)).perform(click());
         //Expected result
-        intended(hasComponent(InformationPage.class.getName()));
+        intended(hasComponent(AppInformationPage.class.getName()));
 
     }
 }

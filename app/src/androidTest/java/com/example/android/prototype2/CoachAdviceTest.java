@@ -23,7 +23,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 public class CoachAdviceTest {
     //Set the rule to apply to the test method and which class to use
     @Rule
-    public IntentsTestRule<CoachAdviceActivity> mCoachAdviceTestRule
+    public final IntentsTestRule<CoachAdviceActivity> mCoachAdviceTestRule
             = new IntentsTestRule<>(CoachAdviceActivity.class);
 
     @Test

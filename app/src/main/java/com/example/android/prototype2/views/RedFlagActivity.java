@@ -20,13 +20,11 @@ public class RedFlagActivity extends AppCompatActivity {
     //Create a UID for the intent
     private String intentUid1, intentEmail1, intentName1;
 
-
     //Initialise dialog to be shown to be true
     private boolean mIsDialogShown = true;
 
     //Tag for printing log details
     private final String TAG = getClass().getSimpleName();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +34,7 @@ public class RedFlagActivity extends AppCompatActivity {
         //Set layout
         setContentView(R.layout.activity_red_flag);
         showDialog();
-
     }
-
 
     //Method to diagnose the red flag activity and set it in the database
     protected void redFlagDiagnosis() {
@@ -46,7 +42,6 @@ public class RedFlagActivity extends AppCompatActivity {
         intentName1 = getIntent().getStringExtra("name1");
         intentEmail1 = getIntent().getStringExtra("email1");
         redFlagDiagnosis = "Red Flags : Passed";
-
     }
 
     //Method to direct button clicks to correct action
@@ -57,7 +52,6 @@ public class RedFlagActivity extends AppCompatActivity {
             //setCancelable set to false to make sure user chooses one of the options
             callAmbulance.setCancelable(false);
             callAmbulance.show(getSupportFragmentManager(), "Fragment Alert Dialog");
-
 
             //If continue clicked run method and pass intents to next activity
         } else if (view.getId() == R.id.redFlag_continue) {

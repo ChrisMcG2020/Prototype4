@@ -21,7 +21,7 @@ public class RecoveryAdviceTest {
 
     // Set the rule to apply to the test method and which class to use
     @Rule
-    public IntentsTestRule<RecoveryActivity> mActivityTestRule =
+    public final IntentsTestRule<RecoveryActivity> mActivityTestRule =
             new IntentsTestRule<>(RecoveryActivity.class);
 
 

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.prototype2.R;
-import com.example.android.prototype2.helperClass.UserHelperClass;
+import com.example.android.prototype2.helperClass.PlayerModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +24,7 @@ public class PlayerListViewActivity extends AppCompatActivity {
     //Define the RecyclerView
    private  RecyclerView listViewPlayers;
     //Define a list to store the players
-    private ArrayList<UserHelperClass> playersList;
+    private ArrayList<PlayerModel> playersList;
     //Define the reference to the database
     private DatabaseReference reference;
 
@@ -93,7 +93,7 @@ public class PlayerListViewActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot playerSnapshot : snapshot.getChildren()) {
                     //Get the values defined in the UserHelperClass from the registered players in the database
-                    UserHelperClass player = playerSnapshot.getValue(UserHelperClass.class);
+                    PlayerModel player = playerSnapshot.getValue(PlayerModel.class);
                     //If a new player is created add them to the playersList
                     playersList.add(player);
                 }

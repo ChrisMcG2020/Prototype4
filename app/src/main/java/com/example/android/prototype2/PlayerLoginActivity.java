@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,13 +24,12 @@ public class PlayerLoginActivity extends AppCompatActivity {
 
 
     //Declare the variables
-    private TextInputLayout loginEmail, loginPass, loginPhoneNo;
-    private Button forgotPass, register;
+    private TextInputLayout loginEmail, loginPass;
+    private Button forgotPass;
 
     //Firebase variables
-    private FirebaseDatabase rootNode;
-    private DatabaseReference reference;
-    private FirebaseDatabase mAuth;
+    private DatabaseReference databaseReference;
+    private FirebaseAuth firebaseAuth;
 
     //Progress bar variable
     private ProgressBar progressBar;
@@ -51,12 +49,16 @@ public class PlayerLoginActivity extends AppCompatActivity {
         loginEmail = findViewById(R.id.login_email);
         loginPass = findViewById(R.id.login_password);
         forgotPass = findViewById(R.id.forgot_pass_btn);
-        register = findViewById(R.id.player_reg_btn);
+
 
         //Initialise the progress bar to be not visible for now
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
 
+        //Initalise the FirebaseAuth variable
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        //Assign forgot password method to button
         forgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +74,7 @@ public class PlayerLoginActivity extends AppCompatActivity {
             return;
         } else {
             //method to retrieve users data from Firebase
-            isUser();
+            validatePlayer();
         }
 
     }
@@ -86,6 +88,7 @@ public class PlayerLoginActivity extends AppCompatActivity {
             loginEmail.setError("Email field cannot be empty");
             return false;
         } else {
+            //No Error
             loginEmail.setError(null);
             //setErrorEnabled(false) ensures layout will not change size when an error is displayed
             loginEmail.setErrorEnabled(false);
@@ -97,12 +100,13 @@ public class PlayerLoginActivity extends AppCompatActivity {
     //Validation for password
     private Boolean validateLoginPassword() {
         String entry = loginPass.getEditText().getText().toString();
-        //If left blank error shown
 
+        //If left blank error shown
         if (entry.isEmpty()) {
             loginPass.setError("Password field cannot be empty");
             return false;
         } else {
+            //No Error
             loginPass.setError(null);
             //setErrorEnabled(false) ensures layout will not change size when an error is displayed
             loginPass.setErrorEnabled(false);
@@ -111,20 +115,15 @@ public class PlayerLoginActivity extends AppCompatActivity {
     }
 
     //Method to check the details against the firebase database and retrieve the information if present
-    public void isUser() {
+    public void validatePlayer() {
         //Retrieve the user entered details
         final String userEnteredEmail = loginEmail.getEditText().getText().toString().trim();
         final String userEnteredPassword = loginPass.getEditText().getText().toString().trim();
 
-        rootNode = FirebaseDatabase.getInstance();
         //Define the reference in the database that should be called
-        reference = rootNode.getReference("Users");
-        //Tag for printing log details
-        Log.d(TAG, "Firebase contacted");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
-        final FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
-        mAuth.signInWithEmailAndPassword(userEnteredEmail, userEnteredPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        firebaseAuth.signInWithEmailAndPassword(userEnteredEmail, userEnteredPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 
 
             @Override
@@ -138,7 +137,7 @@ public class PlayerLoginActivity extends AppCompatActivity {
                     loginEmail.setError("Email/Password Incorrect");
                     loginPass.setError("Email/Password Incorrect");
 
-                    //Show progress bar loading
+                    //Hide progress bar
                     progressBar.setVisibility(View.GONE);
                 }
             }
@@ -148,14 +147,13 @@ public class PlayerLoginActivity extends AppCompatActivity {
 
 
     protected void forgotPassword() {
-
+        //Get the users entered email
         final String entry = loginEmail.getEditText().getText().toString().trim();
         //Characters accepted for email address
         final String emailCharacters =
                 "[a-z0-9!#$%&'*+/=?^_`{|}~-]" +
                         "+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|";
 
-        final FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         //If entry left empty error shown
         if (entry.isEmpty()) {
@@ -165,18 +163,25 @@ public class PlayerLoginActivity extends AppCompatActivity {
             loginEmail.setError("Invalid email address");
         } else {
 
+            //Progress bar to show loading
             progressBar.setVisibility(View.VISIBLE);
 
+            //Get an instance of the Firebase Auth
+            final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+            //Use Firebase Auth to send the password reset mail
             mAuth.sendPasswordResetEmail(entry)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
+                                //Show successful Toast
                                 Toast.makeText(getApplicationContext(), "Reset password email sent!", Toast.LENGTH_SHORT).show();
                             } else {
+                                //Show error Toast
                                 Toast.makeText(getApplicationContext(), "Error! Reset email not sent", Toast.LENGTH_SHORT).show();
                             }
-
+                            //Hide progress bar
                             progressBar.setVisibility(View.GONE);
                         }
                     });
@@ -186,6 +191,7 @@ public class PlayerLoginActivity extends AppCompatActivity {
 
     //Method to direct user to appropriate page
     public void onButtonClicked(View view) {
+        //If register button clicked launch player register page
         if (view.getId() == R.id.player_reg_btn) {
             Intent regActivity = new Intent(getApplicationContext(), PlayerRegistrationActivity.class);
             startActivity(regActivity);

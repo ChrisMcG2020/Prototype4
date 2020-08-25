@@ -3,11 +3,9 @@ package com.example.android.prototype2;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,15 +25,14 @@ public class CoachLoginActivity extends AppCompatActivity {
 
 
     //Declare the variables
-    private TextView regLink;
     private TextInputLayout loginEmail, loginPass;
-    private Button forgotPass, register;
+    private Button forgotPass;
 
     //Firebase variables
-    private FirebaseDatabase rootNode;
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
 
+    //Progress bar variable
     private ProgressBar progressBar;
 
 
@@ -54,14 +51,12 @@ public class CoachLoginActivity extends AppCompatActivity {
         loginEmail = findViewById(R.id.login_email);
         loginPass = findViewById(R.id.login_password);
         forgotPass = findViewById(R.id.forgot_pass_btn);
-        register = findViewById(R.id.player_reg_btn);
-
         progressBar = findViewById(R.id.progressBar);
+        //Initialise the progress bar to be not visible for now
         progressBar.setVisibility(View.GONE);
 
-        //regLink textView when click allows user to register
-        regLink = findViewById(R.id.reglink_text_view);
-
+        //Initialise the FirebaseAuth variable
+        firebaseAuth = FirebaseAuth.getInstance();
 
         //Assign forgot password method to button
         forgotPass.setOnClickListener(new View.OnClickListener() {
@@ -78,8 +73,8 @@ public class CoachLoginActivity extends AppCompatActivity {
         if (!validateLoginEmail() | !validateLoginPassword()) {
             return;
         } else {
-            //method to retrieve users data from Firebase
-            isUser();
+            //Method to retrieve users data from Firebase
+            validateCoach();
         }
 
     }
@@ -92,6 +87,7 @@ public class CoachLoginActivity extends AppCompatActivity {
             loginEmail.setError("Email field cannot be empty");
             return false;
         } else {
+            //No Error
             loginEmail.setError(null);
             //setErrorEnabled(false) ensures layout will not change size when an error is displayed
             loginEmail.setErrorEnabled(false);
@@ -103,12 +99,13 @@ public class CoachLoginActivity extends AppCompatActivity {
     //Validation for password
     private Boolean validateLoginPassword() {
         String entry = loginPass.getEditText().getText().toString();
-        //If left blank error shown
 
+        //If left blank error shown
         if (entry.isEmpty()) {
             loginPass.setError("Password field cannot be empty");
             return false;
         } else {
+            //No Error
             loginPass.setError(null);
             //setErrorEnabled(false) ensures layout will not change size when an error is displayed
             loginPass.setErrorEnabled(false);
@@ -117,21 +114,16 @@ public class CoachLoginActivity extends AppCompatActivity {
     }
 
     //Method to check the details against the firebase database and retrieve the information if present
-    protected void isUser() {
+    protected void validateCoach () {
         //Retrieve the user entered details
         final String userEnteredEmail = loginEmail.getEditText().getText().toString().trim();
         final String userEnteredPassword = loginPass.getEditText().getText().toString().trim();
 
-        rootNode = FirebaseDatabase.getInstance();
         //Define the reference in the database that should be called
-        databaseReference = rootNode.getReference("Coaches");
-        //Tag for printing log details
-        Log.d(TAG, "Firebase contacted");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Coaches");
 
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         final String user = currentFirebaseUser.getUid();
-        firebaseAuth = FirebaseAuth.getInstance();
-
 
         final Query[] checkUser = {databaseReference.orderByChild("coachEmail").equalTo(userEnteredEmail)};
 
@@ -140,12 +132,16 @@ public class CoachLoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull final Task<AuthResult> task) {
 
                 if (task.isSuccessful()) {
+                    //Show successful Toast
                     Toast.makeText(getApplicationContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
+                    //Launch profile page
                     startActivity(new Intent(getApplicationContext(), CoachProfile.class));
                 } else {
+                    //Show validation errors
                     loginEmail.setError("Email/Password Incorrect");
                     loginPass.setError("Email/Password Incorrect");
 
+                    //Hide progress bar
                     progressBar.setVisibility(View.GONE);
                 }
             }
@@ -168,6 +164,7 @@ public class CoachLoginActivity extends AppCompatActivity {
             //If entry doesn't match email regex then error shown
         } else if (!entry.matches(emailCharacters)) {
             loginEmail.setError("Invalid email address");
+            //No Error
         } else {
 
             progressBar.setVisibility(View.VISIBLE);
@@ -177,11 +174,13 @@ public class CoachLoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
+                                //Show successful Toast
                                 Toast.makeText(getApplicationContext(), "Reset password email sent!", Toast.LENGTH_SHORT).show();
                             } else {
+                                //Show error Toast
                                 Toast.makeText(getApplicationContext(), "Error! Reset email not sent", Toast.LENGTH_SHORT).show();
                             }
-
+                            //Hide progress bar
                             progressBar.setVisibility(View.GONE);
                         }
                     });
@@ -191,10 +190,12 @@ public class CoachLoginActivity extends AppCompatActivity {
 
     //Method to direct user to appropriate page
     public void onButtonClicked(View view) {
+        //If register button clicked launch coach register page
         if (view.getId() == R.id.player_reg_btn) {
             Intent coachLogin = new Intent(getApplicationContext(), CoachRegistrationActivity.class);
             startActivity(coachLogin);
         }
+        //If forgot password clicked launch method
         if (view.getId() == R.id.coach_forgot_pass_btn) {
             forgotPassword();
         }

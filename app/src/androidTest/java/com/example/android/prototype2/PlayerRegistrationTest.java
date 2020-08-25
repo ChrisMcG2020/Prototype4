@@ -42,7 +42,7 @@ public class PlayerRegistrationTest {
 
     // Set the rule to apply to the test method and which class to use
     @Rule
-    public IntentsTestRule<PlayerRegistrationActivity> mRegistrationActivityTestRule
+    public final IntentsTestRule<PlayerRegistrationActivity> mRegistrationActivityTestRule
             = new IntentsTestRule<>(PlayerRegistrationActivity.class);
 
     //Public variables used to test so can use across all validation forms

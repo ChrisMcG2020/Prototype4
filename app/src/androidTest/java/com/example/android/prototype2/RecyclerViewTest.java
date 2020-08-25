@@ -17,7 +17,7 @@ public class RecyclerViewTest {
 
     // Set the rule to apply to the test method and which class to use
     @Rule
-    public ActivityTestRule<IncidentListView> mRecyclerTestRule =
+    public final ActivityTestRule<IncidentListView> mRecyclerTestRule =
             new ActivityTestRule<>(IncidentListView.class);
 
     @Test
@@ -33,7 +33,7 @@ public class RecyclerViewTest {
 
     // Set the rule to apply to the test method and which class to use
     @Rule
-    public ActivityTestRule<AllIncidentsListView> mRecyclerTestRule2 =
+    public final ActivityTestRule<AllIncidentsListView> mRecyclerTestRule2 =
             new ActivityTestRule<>(AllIncidentsListView.class);
 
     @Test
@@ -48,7 +48,7 @@ public class RecyclerViewTest {
 
     // Set the rule to apply to the test method and which class to use
     @Rule
-    public ActivityTestRule<PlayerListViewActivity> mRecyclerTestRule3 =
+    public final ActivityTestRule<PlayerListViewActivity> mRecyclerTestRule3 =
             new ActivityTestRule<>(PlayerListViewActivity.class);
 
     @Test

@@ -15,7 +15,7 @@ public class AllIncidentsModel {
     private String name;
 
     //Empty constructor
-    public AllIncidentsModel() {
+    public  AllIncidentsModel() {
     }
 
     //Constructor

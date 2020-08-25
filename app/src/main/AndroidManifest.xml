@@ -38,8 +38,9 @@
         <activity android:name=".CoachProfile" />
         <activity android:name=".views.ObservableSignsActivity" />
         <activity android:name=".CoachLoginActivity" />
-        <activity android:name=".views.InformationPage" />
+        <activity android:name=".views.AppInformationPage" />
         <activity android:name=".ReturnToSportStrategy" />
+        <activity android:name=".views.AppCoachInformationPage" />
 
         <meta-data
             android:name="preloaded_fonts"

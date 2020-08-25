@@ -30,7 +30,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 public class MemoryActivityTest {
     // Set the rule to apply to the test method and which class to use
     @Rule
-    public IntentsTestRule<MemoryActivity> mMemoryTestRule
+    public final IntentsTestRule<MemoryActivity> mMemoryTestRule
             = new IntentsTestRule<>(MemoryActivity.class);
 
     @Test

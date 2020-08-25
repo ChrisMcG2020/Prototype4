@@ -12,7 +12,7 @@ import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.example.android.prototype2.views.IncidentListView;
-import com.example.android.prototype2.views.InformationPage;
+import com.example.android.prototype2.views.AppInformationPage;
 import com.example.android.prototype2.views.SplashScreen;
 
 import org.hamcrest.Matcher;
@@ -47,7 +47,7 @@ public class PlayerProfileTest {
     public static final String TEST_UPDATE_EMERGENCYCONTACT = "Mary Smith";
     public static final String TEST_UPDATE_EC_PHONENO = "082222";
     @Rule
-    public IntentsTestRule<PlayerProfile> mUserProfileTestRule
+    public final IntentsTestRule<PlayerProfile> mUserProfileTestRule
             = new IntentsTestRule<>(PlayerProfile.class);
 
     @Test
@@ -172,7 +172,7 @@ public class PlayerProfileTest {
         //Find the view and perform the action
         onView(withId(R.id.player_info_btn)).perform(click());
         //Expected result
-        intended(hasComponent(InformationPage.class.getName()));
+        intended(hasComponent(AppInformationPage.class.getName()));
 
     }
 

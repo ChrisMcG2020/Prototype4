@@ -15,10 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.android.prototype2.dialogs.DeleteProfileDialog;
-import com.example.android.prototype2.helperClass.CoachHelperClass;
+import com.example.android.prototype2.helperClass.CoachModel;
 import com.example.android.prototype2.views.AllIncidentsListView;
-import com.example.android.prototype2.views.IncidentListView;
-import com.example.android.prototype2.views.InformationPage;
+import com.example.android.prototype2.views.AppCoachInformationPage;
 import com.example.android.prototype2.views.PlayerListViewActivity;
 import com.example.android.prototype2.views.SplashScreen;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -41,7 +40,7 @@ public class CoachProfile extends AppCompatActivity {
     //Variables
     private Activity context;
     //Declare a list using the CoachHelperClass
-    private List<CoachHelperClass> coachesList;
+    private List<CoachModel> coachesList;
 
     private TextInputEditText coachNameTextView, coachPhoneNoTextView, coachEmailTextView, teamCoachedTextView;
     private TextView displayCoachName, displayCoachphone;
@@ -101,7 +100,7 @@ public class CoachProfile extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                //Loop until required user found
+
                 for (DataSnapshot userSnapshot : snapshot.getChildren()) {
                     //Retrieve required information
                     String name = (String) userSnapshot.child("coachName").getValue();
@@ -312,7 +311,7 @@ public class CoachProfile extends AppCompatActivity {
         //Switch statement implemented as a lot of choices available
         switch (view.getId()) {
             //If recover image clocked recover advice page launched
-            case R.id.diagnose_concussion_button:
+            case R.id.diagnose_concussion_button :
                 Intent diagnoseIntent = new Intent(getApplicationContext(), PlayerListViewActivity.class);
                 startActivity(diagnoseIntent);
                 break;
@@ -341,7 +340,7 @@ public class CoachProfile extends AppCompatActivity {
                 break;
             //If info button clicked then start up info page
             case R.id.coach_info_btn:
-                Intent info = new Intent(getApplicationContext(), InformationPage.class);
+                Intent info = new Intent(getApplicationContext(), AppCoachInformationPage.class);
                 startActivity(info);
                 break;
                 //Default for when no case matches the action

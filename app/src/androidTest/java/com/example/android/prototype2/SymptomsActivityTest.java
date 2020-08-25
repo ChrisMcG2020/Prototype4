@@ -29,7 +29,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 public class SymptomsActivityTest {
     // Set the rule to apply to the test method and which class to use
     @Rule
-    public IntentsTestRule<SymptomsActivity> mSymptomsTestRule
+    public final IntentsTestRule<SymptomsActivity> mSymptomsTestRule
             = new IntentsTestRule<>(SymptomsActivity.class);
 
     @Test

@@ -20,10 +20,10 @@ import java.util.List;
 public class IncidentListAdapter extends RecyclerView.Adapter<IncidentListAdapter.ViewHolder> {
 
     //Variables
-    private Context context;
-    //Declare a list using the UserHelperClass
-    private List<PlayerIncidentsModel> incidentList;
-    private List<PlayerIncidentsModel> incidentListFull;
+    private final Context context;
+    //Declare a list using the PlayerIncidentsModel class
+    private final List<PlayerIncidentsModel> incidentList;
+    private final List<PlayerIncidentsModel> incidentListFull;
 
 
     //Tag for printing log details
@@ -47,18 +47,18 @@ public class IncidentListAdapter extends RecyclerView.Adapter<IncidentListAdapte
     }
 
     @Override
+    //Data binded to the view for display within the recycler
     public void onBindViewHolder(@NonNull IncidentListAdapter.ViewHolder holder, final int position) {
-
-        //Retrieve the incident stored at the position
+        //Retrieve the incident stored at the position and set the values in the text views
         final PlayerIncidentsModel incidents = incidentList.get(position);
         holder.coachName.setText(String.format("Coach: %s", incidents.getCoachName()));
         holder.textViewRedFlag.setText(incidents.getRed_FLag_Test());
         holder.textViewObs.setText(incidents.getObservable_Signs_Test());
         holder.textViewMemory.setText(incidents.getMemory_Question());
         holder.textViewSymptoms.setText(String.format("Symptoms: %s", incidents.getSymptoms()));
-        holder.textViewIncidentReport.setText("Report: " + incidents.getReports());
-        holder.date.setText("Date: " + incidents.getDate());
-        holder.incidentPlayerName.setText("Player: " + incidents.getName());
+        holder.textViewIncidentReport.setText(String.format("Report: %s", incidents.getReports()));
+        holder.date.setText(String.format("Date: %s", incidents.getDate()));
+        holder.incidentPlayerName.setText(String.format("Player: %s", incidents.getName()));
 
     }
 
@@ -72,15 +72,15 @@ public class IncidentListAdapter extends RecyclerView.Adapter<IncidentListAdapte
     //ViewHolder wraps the view passed to it so RecyclerView can deal with it
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textViewRedFlag;
-        private TextView textViewObs;
-        private TextView textViewMemory;
-        private TextView textViewSymptoms;
-        private TextView textViewIncidentReport;
-        private TextView date;
-        private TextView coachName;
-        private TextView incidentPlayerName;
-        private View parentView;
+        private final TextView textViewRedFlag;
+        private final TextView textViewObs;
+        private final TextView textViewMemory;
+        private final TextView textViewSymptoms;
+        private final TextView textViewIncidentReport;
+        private final TextView date;
+        private final TextView coachName;
+        private final TextView incidentPlayerName;
+        private final View parentView;
 
 
         //Initialise the variables to their corresponding views

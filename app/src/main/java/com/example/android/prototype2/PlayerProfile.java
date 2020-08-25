@@ -16,7 +16,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.android.prototype2.dialogs.DeleteProfileDialog;
 import com.example.android.prototype2.views.IncidentListView;
-import com.example.android.prototype2.views.InformationPage;
+import com.example.android.prototype2.views.AppInformationPage;
 import com.example.android.prototype2.views.SplashScreen;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -230,7 +230,7 @@ public class PlayerProfile extends AppCompatActivity {
             nameView.setError("Name field cannot be empty");
             return false;
         } else {
-            //no Error
+            //No Error
             nameView.setError(null);
             //setErrorEnabled(false) ensures layout will not change size when an error is displayed
             nameView.setErrorEnabled(false);
@@ -353,7 +353,7 @@ public class PlayerProfile extends AppCompatActivity {
                 break;
             //If info button clicked then start up info page
             case R.id.player_info_btn:
-                Intent info = new Intent(getApplicationContext(), InformationPage.class);
+                Intent info = new Intent(getApplicationContext(), AppInformationPage.class);
                 startActivity(info);
                 break;
             //Default for when no case matches the action

@@ -25,6 +25,7 @@ public class AlertDialogFragment extends DialogFragment {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
+        //Log the alert dialog
         Log.d(TAG, "Alert Dialog");
 
         //Set the title of the dialog
@@ -37,7 +38,7 @@ public class AlertDialogFragment extends DialogFragment {
         builder.setMessage(getString(R.string.medical_advice));
 
         //Set the text and action of the positive button
-        builder.setPositiveButton("I understand", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.medical_positive, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
                 dialogInterface.dismiss();
