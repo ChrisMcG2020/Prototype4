@@ -7,6 +7,7 @@ import android.widget.CheckBox;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.example.android.prototype2.views.AddReportActivity;
 import com.example.android.prototype2.views.MemoryActivity;
 
 import org.junit.Assert;
@@ -33,6 +34,8 @@ public class MemoryActivityTest {
     public final IntentsTestRule<MemoryActivity> mMemoryTestRule
             = new IntentsTestRule<>(MemoryActivity.class);
 
+
+    //Unit Tests
     @Test
     public void test_editText_and_buttons_present() {
         //Find the views
@@ -69,6 +72,7 @@ public class MemoryActivityTest {
     }
 
 
+    //Ui & Instrumentation Test
     @Test
     public void test_is_view_scrollable() {
         //Find view and perform action
@@ -170,10 +174,14 @@ public class MemoryActivityTest {
 
     @Test
     public void test_continue_button_opens_correct_activity() {
-        //ScrollDown
-        onView(withId(R.id.memory_continue_btn)).perform(scrollTo());
-        //Find the views and perform action
-        onView(withId(R.id.memory_continue_btn)).perform(click());
+        //Click enough buttons to move forward
+        onView(withId(R.id.memory_q1_no)).perform(click());
+        onView(withId(R.id.memory_q2_no)).perform(click());
+        onView(withId(R.id.memory_q3_no)).perform(click());
+        onView(withId(R.id.memory_q4_no)).perform(click());
+        onView(withId(R.id.memory_q5_no)).perform(click());
+        //ScrollDown and find the views and perform action
+        onView(withId(R.id.memory_continue_btn)).perform(scrollTo()).perform(click());
         //Check if action returns desired outcome
         intended(hasComponent(AddReportActivity.class.getName()));
     }

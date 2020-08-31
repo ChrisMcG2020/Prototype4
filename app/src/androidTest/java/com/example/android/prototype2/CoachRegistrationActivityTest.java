@@ -7,6 +7,9 @@ import android.widget.EditText;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.example.android.prototype2.views.CoachRegistrationActivity;
+import com.example.android.prototype2.views.PlayerLoginActivity;
+
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -40,7 +43,7 @@ import static com.example.android.prototype2.PlayerRegistrationTest.hasTextInput
 
 
 @RunWith(AndroidJUnit4.class)
-public class CoachPlayerRegistrationActivityTest {
+public class CoachRegistrationActivityTest {
 
     //Set the rule to apply to the test method and which class to use
     @Rule
@@ -53,6 +56,7 @@ public class CoachPlayerRegistrationActivityTest {
     private static final String TEST_TEAM = "Liverpool";
 
 
+    //Unit Tests
     @Test
     public void testRegFieldsPresent() {
         //Get the activity
@@ -84,6 +88,7 @@ public class CoachPlayerRegistrationActivityTest {
 
     }
 
+    //UI & Instrumentation tests
     @Test
     public void test_hint_text_appears() {
         //Find the views and and check the hint text is present

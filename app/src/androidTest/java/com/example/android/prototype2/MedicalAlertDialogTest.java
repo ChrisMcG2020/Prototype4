@@ -2,7 +2,7 @@ package com.example.android.prototype2;
 
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 
-import com.example.android.prototype2.views.PlayerListViewActivity;
+import com.example.android.prototype2.views.RedFlagActivity;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -19,9 +19,10 @@ public class MedicalAlertDialogTest {
 
     //Set the rule to apply to the test method and which class to use
     @Rule
-    public IntentsTestRule<PlayerListViewActivity> mDeleteProfileTestRule
-            = new IntentsTestRule<>(PlayerListViewActivity.class);
+    public IntentsTestRule<RedFlagActivity> mDeleteProfileTestRule
+            = new IntentsTestRule<>(RedFlagActivity.class);
 
+    //Unit Tests
     @Test
     public void test_dialog_appears_with_buttons() {
         //Find the view and perform the action
@@ -35,6 +36,7 @@ public class MedicalAlertDialogTest {
                 .check(matches(isDisplayed()));
     }
 
+    //UI & Instrumentation Tests
     @Test
     public void test_button_clickable() {
         //Find the view and perform the action

@@ -55,14 +55,14 @@ public class AlertDialogFragment extends DialogFragment {
     @Override
     public void onCancel(@NonNull DialogInterface dialog) {
         super.onCancel(dialog);
-        Log.d(TAG, "onCancel:called");
+
 
     }
 
     @Override
     public void onDismiss(@NonNull DialogInterface dialog) {
         super.onDismiss(dialog);
-        Log.d(TAG, "On dismiss called");
+
     }
 
     @Override

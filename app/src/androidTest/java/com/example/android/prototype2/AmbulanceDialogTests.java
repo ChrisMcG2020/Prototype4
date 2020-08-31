@@ -5,6 +5,7 @@ import android.net.Uri;
 
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 
+import com.example.android.prototype2.views.ObservableSignsActivity;
 import com.example.android.prototype2.views.RedFlagActivity;
 
 import org.junit.Assert;
@@ -26,13 +27,14 @@ import static org.hamcrest.Matchers.allOf;
 public class AmbulanceDialogTests {
     //Set the rule to apply to the test method and which class to use
     @Rule
-    public IntentsTestRule<RedFlagActivity> mAmbulanceTestRule
-            = new IntentsTestRule<>(RedFlagActivity.class);
+    public IntentsTestRule<ObservableSignsActivity> mAmbulanceTestRule
+            = new IntentsTestRule<>(ObservableSignsActivity.class);
 
+    //Unit Tests
     @Test
     public void test_dialog_appears_with_buttons() {
         //Find the views and perform the action
-        onView(withId(R.id.redFlag_call_ambulance)).perform(click());
+        onView(withId(R.id.os_call_ambulance)).perform(click());
         //The delete dialog appears with two options
         onView(withText("CALL AMBULANCE?"))
                 .inRoot(isDialog())
@@ -43,10 +45,11 @@ public class AmbulanceDialogTests {
 
     }
 
+    //UI & Instrumentation Tests
     @Test
     public void test_call_Ambulance_Button_launches_Dialog() {
         //Find the view and perform the action
-        onView(withId(R.id.redFlag_call_ambulance)).perform(click());
+        onView(withId(R.id.os_call_ambulance)).perform(click());
         //Check if action returns desired outcome
         onView(withText("CALL AMBULANCE?")).check(matches(isDisplayed()));
 
@@ -55,7 +58,7 @@ public class AmbulanceDialogTests {
     @Test
     public void test_clickCallButton_opensDialler_forAmbulance() {
         //Find the views and perform the action
-        onView(withId(R.id.redFlag_call_ambulance)).perform(click());
+        onView(withId(R.id.os_call_ambulance)).perform(click());
         onView(withText("CALL")).perform(click());
         //Check if action returns desired outcome
         intended(allOf(
@@ -68,7 +71,7 @@ public class AmbulanceDialogTests {
     @Test
     public void test_onCancel() {
         //Find the views and perform the action
-        onView(withId(R.id.redFlag_call_ambulance)).perform(click());
+        onView(withId(R.id.os_call_ambulance)).perform(click());
         onView(withText("CANCEL")).perform(click());
         //Is the button viewable again
         Assert.assertNotNull(RedFlagActivity.class);

@@ -1,4 +1,4 @@
-package com.example.android.prototype2.views;
+package com.example.android.prototype2.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,23 +15,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.prototype2.R;
 import com.example.android.prototype2.helperClass.PlayerModel;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.example.android.prototype2.views.RedFlagActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-    //This class is an adapter for the Recyclerview
-    public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.ViewHolder> implements Filterable {
-    //Declare a list using the UserHelperClass
+public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.ViewHolder> implements Filterable {
+    //Declare a list using the PlayerModel class
     private final List<PlayerModel> playersList;
     private final List<PlayerModel> playerListFull;
 
     //Variables
     private final Context context;
-
-    private DatabaseReference databaseReference;
 
     private final String TAG = getClass().getSimpleName();
     // private Context context;
@@ -43,6 +39,7 @@ import java.util.List;
         playerListFull = new ArrayList<>(playersList);
 
     }
+
     @NonNull
     @Override
     //If viewHolder does  not exist create one by inflating the user_details_view
@@ -55,9 +52,9 @@ import java.util.List;
     }
 
     @Override
-    //onBind fills the player profile with the data, and updates as the user scrolls down the recycler
+    //onBind fills the player list with the data, and updates as the user scrolls down the recycler
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        //Retrieve the player stored at the position
+        //Retrieve the player stored at the position and set the values in the text views
         final PlayerModel player = playersList.get(position);
         //Set the info from the player in the textViews
         holder.textViewName.setText(String.format("Name: %s", player.getName()));
@@ -65,8 +62,6 @@ import java.util.List;
         holder.textViewPhone.setText(String.format("Phone: %s", player.getPhoneNo()));
         holder.textViewEmergencyContact.setText(String.format("Emergency Contact: %s", player.getEmergencyContact()));
         holder.textViewEmergencyContactPhone.setText(String.format("Contact's Phone: %s", player.getContactNumber()));
-
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
         // Add an onClickListener to the parentView so when a player is selected launches redFlag activity
         holder.parentView.setOnClickListener(new View.OnClickListener() {
@@ -93,45 +88,45 @@ import java.util.List;
     }
 
     @Override
-    public  Filter getFilter() {
+    public Filter getFilter() {
         return exampleFilter;
     }
 
-        //Filter method to search the players for the search entry. An example here of an Asynchronous task
-        private final Filter exampleFilter = new Filter() {
+    //Filter method to search the players for the search entry. An example here of an Asynchronous task
+    private final Filter exampleFilter = new Filter() {
 
-            @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
-                List<PlayerModel> filteredList = new ArrayList<>();
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<PlayerModel> filteredList = new ArrayList<>();
 
-                if (constraint == null || constraint.length() == 0) {
-                    filteredList.addAll(playerListFull);
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(playerListFull);
 
-                } else {
-                    //trim -empty spaces removed
-                    String filterPattern = constraint.toString().toLowerCase().trim();
+            } else {
+                //trim -empty spaces removed
+                String filterPattern = constraint.toString().toLowerCase().trim();
 
-                    for (PlayerModel player : playerListFull) {
-                        if (player.getName().toLowerCase().contains(filterPattern)) {
-                            filteredList.add(player);
-                        }
+                for (PlayerModel player : playerListFull) {
+                    if (player.getName().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(player);
                     }
                 }
-                FilterResults results = new FilterResults();
-                results.values = filteredList;
-                return results;
             }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
 
+        //Publish the results as a list
+        @SuppressWarnings("unchecked")
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            playersList.clear();
+            playersList.addAll((List) results.values);
+            notifyDataSetChanged();
 
-            @SuppressWarnings("unchecked")
-            @Override
-            protected void publishResults(CharSequence constraint, FilterResults results) {
-                playersList.clear();
-                playersList.addAll((List) results.values);
-                notifyDataSetChanged();
-
-            }
-        };
+        }
+    };
 
     //ViewHolder wraps the view passed to it so RecyclerView can deal with it
     public static class ViewHolder extends RecyclerView.ViewHolder {

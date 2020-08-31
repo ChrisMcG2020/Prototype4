@@ -2,6 +2,8 @@ package com.example.android.prototype2;
 
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 
+import com.example.android.prototype2.views.CoachLoginActivity;
+import com.example.android.prototype2.views.PlayerLoginActivity;
 import com.example.android.prototype2.views.SplashScreen;
 
 import org.junit.Rule;
@@ -23,6 +25,7 @@ public class LoginDialogTest {
             = new IntentsTestRule<>(SplashScreen.class);
 
 
+    //Unit Tests
     @Test
     public void test_dialog_appears_with_buttons() {
         //The choice dialog appears
@@ -42,6 +45,7 @@ public class LoginDialogTest {
         intended(hasComponent(PlayerLoginActivity.class.getName()));
     }
 
+    //UI & Instrumentation Tests
     @Test
     public void test_coach_option_launches_coach_login() {
         //Find the view and perform the action

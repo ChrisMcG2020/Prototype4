@@ -13,6 +13,8 @@ import androidx.test.espresso.Root;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.example.android.prototype2.views.PlayerLoginActivity;
+import com.example.android.prototype2.views.PlayerProfile;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.hamcrest.Description;
@@ -57,6 +59,8 @@ public class LoginScreenTest {
     public static final String INVALID_USER = "Email/Password Incorrect";
 
 
+    //Unit Tests
+
     @Test
     public void test_login_and_password_fields() {
         //Get the activity
@@ -91,6 +95,7 @@ public class LoginScreenTest {
     }
 
 
+    //UI & Instrumentation tests
     @Test
     public void test_click_login_with_empty_fields_gives_errors() {
         //Find the view and perform action
@@ -173,13 +178,13 @@ public class LoginScreenTest {
     }
 
     @Test
-    public void click_forgot_password_with_an_invalid_email_prompts_error() {
-
+    public void test_clickForgot_Password_With_an_Invalid_Email_Prompts_Error() {
         //Find the views and perform action
         onView(withId(R.id.login_email2)).perform(typeText(TEST_EMAIL),
                 closeSoftKeyboard());
         onView(withId(R.id.forgot_pass_btn)).perform(click());
-        //Check if action returns desired outcome
+
+        //If an invalid email type entered then correct Error should appear
         onView(withId(R.id.login_email)).check(matches(hasTextInputLayoutErrorText(INVALID_EMAIL)));
 
 

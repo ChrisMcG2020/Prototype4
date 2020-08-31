@@ -81,7 +81,7 @@ public class SymptomsActivity extends AppCompatActivity {
             //Otherwise
             symptomResult = "No symptoms";
         }
-
+        Log.d(TAG,"Symptoms"+symptomResult);
     }
 
     //Method to direct button clicks to correct action

@@ -1,4 +1,4 @@
-package com.example.android.prototype2.views;
+package com.example.android.prototype2.adapters;
 
 
 import android.content.Context;
@@ -47,7 +47,7 @@ public class IncidentListAdapter extends RecyclerView.Adapter<IncidentListAdapte
     }
 
     @Override
-    //Data binded to the view for display within the recycler
+    //onBind fills the incident with the data, and updates as the user scrolls down the recycler
     public void onBindViewHolder(@NonNull IncidentListAdapter.ViewHolder holder, final int position) {
         //Retrieve the incident stored at the position and set the values in the text views
         final PlayerIncidentsModel incidents = incidentList.get(position);

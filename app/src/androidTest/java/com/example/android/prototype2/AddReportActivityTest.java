@@ -8,6 +8,9 @@ import android.widget.EditText;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.example.android.prototype2.views.AddReportActivity;
+import com.example.android.prototype2.views.CoachAdviceActivity;
+
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -30,6 +33,7 @@ public class AddReportActivityTest {
     public final IntentsTestRule<AddReportActivity> mAddReportTestRule
             = new IntentsTestRule<>(AddReportActivity.class);
 
+    //Unit Tests
     @Test
     public void test_editText_and_buttons_present() {
         //Get the activity
@@ -44,6 +48,7 @@ public class AddReportActivityTest {
 
     }
 
+    //UI & Instrumentation Tests
     @Test
     public void test_write_in_edit_text_test() {
         //Find the views and perform action

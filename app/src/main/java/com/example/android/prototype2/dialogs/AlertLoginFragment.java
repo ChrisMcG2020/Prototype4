@@ -12,8 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.android.prototype2.CoachLoginActivity;
-import com.example.android.prototype2.PlayerLoginActivity;
+import com.example.android.prototype2.views.CoachLoginActivity;
+import com.example.android.prototype2.views.PlayerLoginActivity;
 import com.example.android.prototype2.R;
 
 import static android.content.ContentValues.TAG;
@@ -76,14 +76,14 @@ public class AlertLoginFragment extends DialogFragment {
     @Override
     public void onCancel(@NonNull DialogInterface dialog) {
         super.onCancel(dialog);
-        Log.d(TAG, "onCancel:called");
+
 
     }
 
     @Override
     public void onDismiss(@NonNull DialogInterface dialog) {
         super.onDismiss(dialog);
-        Log.d(TAG, "On dismiss called");
+
     }
 
     @Override

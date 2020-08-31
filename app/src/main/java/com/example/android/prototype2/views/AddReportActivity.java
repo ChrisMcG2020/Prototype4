@@ -1,4 +1,4 @@
-package com.example.android.prototype2;
+package com.example.android.prototype2.views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.android.prototype2.R;
 import com.example.android.prototype2.dialogs.AmbulanceFragment;
 import com.example.android.prototype2.helperClass.PlayerIncidentsModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,7 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Objects;
 
 
 public class AddReportActivity extends AppCompatActivity {
@@ -68,13 +68,13 @@ public class AddReportActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("Incidents");
         //Get a reference to the coach compiling the report
         databaseReferenceUser = FirebaseDatabase.getInstance().getReference("Coaches");
-        //AddValueEventListener to listen out for any changes
-        databaseReferenceUser.orderByChild("coachEmail").equalTo(currentUser.getEmail()).addValueEventListener(new ValueEventListener() {
+        //AddValueEventListener to listen out for any reports from the coach currently logged in
+        databaseReferenceUser.orderByChild("coachUID").equalTo(currentUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot userSnapshot : snapshot.getChildren()) {
                     //Retrieve the information
-                    //If no values added , show error toast
+                    //If no information found ,show error Toast
                     if (snapshot.getValue() == null) {
                         Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
 
@@ -88,7 +88,8 @@ public class AddReportActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                //Show error Toast
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -140,8 +141,8 @@ public class AddReportActivity extends AppCompatActivity {
 
 
         assert reportId != null;
+        //Set the full report details at the reportId path
         databaseReference.child(reportId).setValue(playerIncidentsModel);
-
 
 
         //Successful toast

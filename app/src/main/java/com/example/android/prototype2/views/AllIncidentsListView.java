@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android.prototype2.adapters.AllIncidentsAdapter;
 import com.example.android.prototype2.R;
 import com.example.android.prototype2.helperClass.AllIncidentsModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+//Class to update and display information in the recycler_view
 public class AllIncidentsListView extends AppCompatActivity {
 
     //Define the RecyclerView
@@ -72,8 +74,9 @@ public class AllIncidentsListView extends AppCompatActivity {
 
         //Assign the recycler view to the correct view
         listViewAllIncidents = findViewById(R.id.recycler_all_incident_list_view);
+        //Avoid invalidating the whole layout when  adapter contents change
         listViewAllIncidents.setHasFixedSize(true);
-        //Set the adapter to an instance of the PlayerListAdapter
+        //Set the adapter to an instance of the AllIncidentsAdapter
         listViewAllIncidents.setAdapter(new AllIncidentsAdapter(this, allIncidentsModel));
         //Instruct the layout manager to set the layout to LinearLayout
         listViewAllIncidents.setLayoutManager(new LinearLayoutManager(this));
@@ -85,17 +88,17 @@ public class AllIncidentsListView extends AppCompatActivity {
         //Get a reference to the path required in the database
         reference = FirebaseDatabase.getInstance().getReference("Incidents");
 
-        //AddValueEventListener will update the players list if any new players added
+        //AddValueEventListener will return the all incidents when called. Displayed in order of date.
         reference.orderByChild("date").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot incidentSnapshot : snapshot.getChildren()) {
-                    //Get the values defined in the UserHelperClass from the registered players in the database
+                    //Get the values defined in the AllIncidentsModel from the incidents in the database
                     AllIncidentsModel incident = incidentSnapshot.getValue(AllIncidentsModel.class);
-                    //If a new player is created add them to the playersList
+                    //Add the incidents to the list including any newly created
                     allIncidentsModel.add(incident);
                 }
-
+                //Add the incidents to the adapter to be displayed
                 adapter = new AllIncidentsAdapter(AllIncidentsListView.this, allIncidentsModel);
                 listViewAllIncidents.setAdapter(adapter);
             }

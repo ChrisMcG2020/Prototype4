@@ -1,12 +1,10 @@
-package com.example.android.prototype2;
+package com.example.android.prototype2.views;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,10 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.android.prototype2.R;
 import com.example.android.prototype2.dialogs.DeleteProfileDialog;
-import com.example.android.prototype2.views.IncidentListView;
-import com.example.android.prototype2.views.AppInformationPage;
-import com.example.android.prototype2.views.SplashScreen;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
@@ -35,15 +31,13 @@ import com.google.firebase.database.ValueEventListener;
 public class PlayerProfile extends AppCompatActivity {
 
     //Variables
-    private Button updateProfile, deleteUser;
-    private ImageView info;
     private TextInputEditText emailTextView, phoneNoTextView, nameTextView, emergencyContactTextView, emergencyContactPhoneNoTextView;
     private TextInputLayout nameView, emailView, phoneView, emergencyContactView, emergencyContactPhoneView;
-    private TextView displayName, displayPhone, incidents;
+    private TextView displayName, displayPhone;
 
     //Firebase variables
     private FirebaseAuth firebaseAuth;
-    private FirebaseUser user;
+    private FirebaseUser currentUser;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
 
@@ -57,15 +51,13 @@ public class PlayerProfile extends AppCompatActivity {
         //Set layout
         setContentView(R.layout.player_profile);
 
-
-        //Firebase reference for the Users
+        //Firebase reference for the Players
         firebaseAuth = FirebaseAuth.getInstance();
-        user = firebaseAuth.getCurrentUser();
+        currentUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("Users");
+        databaseReference = firebaseDatabase.getReference("Players");
 
-        final String uid = user.getUid();
-        Intent intent = getIntent();
+
 
 
         //Initialise the variables to their corresponding views
@@ -76,35 +68,34 @@ public class PlayerProfile extends AppCompatActivity {
         emergencyContactPhoneView = findViewById(R.id.edit_text_profile_emergency_phone);
         displayName = findViewById(R.id.user_name);
         displayPhone = findViewById(R.id.user_phone_small);
-
         emergencyContactPhoneView = findViewById(R.id.edit_text_profile_emergency_phone);
-        incidents = findViewById(R.id.incident_text);
-        updateProfile = findViewById(R.id.btn_updatePlayerProfile);
+
         nameTextView = findViewById(R.id.player_profile_name);
         emailTextView = findViewById(R.id.player_profile_email);
         phoneNoTextView = findViewById(R.id.player_profile_phone);
         emergencyContactTextView = findViewById(R.id.player_profile_emergency_contact);
         emergencyContactPhoneNoTextView = findViewById(R.id.player_prof_emergency_contact_phone);
 
-        deleteUser = findViewById(R.id.btn_deleteProfile);
-        info = findViewById(R.id.player_info_btn);
-
 
         //Query the database to get the current user
-        Query query = databaseReference.orderByChild("uid").equalTo(user.getUid());
+        Query query = databaseReference.orderByChild("uid").equalTo(currentUser.getUid());
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot userSnapshot : snapshot.getChildren()) {
-                    //Retrieve required information
+                    //If no information found ,show error toast
+                    if (snapshot.getValue() == null) {
+                        Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                    }
+                    //Retrieve required information at that UID
                     String name = (String) userSnapshot.child("name").getValue();
                     String email = (String) userSnapshot.child("email").getValue();
                     String phone = (String) userSnapshot.child("phoneNo").getValue();
                     String emergencyContact = (String) userSnapshot.child("emergencyContact").getValue();
                     String contactNumber = (String) userSnapshot.child("contactNumber").getValue();
-                    String playerID = (String) userSnapshot.child("playerID").getValue();
 
-                    //Assign the details to the text views
+
+                    //Set the information in the text fields
                     displayName.setText(name);
                     displayPhone.setText(phone);
                     nameTextView.setText(name);
@@ -125,7 +116,7 @@ public class PlayerProfile extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -145,19 +136,23 @@ public class PlayerProfile extends AppCompatActivity {
             return;
         }
         //Firebase updateEmail method used to update email and other profile information
-        user.updateEmail(updateEmail)
+
+        currentUser.updateEmail(updateEmail)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
 
                     @Override
                     public void onSuccess(Void aVoid) {
                         //Find the path in the database for the required information and update it
-                        firebaseDatabase.getReference("Users").child(user.getUid()).child("name").setValue(updateName);
+                        firebaseDatabase.getReference("Players").child(currentUser.getUid()).child("name").setValue(updateName);
+                        //Update the displayed name in the top of profile page
                         displayName.setText(updateName);
-                        firebaseDatabase.getReference("Users").child(user.getUid()).child("phoneNo").setValue(updatePhone);
-                        firebaseDatabase.getReference("Users").child(user.getUid()).child("email").setValue(updateEmail);
+                        firebaseDatabase.getReference("Players").child(currentUser.getUid()).child("phoneNo").setValue(updatePhone);
+                        firebaseDatabase.getReference("Players").child(currentUser.getUid()).child("email").setValue(updateEmail);
+                        //Update the displayed phone in the top of profile page
                         displayPhone.setText(phoneNoTextView.getText().toString());
-                        firebaseDatabase.getReference("Users").child(user.getUid()).child("emergencyContact").setValue(updateEmergencyContact);
-                        firebaseDatabase.getReference("Users").child(user.getUid()).child("contactNumber").setValue(updateEC_Phone);
+                        firebaseDatabase.getReference("Players").child(currentUser.getUid()).child("emergencyContact").setValue(updateEmergencyContact);
+                        firebaseDatabase.getReference("Players").child(currentUser.getUid()).child("contactNumber").setValue(updateEC_Phone);
+                        //Display success Toast
                         Toast.makeText(getApplicationContext(), "Profile Updated", Toast.LENGTH_LONG).show();
 
 
@@ -174,6 +169,8 @@ public class PlayerProfile extends AppCompatActivity {
                 addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        //Show an error Toast
+                        Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
 
                     }
                 });
@@ -187,14 +184,14 @@ public class PlayerProfile extends AppCompatActivity {
         DialogFragment deleteUser = new DeleteProfileDialog(new DeleteProfileDialog.NoticeDialogListener() {
             @Override
             public void onDialogPositiveClick(DialogInterface dialog) {
-                //What to do incase of positive click
-                deleteCurrentUser(user.getUid());
+                //If positive click run delete user method
+                deleteCurrentUser(currentUser.getUid());
 
             }
 
             @Override
             public void onDialogNegativeClick(DialogFragment dialog) {
-                //What to do incase of negative click
+                //If negative click dismiss the dialog
                 dialog.dismiss();
             }
         });
@@ -203,16 +200,16 @@ public class PlayerProfile extends AppCompatActivity {
 
 
     private void deleteCurrentUser(String uid) {
-        //Get a reference to the Users uid in the database
-        DatabaseReference databaseReferenceUser = FirebaseDatabase.getInstance().getReference("Users").child(uid);
+        //Get a reference to the Players uid in the database
+        DatabaseReference databaseReferenceUser = FirebaseDatabase.getInstance().getReference("Players").child(uid);
 
-        //Remove the user
+        //Remove the player
         databaseReferenceUser.removeValue();
 
-        //Show a toast to say user has been removed
+        //Show a Toast to say user has been removed
         Toast.makeText(getApplicationContext(), "User deleted", Toast.LENGTH_LONG).show();
         //Logging statements to test delete feature of Realtime DB
-        Log.d(TAG, "TEST_DELETE: USER=" + user.getUid());
+        Log.d(TAG, "TEST_DELETE: USER=" + currentUser.getUid());
         Log.d(TAG, "USER DELETED");
 
         //Take the user back to the start up screen
@@ -223,7 +220,7 @@ public class PlayerProfile extends AppCompatActivity {
 
     //Validation for name
     private Boolean validateName() {
-        //Get the entry from the nameTextView field
+        //Retrieve the user's entry from the text field
         String entry = nameTextView.getText().toString();
         //If empty display error
         if (entry.isEmpty()) {
@@ -241,6 +238,7 @@ public class PlayerProfile extends AppCompatActivity {
 
     //Validation for email
     private Boolean validateEmail() {
+        //Retrieve the user's entry from the text field
         String entry = emailTextView.getText().toString();
         //Characters accepted for email address
         String emailCharacters = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
@@ -257,7 +255,7 @@ public class PlayerProfile extends AppCompatActivity {
             emailView.setError("Invalid email address");
             return false;
         } else {
-            //no Error
+            //No error
             emailView.setError(null);
             //setErrorEnabled(false) ensures layout will not change size when an error is displayed
             emailView.setErrorEnabled(false);
@@ -268,16 +266,18 @@ public class PlayerProfile extends AppCompatActivity {
 
     //Validation for phone number
     private boolean validatePhone() {
+        //Retrieve the user's entry from the text field
         String entry = phoneNoTextView.getText().toString();
         //If the entry is left blank or a short number entered show error
         if (entry.isEmpty()) {
             phoneView.setError("Phone number must not be blank");
             return false;
+            //If less than 6 numbers entered invalid number
         } else if (entry.length() < 6) {
             phoneView.setError("Is number correctly formatted?");
             return false;
         } else {
-            //no Error
+            //No error
             phoneView.setError(null);
             //setErrorEnabled(false) ensures layout will not change size when an error is displayed
             phoneView.setErrorEnabled(false);
@@ -288,6 +288,7 @@ public class PlayerProfile extends AppCompatActivity {
 
     //Validation for Emergency contact name
     private Boolean validateContactName() {
+        //Retrieve the user's entry from the text field
         String entry = emergencyContactTextView.getText().toString();
 
         //If empty display error
@@ -295,7 +296,7 @@ public class PlayerProfile extends AppCompatActivity {
             emergencyContactView.setError("Name field cannot be empty");
             return false;
         } else {
-            //No Error
+            //No error
             emergencyContactView.setError(null);
             //setErrorEnabled(false) ensures layout will not change size when an error is displayed
             emergencyContactView.setErrorEnabled(false);
@@ -306,7 +307,7 @@ public class PlayerProfile extends AppCompatActivity {
 
     //Validation for Emergency Contact phone number
     private boolean validateECPhone() {
-
+        //Retrieve the user's entry from the text field
         String entry = emergencyContactPhoneNoTextView.getText().toString();
         //If the entry is left blank or a short number entered show error
         if (entry.isEmpty()) {
@@ -316,7 +317,7 @@ public class PlayerProfile extends AppCompatActivity {
             emergencyContactPhoneView.setError("Is number correctly formatted?");
             return false;
         } else {
-            //no Error
+            //no error
             emergencyContactPhoneView.setError(null);
             //setErrorEnabled(false) ensures layout will not change size when an error is displayed
             emergencyContactPhoneView.setErrorEnabled(false);

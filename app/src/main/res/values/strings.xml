@@ -43,7 +43,7 @@
     <string name="continue_diagnosis">Continue</string>
     <string name="red_flags">RED FLAGS</string>
     <string name="redflag_warning">If any of the following signs are observed player should be immediately removed. If no healthcare professional present call an ambulance</string>
-    <string name="red_flag_symptoms">• Neck pain or tenderness \n• Weakness or tingling/burning in arms or \n legs \n• Increasingly restless, agitated or  combative \n• Severe or increasing headache \n• Deteriorating conscious state \n• Seizure or convulsion \n• Vomiting \n• Loss of consciousness</string>
+    <string name="red_flag_symptoms">• Neck pain or tenderness \n• Weakness or tingling/burning in arms or legs \n• Increasingly restless, agitated or  combative \n• Severe or increasing headache \n• Deteriorating conscious state \n• Seizure or convulsion \n• Vomiting \n• Loss of consciousness</string>
     <string name="visual_signs_description">Check for this visual signs that could suggest concussion</string>
 
     <!--Memory Questions-->
@@ -131,7 +131,7 @@
 
     <!--Coach advice Page-->
     <string name="coach_advice_title"><b>Athletes with Suspected Concussion should: </b></string>
-    <string name="coach_advice_points">• Not be left alone initially (at least first  \n \t 1-2 hours) \n• Not drink alcohol \n• Not use recreational/prescription drugs\n• Not be sent home by themselves. They \n  need to be with a responsible adult \n• Not drive a motor vehicle until cleared\n  by a healthcare professional</string>
+    <string name="coach_advice_points">• Not be left alone initially (at least first  \n \t 1-2 hours) \n• Not drink alcohol \n• Not use recreational/prescription drugs\n• Not be sent home by themselves. They \n\t need to be with a responsible adult \n• Not drive a motor vehicle until cleared \n  by a healthcare professional</string>
     <string name="coach_advice_warning">ANY ATHLETE WITH A SUSPECTED CONCUSSION SHOULD BE IMMEDIATELY REMOVED FROM PRACTICE OR PLAY AND SHOULD NOT RETURN
         TO ACTIVITY UNTIL ASSESSED MEDICALLY, EVEN IF SYMPTOMS RESOLVE</string>
     <string name="profile_logout">LOGOUT</string>
@@ -147,7 +147,7 @@
     <string name="return_to_sport3">SPORT SPECIFIC EXERCISE \n-Low to moderate intensity activity. No\n head impact activities\n Stage Goal: Add movement</string>
     <string name="return_to_sport4">NON CONTACT TRAINING DRILLS \n-Progress to more sport drills. No \n head contact. Start progressive \n resistance training\n Stage Goal: Exercise, coordination,\n and cognitive load</string>
     <string name="return_to_sport5">FULL CONTACT PRACTICE \n-FOLLOWING medical clearance,\n participate in normal training\n activities\n Stage Goal: Restore confidence and\n assess functional skills by coaches</string>
-    <string name="return_to_sport6">RETURN TO PLAY/SPORT \n-Normal game play/n-Continue to\n monitor and assess\n periodically</string>
+    <string name="return_to_sport6">RETURN TO PLAY/SPORT \n-Normal game play\n-Continue to\n monitor and assess\n periodically</string>
 
     <!--Coach Profile page-->
     <string name="coach_profile_concussion">DIAGNOSE CONCUSSION NOW!</string>
@@ -167,15 +167,15 @@
     <string name="info_page_title">Concussion Checker</string>
     <string name="info_back_btn">Back to Profile</string>
     <string name="crt_5_document">CRT-5 Document</string>
-    <string name="info_main">It follows guidelines set out by the Concussion in Sport Group in 2017, based on their document the Concussion Recognition Tool (CRT-5). This is available online via the button below. It is not designed to replace professional medical advice which should always be consulted in any case of a suspected concussion</string>
+    <string name="info_main">It follows guidelines set out by the Concussion in Sport Group in 2017, based on their document the Concussion Recognition Tool (CRT-5). This is available online via the button below. It is not designed to replace professional medical advice which should always be consulted in any case of a suspected concussion.</string>
     <string name="info_intro">Concussion checker is an app designed to help recognise the symptoms of an on field concussion. It also gives advice to players to assist recovery and their return to sport participation.</string>
 
     <!--Player recovery advice-->
-    <string name="player_recovery_signs"><b>Directly after suspected concussion \nplayers should:</b>\n\n• Not be left alone initially (at least first  \n \t 1-2 hours) \n• Not drink alcohol \n• Not use recreational/prescription drugs\n• Not be sent home by themselves. They \n  need to be with a responsible adult \n• Not drive a motor vehicle until cleared\n  by a healthcare professional</string>
+    <string name="player_recovery_signs"><b>Directly after suspected concussion \nplayers should:</b>\n\n• Not be left alone initially (at least first  \n \t 1-2 hours) \n• Not drink alcohol \n• Not use recreational/prescription drugs\n• Not be sent home by themselves. They \n\tneed to be with a responsible adult \n • Not drive a motor vehicle until cleared\n  by a healthcare professional.</string>
     <string name="advice_return">Return to Sport Strategy</string>
 
     <!--Medical alert dialog-->
-    <string name="medical_advice">This App is not designed to replace professional medical advice or diagnose concussion. It is a advisory tool</string>
+    <string name="medical_advice">This App is not designed to replace professional medical advice or diagnose concussion. It is an advisory tool.</string>
     <string name="warning_title">Warning</string>
     <string name="phone_number">999</string>
     <string name="report_incident_details">report_incident_hint</string>

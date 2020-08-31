@@ -8,7 +8,8 @@ import android.widget.ImageView;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 
 import com.example.android.prototype2.views.AllIncidentsListView;
-import com.example.android.prototype2.views.AppInformationPage;
+import com.example.android.prototype2.views.AppCoachInformationPage;
+import com.example.android.prototype2.views.CoachProfile;
 import com.example.android.prototype2.views.PlayerListViewActivity;
 import com.example.android.prototype2.views.SplashScreen;
 
@@ -39,6 +40,7 @@ public class CoachProfileTest {
             = new IntentsTestRule<>(CoachProfile.class);
 
 
+    //Unit Tests
     @Test
     public void testRegFieldsPresent() {
         //Find the views and assert they are present
@@ -76,6 +78,7 @@ public class CoachProfileTest {
 
     }
 
+    //Ui & Instrumentation Tests
     @Test
     public void test_click_diagnose_button() {
         //Find the views and perform action
@@ -178,7 +181,7 @@ public class CoachProfileTest {
         //Find the view and perform the action
         onView(withId(R.id.coach_info_btn)).perform(click());
         //Expected result
-        intended(hasComponent(AppInformationPage.class.getName()));
+        intended(hasComponent(AppCoachInformationPage.class.getName()));
 
     }
 }

@@ -20,6 +20,7 @@ public class RecyclerViewTest {
     public final ActivityTestRule<IncidentListView> mRecyclerTestRule =
             new ActivityTestRule<>(IncidentListView.class);
 
+    //Unit Tests
     @Test
     public void test_incident_recycler() {
         //Get the activity

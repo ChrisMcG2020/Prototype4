@@ -9,6 +9,8 @@ import android.widget.EditText;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.example.android.prototype2.views.CoachLoginActivity;
+import com.example.android.prototype2.views.CoachProfile;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.hamcrest.Description;
@@ -54,6 +56,7 @@ public class CoachLoginScreenTest {
         public static final String INVALID_USER = "Email/Password Incorrect";
 
 
+        //Unit Tests
         @Test
         public void test_loginAndPasswordFields() {
             //Get the activity
@@ -87,6 +90,7 @@ public class CoachLoginScreenTest {
         }
 
 
+        //UI & Instrumentation Tests
         @Test
         public void test_click_login_with_empty_fields_gives_errors() {
             //Find the views and perform action

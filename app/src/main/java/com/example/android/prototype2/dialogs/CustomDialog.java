@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
-//CustomDialog sourced online to build dialog which is called in deleteProfile
+//CustomDialog  sourced online to build dialog which is called in deleteProfile
 public class CustomDialog extends DialogFragment {
     private NoticeDialogListener ndl;
 
@@ -18,13 +18,13 @@ public class CustomDialog extends DialogFragment {
         void onDialogNegativeClick(DialogFragment dialog);
     }
 
-    //add a custom constructor so that you have an initialised NoticeDialogListener
+    //Custom constructor to  initialise NoticeDialogListener
     public CustomDialog(NoticeDialogListener ndl){
         super();
         this.ndl=ndl;
     }
 
-    //make sure you maintain an empty constructor
+    //Empty constructor
     public CustomDialog( ){
         super();
     }
@@ -44,14 +44,18 @@ public class CustomDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        //Set the title of the dialog
         builder.setTitle("Delete Profile")
+                //Set the message
                 .setMessage("Do you really want to delete your profile?")
+                //Set the text and action of the positive button
                 .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                      ndl.onDialogPositiveClick(dialog);
 
                     }
                 })
+                //Set the text and action of the negative button
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dismiss();

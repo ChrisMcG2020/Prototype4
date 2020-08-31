@@ -22,8 +22,15 @@ public class IntentsTest {
     public IntentsTestRule<MemoryActivity> mIntentsTestRule
             = new IntentsTestRule<>(MemoryActivity.class);
 
+    //UI & Instrumentation Tests
     @Test
     public void testEmailIntentsPresent() {
+        //Click enough buttons to move forward
+        onView(withId(R.id.memory_q1_no)).perform(click());
+        onView(withId(R.id.memory_q2_no)).perform(click());
+        onView(withId(R.id.memory_q3_no)).perform(click());
+        onView(withId(R.id.memory_q4_no)).perform(click());
+        onView(withId(R.id.memory_q5_no)).perform(click());
         //ScrollDown
         onView(withId(R.id.memory_continue_btn)).perform(scrollTo());
         //Find the view and perform action
@@ -37,6 +44,12 @@ public class IntentsTest {
 
     @Test
     public void testNam_intents_present() {
+        //Click enough buttons to move forward
+        onView(withId(R.id.memory_q1_no)).perform(click());
+        onView(withId(R.id.memory_q2_no)).perform(click());
+        onView(withId(R.id.memory_q3_no)).perform(click());
+        onView(withId(R.id.memory_q4_no)).perform(click());
+        onView(withId(R.id.memory_q5_no)).perform(click());
         //ScrollDown
         onView(withId(R.id.memory_continue_btn)).perform(scrollTo());
         //Find the view and perform action
@@ -49,6 +62,12 @@ public class IntentsTest {
 
     @Test
     public void testRedFlag_intents_present() {
+        //Click enough buttons to move forward
+        onView(withId(R.id.memory_q1_no)).perform(click());
+        onView(withId(R.id.memory_q2_no)).perform(click());
+        onView(withId(R.id.memory_q3_no)).perform(click());
+        onView(withId(R.id.memory_q4_no)).perform(click());
+        onView(withId(R.id.memory_q5_no)).perform(click());
         //ScrollDown
         onView(withId(R.id.memory_continue_btn)).perform(scrollTo());
         //Find the view and perform action
@@ -61,6 +80,12 @@ public class IntentsTest {
 
     @Test
     public void testobs_intents_present() {
+        //Click enough buttons to move forward
+        onView(withId(R.id.memory_q1_no)).perform(click());
+        onView(withId(R.id.memory_q2_no)).perform(click());
+        onView(withId(R.id.memory_q3_no)).perform(click());
+        onView(withId(R.id.memory_q4_no)).perform(click());
+        onView(withId(R.id.memory_q5_no)).perform(click());
         //ScrollDown
         onView(withId(R.id.memory_continue_btn)).perform(scrollTo());
         //Find the view and perform action
@@ -73,6 +98,12 @@ public class IntentsTest {
 
     @Test
     public void testsymptoms_intents_present() {
+        //Click enough buttons to move forward
+        onView(withId(R.id.memory_q1_no)).perform(click());
+        onView(withId(R.id.memory_q2_no)).perform(click());
+        onView(withId(R.id.memory_q3_no)).perform(click());
+        onView(withId(R.id.memory_q4_no)).perform(click());
+        onView(withId(R.id.memory_q5_no)).perform(click());
         //ScrollDown
         onView(withId(R.id.memory_continue_btn)).perform(scrollTo());
         //Find the view and perform action

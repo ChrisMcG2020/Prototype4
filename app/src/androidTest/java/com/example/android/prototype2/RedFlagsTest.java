@@ -30,6 +30,7 @@ public class RedFlagsTest {
     public final IntentsTestRule<RedFlagActivity> mRed_Flags_Test_Rule
             = new IntentsTestRule<>(RedFlagActivity.class);
 
+    //Unit Tests
     @Test
     public void test_buttons_present() {
         //Get the activity
@@ -44,8 +45,11 @@ public class RedFlagsTest {
 
     }
 
+    //UI & Instrumentation Tests
     @Test
     public void test_rf_continue_button_opens_correct_activity() {
+        //Click the positive button in the dialog
+        onView(withText("I understand")).perform(click());
         //Find the views and perform action
         onView(withId(R.id.redFlag_continue)).perform(click());
         //Check if action returns desired outcome
@@ -55,6 +59,8 @@ public class RedFlagsTest {
 
     @Test
     public void test_call_Ambulance_Button_launches_Dialog() {
+        //Click the positive button in the dialog
+        onView(withText("I understand")).perform(click());
         //Find the views and perform the action
         onView(withId(R.id.redFlag_call_ambulance)).perform(click());
         //Check if action returns desired outcome

@@ -1,12 +1,10 @@
-package com.example.android.prototype2;
+package com.example.android.prototype2.views;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,12 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.android.prototype2.R;
 import com.example.android.prototype2.dialogs.DeleteProfileDialog;
-import com.example.android.prototype2.helperClass.CoachModel;
-import com.example.android.prototype2.views.AllIncidentsListView;
-import com.example.android.prototype2.views.AppCoachInformationPage;
-import com.example.android.prototype2.views.PlayerListViewActivity;
-import com.example.android.prototype2.views.SplashScreen;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
@@ -33,24 +27,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.List;
-
 public class CoachProfile extends AppCompatActivity {
 
     //Variables
-    private Activity context;
-    //Declare a list using the CoachHelperClass
-    private List<CoachModel> coachesList;
-
     private TextInputEditText coachNameTextView, coachPhoneNoTextView, coachEmailTextView, teamCoachedTextView;
     private TextView displayCoachName, displayCoachphone;
     private TextInputLayout emailView, phoneView, nameView, teamView;
-    private String coachEmail;
-    private Button updateCoach, deleteCoach;
+
 
     //Firebase variables
     private FirebaseAuth firebaseAuth;
-    private FirebaseUser user;
+    private FirebaseUser currentUser;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
 
@@ -68,13 +55,9 @@ public class CoachProfile extends AppCompatActivity {
 
         //Firebase reference for the Users
         firebaseAuth = FirebaseAuth.getInstance();
-        user = firebaseAuth.getCurrentUser();
+        currentUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Coaches");
-
-
-        Intent intent = getIntent();
-        coachEmail = intent.getStringExtra("email");
 
 
         //Initialise the variables to their corresponding views
@@ -91,30 +74,31 @@ public class CoachProfile extends AppCompatActivity {
         displayCoachphone = findViewById(R.id.coach_phone_small);
         teamCoachedTextView = findViewById(R.id.coach_profile_team);
 
-
-        final String uid = user.getUid();
-
         //Query the database to get the current user
-        Query query = databaseReference.orderByChild("coachEmail").equalTo(user.getEmail());
+        Query query = databaseReference.orderByChild("coachEmail").equalTo(currentUser.getEmail());
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-
                 for (DataSnapshot userSnapshot : snapshot.getChildren()) {
-                    //Retrieve required information
+                    //If no information found ,show error toast
+                    if (snapshot.getValue() == null) {
+                        Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                    }
+                    //Retrieve required information at that UID
                     String name = (String) userSnapshot.child("coachName").getValue();
                     String email = (String) userSnapshot.child("coachEmail").getValue();
                     String phone = (String) userSnapshot.child("coachPhoneNumber").getValue();
                     String teamCoached = (String) userSnapshot.child("teamCoached").getValue();
 
-
+                    //Set the information in the text fields
                     displayCoachName.setText(name);
                     displayCoachphone.setText(phone);
                     coachNameTextView.setText(name);
                     coachPhoneNoTextView.setText(phone);
                     coachEmailTextView.setText(email);
                     teamCoachedTextView.setText(teamCoached);
+
 
                     //Logs for testing updates in Realtime DB
                     Log.d(TAG, "TEST__coachName: " + name);
@@ -128,6 +112,8 @@ public class CoachProfile extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+
 
             }
         });
@@ -148,17 +134,20 @@ public class CoachProfile extends AppCompatActivity {
         }
 
         //Firebase updateEmail method used to update email and other profile information
-        user.updateEmail(updateEmail).addOnSuccessListener(new OnSuccessListener<Void>() {
+
+        currentUser.updateEmail(updateEmail).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 //Find the path in the database for the required information and update it
-                firebaseDatabase.getReference("Coaches").child(user.getUid()).child("coachName").setValue(updateName);
+                firebaseDatabase.getReference("Coaches").child(currentUser.getUid()).child("coachName").setValue(updateName);
+                //Update the displayed name in the top of profile page
                 displayCoachName.setText(updateName);
-                firebaseDatabase.getReference("Coaches").child(user.getUid()).child("coachEmail").setValue(updateEmail);
-                firebaseDatabase.getReference("Coaches").child(user.getUid()).child("coachPhoneNumber").setValue(updatePhone);
+                firebaseDatabase.getReference("Coaches").child(currentUser.getUid()).child("coachEmail").setValue(updateEmail);
+                firebaseDatabase.getReference("Coaches").child(currentUser.getUid()).child("coachPhoneNumber").setValue(updatePhone);
+                //Update the displayed phone in the top of profile page
                 displayCoachphone.setText(updatePhone);
-                firebaseDatabase.getReference("Coaches").child(user.getUid()).child("teamCoached").setValue(updateTeamCoached);
-
+                firebaseDatabase.getReference("Coaches").child(currentUser.getUid()).child("teamCoached").setValue(updateTeamCoached);
+                //Display success Toast
                 Toast.makeText(getApplicationContext(), "Profile Updated", Toast.LENGTH_LONG).show();
 
                 //Logs for testing updates in Realtime DB
@@ -173,7 +162,8 @@ public class CoachProfile extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-
+                //Show an error Toast
+                Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -186,14 +176,14 @@ public class CoachProfile extends AppCompatActivity {
         DialogFragment deleteUser = new DeleteProfileDialog(new DeleteProfileDialog.NoticeDialogListener() {
             @Override
             public void onDialogPositiveClick(DialogInterface dialog) {
-                //What you want to do incase of positive click
-                deleteCurrentUser(user.getUid());
+                //If positive click run delete user method
+                deleteCurrentUser(currentUser.getUid());
 
             }
 
             @Override
             public void onDialogNegativeClick(DialogFragment dialog) {
-                //What you want to do incase of negative click
+                //If negative click dismiss the dialog
                 dialog.dismiss();
             }
         });
@@ -211,12 +201,12 @@ public class CoachProfile extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "User deleted", Toast.LENGTH_LONG).show();
 
         //Logging statements to test delete feature of Realtime DB
-        Log.d(TAG, "TEST_DELETE: USER=" + user.getUid());
+        Log.d(TAG, "TEST_DELETE: USER=" + currentUser.getUid());
         Log.d(TAG, "USER DELETED");
 
         //Take the user back to the start up screen
-        Intent return_toSplash_intent = new Intent(getApplicationContext(), SplashScreen.class);
-        startActivity(return_toSplash_intent);
+        Intent splashScreen = new Intent(getApplicationContext(), SplashScreen.class);
+        startActivity(splashScreen);
 
 
     }
@@ -224,7 +214,7 @@ public class CoachProfile extends AppCompatActivity {
 
     //Validation for name
     private Boolean validateCoachName() {
-        //Get the entry from the nameTextView field
+        //Retrieve the user's entry from the text field
         String entry = coachNameTextView.getText().toString();
         //If empty display error
         if (entry.isEmpty()) {
@@ -242,6 +232,7 @@ public class CoachProfile extends AppCompatActivity {
 
     //Validation for email
     private Boolean validateCoachEmail() {
+        //Retrieve the user's entry from the text field
         String entry = coachEmailTextView.getText().toString();
         //Characters accepted for email address
         String emailCharacters = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
@@ -269,16 +260,18 @@ public class CoachProfile extends AppCompatActivity {
 
     //Validation for phone number
     private boolean validateCoachPhone() {
+        //Retrieve the user's entry from the text field
         String entry = coachPhoneNoTextView.getText().toString();
         //If the entry is left blank or a short number entered show error
         if (entry.isEmpty()) {
             phoneView.setError("Phone number must not be blank");
             return false;
+            //If less than 6 numbers entered invalid number
         } else if (entry.length() < 6) {
             phoneView.setError("Is number correctly formatted?");
             return false;
         } else {
-            //no Error
+            //No error
             phoneView.setError(null);
             //setErrorEnabled(false) ensures layout will not change size when an error is displayed
             phoneView.setErrorEnabled(false);
@@ -289,6 +282,7 @@ public class CoachProfile extends AppCompatActivity {
 
     //Validation for team coached
     private Boolean validateTeamCoached() {
+        //Retrieve the user's entry from the text field
         String entry = teamCoachedTextView.getText().toString();
 
         //If empty display error
@@ -296,7 +290,7 @@ public class CoachProfile extends AppCompatActivity {
             teamView.setError("Team field cannot be empty");
             return false;
         } else {
-            //No Error
+            //No error
             teamView.setError(null);
             //setErrorEnabled(false) ensures layout will not change size when an error is displayed
             teamView.setErrorEnabled(false);
@@ -307,11 +301,11 @@ public class CoachProfile extends AppCompatActivity {
 
 
     //Method to direct button clicks to correct action
-    public void onButtonClicked(View view) {
+    public void onButtonClicked(@NonNull View view) {
         //Switch statement implemented as a lot of choices available
         switch (view.getId()) {
             //If recover image clocked recover advice page launched
-            case R.id.diagnose_concussion_button :
+            case R.id.diagnose_concussion_button:
                 Intent diagnoseIntent = new Intent(getApplicationContext(), PlayerListViewActivity.class);
                 startActivity(diagnoseIntent);
                 break;
@@ -343,7 +337,7 @@ public class CoachProfile extends AppCompatActivity {
                 Intent info = new Intent(getApplicationContext(), AppCoachInformationPage.class);
                 startActivity(info);
                 break;
-                //Default for when no case matches the action
+            //Default for when no case matches the action
             default:
                 Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
         }

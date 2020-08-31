@@ -14,7 +14,7 @@ import com.example.android.prototype2.R;
 
 import static android.content.ContentValues.TAG;
 
-//Custom alert sourced to handle the delete of profile
+//Custom alert sourced to handle the delete of profile implements the interface created in CustomDialog
 public class DeleteProfileDialog extends DialogFragment {
 
     private NoticeDialogListener mNoticeDialogListener;
@@ -36,7 +36,7 @@ public class DeleteProfileDialog extends DialogFragment {
         super();
     }
 
-    // Use this instance of the interface to deliver action events
+    // Interface to deliver the actions
     CustomDialog.NoticeDialogListener mListener;
 
     // Override the Fragment.onAttach() method to instantiate the NoticeDialogListener

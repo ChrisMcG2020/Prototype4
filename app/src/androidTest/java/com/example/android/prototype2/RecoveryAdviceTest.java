@@ -6,6 +6,10 @@ import android.widget.TextView;
 
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 
+import com.example.android.prototype2.views.PlayerProfile;
+import com.example.android.prototype2.views.RecoveryActivity;
+import com.example.android.prototype2.views.ReturnToSportStrategy;
+
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;

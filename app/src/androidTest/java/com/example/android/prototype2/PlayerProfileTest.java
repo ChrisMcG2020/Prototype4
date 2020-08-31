@@ -11,8 +11,10 @@ import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.example.android.prototype2.views.IncidentListView;
 import com.example.android.prototype2.views.AppInformationPage;
+import com.example.android.prototype2.views.IncidentListView;
+import com.example.android.prototype2.views.PlayerProfile;
+import com.example.android.prototype2.views.RecoveryActivity;
 import com.example.android.prototype2.views.SplashScreen;
 
 import org.hamcrest.Matcher;
@@ -46,10 +48,12 @@ public class PlayerProfileTest {
     public static final String TEST_UPDATE_PHONENO = "081111";
     public static final String TEST_UPDATE_EMERGENCYCONTACT = "Mary Smith";
     public static final String TEST_UPDATE_EC_PHONENO = "082222";
+    // Set the rule to apply to the test method and which class to use
     @Rule
     public final IntentsTestRule<PlayerProfile> mUserProfileTestRule
             = new IntentsTestRule<>(PlayerProfile.class);
 
+    //Unit Tests
     @Test
     public void tes_fields_buttons_images_Present() {
         //Find the views
@@ -69,7 +73,7 @@ public class PlayerProfileTest {
         //Find the views
         Button update = activity.findViewById(R.id.btn_updatePlayerProfile);
         Button delete = activity.findViewById(R.id.btn_deleteProfile);
-        Button info = activity.findViewById(R.id.player_info_btn);
+        ImageView info = activity.findViewById(R.id.player_info_btn);
         //Assert they are present
         Assert.assertNotNull(update);
         Assert.assertNotNull(delete);
@@ -88,6 +92,7 @@ public class PlayerProfileTest {
 
     }
 
+    //UI & Instrumentation Tests
     @Test
     public void test_click_onrecovery_pic_opens_recovery_advice() {
         //Find the view and perform action
@@ -142,7 +147,7 @@ public class PlayerProfileTest {
     @Test
     public void test_can_edit_contact_phone() {
         //Find the views and perform action
-        onView(withId(R.id.player_prof_emergency_contact_phone)).perform(forceClick()).perform(typeText(TEST_UPDATE_EC_PHONENO));
+        onView(withId(R.id.player_prof_emergency_contact_phone)).perform (scrollTo()).perform(click()).perform(typeText(TEST_UPDATE_EC_PHONENO));
         closeSoftKeyboard();
 
     }

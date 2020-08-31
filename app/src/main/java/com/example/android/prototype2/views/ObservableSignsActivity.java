@@ -2,8 +2,8 @@ package com.example.android.prototype2.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.CheckBox;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -61,7 +61,7 @@ public class ObservableSignsActivity extends AppCompatActivity {
 
 
         }
-
+        Log.d(TAG, obsDiagnosis);
     }
 
     //Method to direct button clicks to correct action

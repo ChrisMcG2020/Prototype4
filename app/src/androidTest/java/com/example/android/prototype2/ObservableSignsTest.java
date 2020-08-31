@@ -32,6 +32,7 @@ public class ObservableSignsTest {
     public final IntentsTestRule<ObservableSignsActivity> mObs_Test_Rule
             = new IntentsTestRule<>(ObservableSignsActivity.class);
 
+    //Unit Tests
     @Test
     public void test_checkBoxes_and_buttons_present() {
         //Find the views
@@ -57,6 +58,7 @@ public class ObservableSignsTest {
 
     }
 
+    //UI & Instrumentation Tests
     @Test
     public void test_check_boxes_checkable() {
         //Find the view and perform action

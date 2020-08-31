@@ -10,7 +10,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:textColor="@color/colorText"
-    tools:context=".CoachLoginActivity">
+    tools:context=".views.CoachLoginActivity">
 
 
     <ImageView

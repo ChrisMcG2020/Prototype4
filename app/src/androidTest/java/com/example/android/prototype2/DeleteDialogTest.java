@@ -2,6 +2,7 @@ package com.example.android.prototype2;
 
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 
+import com.example.android.prototype2.views.PlayerProfile;
 import com.example.android.prototype2.views.SplashScreen;
 
 import org.junit.Rule;
@@ -25,6 +26,7 @@ public class DeleteDialogTest {
             = new IntentsTestRule<>(PlayerProfile.class);
 
 
+    //Ui & Instrumentation Tests
     @Test
     public void test_dialog_appears_with_buttons() {
         //Find the view and perform the action

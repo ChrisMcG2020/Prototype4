@@ -6,6 +6,9 @@ import android.widget.TextView;
 
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 
+import com.example.android.prototype2.views.CoachAdviceActivity;
+import com.example.android.prototype2.views.CoachProfile;
+
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -26,6 +29,7 @@ public class CoachAdviceTest {
     public final IntentsTestRule<CoachAdviceActivity> mCoachAdviceTestRule
             = new IntentsTestRule<>(CoachAdviceActivity.class);
 
+    //Unit Tests
     @Test
     public void test_advice_screen() {
         //Get the activity
@@ -44,6 +48,7 @@ public class CoachAdviceTest {
         Assert.assertNotNull(continueB);
     }
 
+    //UI & Instrumentation Tests
     @Test
     public void test_continue_button_opens_correct_activity() {
         //Find the views and perform action

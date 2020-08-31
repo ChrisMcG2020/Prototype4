@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:textColor="@color/colorText"
-    tools:context=".CoachRegistrationActivity">
+    tools:context=".views.CoachRegistrationActivity">
 
 
     <ImageView

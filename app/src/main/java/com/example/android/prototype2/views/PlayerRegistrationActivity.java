@@ -1,4 +1,4 @@
-package com.example.android.prototype2;
+package com.example.android.prototype2.views;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.android.prototype2.R;
 import com.example.android.prototype2.helperClass.PlayerModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,7 +21,6 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
@@ -35,13 +35,13 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
     //Variables for getting DOB
     private DatePicker regDOB;
 
-    private Button regBtn, regToLoginBtn;
+    private Button regToLoginBtn;
 
     //Progress bar variable
     private ProgressBar progressBar;
 
-    private FirebaseAuth mAuth;
-    private FirebaseUser mCurrent;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser currentUser;
 
     //Tag for printing log details
     private final String TAG = getClass().getSimpleName();
@@ -62,32 +62,30 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
         regDobValidationsError = findViewById(R.id.reg_dob);
         regContact = findViewById(R.id.reg_emergency_contact);
         regContactPhone = findViewById(R.id.reg_emergency_contact_phone);
-        regBtn = findViewById(R.id.register_btn);
         regToLoginBtn = findViewById(R.id.back_to_login);
 
+        //Assign progress bar and set it to not appear
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
 
 
-
-        //Initialise Firebase components
-        mAuth = FirebaseAuth.getInstance();
-        mCurrent = mAuth.getCurrentUser();
-        //Button to exit registration screen and return to login screen
+        //Assign instance of Firebase variables, Firebase Auth to gain access to its API features
+        firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
+        //return to login button takes user back to login screen
         regToLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), PlayerLoginActivity.class);
-                startActivity(intent);
+                Intent returnIntent = new Intent(getApplicationContext(), PlayerLoginActivity.class);
+                startActivity(returnIntent);
             }
         });
     }
 
 
-
     //Validation for name
     private Boolean validateName() {
-        //Get the entry from the regName field
+        //Retrieve the user's entry from the text field
         String entry = regName.getEditText().getText().toString();
         //If empty display error
         if (entry.isEmpty()) {
@@ -105,11 +103,11 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
 
     //Validation for email
     private Boolean validateEmail() {
-
+        //Retrieve the user's entry from the text field
         String entry = regEmail.getEditText().getText().toString();
 
         //Characters accepted for email address
-      String emailCharacters=  "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+" +
+        String emailCharacters = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+" +
                 "+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|";
 
         //If entry left empty error shown
@@ -132,17 +130,20 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
 
     //Validation for phone entry
     private Boolean validatePhoneNo() {
+        //Retrieve the user's entry from the text field
         String entry = regPhoneNo.getEditText().getText().toString();
 
         //If empty display error
         if (entry.isEmpty()) {
             regPhoneNo.setError("Phone number field cannot be empty");
             return false;
+            //If less than 6 numbers entered invalid number
         } else if (entry.length() < 6) {
             regPhoneNo.setError("Is number correctly formatted?");
             return false;
 
         } else {
+            //No error
             regPhoneNo.setError(null);
             //setErrorEnabled(false) ensures layout will not change size when an error is displayed
             regPhoneNo.setErrorEnabled(false);
@@ -153,15 +154,16 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
 
     //Validation for password
     private Boolean validatePassword() {
+        //Retrieve the user's entry from the text field
         String entry = regPassword.getEditText().getText().toString();
         //Password must contain certain characters to be secure
         String passwordEntry = "^" +
 
-                "(?=.*[A-Z])" +         //at least 1 upper case letter
-                "(?=.*[a-zA-Z])" +      //any letter
-                "(?=.*[@#$%^&+=!*])" +    //at least 1 special character
-                "(?=\\S+$)" +           //no white spaces
-                ".{4,}" +               //at least 4 characters
+                "(?=.*[A-Z])" +         //1 upper case
+                "(?=.*[a-zA-Z])" +      //Any letter
+                "(?=.*[@#$%^&+=!*])" +   //1 Special character
+                "(?=\\S+$)" +           //No gaps
+                ".{4,}" +               //At least 4 characters
                 "$";
 
         //If empty display error
@@ -173,6 +175,7 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
             regPassword.setError("Password must have at least 1 upper case,1 special character");
             return false;
         } else {
+            //No error
             regPassword.setError(null);
             //setErrorEnabled(false) ensures layout will not change size when an error is displayed
             regPassword.setErrorEnabled(false);
@@ -183,6 +186,7 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
 
     //Validation for Emergency contact name
     private Boolean validateContactName() {
+        //Retrieve the user's entry from the text field
         String entry = regContact.getEditText().getText().toString();
 
         //If empty display error
@@ -201,6 +205,7 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
 
     //Validation for phone entry
     private Boolean validateContactPhoneNo() {
+        //Retrieve the user's entry from the text field
         String entry = regContactPhone.getEditText().getText().toString();
 
         //If empty display error
@@ -221,7 +226,7 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
     //Validation for date of birth, age must be over 18
     private Boolean validateDOB() {
 
-        //Get the users Date of birth
+        //Get the players Date of birth
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
         int userAge = regDOB.getYear();
         int ageRequired = currentYear - userAge;
@@ -243,7 +248,7 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
         final String name = regName.getEditText().getText().toString();
         final String email = regEmail.getEditText().getText().toString();
         final String phoneNo = regPhoneNo.getEditText().getText().toString();
-        final String userUID = mCurrent.getUid();
+        final String userUID = currentUser.getUid();
 
         //Method to get a readable day/month/year from the Datepicker
         int day = regDOB.getDayOfMonth();
@@ -260,9 +265,6 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
         final String contactNumber = regContactPhone.getEditText().getText().toString();
         final String password = regPassword.getEditText().getText().toString();
 
-        DatabaseReference player = FirebaseDatabase.getInstance().getReference("Users");
-        final String playerID = player.push().getKey();
-
         //If any of the fields do not pass validation then return appropriate errors
         if (!validateName() | !validatePassword() | !validatePhoneNo() | !validateEmail() | !validateDOB() | !validateContactName() | !validateContactPhoneNo()) {
             return;
@@ -271,14 +273,14 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
         //Progress bar visible while loading
         progressBar.setVisibility(View.VISIBLE);
         //Access the firebase reference and create a user with their email and password
-        mAuth.createUserWithEmailAndPassword(email, password)
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        String UID = mCurrent.getUid();
+                        //Get the UID
+                        String UID = currentUser.getUid();
                         if (task.isSuccessful()) {
-                            //Get the details from our UserHelperClass
-                            //UserHelperClass helperClass = new UserHelperClass(playerID, name, email, phoneNo, dob, emergencyContact, contactNumber, password,uid);
+                            //Set the details matching the fields in PlayerModel
                             PlayerModel helperClass = new PlayerModel();
                             helperClass.setName(name);
                             helperClass.setContactNumber(contactNumber);
@@ -286,7 +288,6 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
                             helperClass.setEmergencyContact(emergencyContact);
                             helperClass.setPhoneNo(phoneNo);
                             helperClass.setDob(dob);
-                            helperClass.setPlayerID(playerID);
                             helperClass.setUid(UID);
 
                             //Log tags used for testing
@@ -299,7 +300,8 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
                             Log.d(TAG, "TEST_UID: " + UID);
 
                             //Get an instance of the firebase database and add the details from helper class to a new UID node
-                            FirebaseDatabase.getInstance().getReference("Users").child(UID)
+                            FirebaseDatabase.getInstance().getReference("Players").child(UID)
+                                    //Insert the newly created player at their UID path
                                     .setValue(helperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
 
                                 @Override
@@ -309,6 +311,7 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
                                     if (task.isSuccessful()) {
                                         Toast.makeText(getApplicationContext(), getString(R.string.registration_success), Toast.LENGTH_SHORT).show();
 
+                                        //Log tag for testing
                                         Log.d(TAG, "TEST_User_Reg_Success");
 
                                     } else {
@@ -323,8 +326,8 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
                 });
 
         //After registration completed return to login screen to login
-        Intent intent = new Intent(getApplicationContext(), PlayerLoginActivity.class);
-        startActivity(intent);
+        Intent returnToLogin = new Intent(getApplicationContext(), PlayerLoginActivity.class);
+        startActivity(returnToLogin);
     }
 
 

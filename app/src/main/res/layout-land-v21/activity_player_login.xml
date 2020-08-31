@@ -13,7 +13,7 @@
     android:orientation="horizontal"
     android:padding="16dp"
     android:textColor="@color/colorText"
-    tools:context=".PlayerLoginActivity">
+    tools:context=".views.PlayerLoginActivity">
 
     <!--Linear layout added in landscape to display information to the left of login layout-->
     <LinearLayout

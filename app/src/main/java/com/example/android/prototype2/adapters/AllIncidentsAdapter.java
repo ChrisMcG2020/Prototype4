@@ -1,4 +1,4 @@
-package com.example.android.prototype2.views;
+package com.example.android.prototype2.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -34,7 +34,6 @@ public class AllIncidentsAdapter extends RecyclerView.Adapter<AllIncidentsAdapte
 
     }
 
-
     @NonNull
     @Override
     //If viewHolder does  not exist create one by inflating the user_details_view
@@ -47,7 +46,7 @@ public class AllIncidentsAdapter extends RecyclerView.Adapter<AllIncidentsAdapte
     }
 
     @Override
-    //Data binded to the view for display within the recycler
+    //onBind fills the all incident list with the data, and updates as the user scrolls down the recycler
     public void onBindViewHolder(@NonNull AllIncidentsAdapter.ViewHolder holder, int position) {
         //Retrieve the incident stored at the position and set the values in the text views
         final AllIncidentsModel incident = incidentList.get(position);

@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:textColor="@color/colorText"
-    tools:context=".PlayerLoginActivity">
+    tools:context=".views.PlayerLoginActivity">
 
 
     <ImageView

@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.android.prototype2.AddReportActivity;
 import com.example.android.prototype2.R;
 import com.example.android.prototype2.dialogs.AmbulanceFragment;
 
@@ -24,6 +23,7 @@ public class MemoryActivity extends AppCompatActivity {
 
     //Variable for storing the result of the memory questions
     private int result = 0;
+
 
     //Variable for storing result
     private String memoryResult;
@@ -64,29 +64,15 @@ public class MemoryActivity extends AppCompatActivity {
 
 
         //If statements for each question and update result based on answer
-        if (q1Yes.isChecked()) result = result + 1;
-        if (q1No.isChecked()) result = result - 1;
-
-        if (q2Yes.isChecked()) result = result + 1;
-        if (q2No.isChecked()) result = result - 1;
-
-        if (q3Yes.isChecked()) result = result + 1;
-        if (q3No.isChecked()) result = result - 1;
-
-        if (q4Yes.isChecked()) result = result + 1;
-        if (q4No.isChecked()) result = result - 1;
-
-        if (q5Yes.isChecked()) result = result + 1;
-        if (q5No.isChecked()) result = result - 1;
-
-
-        //Less than 1 then test is a fail
-        if (result < 1) memoryResult = "Memory Activity: Failed";
-        else {
+        //if any of the five questions are checked no , results in a fail
+        if (q1No.isChecked() || q2No.isChecked() || q3No.isChecked() || q4No.isChecked() || q5No.isChecked()) {
+            memoryResult = "Memory Questions: Failed";
+            Log.d(TAG, memoryResult);
+        } else {
             //Otherwise it is a pass
-            memoryResult = "Memory Activity: Passed";
+            memoryResult = "Memory Questions: Passed";
+            Log.d(TAG, memoryResult);
         }
-
     }
 
     //Method to make sure correct number of boxes ticked

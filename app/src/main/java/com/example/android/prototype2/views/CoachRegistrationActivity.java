@@ -1,4 +1,4 @@
-package com.example.android.prototype2;
+package com.example.android.prototype2.views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.android.prototype2.R;
 import com.example.android.prototype2.helperClass.CoachModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -18,26 +19,28 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
 public class CoachRegistrationActivity extends AppCompatActivity implements View.OnClickListener {
 
-    //Tag for printing log details
-    private static final String TAG = "CoachRegActivity";
 
-    //Declare variables
+
+    //Variables for the registration form
     private TextInputLayout regCoachName,
             regCoachEmail, regCoachPhoneNo, regCoachPassword, regTeamCoached;
-    private Button regCoachBtn, coachReturnToLoginBtn;
+
+    private Button coachReturnToLoginBtn;
+
+    //Progress bar variable
     private ProgressBar progressBar;
 
     //Declare an instance of Firebase Authentication
-    private FirebaseAuth mAuth;
-
-
+    private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
+
+    //Tag for printing log details
+    private final String TAG = getClass().getSimpleName();
 
 
     @Override
@@ -53,24 +56,23 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
         regCoachPhoneNo = findViewById(R.id.coach_phone_no);
         regCoachPassword = findViewById(R.id.coach_password);
         regTeamCoached = findViewById(R.id.team_coached);
-        regCoachBtn = findViewById(R.id.coach_register);
         coachReturnToLoginBtn = findViewById(R.id.coach_return_to_login);
 
         //Assign progress bar and set it to not appear
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
 
-        //Assign instance of Firebase variables
-        mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
+        //Assign instance of Firebase variables, Firebase Auth to gain access to its features
+        firebaseAuth= FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
 
         //return to login button takes user back to login screen
         coachReturnToLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), PlayerLoginActivity.class);
-                startActivity(intent);
+                Intent returnIntent = new Intent(getApplicationContext(), PlayerLoginActivity.class);
+                startActivity(returnIntent);
             }
         });
 
@@ -80,6 +82,7 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
 
     //Validation for name
     private Boolean validateName() {
+        //Retrieve the user's entry from the text field
         String entry = regCoachName.getEditText().getText().toString();
         //If empty display error
         if (entry.isEmpty()) {
@@ -97,6 +100,7 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
 
     //Validation for email
     private Boolean validateEmail() {
+        //Retrieve the user's entry from the text field
         String entry = regCoachEmail.getEditText().getText().toString();
         //Characters accepted for email address
         String emailCharacters = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
@@ -111,6 +115,7 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
             regCoachEmail.setError("Invalid email address");
             return false;
         } else {
+            //No error
             regCoachEmail.setError(null);
             //setErrorEnabled(false) ensures layout will not change size when an error is displayed
             regCoachEmail.setErrorEnabled(false);
@@ -120,16 +125,19 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
 
     //Validation for phone entry
     private Boolean validatePhoneNo() {
+        //Retrieve the user's entry from the text field
         String entry = regCoachPhoneNo.getEditText().getText().toString();
         //If empty display error
         if (entry.isEmpty()) {
             regCoachPhoneNo.setError("Phone number field cannot be empty");
             return false;
+            //If less than 6 numbers entered, invalid number
         } else if (entry.length() < 6) {
             regCoachPhoneNo.setError("Is number correctly formatted?");
             return false;
 
         } else {
+            //No error
             regCoachPhoneNo.setError(null);
             //setErrorEnabled(false) ensures layout will not change size when an error is displayed
             regCoachPhoneNo.setErrorEnabled(false);
@@ -140,23 +148,27 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
 
     //Validation for password
     private Boolean validatePassword() {
+        //Retrieve the user's entry from the text field
         String entry = regCoachPassword.getEditText().getText().toString();
+        //Password must contain certain characters to be secure
         String passwordEntry = "^" +
 
-                "(?=.*[A-Z])" +         //at least 1 upper case letter
-                "(?=.*[a-zA-Z])" +      //any letter
-                "(?=.*[@#$%^&+=!*])" +    //at least 1 special character
-                "(?=\\S+$)" +           //no white spaces
-                ".{4,}" +               //at least 4 characters
+                "(?=.*[A-Z])" +         //1 upper case
+                "(?=.*[a-zA-Z])" +      //Any letter
+                "(?=.*[@#$%^&+=!*])" +    //1 Special character
+                "(?=\\S+$)" +           //No gaps
+                ".{4,}" +               //At least 4 characters
                 "$";
         //If empty display error
         if (entry.isEmpty()) {
             regCoachPassword.setError("Password field cannot be empty");
             return false;
+            //If password does not follow constraints
         } else if (!entry.matches(passwordEntry)) {
             regCoachPassword.setError("Password must have at least 1 upper case,1 special character");
             return false;
         } else {
+            //No error
             regCoachPassword.setError(null);
             //setErrorEnabled(false) ensures layout will not change size when an error is displayed
             regCoachPassword.setErrorEnabled(false);
@@ -168,12 +180,14 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
 
     //Validation for Team coached
     private Boolean validateTeamCoached() {
+        //Retrieve the user's entry from the text field
         String entry = regTeamCoached.getEditText().getText().toString();
         //If empty display error
         if (entry.isEmpty()) {
             regTeamCoached.setError("Team coached field cannot be empty");
             return false;
         } else
+            //No error
             regTeamCoached.setError(null);
         //setErrorEnabled(false) ensures layout will not change size when an error is displayed
         regTeamCoached.setErrorEnabled(false);
@@ -188,34 +202,29 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
         final String teamCoached = regTeamCoached.getEditText().getText().toString();
         final String phoneNo = regCoachPhoneNo.getEditText().getText().toString();
         final String password = regCoachPassword.getEditText().getText().toString();
-        //Get a reference to the required section of the database
-
-        DatabaseReference coach = FirebaseDatabase.getInstance().getReference("Coaches");
-        //Add a unique Id to the coach
-        final String id = coach.push().getKey();
 
         //if any of the validations do not pass return will be called and errors will be shown
         if (!validateName() | !validatePassword() | !validatePhoneNo() | !validateEmail() | !validateTeamCoached()) {
             return;
         }
 
-        //Progress bar now visible
+        //Progress bar now visible while loading
         progressBar.setVisibility(View.VISIBLE);
         //Access the firebase reference and create a user with their email and password
-        mAuth.createUserWithEmailAndPassword(email, password)
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        //Get the UID
                         String coachUID = currentUser.getUid();
 
                         if (task.isSuccessful()) {
-                            //Set the details from our UserHelperClass
+                            //Set the details matching the fields in CoachModel
                             CoachModel coachModel = new CoachModel();
                             coachModel.setCoachName(name);
                             coachModel.setCoachPhoneNumber(phoneNo);
                             coachModel.setCoachEmail(email);
                             coachModel.setTeamCoached(teamCoached);
-                            coachModel.setCoachID(id);
                             coachModel.setUid(coachUID);
 
                             //Log tags used for testing
@@ -225,17 +234,18 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
                             Log.d(TAG, "TEST_coach_TeamCoachedEC: " + teamCoached);
                             Log.d(TAG, "TEST_coachUID: " + coachUID);
 
-                            //Get an instance of the firebase database  to the current user
+                            //Get an instance of the firebase database and add the details from helper class to a new UID node
                             FirebaseDatabase.getInstance().getReference("Coaches").child(coachUID)
-
+                                    //Insert the newly created coach at their UID path
                                     .setValue(coachModel).addOnCompleteListener(new OnCompleteListener<Void>() {
 
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressBar.setVisibility(View.GONE);
-                                    //of successful show Toast
+                                    //If successful show Toast
                                     if (task.isSuccessful()) {
                                         Toast.makeText(getApplicationContext(), getString(R.string.registration_success), Toast.LENGTH_SHORT).show();
+                                        //Log tag for testing
                                         Log.d(TAG, "TEST_Coach_Reg_Success");
 
 
@@ -254,8 +264,8 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
                 });
 
         //After registration completed return to login screen to login
-        Intent intent = new Intent(getApplicationContext(), CoachLoginActivity.class);
-        startActivity(intent);
+        Intent returnToLogin = new Intent(getApplicationContext(), CoachLoginActivity.class);
+        startActivity(returnToLogin);
     }
 
 

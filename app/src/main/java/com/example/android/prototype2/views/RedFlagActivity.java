@@ -2,6 +2,7 @@ package com.example.android.prototype2.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -42,6 +43,7 @@ public class RedFlagActivity extends AppCompatActivity {
         intentName1 = getIntent().getStringExtra("name1");
         intentEmail1 = getIntent().getStringExtra("email1");
         redFlagDiagnosis = "Red Flags : Passed";
+        Log.d(TAG,"RedFlag"+redFlagDiagnosis);
     }
 
     //Method to direct button clicks to correct action

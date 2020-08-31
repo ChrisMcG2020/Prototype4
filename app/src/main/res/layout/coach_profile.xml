@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorBackground"
         android:orientation="vertical"
-        tools:context=".PlayerRegistrationActivity">
+        tools:context=".views.PlayerRegistrationActivity">
 
         <!--Info button to link to app info-->
         <ImageView
@@ -53,7 +53,7 @@
                 android:layout_marginLeft="112dp"
                 android:layout_marginTop="15dp"
                 android:includeFontPadding="false"
-                android:fontFamily="@font/gravitas_one"
+                android:fontFamily="@font/bevan"
                 android:textAllCaps="true"
                 android:textSize="20sp"
                 android:gravity="center_horizontal" />
@@ -67,7 +67,7 @@
                 android:layout_marginLeft="120dp"
                 android:layout_marginTop="45dp"
                 android:layout_centerHorizontal="true"
-                android:fontFamily="@font/gravitas_one"
+                android:fontFamily="@font/bevan"
                 android:includeFontPadding="false"
                 android:textSize="16sp" />
 
@@ -111,7 +111,7 @@
                         android:layout_marginTop="2dp"
                         android:contentDescription="@string/player_search_name"
                         android:onClick="onButtonClicked"
-                        android:src="@mipmap/userpic" />
+                        android:src="@drawable/userpic" />
 
                     <TextView
                         android:id="@+id/player_search_text"
@@ -160,7 +160,7 @@
                         android:layout_marginTop="1dp"
                         android:contentDescription="@string/recovery_image"
                         android:onClick="onButtonClicked"
-                        android:src="@mipmap/calender" />
+                        android:src="@drawable/calender" />
 
                     <TextView
                         android:id="@+id/recovery_text"
@@ -212,7 +212,7 @@
                         android:layout_marginTop="1dp"
                         android:contentDescription="@string/recovery_image"
                         android:onClick="onButtonClicked"
-                        android:src="@mipmap/logout" />
+                        android:src="@drawable/logout" />
 
                     <TextView
                         android:id="@+id/sign_out"

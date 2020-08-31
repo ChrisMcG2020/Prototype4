@@ -1,10 +1,12 @@
-package com.example.android.prototype2;
+package com.example.android.prototype2.views;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.android.prototype2.R;
 
 public class RecoveryActivity extends AppCompatActivity {
 
@@ -21,7 +23,6 @@ public class RecoveryActivity extends AppCompatActivity {
     public void onButtonClicked(View view) {
         //Back button clicked launches the player profile alert dialog
         if (view.getId() == R.id.recovery_back_btn) {
-            //Create new instance of the fragment
             Intent back = new Intent(getApplicationContext(), PlayerProfile.class);
             startActivity(back);
         }

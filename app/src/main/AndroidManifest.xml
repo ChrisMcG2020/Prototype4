@@ -23,23 +23,23 @@
             </intent-filter>
         </activity>
         <activity android:name=".views.IncidentListView" />
-        <activity android:name=".AddReportActivity" />
-        <activity android:name=".CoachAdviceActivity" />
+        <activity android:name=".views.AddReportActivity" />
+        <activity android:name=".views.CoachAdviceActivity" />
         <activity android:name=".views.MemoryActivity" />
         <activity android:name=".views.SymptomsActivity" />
-        <activity android:name=".CoachRegistrationActivity" />
+        <activity android:name=".views.CoachRegistrationActivity" />
         <activity android:name=".views.RedFlagActivity" />
         <activity android:name=".views.PlayerListViewActivity" />
         <activity android:name=".views.AllIncidentsListView" />
-        <activity android:name=".PlayerProfile" />
-        <activity android:name=".PlayerLoginActivity" />
-        <activity android:name=".RecoveryActivity" />
-        <activity android:name=".PlayerRegistrationActivity" />
-        <activity android:name=".CoachProfile" />
+        <activity android:name=".views.PlayerProfile" />
+        <activity android:name=".views.PlayerLoginActivity" />
+        <activity android:name=".views.RecoveryActivity" />
+        <activity android:name=".views.PlayerRegistrationActivity" />
+        <activity android:name=".views.CoachProfile" />
         <activity android:name=".views.ObservableSignsActivity" />
-        <activity android:name=".CoachLoginActivity" />
+        <activity android:name=".views.CoachLoginActivity" />
         <activity android:name=".views.AppInformationPage" />
-        <activity android:name=".ReturnToSportStrategy" />
+        <activity android:name=".views.ReturnToSportStrategy" />
         <activity android:name=".views.AppCoachInformationPage" />
 
         <meta-data

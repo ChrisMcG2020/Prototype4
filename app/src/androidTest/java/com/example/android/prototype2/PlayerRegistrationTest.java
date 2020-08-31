@@ -11,6 +11,8 @@ import androidx.test.espresso.contrib.PickerActions;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.example.android.prototype2.views.PlayerLoginActivity;
+import com.example.android.prototype2.views.PlayerRegistrationActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.hamcrest.Description;
@@ -75,6 +77,7 @@ public class PlayerRegistrationTest {
     public static final String PHONE_FORMAT_ERROR = "Is number correctly formatted?";
 
 
+    //UI Tests
     @Test
     public void test_reg_fields_present() {
         //Get the activity
@@ -132,6 +135,7 @@ public class PlayerRegistrationTest {
 
     }
 
+    //UI & Instrumentation Tests
     @Test
     public void test_error_text_appears_when_fields_empty_and_reg_clicked() {
         //Use the set Date method to pick the date, needs to happen before register is clicked

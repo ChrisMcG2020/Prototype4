@@ -32,6 +32,7 @@ public class SymptomsActivityTest {
     public final IntentsTestRule<SymptomsActivity> mSymptomsTestRule
             = new IntentsTestRule<>(SymptomsActivity.class);
 
+    //Unit Tests
     @Test
     public void test_editText_and_buttons_present() {
         //Get the activity
@@ -90,6 +91,7 @@ public class SymptomsActivityTest {
 
     }
 
+    //UI & Instrumentation Tests
     @Test
     public void test_is_view_scrollable() {
         //Find view and perform action

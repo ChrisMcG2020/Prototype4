@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android.prototype2.adapters.PlayerListAdapter;
 import com.example.android.prototype2.R;
 import com.example.android.prototype2.helperClass.PlayerModel;
 import com.google.firebase.database.DataSnapshot;
@@ -47,7 +48,7 @@ public class PlayerListViewActivity extends AppCompatActivity {
         setContentView(R.layout.users_list_recycler_view);
         
         //Get a reference to the users node of the database
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Players");
 
 
         //Assign the search view variable
@@ -76,6 +77,7 @@ public class PlayerListViewActivity extends AppCompatActivity {
 
         //Assign the recycler view to the correct view
         listViewPlayers = findViewById(R.id.recycler_list_view);
+        //Avoid invalidating the whole layout when  adapter contents change
         listViewPlayers.setHasFixedSize(true);
         //Set the adapter to an instance of the PlayerListAdapter
 
@@ -85,19 +87,19 @@ public class PlayerListViewActivity extends AppCompatActivity {
 
 
         //Get a reference to the path required in the database
-        reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference = FirebaseDatabase.getInstance().getReference("Players");
 
-        //AddValueEventListener will update the players list if any new players added
+        //AddValueEventListener will return all the players when called. Order by name
         reference.orderByChild("name").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot playerSnapshot : snapshot.getChildren()) {
-                    //Get the values defined in the UserHelperClass from the registered players in the database
+                    //Get the values defined in the PlayerHelperClass from the registered players in the database
                     PlayerModel player = playerSnapshot.getValue(PlayerModel.class);
-                    //If a new player is created add them to the playersList
+                    //Add all players to the player list including any newly created
                     playersList.add(player);
                 }
-
+                //Add the players to the adapter to be displayed
                 adapter = new PlayerListAdapter(PlayerListViewActivity.this, playersList);
                 listViewPlayers.setAdapter(adapter);
             }

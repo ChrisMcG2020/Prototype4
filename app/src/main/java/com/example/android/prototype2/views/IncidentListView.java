@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android.prototype2.adapters.IncidentListAdapter;
 import com.example.android.prototype2.helperClass.PlayerIncidentsModel;
 import com.example.android.prototype2.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -51,8 +52,9 @@ public class IncidentListView extends AppCompatActivity {
 
         //Assign the recycler view to the correct view
         listViewIncidents = findViewById(R.id.recycler_list_view);
+        //Avoid invalidating the whole layout when  adapter contents change
         listViewIncidents.setHasFixedSize(true);
-        //Set the adapter to an instance of the PlayerListAdapter
+        //Set the adapter to an instance of the IncidentListAdapter
         listViewIncidents.setAdapter(new IncidentListAdapter(this, playerIncidentsModels));
         //Instruct the layout manager to set the layout to LinearLayout
         listViewIncidents.setLayoutManager(new LinearLayoutManager(this));
@@ -65,17 +67,17 @@ public class IncidentListView extends AppCompatActivity {
 
 
 
-        //AddValueEventListener will return the players incidents when called
+        //AddValueEventListener will return the players incidents when called.
         reference.orderByChild("uid").equalTo(currentUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot incidentSnapshot : snapshot.getChildren()) {
                     //Get the values defined in the PlayerIncidentsModel from the corresponding values in the database
                     PlayerIncidentsModel incident = incidentSnapshot.getValue(PlayerIncidentsModel.class);
-                    // Add the incident
+                    // Add the incident including any newly created
                     playerIncidentsModels.add(incident);
                 }
-
+                //Add the incidents to the adapter to be displayed
                 adapter = new IncidentListAdapter(IncidentListView.this, playerIncidentsModels);
                 listViewIncidents.setAdapter(adapter);
             }
