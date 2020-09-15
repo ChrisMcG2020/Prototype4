@@ -12,7 +12,7 @@
     android:textColor="@color/colorText"
     tools:context=".views.CoachLoginActivity">
 
-
+    <!--Layout includes image, and intro text-->
     <ImageView
         android:layout_width="120dp"
         android:layout_height="120dp"

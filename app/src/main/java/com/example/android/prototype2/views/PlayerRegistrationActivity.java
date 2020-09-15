@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -34,6 +36,8 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
             regEmail, regPhoneNo, regPassword, regContact, regContactPhone, regDobValidationsError;
     //Variables for getting DOB
     private DatePicker regDOB;
+    //Variables for EditText
+    private EditText regName2,regEmail2,regPhone2,regPassword2,regContact2,regContactPhone2;
 
     private Button regToLoginBtn;
 
@@ -63,6 +67,23 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
         regContact = findViewById(R.id.reg_emergency_contact);
         regContactPhone = findViewById(R.id.reg_emergency_contact_phone);
         regToLoginBtn = findViewById(R.id.back_to_login);
+
+        //Edit text views
+        regName2=findViewById(R.id.reg_name_edit);
+        regEmail2=findViewById(R.id.reg_email_edit);
+        regPhone2=findViewById(R.id.reg_phone_no_edit);
+        regPassword2=findViewById(R.id.reg_password_edit);
+        regContact2=findViewById(R.id.reg_emergency_contact_edit);
+        regContactPhone2=findViewById(R.id.reg_emergency_contact_phone_edit);
+
+        //Disable fullscreen keyboard in landscape mode
+        regName2.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        regEmail2.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        regPhone2.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        regPassword2.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        regContact2.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        regContactPhone2.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+
 
         //Assign progress bar and set it to not appear
         progressBar = findViewById(R.id.progressBar);
@@ -243,12 +264,10 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
     //Method to register user
     private void registerUser() {
 
-
         //Get all the values from the text fields
         final String name = regName.getEditText().getText().toString();
         final String email = regEmail.getEditText().getText().toString();
         final String phoneNo = regPhoneNo.getEditText().getText().toString();
-        final String userUID = currentUser.getUid();
 
         //Method to get a readable day/month/year from the Datepicker
         int day = regDOB.getDayOfMonth();
@@ -259,7 +278,6 @@ public class PlayerRegistrationActivity extends AppCompatActivity implements Vie
         @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yy");
         Date date = new Date(year, month, day);
         final String dob = dateFormatter.format(date);
-        //final String dob = stringDate;
 
         final String emergencyContact = regContact.getEditText().getText().toString();
         final String contactNumber = regContactPhone.getEditText().getText().toString();

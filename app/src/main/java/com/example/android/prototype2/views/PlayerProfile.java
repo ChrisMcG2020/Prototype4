@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,6 +77,14 @@ public class PlayerProfile extends AppCompatActivity {
         emergencyContactTextView = findViewById(R.id.player_profile_emergency_contact);
         emergencyContactPhoneNoTextView = findViewById(R.id.player_prof_emergency_contact_phone);
 
+        nameTextView.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        emailTextView.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        phoneNoTextView.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        emergencyContactTextView.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        emergencyContactPhoneNoTextView.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+
+
+
 
         //Query the database to get the current user
         Query query = databaseReference.orderByChild("uid").equalTo(currentUser.getUid());
@@ -116,7 +125,7 @@ public class PlayerProfile extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+
             }
         });
     }

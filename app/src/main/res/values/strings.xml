@@ -100,7 +100,6 @@
     <string name="recovery_image">recovery_image</string>
     <string name="player_prof_update">UPDATE</string>
     <string name="delete_profile">DELETE PROFILE</string>
-    <string name="orange_flag">orange_flag</string>
     <string name="coach_update">UPDATE</string>
     <string name="coach_delete">DELETE PROFILE</string>
 
@@ -197,6 +196,7 @@
     <string name="login_message">Choose a Profile...</string>
     <string name="login_player">Player</string>
     <string name="login_coach">Coach</string>
+    <string name="orange_flag">orange_flag</string>
 
 
 </resources>

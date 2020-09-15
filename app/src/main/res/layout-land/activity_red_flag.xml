@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!--Orange Flag Warning Image-->
+        <!--Red Flag Warning Image-->
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="184dp"
@@ -70,6 +70,7 @@
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/redFlag_call_ambulance"
                 style="?attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

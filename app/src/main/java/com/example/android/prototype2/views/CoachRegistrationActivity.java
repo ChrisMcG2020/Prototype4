@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -25,10 +27,12 @@ import com.google.firebase.database.FirebaseDatabase;
 public class CoachRegistrationActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-
     //Variables for the registration form
     private TextInputLayout regCoachName,
             regCoachEmail, regCoachPhoneNo, regCoachPassword, regTeamCoached;
+
+    private EditText regCoachName2, regCoachEmail2, regCoachPhone2, regCoachPassword2, regCoachTeam;
+
 
     private Button coachReturnToLoginBtn;
 
@@ -58,12 +62,26 @@ public class CoachRegistrationActivity extends AppCompatActivity implements View
         regTeamCoached = findViewById(R.id.team_coached);
         coachReturnToLoginBtn = findViewById(R.id.coach_return_to_login);
 
+        //Edit text views
+        regCoachName2 = findViewById(R.id.coach_name_edit);
+        regCoachEmail2 = findViewById(R.id.coach_email_edit);
+        regCoachPhone2 = findViewById(R.id.coach_phone_no_edit);
+        regCoachPassword2 = findViewById(R.id.coach_password_edit);
+        regCoachTeam = findViewById(R.id.team_coached_edit);
+
+        //Disable fullscreen keyboard in landscape mode
+        regCoachName2.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        regCoachEmail2.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        regCoachPhone2.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        regCoachPassword2.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        regCoachTeam.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+
         //Assign progress bar and set it to not appear
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
 
         //Assign instance of Firebase variables, Firebase Auth to gain access to its features
-        firebaseAuth= FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
 
         //return to login button takes user back to login screen

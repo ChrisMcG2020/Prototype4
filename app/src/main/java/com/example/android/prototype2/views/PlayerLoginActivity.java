@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -27,6 +29,7 @@ public class PlayerLoginActivity extends AppCompatActivity {
     //Declare the variables
     private TextInputLayout loginEmail, loginPass;
     private Button forgotPass;
+    private EditText loginEmail2,loginPass2;
 
     //Firebase variables
     private DatabaseReference databaseReference;
@@ -51,6 +54,13 @@ public class PlayerLoginActivity extends AppCompatActivity {
         loginPass = findViewById(R.id.login_password);
         forgotPass = findViewById(R.id.forgot_pass_btn);
 
+        //Assign EditText views
+        loginEmail2=findViewById(R.id.login_email2);
+        loginPass2=findViewById(R.id.login_password2);
+
+        //Disable fullscreen keyboard in landscape mode
+        loginEmail2.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        loginPass2.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
 
         //Initialise the progress bar to be not visible for now
         progressBar = findViewById(R.id.progressBar);

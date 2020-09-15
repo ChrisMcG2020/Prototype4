@@ -12,7 +12,7 @@ public class PlayerModel {
     private String dob;
     private String password;
     private String uid;
-    private String playerID;
+
 
 
     //Empty constructor
@@ -34,10 +34,6 @@ public class PlayerModel {
     }
 
     //Getters and setters
-    public String getPlayerID() {
-        return playerID;
-    }
-
     public String getName() {
         return name;
     }
@@ -102,9 +98,6 @@ public class PlayerModel {
         this.uid = uid;
     }
 
-    public void setPlayerID(String playerID) {
-        this.playerID = playerID;
-    }
 }
 
 

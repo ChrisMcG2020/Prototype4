@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -27,7 +29,7 @@ public class CoachLoginActivity extends AppCompatActivity {
     //Declare the variables
     private TextInputLayout loginEmail, loginPass;
     private Button forgotPass;
-
+    private EditText loginEmail2,loginPass2;
     //Firebase variables
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
@@ -54,6 +56,14 @@ public class CoachLoginActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         //Initialise the progress bar to be not visible for now
         progressBar.setVisibility(View.GONE);
+
+        //Assign EditText views
+        loginEmail2=findViewById(R.id.login_email2);
+        loginPass2=findViewById(R.id.login_password2);
+
+        //To disable fullscreen keyboard in landscape mode
+        loginEmail2.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        loginPass2.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
 
         //Initialise the FirebaseAuth variable
         firebaseAuth = FirebaseAuth.getInstance();
@@ -155,8 +165,6 @@ public class CoachLoginActivity extends AppCompatActivity {
         //Characters accepted for email address
         final String emailCharacters = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
                 + "+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|";
-
-
 
         //If entry left empty error shown
         if (entry.isEmpty()) {

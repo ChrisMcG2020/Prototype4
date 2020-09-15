@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,12 +75,17 @@ public class CoachProfile extends AppCompatActivity {
         displayCoachphone = findViewById(R.id.coach_phone_small);
         teamCoachedTextView = findViewById(R.id.coach_profile_team);
 
+        coachNameTextView.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        coachPhoneNoTextView.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        coachEmailTextView.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        teamCoachedTextView.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+
+
         //Query the database to get the current user
         Query query = databaseReference.orderByChild("coachEmail").equalTo(currentUser.getEmail());
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 for (DataSnapshot userSnapshot : snapshot.getChildren()) {
                     //If no information found ,show error toast
                     if (snapshot.getValue() == null) {
@@ -112,7 +118,7 @@ public class CoachProfile extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+
 
 
             }

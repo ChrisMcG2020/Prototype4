@@ -16,8 +16,8 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginBottom="32dp"
-        android:src="@mipmap/smaller_intro"
-        android:contentDescription="@string/logo_Image" />
+        android:contentDescription="@string/logo_Image"
+        android:src="@mipmap/smaller_intro" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -43,7 +43,6 @@
         <!--Use material components design for the text boxes -->
 
         <com.google.android.material.textfield.TextInputLayout
-
             android:id="@+id/login_email"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
@@ -57,7 +56,6 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-
             android:id="@+id/login_password"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"

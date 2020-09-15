@@ -42,6 +42,7 @@ public class RedFlagActivity extends AppCompatActivity {
         intentUid1 = getIntent().getStringExtra("uid");
         intentName1 = getIntent().getStringExtra("name1");
         intentEmail1 = getIntent().getStringExtra("email1");
+
         redFlagDiagnosis = "Red Flags : Passed";
         Log.d(TAG,"RedFlag"+redFlagDiagnosis);
     }

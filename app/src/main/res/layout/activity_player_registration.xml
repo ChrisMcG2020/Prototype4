@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Scroll view implemented as quite a lot of information on teh screen -->
+<!--Scroll view implemented as quite a lot of information on the screen -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -102,8 +102,6 @@
             android:calendarViewShown="false"
             android:datePickerMode="spinner"
             android:spinnersShown="true"
-
-
             tools:targetApi="lollipop" />
 
         <com.google.android.material.textfield.TextInputLayout

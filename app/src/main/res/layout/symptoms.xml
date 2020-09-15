@@ -27,7 +27,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="184dp"
                     android:background="#FFFFFF"
-                    android:contentDescription="orange_flag"
+                    android:contentDescription="@string/orange_flag"
                     app:srcCompat="@drawable/secondary_symptoms" />
 
                 <!--ScrollView to scroll through all options-->

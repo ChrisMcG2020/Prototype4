@@ -66,7 +66,7 @@ public class SymptomsActivity extends AppCompatActivity {
         //Retrieve the previous results and assign them
         intentUid3 = getIntent().getStringExtra("uid2");
         intentName3 = getIntent().getStringExtra("name2");
-        Log.d(TAG, "NameSymptoms" + intentName3);
+
         intentEmail3 = getIntent().getStringExtra("email2");
         intentRedFlag3 = getIntent().getStringExtra("redFlag2");
         intentObservable3 = getIntent().getStringExtra("obs1");
